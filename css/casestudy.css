@@ -1,0 +1,773 @@
+/* ─────────────────────────────────────────
+   CARRIE FRANCIS-MILLER — Portfolio 2026
+   casestudy.css
+   Extends style.css — always load both.
+   Two-column grid layout throughout body.
+───────────────────────────────────────── */
+
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.cs-hero {
+  padding: calc(var(--nav-h) + var(--space-lg)) var(--side-pad) var(--space-xl);
+}
+
+.cs-hero__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  row-gap: var(--space-md);
+  align-items: start;
+}
+
+.cs-back-link {
+  grid-column: 1 / 5;
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: 300;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color var(--transition);
+}
+
+.cs-back-link:hover {
+  color: var(--text);
+}
+
+.cs-back,
+.cs-hero__meta,
+.cs-hero__title {
+  grid-column: 1 / 5;
+}
+
+.cs-hero__image {
+  grid-column: 1 / 13;
+}
+
+.cs-hero__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35em 0.75em;
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cs-meta__client {
+  color: var(--text-muted);
+}
+
+.cs-meta__sep {
+  color: var(--text-faint);
+  user-select: none;
+}
+
+/* Hero image canonical dimensions — reuse this size wherever the hero asset appears */
+:root {
+  --hero-img-w: 1224px;
+  --hero-img-h: 800px;
+}
+
+.cs-hero__title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 2.5rem;
+  letter-spacing: 0;
+  line-height: 1.05;
+}
+
+.cs-hero__image {
+  aspect-ratio: 1224 / 800;
+  width: 100%;
+  background: var(--border-light);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-hero__image-placeholder {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+
+/* ─────────────────────────────────────────
+   BODY LAYOUT
+───────────────────────────────────────── */
+.cs-body {
+  padding: 0 var(--side-pad);
+}
+
+.cs-body__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+
+/* ─────────────────────────────────────────
+   TWO-COLUMN ROW
+───────────────────────────────────────── */
+.cs-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  padding: var(--space-lg) 0;
+  border-top: 1px solid var(--border-light);
+  align-items: start;
+}
+
+.cs-row:first-child {
+  border-top: none;
+}
+
+.cs-row__left {
+  grid-column: 1 / 5;   /* columns 1–4 */
+  position: sticky;
+  top: calc(var(--nav-h) + var(--space-sm));
+}
+
+.cs-row__right {
+  grid-column: 6 / 13;  /* columns 6–12, columns 4–5 form the visual gap */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.cs-row__right p {
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+
+
+/* ─────────────────────────────────────────
+   LEFT COLUMN ELEMENTS
+───────────────────────────────────────── */
+.cs-label {
+  font-family: var(--font-display);
+  font-size: var(--size-lg);
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0;
+  display: block;
+}
+
+.cs-stat-stack {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gutter);
+  margin-top: var(--space-md);
+}
+
+.cs-stat-stack > div {
+  border: 1px solid var(--border);
+  padding: var(--space-sm);
+  flex: 1;
+}
+
+.cs-stat__value {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  display: block;
+}
+
+.cs-stat__label {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: 300;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+  display: block;
+  margin-top: 0.2rem;
+}
+
+
+/* ─────────────────────────────────────────
+   GOAL CALLOUT — standalone, between rows
+───────────────────────────────────────── */
+.cs-goal {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: normal;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--text);
+  padding: var(--space-xl) 0;
+}
+
+
+/* ─────────────────────────────────────────
+   ROLE LIST
+───────────────────────────────────────── */
+.cs-role-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.cs-role-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-bottom: var(--space-sm);
+}
+
+.cs-role-item:last-child {
+  padding-bottom: 0;
+}
+
+.cs-role-tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: 300;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+}
+
+.cs-role-item p {
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+
+/* ─────────────────────────────────────────
+   APPROACH BLOCKS
+───────────────────────────────────────── */
+.cs-approach {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.cs-approach-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.cs-approach-block:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.cs-approach-block h3 {
+  font-family: var(--font-mono);
+  font-weight: 300;
+  font-size: var(--size-base);
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.cs-approach-block p {
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+
+
+/* ─────────────────────────────────────────
+   QUOTE
+───────────────────────────────────────── */
+.cs-quote {
+  margin-top: var(--space-sm);
+}
+
+.cs-quote p {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--size-lg);
+  color: var(--text-muted);
+  line-height: 1.7;
+  display: inline;
+}
+
+.cs-quote footer {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--size-lg);
+  color: var(--text-faint);
+  display: inline;
+}
+
+
+/* ─────────────────────────────────────────
+   AI CALLOUT — reuse from style.css
+───────────────────────────────────────── */
+.cs-row__right .ai-callout {
+  margin-top: var(--space-xl);
+}
+
+
+/* ─────────────────────────────────────────
+   KEY OUTPUTS — LEFT COLUMN
+───────────────────────────────────────── */
+.cs-output-titles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.cs-output-title {
+  font-family: var(--font-mono);
+  font-size: var(--size-sm);
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+
+/* ─────────────────────────────────────────
+   KEY OUTPUTS — RIGHT COLUMN
+───────────────────────────────────────── */
+.cs-output-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.cs-output-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.cs-output-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.cs-output-item__title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--size-md);
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+.cs-output-item p {
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.cs-output-item ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cs-output-item li {
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  padding-left: 1.25em;
+  position: relative;
+}
+
+.cs-output-item li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-faint);
+}
+
+.cs-output-placeholder {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: 300;
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+
+/* ─────────────────────────────────────────
+   OUTCOMES
+───────────────────────────────────────── */
+.cs-outcomes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.cs-outcome-category {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.cs-outcome-category:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.cs-outcome-label {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: 300;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: inline-block;
+  align-self: flex-start;
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  margin-bottom: 0.4rem;
+}
+
+.cs-outcome-category ul {
+  list-style: disc;
+  padding-left: 1.1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cs-outcome-category li {
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+
+/* ─────────────────────────────────────────
+   CLOSING QUOTES
+───────────────────────────────────────── */
+.cs-closing-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+
+/* ─────────────────────────────────────────
+   REFLECTION
+───────────────────────────────────────── */
+.cs-reflection p {
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+
+.cs-reflection p + p {
+  margin-top: var(--space-sm);
+}
+
+
+/* ─────────────────────────────────────────
+   NEXT CASE STUDY
+───────────────────────────────────────── */
+.cs-next {
+  padding: var(--space-xl) var(--side-pad);
+  border-top: 1px solid var(--border);
+}
+
+.cs-next__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.cs-next__label {
+  display: none;
+}
+
+.cs-next__title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  letter-spacing: -0.02em;
+  color: var(--text);
+  transition: opacity var(--transition);
+}
+
+.cs-next__title:hover {
+  opacity: 0.6;
+}
+
+
+/* ═════════════════════════════════════════
+   VISUAL ASSETS
+   .va-* — ported from sandbox-visuals.html
+   Tile custom properties live in :root in
+   style.css; mobile overrides are below.
+═════════════════════════════════════════ */
+
+/* Row container — 12-col grid for caption + asset */
+.va-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  align-items: start;
+  padding: var(--space-md) 0;
+}
+
+.va-row__caption {
+  grid-column: 1 / 5;
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  align-self: start;
+  padding-top: 0.4rem;
+}
+
+.va-row__caption strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--size-md);
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: -0.015em;
+  text-transform: none;
+  margin-bottom: 0.35rem;
+}
+
+/* Asset block — still / motion / carousel.
+   Carousel variants override aspect-ratio below. */
+.va-asset {
+  position: relative;
+  overflow: hidden;
+  background: var(--border-light);
+  border: 1px solid var(--border);
+  aspect-ratio: 16 / 10;
+}
+
+/* ── Size modifiers (12-col grid) ── */
+.va-asset--w12  { grid-column: 1 / 13; }
+.va-asset--w7-r { grid-column: 6 / 13; }
+.va-asset--w7-l { grid-column: 1 / 8;  }
+.va-asset--w5-r { grid-column: 8 / 13; }
+.va-asset--w5-l { grid-column: 1 / 6;  }
+
+/* ── Bleed-right variants ── */
+.va-asset--bleed-r {
+  margin-right: calc(50% - 50vw);
+}
+.va-asset--from-c1 { grid-column-start: 1; grid-column-end: 13; }
+.va-asset--from-c6 { grid-column-start: 6; grid-column-end: 13; }
+.va-asset--from-c8 { grid-column-start: 8; grid-column-end: 13; }
+
+/* ── Scroll reveal (overrides base .reveal with VA-specific tuning) ── */
+.va-asset.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1100ms ease-out, transform 1100ms ease-out;
+}
+.va-asset.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Static placeholder (swap out with <img>) ── */
+.va-static {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(135deg, transparent 49.6%, var(--border) 49.6% 50.4%, transparent 50.4%) center/24px 24px,
+    var(--border-light);
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Motion placeholder (swap out with <video>) ── */
+.va-motion {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #2A3A36;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.va-motion::before,
+.va-motion::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(243,243,241,0.55), rgba(243,243,241,0));
+  animation: va-blob 6s ease-in-out infinite;
+  filter: blur(6px);
+}
+.va-motion::after {
+  background: radial-gradient(circle at 70% 70%, rgba(218,140,82,0.45), rgba(218,140,82,0));
+  animation-delay: -3s;
+  animation-duration: 7s;
+}
+.va-motion__label {
+  position: relative;
+  z-index: 1;
+  color: rgba(243,243,241,0.85);
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+@keyframes va-blob {
+  0%, 100% { transform: translate(-10%, -10%) scale(1); }
+  50%       { transform: translate(20%, 15%)  scale(1.2); }
+}
+
+/* ── Carousel ── */
+.va-asset:has(.va-carousel) {
+  background: var(--bg);
+  border: none;
+  aspect-ratio: auto;
+  height: var(--va-tile-h);
+}
+.va-asset--bleed-r:has(.va-carousel) {
+  height: var(--va-tile-h);
+  min-height: 0;
+}
+
+.va-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+}
+.va-carousel__track {
+  display: flex;
+  gap: var(--va-tile-gap);
+  padding: 0;
+  width: max-content;
+  height: 100%;
+  align-items: stretch;
+  animation: va-scroll 40s linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+.va-carousel.is-active .va-carousel__track {
+  animation-play-state: running;
+}
+.va-carousel__item {
+  flex: 0 0 var(--va-tile-w);
+  width: var(--va-tile-w);
+  height: var(--va-tile-h);
+  background: #fff;
+  border-radius: 38px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(26,26,23,0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes va-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Per-tile animations (paused until carousel is in view) ── */
+.va-carousel .va-tile-bars,
+.va-carousel .va-tile-pulse,
+.va-carousel .va-tile-shimmer { animation-play-state: paused; }
+.va-carousel.is-active .va-tile-bars    { animation: va-bars 1.6s ease-in-out infinite alternate; transform-origin: bottom; }
+.va-carousel.is-active .va-tile-pulse   { animation: va-pulse 2.4s ease-in-out infinite; transform-origin: center; }
+.va-carousel.is-active .va-tile-shimmer { animation: va-shimmer 3s linear infinite; }
+@keyframes va-bars    { from { transform: scaleY(1); } to { transform: scaleY(0.55); } }
+@keyframes va-pulse   { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(0.9); opacity: 0.7; } }
+@keyframes va-shimmer { from { transform: translateY(0); } to { transform: translateY(-40px); } }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .va-carousel__track { animation: none; }
+  .va-tile-bars, .va-tile-pulse, .va-tile-shimmer { animation: none; }
+  .va-motion::before, .va-motion::after { animation: none; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  :root {
+    --va-tile-w: 180px;
+    --va-tile-h: 390px;
+    --va-tile-gap: 12px;
+  }
+  .va-row { grid-template-columns: 1fr; row-gap: var(--space-sm); }
+  .va-row__caption,
+  .va-asset { grid-column: 1; }
+  .va-asset { aspect-ratio: 4 / 3; }
+  .va-asset--bleed-r { margin-right: calc(-1 * var(--side-pad)); }
+  .va-carousel__item { border-radius: 24px; }
+}
+
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .cs-hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-back,
+  .cs-hero__meta,
+  .cs-hero__title,
+  .cs-hero__image {
+    grid-column: 1;
+  }
+
+  .cs-row {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-row__left,
+  .cs-row__right {
+    grid-column: 1;
+  }
+
+  .cs-row__left {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .cs-body__inner {
+    max-width: 100%;
+  }
+}
