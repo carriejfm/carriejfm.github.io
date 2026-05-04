@@ -3,12 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Case Study — Carrie Francis-Miller</title>
+
+  <!-- ─── REPLACE THESE PER CASE STUDY ─────────────────────────────────────── -->
+  <!-- Title pattern: "{Project} at {Client} — case study by Carrie Francis-Miller" -->
+  <title>{Project} — case study by Carrie Francis-Miller</title>
+  <meta name="description" content="Case study: {one-line description with client, year, and 1–2 outcome metrics}.">
+  <meta name="author" content="Carrie Francis-Miller">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://carriejfm.github.io/case-studies/{slug}.html">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/favicon.ico">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Carrie Francis-Miller">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:url" content="https://carriejfm.github.io/case-studies/{slug}.html">
+  <meta property="og:title" content="{Project} — case study by Carrie Francis-Miller">
+  <meta property="og:description" content="{one-line OG description}">
+  <meta property="og:image" content="https://carriejfm.github.io/assets/imagery/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:author" content="Carrie Francis-Miller">
+  <meta property="article:section" content="{e.g. Product design case study}">
+  <meta property="article:tag" content="{Tag1, Tag2, Tag3}">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{Project} — case study by Carrie Francis-Miller">
+  <meta name="twitter:description" content="{one-line OG description}">
+  <meta name="twitter:image" content="https://carriejfm.github.io/assets/imagery/og-image.jpg">
+  <!-- ──────────────────────────────────────────────────────────────────────── -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/casestudy.css">
+
+  <!-- Structured data: CreativeWork -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "{Project Name}",
+    "headline": "{Headline used as h1 / case study title}",
+    "url": "https://carriejfm.github.io/case-studies/{slug}.html",
+    "image": "https://carriejfm.github.io/assets/imagery/og-image.jpg",
+    "datePublished": "{YYYY}",
+    "inLanguage": "en-AU",
+    "creator": {
+      "@type": "Person",
+      "name": "Carrie Francis-Miller",
+      "url": "https://carriejfm.github.io/"
+    },
+    "publisher": { "@type": "Organization", "name": "{Client / Studio}" },
+    "about": ["{Theme 1}", "{Theme 2}"],
+    "keywords": "{comma-separated keywords}"
+  }
+  </script>
 </head>
 <body>
 

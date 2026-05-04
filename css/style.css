@@ -1326,6 +1326,7 @@ a.footer__email:hover {
   .case-study__body {
     grid-column: 1;
     grid-row: auto;
+    min-width: 0;
   }
 
   .case-study__image-area {
@@ -1333,6 +1334,7 @@ a.footer__email:hover {
     grid-row: auto;
     position: static;
     margin-bottom: 1.5rem;
+    min-width: 0;
   }
 
   .footer__nav {
@@ -1470,6 +1472,8 @@ a.footer__email:hover {
   .case-study__image-area:has(.va-carousel) {
     position: static;
     height: var(--va-tile-h);
+    overflow: hidden;
+    min-width: 0;
   }
   .va-carousel__item { border-radius: 24px; }
 }
