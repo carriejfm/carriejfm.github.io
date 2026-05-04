@@ -1325,25 +1325,27 @@ a.footer__email:hover {
   }
 
   .case-study__content {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
 
+  /* dissolve the body wrapper so its children can be individually ordered */
   .case-study__body {
-    grid-column: 1;
-    grid-row: auto;
-    min-width: 0;
-    order: 1;
+    display: contents;
   }
 
-  .case-study__image-area {
-    grid-column: 1;
-    grid-row: auto;
+  .case-study__meta        { order: 1; }
+  .case-study__title       { order: 2; margin-bottom: 0.75rem; }
+  .case-study__image-area  {
+    order: 3;
     position: static;
-    margin-top: 1.5rem;
-    margin-bottom: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
     min-width: 0;
-    order: 2;
   }
+  .cs-stat-stack           { order: 4; margin-bottom: 0.5rem; }
+  .case-study__tags        { order: 5; margin-top: 0; }
+  .case-study__coming-soon { order: 6; }
 
   .footer__nav {
     display: none;
