@@ -56,6 +56,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  background-color: #1A1A17;
 }
 
 body {
@@ -1267,6 +1268,10 @@ a.footer__email:hover {
   color: rgba(255, 255, 255, 0.6);
 }
 
+.footer__credit--contact {
+  display: none;
+}
+
 /* ─────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────── */
@@ -1327,18 +1332,40 @@ a.footer__email:hover {
     grid-column: 1;
     grid-row: auto;
     min-width: 0;
+    order: 1;
   }
 
   .case-study__image-area {
     grid-column: 1;
     grid-row: auto;
     position: static;
-    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
     min-width: 0;
+    order: 2;
   }
 
   .footer__nav {
     display: none;
+  }
+
+  .footer__credit--location {
+    display: none;
+  }
+
+  .footer__credit--contact {
+    display: inline;
+    color: rgba(255, 255, 255, 0.45);
+    font-family: var(--font-mono);
+    font-size: var(--size-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color var(--transition);
+  }
+
+  .footer__credit--contact:hover {
+    color: #ffffff;
   }
 
   .bio-grid {
