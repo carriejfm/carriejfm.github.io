@@ -1525,6 +1525,8 @@ a.footer__email:hover {
   }
   .va-carousel--blurred .va-carousel__track {
     width: 100%;
+    height: auto;
+    align-items: flex-start;
   }
   .va-carousel--blurred .va-carousel__item {
     flex: 1 1 0;
