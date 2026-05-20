@@ -716,6 +716,17 @@ h1, h2, h3, h4 {
   transition: background-color var(--transition);
 }
 
+/* ─── Card recognition line ─── */
+.case-study__recognition {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: 300;
+  color: #888888;
+  letter-spacing: 0.03em;
+  margin-top: var(--space-sm);
+}
+
 /* ─── Stat blocks (shared with case study pages) ─── */
 .cs-stat-stack {
   display: flex;
@@ -1177,8 +1188,84 @@ h1, h2, h3, h4 {
   color: var(--text-muted);
 }
 
+/* ─── Coaching columns ─── */
+
+.about-coaching .section__inner {
+  border-top: none;
+  padding-top: 0;
+}
+
+.about-cta .section__inner {
+  border-top: none;
+  padding-top: 0;
+  padding-bottom: var(--space-xl);
+}
+
+.coaching-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  padding-top: var(--space-lg);
+}
+
+.coaching-col > .section__label {
+  display: block;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-sm);
+}
+
+.coaching-col__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.coaching-col__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.coaching-col__year {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: 300;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+
+.coaching-col__title {
+  font-family: var(--font-display);
+  font-size: var(--size-md);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.coaching-col__sub {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 768px) {
+  .coaching-columns {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
 /* ─── LinkedIn link ─── */
-.experience-linkedin {
+.experience-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
   padding-top: var(--space-md);
 }
 
@@ -1353,7 +1440,8 @@ a.footer__email:hover {
   }
   .cs-stat-stack           { order: 4; margin-bottom: 0.5rem; }
   .case-study__tags        { order: 5; margin-top: 0; }
-  .case-study__coming-soon { order: 6; }
+  .case-study__recognition { order: 6; }
+  .case-study__coming-soon { order: 7; }
 
   .footer__nav {
     display: none;
