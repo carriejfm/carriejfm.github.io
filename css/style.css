@@ -1362,7 +1362,7 @@ a.footer__email:hover {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.footer__credit--contact {
+.footer__credits-group {
   display: none;
 }
 
@@ -1451,8 +1451,13 @@ a.footer__email:hover {
     display: none;
   }
 
+  .footer__credits-group {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  .footer__credit--linkedin,
   .footer__credit--contact {
-    display: inline;
     color: rgba(255, 255, 255, 0.45);
     font-family: var(--font-mono);
     font-size: var(--size-xs);
@@ -1462,6 +1467,7 @@ a.footer__email:hover {
     transition: color var(--transition);
   }
 
+  .footer__credit--linkedin:hover,
   .footer__credit--contact:hover {
     color: #ffffff;
   }
