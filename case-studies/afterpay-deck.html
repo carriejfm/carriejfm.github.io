@@ -750,9 +750,10 @@
     .slide--output-c .phone-wrap video,
     .slide--output-c .phone-wrap img,
     .slide--output-c .phone-wrap .img-placeholder {
-      height: 100%;
+      height: calc(100% + 50px);
       width: auto;
       display: block;
+      margin-top: -50px;
     }
 
     /* White bar covers the status bar / brand mark area at the top of the phone. */
@@ -762,10 +763,16 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 12%;
+      height: 7%;
       background: #fff;
       z-index: 2;
       pointer-events: none;
+    }
+
+    /* Mint card: slightly taller bar + off-white to match the mint colorway */
+    .slide--output-c .phone-wrap--mint::before {
+      height: calc(7% + 2px);
+      background: #FBFBFB;
     }
 
     /* ─────────────────────────────────────────
@@ -1362,33 +1369,33 @@
   <div class="output-phones" aria-hidden="true">
     <div class="phone-col">
       <div class="phone-col__track">
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/autopay.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/basic-ddo-application-intro-screen.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/processing-loader.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/autopay.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/basic-ddo-application-intro-screen.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/processing-loader.jpg" alt=""></div>
         <!-- duplicate for seamless loop -->
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/autopay.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/basic-ddo-application-intro-screen.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/processing-loader.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/autopay.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/basic-ddo-application-intro-screen.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/processing-loader.jpg" alt=""></div>
       </div>
     </div>
     <div class="phone-col">
       <div class="phone-col__track">
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/settings-documents.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/success-available-to-spend.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/unsuitability-questions-form.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/settings-documents.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/success-available-to-spend.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/unsuitability-questions-form.jpg" alt=""></div>
         <!-- duplicate for seamless loop -->
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/settings-documents.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/success-available-to-spend.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/unsuitability-questions-form.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/settings-documents.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/success-available-to-spend.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/unsuitability-questions-form.jpg" alt=""></div>
       </div>
     </div>
     <div class="phone-col">
       <div class="phone-col__track">
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/autopay-1.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/unsuitability-questions-form-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/autopay-1.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/unsuitability-questions-form-1.jpg" alt=""></div>
         <!-- duplicate for seamless loop -->
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/autopay-1.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/regulation/unsuitability-questions-form-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/autopay-1.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/unsuitability-questions-form-1.jpg" alt=""></div>
       </div>
     </div>
   </div>
@@ -1578,7 +1585,7 @@
   </div>
 
   <div class="output-phone-hero">
-    <div class="phone-wrap">
+    <div class="phone-wrap phone-wrap--mint">
       <video autoplay muted loop playsinline>
         <source src="../assets/afterpay/card/mint-card-animation.mp4" type="video/mp4">
       </video>
@@ -1623,21 +1630,21 @@
     <div class="phone-col">
       <div class="phone-col__track">
         <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/off-sale-tag.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/iab-sup.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/iab-sup-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/iab-sup.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/iab-sup-2.jpg" alt=""></div>
         <!-- duplicate for seamless loop -->
         <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/off-sale-tag.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/iab-sup.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/iab-sup-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/iab-sup.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/iab-sup-2.jpg" alt=""></div>
       </div>
     </div>
     <div class="phone-col">
       <div class="phone-col__track">
         <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/gift-cards-lockup.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/payment-filled-toast.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/payment-filled-toast.jpg" alt=""></div>
         <!-- duplicate for seamless loop -->
         <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/gift-cards-lockup.png" alt=""></div>
-        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/payment-filled-toast.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop-uplift/payment-filled-toast.jpg" alt=""></div>
       </div>
     </div>
   </div>

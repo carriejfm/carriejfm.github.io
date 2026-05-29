@@ -513,19 +513,19 @@
 /* Static side-by-side asset pair (brand hero — no carousel) */
 .cs-brand-assets {
   display: flex;
-  gap: var(--va-tile-gap);
+  gap: calc(var(--va-tile-gap) * 2);
   align-items: flex-start;
   margin-top: var(--space-sm);
   margin-bottom: var(--space-md);
 }
 
-/* Match image tile height to the video-crop tile height so both align */
+/* Image tile: match the phone tile's actual rendered height (base rule wins cascade) */
 .cs-brand-assets .va-carousel__item--contain-img {
-  height: calc(var(--va-tile-h) - var(--va-tile-w) * 0.2107);
+  height: var(--va-tile-h);
   overflow: hidden;
 }
 .cs-brand-assets .va-carousel__item--contain-img img {
-  height: calc(var(--va-tile-h) - var(--va-tile-w) * 0.2107);
+  height: var(--va-tile-h);
   width: auto;
 }
 
