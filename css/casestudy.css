@@ -86,11 +86,15 @@
 .cs-hero__image {
   aspect-ratio: 1224 / 800;
   width: 100%;
-  background: var(--border-light);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-hero__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .cs-hero__image-placeholder {
@@ -142,6 +146,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  min-width: 0;
 }
 
 .cs-row__right p {
@@ -325,6 +330,10 @@
   margin-top: var(--space-xl);
 }
 
+.cs-output-item .ai-callout {
+  margin-top: 0.5rem;
+}
+
 
 /* ─────────────────────────────────────────
    KEY OUTPUTS — LEFT COLUMN
@@ -375,6 +384,18 @@
   color: var(--text);
 }
 
+/* Output heading — matches .section__label style from homepage */
+.cs-output-item__heading {
+  font-family: var(--font-mono);
+  font-weight: 300;
+  font-size: var(--size-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
 .cs-output-item p {
   font-size: var(--size-sm);
   color: var(--text-muted);
@@ -409,6 +430,106 @@
   color: var(--text-faint);
   font-style: italic;
 }
+
+
+/* ─────────────────────────────────────────
+   SNAP-SCROLL CAROUSEL (output sections)
+   Manual horizontal scroll with snap points.
+   No auto-animation — pure CSS + touch.
+───────────────────────────────────────── */
+.cs-snap-scroll {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  gap: var(--va-tile-gap);
+  padding-bottom: 12px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  min-width: 0;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.cs-snap-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.cs-snap-scroll__item {
+  flex: 0 0 var(--va-tile-w);
+  scroll-snap-align: start;
+  aspect-ratio: 9 / 19.5;
+  background: #fff;
+  border-radius: 38px;
+  overflow: hidden;
+}
+
+.cs-snap-scroll__item img,
+.cs-snap-scroll__item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Video items: shorter container hides ~40px of top whitespace.
+   object-position: bottom anchors from the bottom so the top
+   overflow is clipped — not the card animation area. */
+.cs-snap-scroll__item--video {
+  aspect-ratio: 9 / 17.6;
+}
+.cs-snap-scroll__item--video video {
+  object-position: center bottom;
+}
+
+@media (max-width: 768px) {
+  .cs-snap-scroll__item {
+    border-radius: 24px;
+  }
+}
+
+/* Auto-scroll va-carousel inside output items */
+.cs-output-item .va-carousel {
+  height: var(--va-tile-h);
+  width: calc(100% + var(--side-pad));   /* bleed to right viewport edge */
+  margin-top: var(--space-sm);           /* 1rem above, matching homepage */
+  margin-bottom: var(--space-md);        /* 2rem below, matching homepage */
+}
+
+/* Video items: shorter tile so whitespace clips via object-position, zero zoom */
+.va-carousel__item--video-crop {
+  height: calc(var(--va-tile-h) - var(--va-tile-w) * 0.2107);
+}
+.va-carousel__item--video-crop video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+}
+
+/* Static side-by-side asset pair (brand hero — no carousel) */
+.cs-brand-assets {
+  display: flex;
+  gap: var(--va-tile-gap);
+  align-items: flex-start;
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+/* Match image tile height to the video-crop tile height so both align */
+.cs-brand-assets .va-carousel__item--contain-img {
+  height: calc(var(--va-tile-h) - var(--va-tile-w) * 0.2107);
+  overflow: hidden;
+}
+.cs-brand-assets .va-carousel__item--contain-img img {
+  height: calc(var(--va-tile-h) - var(--va-tile-w) * 0.2107);
+  width: auto;
+}
+
+/* (--contain-img overrides are below the base .va-carousel__item block to win specificity) */
 
 
 /* ─────────────────────────────────────────
@@ -498,7 +619,7 @@
   letter-spacing: 0;
   line-height: 1.4;
   color: var(--text);
-  margin-bottom: var(--space-sm);
+  margin-bottom: 0.35rem;
 }
 
 
@@ -559,7 +680,6 @@
 ───────────────────────────────────────── */
 .cs-next {
   padding: var(--space-xl) var(--side-pad);
-  border-top: 1px solid var(--border);
 }
 
 .cs-next__inner {
@@ -585,6 +705,28 @@
 }
 
 .cs-next__title:hover {
+  opacity: 0.6;
+}
+
+/* Back to selected work link — matches homepage "View case study" cta treatment */
+.cs-back-to-work {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--size-sm);
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  transition: opacity var(--transition);
+}
+
+.cs-back-to-work::after {
+  content: '→';
+  font-size: 1.1em;
+}
+
+.cs-back-to-work:hover {
   opacity: 0.6;
 }
 
@@ -760,10 +902,23 @@
   height: var(--va-tile-h);
   background: #fff;
   border-radius: 38px;
-  border: 1px solid var(--border);
-  box-shadow: 0 8px 24px rgba(26,26,23,0.08);
   overflow: hidden;
   position: relative;
+}
+
+/* Static image tile: natural aspect ratio, no crop, no radius — must follow base rule */
+.va-carousel__item--contain-img {
+  flex: 0 0 auto;
+  width: auto;
+  border-radius: 0;
+  overflow: visible;
+}
+.va-carousel__item--contain-img img {
+  height: 100%;
+  width: auto;
+  display: block;
+  object-fit: initial;
+  border-radius: 0;
 }
 
 @keyframes va-scroll {
@@ -822,6 +977,13 @@
 
   .cs-row {
     grid-template-columns: 1fr;
+    row-gap: var(--space-md);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .cs-row:first-child {
+    padding-top: 3rem;
   }
 
   .cs-row__left,
@@ -831,6 +993,15 @@
 
   .cs-row__left {
     position: static;
+  }
+
+  /* More breathing room between output items on mobile */
+  .cs-output-right {
+    gap: 3rem;
+  }
+
+  .cs-output-item {
+    padding-bottom: 3rem;
   }
 }
 

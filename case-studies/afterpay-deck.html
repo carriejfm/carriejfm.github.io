@@ -370,15 +370,8 @@
        [05] SLIDE TYPE: goal
     ───────────────────────────────────────── */
 
-    .slide--goal .goal-heading {
-      position: absolute;
-      top: 4.5rem;
-      left: var(--slide-pad-h);
-      font-family: var(--font-display);
-      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-      font-weight: 300;
+    .goal-label {
       color: var(--text-faint);
-      line-height: 1.15;
     }
 
     .slide--goal .goal-statement {
@@ -449,13 +442,7 @@
        [07] SLIDE TYPE: hypothesis
     ───────────────────────────────────────── */
 
-    .slide--hypothesis .hyp-heading {
-      position: absolute;
-      top: 4.5rem;
-      left: var(--slide-pad-h);
-      font-family: var(--font-display);
-      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-      font-weight: 300;
+    .hyp-label {
       color: var(--text-faint);
     }
 
@@ -1160,9 +1147,7 @@
     <span class="slide-header__client"  data-header-client>AFTERPAY</span>
   </div>
 
-  <h2 class="goal-heading">Goal</h2>
-
-  <p class="goal-statement" data-ap-copy="goal">Rebuild the design discipline, and shift from execution to strategic partnership — while fulfilling urgent regulatory deadlines.</p>
+  <p class="goal-statement"><span class="goal-label">Goal: </span><span data-ap-copy="goal">Rebuild the design discipline, and shift from execution to strategic partnership — while fulfilling urgent regulatory deadlines.</span></p>
 </section>
 
 
@@ -1210,9 +1195,7 @@
     <span class="slide-header__client"  data-header-client>AFTERPAY</span>
   </div>
 
-  <h2 class="hyp-heading" data-ap-copy="section_hypothesis">Hypothesis</h2>
-
-  <p class="hyp-statement" data-ap-copy="hypothesis">I believe teams that understand the problem, ship better solutions than teams that execute predefined ones</p>
+  <p class="hyp-statement"><span class="hyp-label">Hypothesis: </span><span data-ap-copy="hypothesis">I believe teams that understand the problem, ship better solutions than teams that execute predefined ones</span></p>
 </section>
 
 

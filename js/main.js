@@ -37,7 +37,7 @@ const CASE_STUDIES = [
 
   function updateTicker() {
     const elapsed = Date.now() - START.getTime();
-    const years = (elapsed / MS_PER_YEAR).toFixed(8);
+    const years = (elapsed / MS_PER_YEAR).toFixed(2);
     const el = document.getElementById('ticker-decimal');
     if (el) el.textContent = years;
   }
