@@ -46,7 +46,7 @@
 var AP_COPY = {
 
   /* ── Meta — title, project string, role ────────────────────────── */
-  case_title:     "The rebuild of Afterpay Design",
+  case_title:     "The rebuild of Afterpay Design",
   project_string: "Block · Afterpay // 2024–2025",
   role_title:     "Head of design",
 

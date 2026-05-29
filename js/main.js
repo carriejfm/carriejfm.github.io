@@ -325,3 +325,99 @@ const CASE_STUDIES = [
 
   articles.forEach(a => io.observe(a));
 })();
+
+
+/* ─── VA CAROUSEL — touch swipe + desktop arrow ─── */
+(function () {
+  document.querySelectorAll('.va-carousel').forEach(function (carousel) {
+    var track = carousel.querySelector('.va-carousel__track');
+    if (!track) return;
+
+    var startX  = 0;
+    var startTx = 0;
+    var dragging = false;
+
+    /* Read live translateX from the running animation */
+    function getTx() {
+      return new DOMMatrix(getComputedStyle(track).transform).m41;
+    }
+
+    /* Half the doubled track = one full loop length */
+    function halfWidth() {
+      return track.scrollWidth / 2;
+    }
+
+    /* Resume animation from position tx after a drag/step */
+    function resumeFrom(tx) {
+      var half     = halfWidth();
+      var duration = parseFloat(getComputedStyle(track).animationDuration) || 80;
+      var progress = Math.abs(tx) / half;
+      track.style.animationDelay     = (-progress * duration) + 's';
+      track.style.transform          = '';
+      track.style.animationPlayState = '';
+    }
+
+    /* ── Touch swipe ── */
+    track.addEventListener('touchstart', function (e) {
+      startX  = e.touches[0].clientX;
+      startTx = getTx();
+      dragging = true;
+      track.style.transform          = 'translateX(' + startTx + 'px)';
+      track.style.animationPlayState = 'paused';
+    }, { passive: true });
+
+    track.addEventListener('touchmove', function (e) {
+      if (!dragging) return;
+      var delta = e.touches[0].clientX - startX;
+      var half  = halfWidth();
+      var tx    = startTx + delta;
+      if (tx > 0)     tx -= half;
+      if (tx < -half) tx += half;
+      track.style.transform = 'translateX(' + tx + 'px)';
+    }, { passive: true });
+
+    track.addEventListener('touchend', function () {
+      if (!dragging) return;
+      dragging = false;
+      resumeFrom(getTx());
+    }, { passive: true });
+
+    /* ── Desktop arrow — commented out, revisit later ──
+    var arrow = document.createElement('button');
+    arrow.className = 'va-carousel__arrow';
+    arrow.setAttribute('aria-label', 'Next');
+    arrow.textContent = '→';
+    carousel.appendChild(arrow);
+
+    var busy = false;
+
+    arrow.addEventListener('click', function () {
+      if (busy) return;
+      busy = true;
+
+      var step      = carousel.offsetWidth;
+      var currentTx = getTx();
+      var half      = halfWidth();
+      var rawTx     = currentTx - step;
+      var wrapTx    = rawTx;
+      while (wrapTx < -half) wrapTx += half;
+      if (wrapTx > 0) wrapTx -= half;
+
+      track.style.animationPlayState = 'paused';
+      track.style.transform          = 'translateX(' + currentTx + 'px)';
+
+      requestAnimationFrame(function () {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        requestAnimationFrame(function () {
+          track.style.transform = 'translateX(' + rawTx + 'px)';
+          setTimeout(function () {
+            track.style.transition = '';
+            resumeFrom(wrapTx);
+            busy = false;
+          }, 620);
+        });
+      });
+    });
+    ── end desktop arrow ── */
+  });
+})();

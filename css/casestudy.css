@@ -957,6 +957,7 @@
   .va-asset { aspect-ratio: 4 / 3; }
   .va-asset--bleed-r { margin-right: calc(-1 * var(--side-pad)); }
   .va-carousel__item { border-radius: 24px; }
+  .va-carousel__item--contain-img { border-radius: 0; }
 }
 
 
