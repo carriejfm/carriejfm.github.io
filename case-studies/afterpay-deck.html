@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The rebuild of Afterpay Design — Carrie Francis-Miller</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────
+       AFTERPAY DECK — embedded styles
+       All tokens mirror css/style.css :root
+       No external stylesheet · No !important
+    ───────────────────────────────────────── */
+
+    /* ─── TOKENS ─── */
+    :root {
+      /* Brand colours */
+      --bg:           #F3F3F1;
+      --text:         #1A1A17;
+      --text-muted:   #2E2E2A;
+      --text-faint:   #7A7A72;
+      --border:       #DDD9D0;
+      --border-light: #EAE7E0;
+
+      /* Typography */
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+
+      /* Type scale */
+      --size-xs:   0.6875rem;
+      --size-sm:   0.8125rem;
+      --size-base: 1rem;
+      --size-md:   1.125rem;
+      --size-lg:   1.5rem;
+      --size-xl:   2rem;
+      --size-2xl:  3rem;
+
+      /* Deck-specific */
+      --slide-pad-h: clamp(1.5rem, 4vw, 3rem);
+      --slide-pad-v: clamp(1.25rem, 3vw, 2rem);
+      --transition:  200ms ease;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-mono);
+      font-weight: 300;
+      background: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       SLIDE FOUNDATION
+    ───────────────────────────────────────── */
+
+    .slide {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 400ms ease;
+    }
+
+    .slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Suppress transitions on init when jumping to a non-zero start slide */
+    body.no-transition .slide { transition: none; }
+
+    /* Palette variants */
+    .slide--light { background: var(--bg);   color: var(--text); }
+    .slide--dark  { background: var(--text); color: var(--bg);   }
+
+    /* ─────────────────────────────────────────
+       PERSISTENT HEADER (light slides)
+       "REBUILD OF AFTERPAY DESIGN  AFTERPAY"
+    ───────────────────────────────────────── */
+
+    .slide-header {
+      position: absolute;
+      top: var(--slide-pad-v);
+      left: var(--slide-pad-h);
+      display: flex;
+      align-items: baseline;
+      gap: 0.5ch;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    /* Eyebrow: Project / Section — client hidden */
+    .slide-header__client  { display: none; }
+    .slide-header__project { color: var(--text-faint); order: 1; }
+    .slide-header__section { color: var(--text-muted); order: 2; }
+
+    /* Section gets a slash separator; project has no leading slash */
+    .slide-header__section::before {
+      content: '/ ';
+      color: var(--text-faint);
+    }
+
+    /* Dark version of the header used on goal slide */
+    .slide-header--dark .slide-header__project { color: rgba(243,243,241,0.30); }
+    .slide-header--dark .slide-header__section { color: rgba(243,243,241,0.60); }
+    .slide-header--dark .slide-header__section::before { color: rgba(243,243,241,0.25); }
+
+    /* ─────────────────────────────────────────
+       BACK LINK (title + Q+A slides)
+    ───────────────────────────────────────── */
+
+    .back-link {
+      position: absolute;
+      top: var(--slide-pad-v);
+      left: var(--slide-pad-h);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #F3F3F1;
+      letter-spacing: 0.04em;
+      transition: color var(--transition);
+    }
+
+    .back-link:hover { color: rgba(243,243,241,0.7); }
+
+    /* ─────────────────────────────────────────
+       SLIDE COUNTER GROUP + HINT
+    ───────────────────────────────────────── */
+
+    /* Confidential — top-right, vertically level with the slide-header eyebrow */
+    .deck-confidential {
+      position: fixed;
+      top: var(--slide-pad-v);
+      right: 2rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    body.is-dark-slide .deck-confidential {
+      color: rgba(243,243,241,0.35);
+    }
+
+    body.is-meta-slide .deck-confidential {
+      display: none;
+    }
+
+    /* Counter — bottom-right, right-edge matches confidential above */
+    .deck-counter-group {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 2rem;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    body.is-title-slide .deck-counter-group { display: none; }
+
+    .deck-counter {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+    }
+
+    body.is-dark-slide .deck-counter {
+      color: rgba(243,243,241,0.35);
+    }
+
+    .deck-hint {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      z-index: 1000;
+      pointer-events: none;
+      white-space: nowrap;
+      transition: opacity 600ms ease;
+    }
+
+    body.is-dark-slide .deck-hint {
+      color: rgba(243,243,241,0.35);
+    }
+
+    .deck-hint.fade-out { opacity: 0; }
+
+    /* ─────────────────────────────────────────
+       CONFIDENTIAL WATERMARK
+    ───────────────────────────────────────── */
+
+    .confidential {
+      position: absolute;
+      bottom: var(--slide-pad-v);
+      right: var(--slide-pad-h);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─────────────────────────────────────────
+       [01] SLIDE TYPE: title
+    ───────────────────────────────────────── */
+
+    .slide--title .title-text {
+      position: absolute;
+      left: var(--slide-pad-h);
+      /* Vertically centered between 45% and 85% of slide */
+      top: 50%;
+      transform: translateY(-20%);
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.0;
+    }
+
+    .slide--title .title-meta {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+    }
+
+    .slide--title .title-meta__company {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #7A7A72;
+      letter-spacing: 0.04em;
+    }
+
+    .slide--title .title-meta__role {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #F3F3F1;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─────────────────────────────────────────
+       [02] SLIDE TYPE: index
+    ───────────────────────────────────────── */
+
+    .slide--index .index-list {
+      position: absolute;
+      /* Bottom-right quadrant: ~58% from left, ~50% from top */
+      left: 58%;
+      top: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .index-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+    }
+
+    .index-item__num {
+      font-family: var(--font-mono);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+      min-width: 2.5ch;
+    }
+
+    .index-item__name {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+    }
+
+    /* ─────────────────────────────────────────
+       [03] SLIDE TYPE: section-title
+       Static single word — same position + size as index list
+    ───────────────────────────────────────── */
+
+    .slide--section-title .section-title__word {
+      position: absolute;
+      /* Mirror index-list exactly: left 58% + (2.5ch mono at 1.5rem ≈ 2.25rem) + gap (1.5rem) = 3.75rem */
+      left: calc(58% + 3.75rem);
+      /* No vertical transform — top of text sits at 50%, matching where index-list top is */
+      top: 50%;
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: #F3F3F1;
+    }
+
+    /* ─────────────────────────────────────────
+       [04] SLIDE TYPE: content
+    ───────────────────────────────────────── */
+
+    .slide--content .content-heading {
+      /* Sits as first child inside .content-body — no absolute positioning */
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .slide--content .content-body {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 42%;
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.7;
+    }
+
+    .slide--content .content-body p + p {
+      margin-top: 1em;
+    }
+
+    /* ─────────────────────────────────────────
+       [05] SLIDE TYPE: goal
+    ───────────────────────────────────────── */
+
+    .slide--goal .goal-heading {
+      position: absolute;
+      top: 4.5rem;
+      left: var(--slide-pad-h);
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.15;
+    }
+
+    .slide--goal .goal-statement {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 70%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4.5vw, 4rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.15;
+    }
+
+    /* ─────────────────────────────────────────
+       [06] SLIDE TYPE: role
+    ───────────────────────────────────────── */
+
+    .slide--role .role-heading {
+      position: absolute;
+      top: 4.5rem;
+      left: var(--slide-pad-h);
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 300;
+      color: var(--text-faint);
+    }
+
+    .slide--role .role-block {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 42%;
+      transform: translate(-50%, -50%);
+    }
+
+    .role-block__title {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .role-block__rows {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .role-row {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.5;
+    }
+
+    .role-row strong {
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* ─────────────────────────────────────────
+       [07] SLIDE TYPE: hypothesis
+    ───────────────────────────────────────── */
+
+    .slide--hypothesis .hyp-heading {
+      position: absolute;
+      top: 4.5rem;
+      left: var(--slide-pad-h);
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 300;
+      color: var(--text-faint);
+    }
+
+    .slide--hypothesis .hyp-statement {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 70%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4.5vw, 4rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.15;
+    }
+
+    .slide--hypothesis .hyp-image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .slide--hypothesis .hyp-image img,
+    .slide--hypothesis .hyp-image .img-placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ─────────────────────────────────────────
+       [08] SLIDE TYPE: quote
+    ───────────────────────────────────────── */
+
+    .slide--quote .quote-text {
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(55ch, 55%);
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* ─────────────────────────────────────────
+       [09] SLIDE TYPE: stats
+    ───────────────────────────────────────── */
+
+    .slide--stats .stats-row {
+      position: absolute;
+      top: 50%;
+      left: clamp(4rem, 8vw, 7rem);
+      right: clamp(4rem, 8vw, 7rem);
+      transform: translateY(-50%);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      gap: 0;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-item__number {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 7rem);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1;
+      display: block;
+      white-space: nowrap;
+    }
+
+    .stat-item__label {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      margin-top: 1rem;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       [10A] SLIDE TYPE: output-a — phone grid
+    ───────────────────────────────────────── */
+
+    .slide--output .output-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 27%;
+      height: 100%;
+      padding: var(--slide-pad-v) var(--slide-pad-h);
+    }
+
+    .output-left__header {
+      display: flex;             /* fix 11: gap between project and client spans */
+      gap: 0.75ch;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .output-left__header-project { color: rgba(243,243,241,0.35); }
+    .output-left__header-client  { display: none; }
+
+    .output-left__title {
+      margin-top: 2rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 500;
+      color: #F3F3F1;
+      line-height: 1.5;
+    }
+
+    .output-left__body {
+      margin-top: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 400;
+      color: #F3F3F1;
+      line-height: 1.7;
+    }
+
+    .output-left__body p + p {
+      margin-top: 0.875em;
+    }
+
+    /* AI callout — brighter text */
+    .output-left__body .ai-label {
+      color: #F3F3F1;
+    }
+
+    .output-left__confidential {
+      display: none;
+    }
+
+    /* ─────────────────────────────────────────
+       AI IN ACTION CARD — bottom of output-left
+    ───────────────────────────────────────── */
+
+    .output-ai-card {
+      position: absolute;
+      bottom: var(--slide-pad-v);
+      left: var(--slide-pad-h);
+      right: var(--slide-pad-h);
+      background: rgba(255,255,255,0.10);
+      border-radius: 0.375rem;
+      padding: 0.875rem 1rem;
+    }
+
+    .output-ai-card__label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.5625rem;
+      font-weight: 500;
+      color: rgba(243,243,241,0.55);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .output-ai-card p {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 300;
+      color: rgba(243,243,241,0.80);
+      line-height: 1.65;
+    }
+
+    /* Phone grid (output-a right panel)
+       overflow: visible — tiles bleed above/below; .slide overflow:hidden clips at viewport */
+    .output-phones {
+      position: absolute;
+      top: 0;
+      left: 27%;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      gap: 12px;
+      overflow: visible;
+      padding: 0 12px;
+    }
+
+    /* Each column fills an equal share of the panel */
+    .phone-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Track — stacked tiles, animates as one strip */
+    .phone-col__track {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Column stagger — different starting offsets + different scroll speeds */
+    .output-phones .phone-col:nth-child(1) .phone-col__track {
+      margin-top: -260px;
+      animation: phoneScroll 47s linear infinite;
+    }
+    .output-phones .phone-col:nth-child(2) .phone-col__track {
+      margin-top: 180px;
+      animation: phoneScroll 60s linear infinite;
+    }
+    .output-phones .phone-col:nth-child(3) .phone-col__track {
+      margin-top: -120px;
+      animation: phoneScroll 47s linear infinite;
+    }
+
+    /* Single keyframe shared by all tracks — -50% = seamless loop (N tiles + N dupes) */
+    @keyframes phoneScroll {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+
+    .phone-tile {
+      flex-shrink: 0;
+      width: 100%;
+      aspect-ratio: 375 / 812;
+      border-radius: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      overflow: hidden;
+    }
+
+    .phone-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       [10B] SLIDE TYPE: output-b — image right
+    ───────────────────────────────────────── */
+
+    .slide--output-b .output-image-right {
+      position: absolute;
+      top: 0;
+      left: 27%;
+      right: 0;
+      bottom: 0;
+      padding: clamp(2rem, 4vw, 4rem);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide--output-b .output-image-right img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       [10C] SLIDE TYPE: output-c — hero phone
+    ───────────────────────────────────────── */
+
+    .slide--output-c .output-left {
+      width: 27%;
+    }
+
+    .slide--output-c .output-phone-hero {
+      position: absolute;
+      top: 0;
+      left: 27%;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      padding-top: clamp(5rem, 15vh, 10rem); /* generous air gap above phone top */
+    }
+
+    /* phone-wrap sizes the asset and anchors the mask.
+       overflow: hidden clips both the video's top corners and the mask bar at the same radius —
+       no need to separately round the video element or the ::before. */
+    .slide--output-c .phone-wrap {
+      position: relative;
+      height: 120%;
+      flex-shrink: 0;
+      border-radius: calc(12vh * 375 / 812) calc(12vh * 375 / 812) 0 0;
+      overflow: hidden;
+    }
+
+    .slide--output-c .phone-wrap video,
+    .slide--output-c .phone-wrap img,
+    .slide--output-c .phone-wrap .img-placeholder {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+
+    /* White bar covers the status bar / brand mark area at the top of the phone. */
+    .slide--output-c .phone-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 12%;
+      background: #fff;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* ─────────────────────────────────────────
+       [13] SLIDE TYPE: impact
+    ───────────────────────────────────────── */
+
+    .slide--impact .impact-grid {
+      position: absolute;
+      inset: 0;
+      display: flex;
+    }
+
+    .impact-col {
+      flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 38vh clamp(1.5rem, 3vw, 2.5rem) clamp(4rem, 7vh, 5.5rem);
+    }
+
+    /* Fading divider line — fades in below eyebrow, out above bottom */
+    .impact-col:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--border) 38%,
+        var(--border) 62%,
+        transparent 100%
+      );
+    }
+
+    .impact-col__name {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .impact-col__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .impact-col__list li {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.6;
+      padding-left: 1em;
+      position: relative;
+    }
+
+    .impact-col__list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--text-faint);
+    }
+
+    /* ─────────────────────────────────────────
+       [14] SLIDE TYPE: qa
+    ───────────────────────────────────────── */
+
+    .slide--qa .qa-text {
+      position: absolute;
+      top: 60%;
+      left: var(--slide-pad-h);
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.0;
+    }
+
+    /* ─────────────────────────────────────────
+       IMAGE PLACEHOLDER
+    ───────────────────────────────────────── */
+
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-placeholder span {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* ─────────────────────────────────────────
+       BUILD-IN ITEMS
+       JS reveals these with .is-visible on tap-forward
+    ───────────────────────────────────────── */
+
+    /* Build-in rules:
+       - content: h2 heading + first <p> always visible; <p> 2+ build in.
+         nth-of-type counts only among <p> siblings so h2 as first child doesn't shift the count.
+       - role: combined title label always visible; role-rows build in.
+       - impact: first col (Scale) always visible; remaining cols build in left→right.
+       - output: first <p> always visible; <p> 2+ build in. */
+    .slide--content .content-body p:nth-of-type(n+2),
+    .slide--role .role-row,
+    .slide--impact .impact-col:nth-child(n+2),
+    .slide--output .output-left__body p:nth-of-type(n+2):not([data-immediate]),
+    .slide--output:not([data-continue]) .output-phones,
+    .slide--output-b:not([data-continue]) .output-image-right,
+    .slide--output-c:not([data-continue]) .output-phone-hero,
+    .slide--output-c .output-ai-card:not([data-immediate]) {
+      opacity: 0;
+      transition: opacity 400ms ease;
+    }
+
+    .slide--content .content-body p:nth-of-type(n+2).is-visible,
+    .slide--role .role-row.is-visible,
+    .slide--impact .impact-col:nth-child(n+2).is-visible,
+    .slide--output .output-left__body p:nth-of-type(n+2):not([data-immediate]).is-visible,
+    .slide--output:not([data-continue]) .output-phones.is-visible,
+    .slide--output-b:not([data-continue]) .output-image-right.is-visible,
+    .slide--output-c:not([data-continue]) .output-phone-hero.is-visible,
+    .slide--output-c .output-ai-card:not([data-immediate]).is-visible {
+      opacity: 1;
+    }
+
+    /* ─────────────────────────────────────────
+       M SWITCHER MENU
+    ───────────────────────────────────────── */
+
+    .deck-switcher {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(26, 26, 23, 0.97);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 250ms ease;
+    }
+
+    .deck-switcher.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .deck-switcher__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .deck-switcher__option {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 300;
+      color: rgba(243, 243, 241, 0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+
+    .deck-switcher__option:hover     { color: #F3F3F1; }
+    .deck-switcher__option--active   { color: rgba(243, 243, 241, 0.90); }
+
+    .deck-switcher__hint {
+      margin-top: 3rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: rgba(243, 243, 241, 0.50);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE — smaller screens
+    ───────────────────────────────────────── */
+
+    @media (max-width: 768px) {
+
+      /* a. Confidential: move below LH eyebrow instead of top-right */
+      .deck-confidential {
+        top: calc(var(--slide-pad-v) + 1.6em);
+        left: var(--slide-pad-h);
+        right: auto;
+      }
+
+      /* b. Content pages: full-width centered box */
+      .slide--content .content-body {
+        width: 88%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* c. Stats: stack vertically, left-aligned */
+      .slide--stats .stats-row {
+        flex-direction: column;
+        align-items: flex-start;
+        top: 50%;
+        left: var(--slide-pad-h);
+        right: var(--slide-pad-h);
+        gap: 2rem;
+      }
+
+      /* d. Output pages: stacked single-column layout */
+      .slide--output {
+        overflow-y: auto;
+      }
+
+      .slide--output .output-left {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: var(--slide-pad-v) var(--slide-pad-h) 1.5rem;
+      }
+
+      .slide--output .output-phones,
+      .slide--output-b .output-image-right,
+      .slide--output-c .output-phone-hero {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        width: 100%;
+        height: 50vw;
+        min-height: 220px;
+      }
+
+      .slide--output-c .phone-wrap {
+        height: 100%;
+      }
+
+      .slide--output-c .phone-wrap img,
+      .slide--output-c .phone-wrap video,
+      .slide--output-c .phone-wrap .img-placeholder {
+        height: 100%;
+        width: auto;
+      }
+
+      /* e. Impact: stack columns vertically, scrollable */
+      .slide--impact {
+        overflow-y: auto;
+      }
+
+      .slide--impact .impact-grid {
+        position: relative;
+        flex-direction: column;
+      }
+
+      .impact-col {
+        padding: 2rem var(--slide-pad-h) 1.5rem;
+      }
+
+      /* Hide fading divider lines — use top border instead */
+      .impact-col:not(:last-child)::after {
+        display: none;
+      }
+
+      .impact-col:not(:first-child) {
+        border-top: 1px solid var(--border);
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     SLIDE 1 OF 29
+     SLIDE TYPE: title
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--title is-active" data-type="title" data-index="0">
+  <a href="../index.html" class="back-link">← back to selected work</a>
+
+  <h1 class="title-text">The rebuild of Afterpay&nbsp;Design</h1>
+
+  <div class="title-meta">
+    <span class="title-meta__company">Block · Afterpay // 2024–2025</span>
+    <span class="title-meta__role">Head of design</span>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 2 OF 29
+     SLIDE TYPE: index
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--index" data-type="index" data-index="1">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <nav class="index-list" aria-label="Deck sections">
+    <div class="index-item">
+      <span class="index-item__num">01</span>
+      <span class="index-item__name">Context</span>
+    </div>
+    <div class="index-item">
+      <span class="index-item__num">02</span>
+      <span class="index-item__name">Approach</span>
+    </div>
+    <div class="index-item">
+      <span class="index-item__num">03</span>
+      <span class="index-item__name">Outputs</span>
+    </div>
+    <div class="index-item">
+      <span class="index-item__num">04</span>
+      <span class="index-item__name">Outcomes</span>
+    </div>
+  </nav>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 3 OF 29
+     SLIDE TYPE: section-title — "Context"
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="2">
+  <p class="section-title__word">Context</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 4 OF 29
+     SLIDE TYPE: content — "Opportunity"
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="3">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading">Opportunity</h2>
+    <p data-ap-copy="opportunity_0">Afterpay operates in the Buy Now, Pay Later (BNPL) space, where consumer trust and regulation are critical to growth.</p>
+    <p data-ap-copy="opportunity_1">In 2024, the business was in the middle of global BNPL regulatory shift, requiring rapid coordination across regions and disciplines while juggling a rebrand within the US region and continuing to drive growth.</p>
+    <p data-ap-copy="opportunity_2">At the same time, the system was under strain. Design was under-resourced, brought in late, and often asked to execute predefined solutions. Roadmap priorities were volatile, and teams were beginning to ship without design input.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 5 OF 29
+     SLIDE TYPE: goal
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--goal" data-type="goal" data-index="4">
+  <div class="slide-header slide-header--dark">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <h2 class="goal-heading">Goal</h2>
+
+  <p class="goal-statement" data-ap-copy="goal">Rebuild the design discipline, and shift from execution to strategic partnership — while fulfilling urgent regulatory deadlines.</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 6 OF 29
+     SLIDE TYPE: role
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--role" data-type="role" data-index="5">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <div class="role-block">
+    <p class="role-block__title">Role: Head of design</p>
+    <div class="role-block__rows">
+      <p class="role-row"><strong>Responsible</strong> - Lead and managed product design team, individual contributor on key experiences</p>
+      <p class="role-row"><strong>Accountable</strong> - Contributor to roadmap priorities with strategic design input and resourcing</p>
+      <p class="role-row"><strong>Consulted</strong> - Member of the regional Australia and New Zealand leadership chapter</p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 7 OF 29
+     SLIDE TYPE: section-title — "Approach"
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="6">
+  <p class="section-title__word">Approach</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 8 OF 29
+     SLIDE TYPE: hypothesis
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--hypothesis" data-type="hypothesis" data-index="7">
+  <div class="slide-header slide-header--dark">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <h2 class="hyp-heading">Hypothesis</h2>
+
+  <p class="hyp-statement" data-ap-copy="hypothesis">I believe teams that understand the problem, ship better solutions than teams that execute predefined ones</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 9 OF 29
+     SLIDE TYPE: content — "Rebuild team and trust"
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="8">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading">Rebuild team and trust</h2>
+    <p data-ap-copy="approach_rebuild_0">I rebuilt the team from the ground up, establishing clear ownership across work streams and introducing best practices in team rituals and tooling.</p>
+    <p data-ap-copy="approach_rebuild_1">A culture of clear feedback and psychological safety was grown with clarity in roles, consistency in the day-to-day and reconnection with the broader design org. I stepped into difficult conversations with adjacent teams to mediate and reset.</p>
+    <p data-ap-copy="approach_rebuild_2">I coached individuals through challenging situations, including unblocking a high-performing, autonomous designer from a performance misunderstanding.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 10 OF 29
+     SLIDE TYPE: quote — Product partner
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--quote" data-type="quote" data-index="9">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <p class="quote-text" data-ap-copy="quote_product_partner">"Carrie built an incredibly talented team and created the environment for them to lean in with ownership."–Product partner</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 11 OF 29
+     SLIDE TYPE: content — "Solution-led to problem-led"
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="10">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading">Solution-led to problem-led</h2>
+    <p data-ap-copy="approach_problem_0">I shifted the team from executing predefined solutions to defining problems. Through the unpacking of regulatory, business, and behavioral drivers we aligned as a team to redefine and understand opportunities.</p>
+    <p data-ap-copy="approach_problem_1">Designers worked with measurable success criteria in mind and solved problems with true ownership. It made for better cross-functional culture and better delivery outcomes.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 12 OF 29
+     SLIDE TYPE: quote — Cross-functional partner
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--quote" data-type="quote" data-index="11">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <p class="quote-text" data-ap-copy="quote_design_manager">"She pushed back and held the line when warranted… while building credibility and trust across teams." — Design manager</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 13 OF 29
+     SLIDE TYPE: content — "Cross-functional alignment"
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="12">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading">Cross-functional alignment</h2>
+    <p data-ap-copy="approach_xfn_0">I established consistent alignment across product, engineering, legal, and compliance through a shared roadmap with design capacity visibility, regular 1:1s with product partners and actively embedding research and JTBDs into roadmap and PRDs.</p>
+    <p data-ap-copy="approach_xfn_1">When last-minute requests came up or scope thrashed (as they do), we had the footing to handle it — allowing us to reprioritize, make better tradeoffs or push back if needed. Embedded within the regional leadership team, I influenced strategy and presented to C-suite.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 14 OF 29
+     SLIDE TYPE: quote — Engineering partner
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--quote" data-type="quote" data-index="13">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <p class="quote-text" data-ap-copy="quote_eng_partner">"Her prioritization was crucial in helping the team focus on the most impactful work and ultimately meet our release timeline." — Engineering partner</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 15 OF 29
+     SLIDE TYPE: stats — 7 designers / 6 workstreams / 5 regions (Approach)
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--stats" data-type="stats" data-index="14">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <span class="stat-item__number">7</span>
+      <span class="stat-item__label">Designers</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-item__number">6</span>
+      <span class="stat-item__label">Workstreams</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-item__number">5</span>
+      <span class="stat-item__label">Regions</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 16 OF 29
+     SLIDE TYPE: section-title — "Outputs"
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="15">
+  <p class="section-title__word">Outputs</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 17 OF 29
+     SLIDE TYPE: output-a — "A regulated Afterpay"
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="16">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">REBUILD OF AFTERPAY DESIGN</span>
+      <span class="output-left__header-client"> AFTERPAY</span>
+    </div>
+    <p class="output-left__title">A regulated Afterpay →</p>
+    <div class="output-left__body">
+      <p data-ap-copy="regulated_0">Aligning Afterpay to responsible buy now pay later lending obligations included the design and redesign of key experiences and required variation from region to region:</p>
+      <p data-ap-copy="regulated_1">Credit limit increases, onboarding improvements, user-initiated spend controls to support responsible usage, KYC and compliance flows, autopay to reduce late fees, fraud protection and dispute flows.</p>
+      <p data-ap-copy="regulated_2">I had 2 designers focused on regulation workstreams.</p>
+      <p data-ap-copy="regulated_3">I co-wrote a reusable regulation playbook with product to enable consistent execution across US, AU, NZ and kickstart proactive conversations with UK regulatory bodies.</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Autopay.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/BASIC%20DDO%20Application%20intro%20screen.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/ProcessingLoader.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Autopay.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/BASIC%20DDO%20Application%20intro%20screen.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/ProcessingLoader.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Settings%20-%20Documents.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Success%20-%20Avaialble%20to%20spend.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Unsuitability-questions-form.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Settings%20-%20Documents.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Success%20-%20Avaialble%20to%20spend.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Unsuitability-questions-form.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Autopay-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Unsuitability-questions-form-1.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Autopay-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/regulation/Unsuitability-questions-form-1.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 18 OF 29
+     SLIDE TYPE: output-a — "Global design system rollout and US rebrand" (Mint)
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="17">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">REBUILD OF AFTERPAY DESIGN</span>
+      <span class="output-left__header-client"> AFTERPAY</span>
+    </div>
+    <p class="output-left__title">Global design system rollout and US rebrand →</p>
+    <div class="output-left__body">
+      <p data-ap-copy="designsystem_0">The Afterpay app, operating in 6 international markets, migrated to a new the parent Cash App design system–within both Afterpay Mint and Cash Green themes.</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/01-afterpay-mint.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/02-afterpay-mint.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/03-afterpay-mint.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/01-afterpay-mint.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/02-afterpay-mint.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/03-afterpay-mint.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/04-afterpay-mint.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/05-afterpay-mint.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/06-afterpay-mint.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/04-afterpay-mint.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/05-afterpay-mint.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/06-afterpay-mint.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/07-afterpay-mint.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/08-afterpay-mint.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/07-afterpay-mint.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/08-afterpay-mint.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 19 OF 29
+     SLIDE TYPE: output-a — "Global design system rollout and US rebrand" (Green)
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="18" data-continue="true">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">REBUILD OF AFTERPAY DESIGN</span>
+      <span class="output-left__header-client"> AFTERPAY</span>
+    </div>
+    <p class="output-left__title">Global design system rollout and US rebrand →</p>
+    <div class="output-left__body">
+      <p data-ap-copy="designsystem_0">The Afterpay app, operating in 6 international markets, migrated to a new the parent Cash App design system–within both Afterpay Mint and Cash Green themes.</p>
+      <p data-ap-copy="designsystem_1">I had 2 primary designers working on the design system overhaul, building up token themes and component libraries, 1 designer who overhauled 75 emails into 2 templates using core library components and 1 content designer who did a cross-region audit of all surfaces.</p>
+      <p data-ap-copy="designsystem_2">I oversaw design across all of the above while managing the release strategy facilitation, building out reusable tooling in Notion for the cross-functional team to follow for each regional rollout that would subsequently become a cross-region source of truth.</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/01-afterpay-green.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/02-afterpay-green.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/03-afterpay-green.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/01-afterpay-green.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/02-afterpay-green.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/03-afterpay-green.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/04-afterpay-green.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/05-afterpay-green.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/06-afterpay-green.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/04-afterpay-green.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/05-afterpay-green.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/06-afterpay-green.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/07-afterpay-green.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/08-afterpay-green.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/07-afterpay-green.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/design%20system/08-afterpay-green.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 20 OF 29
+     SLIDE TYPE: output-b — "Hero brand moments in app" (image right, p1 only)
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="19">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">REBUILD OF AFTERPAY DESIGN</span>
+      <span class="output-left__header-client"> AFTERPAY</span>
+    </div>
+    <p class="output-left__title">Hero brand moments in app →</p>
+    <div class="output-left__body">
+      <p data-ap-copy="hero_0">I personally owned the hero brand moments within the app, designing the new US Afterpay Card and how it fit into the wider branding story with my brand partners.</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-image-right">
+    <img src="../assets/afterpay/card/card-brand-language.png" alt="Afterpay card brand language">
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 21 OF 30
+     SLIDE TYPE: output-c — "Hero brand moments in app" (Green card animation)
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output slide--output-c" data-type="output-c" data-index="20">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">REBUILD OF AFTERPAY DESIGN</span>
+      <span class="output-left__header-client"> AFTERPAY</span>
+    </div>
+    <p class="output-left__title">Hero brand moments in app →</p>
+    <div class="output-left__body">
+      <p data-ap-copy="hero_0">I personally owned the hero brand moments within the app, designing the new US Afterpay Card and how it fit into the wider branding story with my brand partners.</p>
+      <p data-ap-copy="hero_1">The abstracted loop micro-animation on load gave a wink and a nod to Afterpay roots within the new cash green brand.</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phone-hero">
+    <div class="phone-wrap">
+      <video autoplay muted loop playsinline>
+        <source src="../assets/afterpay/card/green-card-animation.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 22 OF 30
+     SLIDE TYPE: output-c — "Hero brand moments in app" (Mint card animation)
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output slide--output-c" data-type="output-c" data-index="21" data-continue="true">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">REBUILD OF AFTERPAY DESIGN</span>
+      <span class="output-left__header-client"> AFTERPAY</span>
+    </div>
+    <p class="output-left__title">Hero brand moments in app →</p>
+    <div class="output-left__body">
+      <p data-ap-copy="hero_0">I personally owned the hero brand moments within the app, designing the new US Afterpay Card and how it fit into the wider branding story with my brand partners.</p>
+      <p data-ap-copy="hero_1" data-immediate>The abstracted loop micro-animation on load gave a wink and a nod to Afterpay roots within the new cash green brand.</p>
+    </div>
+    <div class="output-ai-card" data-immediate>
+      <span class="output-ai-card__label">✦ AI in action</span>
+      <p data-ap-copy="hero_ai">Later, when we needed to adapt the card animation for the UK — different brand mark, different colorway — I leveraged AI via a combo of internal agent Goose and ChatGPT to rewrite the Lottie JSON directly and tested it in the Lottie viewer.</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phone-hero">
+    <div class="phone-wrap">
+      <video autoplay muted loop playsinline>
+        <source src="../assets/afterpay/card/mint-card-animation.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 22 OF 29
+     SLIDE TYPE: output-a — "Afterpay Shop uplift"
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="21">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">REBUILD OF AFTERPAY DESIGN</span>
+      <span class="output-left__header-client"> AFTERPAY</span>
+    </div>
+    <p class="output-left__title">Afterpay Shop uplift →</p>
+    <div class="output-left__body">
+      <p data-ap-copy="shop_0">We ran a series of component optimization experiments across our shopping surface to maximize referrals and GPV:</p>
+      <p data-ap-copy="shop_1">Editorial, Banner ad, Category tiles, Sale tag, Merchant avatars, and In app Browser flow all got a little nip and tuck. This workstream also introduced consumer funded checkout for out of network merchants in the US–all resulted in meaningful GPV increase.</p>
+      <p data-ap-copy="shop_2">I had 1 designer focussed on this workstream.</p>
+      <p data-ap-copy="shop_3">I personally managed the relationship with the internal ad teams, helping build tooling and constraints for visual asset standards and consistency.</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/Editorial%20tile.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/Categories.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/New%20ad%20banner.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/Editorial%20tile.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/Categories.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/New%20ad%20banner.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/%25%20off%20sale%20tag.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/IAB%20SUP.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/IAB%20SUP%202.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/%25%20off%20sale%20tag.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/IAB%20SUP.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/IAB%20SUP%202.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/Gift%20Cards%20lockup.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/Payment%20-%20Filled%20-%20Toast.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/Gift%20Cards%20lockup.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/afterpay/shop%20uplift/Payment%20-%20Filled%20-%20Toast.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 23 OF 29
+     SLIDE TYPE: section-title — "Outcomes"
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="22">
+  <p class="section-title__word">Outcomes</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 24 OF 29
+     SLIDE TYPE: stats — 2→7 / 1.5–6x / ↑36% (Outcomes)
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--stats" data-type="stats" data-index="23">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <span class="stat-item__number">2→7</span>
+      <span class="stat-item__label">Design team grown</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-item__number">1.5–6x</span>
+      <span class="stat-item__label">Referral lift on shop surfaces</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-item__number">↑36%</span>
+      <span class="stat-item__label">Year on year GPV growth</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 25 OF 29
+     SLIDE TYPE: impact
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--impact" data-type="impact" data-index="24">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <div class="impact-grid">
+
+    <div class="impact-col">
+      <h3 class="impact-col__name">Scale</h3>
+      <ul class="impact-col__list">
+        <li>Established repeatable regulatory playbook</li>
+        <li>Reusable design system rollout approach across regions</li>
+        <li>Improved design system and accessibility standards</li>
+        <li>Positioned Afterpay as a leader in consumer trust within BNPL — 908 earned media stories at 91% positive sentiment validated the approach as a category-leading model</li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name">Business</h3>
+      <ul class="impact-col__list">
+        <li>Delivered regulatory readiness across AU + NZ — 96% customer completion through new income verification and credit check flows</li>
+        <li>Dynamic credit limit algorithm lifted average qualified spend from $600 to $730 (~22%) under the new regulatory regime</li>
+        <li>1.5–6× increase in referrals and clickthrough on Afterpay Shop surfaces</li>
+        <li>Supported +36% YoY growth ($7.8B GPV, $320M gross profit)</li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name">Team</h3>
+      <ul class="impact-col__list">
+        <li>Scaled from 2 → 7 designers</li>
+        <li>Improved morale, ownership, and performance</li>
+        <li>Full roadmap supported by design</li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name">Product</h3>
+      <ul class="impact-col__list">
+        <li>Shift to problem-led design across workstreams</li>
+        <li>Reduced rework and reactive delivery</li>
+        <li>Improved experimentation quality</li>
+        <li>Shaved substantial* time off onboarding and limit approval flow</li>
+      </ul>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 26 OF 29
+     SLIDE TYPE: quote — Cross-functional partner (second)
+     ⚠ NOTE (fix 12): This is a repeat of slide 12's cross-functional quote.
+     Confirm with Carrie whether this should be different content or removed.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--quote" data-type="quote" data-index="25">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <p class="quote-text" data-ap-copy="quote_xfn_partner">"Carrie has been able to effectively communicate and align strategies across teams, adapting team structures and resources to meet evolving business needs." — Cross-functional partner</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 27 OF 29
+     SLIDE TYPE: quote — Afterpay CMO
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--quote" data-type="quote" data-index="26">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <p class="quote-text" data-ap-copy="quote_cmo">"She has a strong, positive influence at the leadership level — bringing both strategic thinking and empathy to complex initiatives." — Afterpay CMO</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 28 OF 29
+     SLIDE TYPE: content — "Reflection"
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="27">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>REBUILD OF AFTERPAY DESIGN</span>
+    <span class="slide-header__client"  data-header-client>AFTERPAY</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading">Reflection</h2>
+    <p data-ap-copy="reflection_0">Helping the Afterpay product team get its mojo back was enormously rewarding, and hard-won. It proved what I already knew: the health of the systems and teams we work in drives product outcomes.</p>
+    <p data-ap-copy="reflection_1">My hypothesis was true — the design team shipped solutions that objectively improved the Afterpay product and business.</p>
+    <p data-ap-copy="reflection_2">It's also true that change only comes with trust, and that path isn't always straightforward. Proving new ways of working took time, consistency, and repeated clarity. Not everyone loved the changes from the beginning, and I didn't always nail the approach.</p>
+    <p data-ap-copy="reflection_3">I owned my missteps quickly, asked for feedback, and tried again. I can say with a lot of pride and confidence that I stepped out of this role a year later with a cross-functional team that truly trusted and valued design partnership.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 29 OF 29
+     SLIDE TYPE: qa
+     Duplicate this block for each new slide of this type.
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--qa" data-type="qa" data-index="28">
+  <a href="../index.html" class="back-link">← back to selected work</a>
+  <p class="qa-text">Q+A</p>
+</section>
+
+
+<!-- ─── FIXED UI ─── -->
+<div class="deck-confidential" aria-hidden="true">PRIVILEGED &amp; CONFIDENTIAL</div>
+<div class="deck-counter-group">
+  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 29</div>
+</div>
+<div class="deck-hint" aria-hidden="true">← → to navigate</div>
+
+<!-- ─── M SWITCHER MENU ─── -->
+<div class="deck-switcher" id="deckSwitcher" aria-hidden="true" role="dialog" aria-label="View switcher">
+  <div class="deck-switcher__inner">
+    <a href="afterpay-deck.html" class="deck-switcher__option deck-switcher__option--active">Deck</a>
+    <a href="afterpay-design.html" class="deck-switcher__option">Scroll</a>
+  </div>
+  <p class="deck-switcher__hint">m or esc to close</p>
+</div>
+
+<!-- ─── COPY SOURCE ─── -->
+<script src="afterpay-copy.js"></script>
+
+<script>
+  /* ─── DECK ENGINE — vanilla JS, no dependencies ─── */
+  (function () {
+
+    /* ── Mobile redirect — always show scroll layout on small screens ── */
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      window.location.replace('afterpay-design.html');
+    }
+
+    /* ── State ── */
+    const slides  = Array.from(document.querySelectorAll('.slide'));
+    const counter = document.querySelector('.deck-counter');
+    const hint    = document.querySelector('.deck-hint');
+    const body    = document.body;
+    const total   = slides.length;
+    let   current = 0;
+
+    /* ── Eyebrow section labels ──
+       Walk slides in order; track the active section from section-title slides,
+       then inject a .slide-header__section span into any subsequent slide-header. */
+    (function () {
+      var section = '';
+      slides.forEach(function (slide) {
+        var word = slide.querySelector('.section-title__word');
+        if (word) { section = word.textContent.trim().toUpperCase(); return; }
+        if (!section) return;
+        var header = slide.querySelector('.slide-header');
+        if (!header || header.querySelector('.slide-header__section')) return;
+        var span = document.createElement('span');
+        span.className = 'slide-header__section';
+        span.textContent = section;
+        header.appendChild(span);
+      });
+    })();
+
+    /* ── Keyboard hint — fade after 3s, once per session ── */
+    if (!sessionStorage.getItem('ap-deck-hint')) {
+      setTimeout(function () {
+        hint.classList.add('fade-out');
+        sessionStorage.setItem('ap-deck-hint', '1');
+      }, 3000);
+    } else {
+      hint.classList.add('fade-out');
+    }
+
+    /* ── Build-in helpers ──
+       content: each <p> in .content-body
+       role:    .role-block__title, then each .role-row
+       impact:  each .impact-col, left → right             */
+    function getBuildItems(slide) {
+      var type = slide.dataset.type;
+      if (type === 'content') {
+        /* First paragraph is always visible — only build in paragraphs 2+ */
+        var all = Array.from(slide.querySelectorAll('.content-body p'));
+        return all.slice(1);
+      }
+      if (type === 'role') {
+        /* Combined title label is always visible — only build in the rows */
+        return Array.from(slide.querySelectorAll('.role-row'));
+      }
+      if (type === 'impact') {
+        /* First col (Scale) is always visible — build in remaining cols left→right */
+        var cols = Array.from(slide.querySelectorAll('.impact-col'));
+        return cols.slice(1);
+      }
+      if (type === 'output-a' || type === 'output-b' || type === 'output-c') {
+        /* data-continue slides share a title with the previous output slide — assets
+           are visible from the start, so skip the panel from the build queue.
+           Otherwise: asset panel is in the build queue.
+           data-immediate on a <p> means it's visible from arrival — skip it too. */
+        var isContinue = slide.hasAttribute('data-continue');
+        var assetPanel = !isContinue
+          ? slide.querySelector('.output-phones, .output-image-right, .output-phone-hero')
+          : null;
+        var bodyParas = Array.from(slide.querySelectorAll('.output-left__body p'))
+          .slice(1)
+          .filter(function (p) { return !p.hasAttribute('data-immediate'); });
+        var items;
+        /* output-c non-continue: group the first body para WITH the asset panel so they
+           reveal together on one tap (paragraph and animation appear simultaneously). */
+        if (type === 'output-c' && assetPanel && bodyParas.length > 0) {
+          items = [[bodyParas[0], assetPanel]].concat(bodyParas.slice(1));
+        } else {
+          items = assetPanel ? [assetPanel] : [];
+          items = items.concat(bodyParas);
+        }
+        /* AI card (output-c only) — goes last unless data-immediate */
+        var aiCard = slide.querySelector('.output-ai-card');
+        if (aiCard && !aiCard.hasAttribute('data-immediate')) items.push(aiCard);
+        return items;
+      }
+      return [];
+    }
+
+    /* Build items can be a single element or an array-group (revealed together).
+       eachBuildEl flattens a single item from getBuildItems into an element array. */
+    function eachBuildEl(item, fn) {
+      if (Array.isArray(item)) { item.forEach(fn); } else { fn(item); }
+    }
+
+    function showAllBuildItems(slide) {
+      getBuildItems(slide).forEach(function (item) {
+        eachBuildEl(item, function (el) { el.classList.add('is-visible'); });
+      });
+    }
+
+    function resetBuildItems(slide) {
+      getBuildItems(slide).forEach(function (item) {
+        eachBuildEl(item, function (el) { el.classList.remove('is-visible'); });
+      });
+    }
+
+    function hasPendingBuild(slide) {
+      return getBuildItems(slide).some(function (item) {
+        var els = Array.isArray(item) ? item : [item];
+        return els.some(function (el) { return !el.classList.contains('is-visible'); });
+      });
+    }
+
+    function advanceBuild(slide) {
+      var next = getBuildItems(slide).find(function (item) {
+        var els = Array.isArray(item) ? item : [item];
+        return els.some(function (el) { return !el.classList.contains('is-visible'); });
+      });
+      if (next) {
+        eachBuildEl(next, function (el) { el.classList.add('is-visible'); });
+      }
+    }
+
+    /* ── Go to slide ── */
+    function goTo(index, direction) {
+      if (index < 0)      index = 0;
+      if (index >= total) index = total - 1;
+      if (index === current) return;
+
+      slides[current].classList.remove('is-active');
+      current = index;
+
+      /* Reset/show build state BEFORE the slide becomes visible so stale is-visible
+         classes don't cause a flash of previously-revealed assets on arrival. */
+      if (direction === 'back') {
+        showAllBuildItems(slides[current]);
+      } else {
+        resetBuildItems(slides[current]);
+      }
+
+      slides[current].classList.add('is-active');
+
+      /* Counter */
+      counter.textContent = (current + 1) + ' / ' + total;
+
+      /* Dark-slide body flag (flips counter + hint colour) */
+      if (slides[current].classList.contains('slide--dark')) {
+        body.classList.add('is-dark-slide');
+      } else {
+        body.classList.remove('is-dark-slide');
+      }
+
+      /* Meta-slide flag — hides confidential tag on index + section-title slides */
+      var t = slides[current].dataset.type;
+      if (t === 'index' || t === 'section-title') {
+        body.classList.add('is-meta-slide');
+      } else {
+        body.classList.remove('is-meta-slide');
+      }
+
+      /* Title-slide flag — hides counter so meta line has the bottom-right to itself */
+      if (t === 'title') {
+        body.classList.add('is-title-slide');
+      } else {
+        body.classList.remove('is-title-slide');
+      }
+    }
+
+    /* ── Navigation handlers ── */
+    function handleForward() {
+      var slide = slides[current];
+      if (hasPendingBuild(slide)) {
+        advanceBuild(slide);
+      } else {
+        goTo(current + 1, 'forward');
+      }
+    }
+
+    function handleBack() {
+      goTo(current - 1, 'back');
+    }
+
+    /* ── 'm' key view switcher ── */
+    var switcher = document.getElementById('deckSwitcher');
+
+    /* Map current slide index → scroll page anchor */
+    function slideToScrollAnchor(idx) {
+      if (idx >= 27) return '#s-reflection';
+      if (idx >= 22) return '#s-outcomes';
+      if (idx >= 15) return '#s-outputs';
+      if (idx >= 6)  return '#s-approach';
+      if (idx >= 3)  return '#s-opportunity';
+      return '';
+    }
+
+    function openSwitcher() {
+      /* Update scroll link href so landing position matches current section */
+      var scrollLink = switcher.querySelector('a[href*="afterpay-design"]');
+      if (scrollLink) scrollLink.href = 'afterpay-design.html' + slideToScrollAnchor(current);
+      switcher.classList.add('is-open');
+      switcher.setAttribute('aria-hidden', 'false');
+    }
+    function closeSwitcher() { switcher.classList.remove('is-open'); switcher.setAttribute('aria-hidden', 'true');  }
+    switcher.addEventListener('click', function (e) { if (e.target === switcher) closeSwitcher(); });
+
+    /* ── Keyboard ── */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'm' || e.key === 'M') { switcher.classList.contains('is-open') ? closeSwitcher() : openSwitcher(); return; }
+      if (e.key === 'Escape') { closeSwitcher(); return; }
+      if (switcher.classList.contains('is-open')) return; /* swallow nav keys while menu is open */
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); handleForward(); }
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); handleBack(); }
+    });
+
+    /* ── Click / tap to advance ── */
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      handleForward();
+    });
+
+    /* ── Init ── */
+    /* Check for ?slide=N (set by scroll page when switching via 'm' menu) */
+    var startSlide = 0;
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var s = parseInt(params.get('slide'), 10);
+      if (!isNaN(s) && s > 0 && s < total) startSlide = s;
+    })();
+
+    /* If jumping to a non-zero slide, suppress CSS transitions so there's no flash */
+    if (startSlide > 0) {
+      body.classList.add('no-transition');
+      slides[0].classList.remove('is-active');
+      slides[startSlide].classList.add('is-active');
+      current = startSlide;
+      counter.textContent = (current + 1) + ' / ' + total;
+      requestAnimationFrame(function () { body.classList.remove('no-transition'); });
+    }
+
+    var initSlide = slides[startSlide];
+    resetBuildItems(initSlide);
+    if (initSlide.classList.contains('slide--dark')) {
+      body.classList.add('is-dark-slide');
+    }
+    var initType = initSlide.dataset.type;
+    if (initType === 'index' || initType === 'section-title') {
+      body.classList.add('is-meta-slide');
+    }
+    if (initType === 'title') {
+      body.classList.add('is-title-slide');
+    }
+
+  })();
+</script>
+
+</body>
+</html>

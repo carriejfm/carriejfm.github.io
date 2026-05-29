@@ -1442,8 +1442,9 @@ a.footer__email:hover {
   }
   .cs-stat-stack           { order: 4; margin-bottom: 0.5rem; }
   .case-study__tags        { order: 5; margin-top: 0; }
-  .case-study__recognition { order: 6; }
-  .case-study__coming-soon { order: 7; }
+  .case-study__cta-arrow   { order: 6; margin-top: 1rem; }
+  .case-study__recognition { order: 7; }
+  .case-study__coming-soon { order: 8; }
 
   .footer__nav {
     display: none;

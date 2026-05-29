@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rebuilding Afterpay Design — Carrie Francis-Miller</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────
+       DECK TEMPLATE — embedded styles only
+       All tokens mirror css/style.css :root
+       No external stylesheet, no !important
+    ───────────────────────────────────────── */
+
+    /* ─── TOKENS ─── */
+    :root {
+      --bg:           #F3F3F1;
+      --text:         #1A1A17;
+      --text-muted:   #2E2E2A;
+      --text-faint:   #7A7A72;
+      --border:       #DDD9D0;
+      --border-light: #EAE7E0;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+
+      --size-xs:   0.6875rem;
+      --size-sm:   0.8125rem;
+      --size-base: 1rem;
+      --size-md:   1.125rem;
+      --size-lg:   1.5rem;
+      --size-xl:   2rem;
+      --size-2xl:  3rem;
+
+      --space-xs:  0.5rem;
+      --space-sm:  1rem;
+      --space-md:  2rem;
+      --space-lg:  4rem;
+      --space-xl:  6rem;
+
+      --transition: 200ms ease;
+      --side-pad:   clamp(1.5rem, 5vw, 4rem);
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-mono);
+      font-weight: 300;
+      color: var(--text);
+      background: var(--text); /* dark chrome visible during crossfade */
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* ─── DECK CONTAINER ─── */
+    .deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ─── SLIDES ─── */
+    .deck-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 350ms ease;
+      padding: var(--side-pad);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .deck-slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Slide palette variants */
+    .deck-slide--light { background: var(--bg); color: var(--text); }
+    .deck-slide--dark  { background: var(--text); color: var(--bg); }
+
+    /* ─── SLIDE COUNTER ─── */
+    .deck-counter {
+      position: fixed;
+      bottom: 1.5rem;
+      right: var(--side-pad);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: var(--text-faint);
+      z-index: 100;
+      pointer-events: none;
+      font-weight: 300;
+    }
+
+    /* Counter stays legible on dark slides */
+    body.deck-is-dark .deck-counter {
+      color: rgba(243, 243, 241, 0.4);
+    }
+
+    /* ─── KEYBOARD HINT ─── */
+    .deck-hint {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: var(--text-faint);
+      z-index: 100;
+      pointer-events: none;
+      transition: opacity 600ms ease;
+      white-space: nowrap;
+    }
+
+    .deck-hint.is-hidden {
+      opacity: 0;
+    }
+
+    body.deck-is-dark .deck-hint {
+      color: rgba(243, 243, 241, 0.4);
+    }
+
+    /* ─── BACK LINK ─── */
+    .deck-back-link {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: var(--text-faint);
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      transition: color var(--transition);
+    }
+
+    .deck-back-link:hover { color: var(--text-muted); }
+
+    .deck-slide--dark .deck-back-link {
+      color: rgba(243, 243, 241, 0.4);
+    }
+
+    .deck-slide--dark .deck-back-link:hover {
+      color: rgba(243, 243, 241, 0.7);
+    }
+
+    /* ─── SHARED: SLIDE LABEL (top-left tag) ─── */
+    .slide-label {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      margin-bottom: var(--space-md);
+    }
+
+    .deck-slide--dark .slide-label {
+      color: rgba(243, 243, 241, 0.35);
+    }
+
+    /* ─── SHARED: COLUMN ANATOMY ─── */
+    .col-label {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+    }
+
+    .col-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .col-body {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 48ch;
+    }
+
+    .col-subheading {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .col-pull-quote {
+      font-family: var(--font-display);
+      font-size: var(--size-base);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-top: auto;
+      padding-top: var(--space-sm);
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [1] SLIDE TYPE: title
+    ═══════════════════════════════════════════════ */
+    .slide-title {
+      justify-content: space-between;
+    }
+
+    .slide-title__body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-md);
+    }
+
+    .slide-title__name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--text);
+    }
+
+    .slide-title__tagline {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      color: var(--text-muted);
+      max-width: 56ch;
+      line-height: 1.6;
+    }
+
+    .slide-title__meta {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: var(--text-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [2] SLIDE TYPE: two-col-text
+    ═══════════════════════════════════════════════ */
+    .slide-two-col__body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-content: center;
+    }
+
+    .slide-two-col__col {
+      padding: 0 var(--space-lg) 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .slide-two-col__col + .slide-two-col__col {
+      padding: 0 0 0 var(--space-lg);
+      border-left: 1px solid var(--border);
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [3] SLIDE TYPE: statement
+    ═══════════════════════════════════════════════ */
+    .slide-statement {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .slide-statement__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      max-width: 900px;
+    }
+
+    .slide-statement__label {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(243, 243, 241, 0.35);
+    }
+
+    .slide-statement__text {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--bg);
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [4] SLIDE TYPE: three-col-approach
+    ═══════════════════════════════════════════════ */
+    .slide-three-col__body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-content: center;
+    }
+
+    .slide-three-col__col {
+      padding: 0 var(--space-lg) 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .slide-three-col__col + .slide-three-col__col {
+      padding: 0 var(--space-lg);
+      border-left: 1px solid var(--border);
+    }
+
+    .slide-three-col__col:last-child {
+      padding-right: 0;
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [5] SLIDE TYPE: image-caption
+    ═══════════════════════════════════════════════ */
+    .slide-image-cap {
+      gap: var(--space-sm);
+    }
+
+    .slide-image-cap__label {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(243, 243, 241, 0.35);
+      margin-bottom: var(--space-xs);
+    }
+
+    .slide-image-cap__img-wrap {
+      flex: 1;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .slide-image-cap__img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .slide-image-cap__caption {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: rgba(243, 243, 241, 0.4);
+      line-height: 1.5;
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [6] SLIDE TYPE: stat-cards
+    ═══════════════════════════════════════════════ */
+    .slide-stat-cards__body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stat-cards {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-xs);
+      padding: 0 var(--space-xl);
+    }
+
+    .stat-card + .stat-card {
+      border-left: 1px solid var(--border);
+    }
+
+    .stat-card__number {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .stat-card__label {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+    }
+
+    .stat-card__desc {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: var(--text-faint);
+      max-width: 20ch;
+      line-height: 1.5;
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [7] SLIDE TYPE: outcome-grid
+    ═══════════════════════════════════════════════ */
+    .slide-outcome-grid__body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: var(--space-sm);
+      min-height: 0;
+    }
+
+    .outcome-card {
+      border: 1px solid var(--border);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .outcome-card__label {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+    }
+
+    .outcome-card__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
+    .outcome-card__list li {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding-left: 1em;
+      position: relative;
+    }
+
+    .outcome-card__list li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--text-faint);
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [8] SLIDE TYPE: pull-quote
+    ═══════════════════════════════════════════════ */
+    .slide-pull-quote {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide-pull-quote__inner {
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .slide-pull-quote__mark {
+      font-family: var(--font-display);
+      font-size: 8rem;
+      font-weight: 300;
+      line-height: 0.6;
+      color: var(--border);
+      display: block;
+      margin-bottom: var(--space-xs);
+      user-select: none;
+    }
+
+    .slide-pull-quote__text {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 3.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .slide-pull-quote__attribution {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [9] SLIDE TYPE: reflection
+    ═══════════════════════════════════════════════ */
+    .slide-reflection {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide-reflection__inner {
+      max-width: 640px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .slide-reflection__label {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+    }
+
+    .slide-reflection__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .slide-reflection__body {
+      font-family: var(--font-mono);
+      font-size: var(--size-base);
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [10] SLIDE TYPE: end
+    ═══════════════════════════════════════════════ */
+    .slide-end {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .slide-end__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .slide-end__name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 300;
+      color: var(--bg);
+      line-height: 1.05;
+    }
+
+    .slide-end__sub {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      color: rgba(243, 243, 241, 0.5);
+    }
+
+    .slide-end__link {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      color: rgba(243, 243, 241, 0.6);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color var(--transition);
+    }
+
+    .slide-end__link:hover {
+      color: var(--bg);
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- ═══════════════════════════════════════════════
+       TEMPLATE INDEX
+       Copy the block you need, paste after the last
+       .deck-slide, and fill in the {PLACEHOLDERS}.
+       ═══════════════════════════════════════════════
+
+    [1]  SLIDE TYPE: title
+    [2]  SLIDE TYPE: two-col-text       (problem left / insight right)
+    [3]  SLIDE TYPE: statement          (full-width Fraunces quote or goal)
+    [4]  SLIDE TYPE: three-col-approach (subhead + body + quote, ×3 columns)
+    [5]  SLIDE TYPE: image-caption      (full-bleed image, caption below)
+    [6]  SLIDE TYPE: stat-cards         (3–4 large Fraunces numbers + mono labels)
+    [7]  SLIDE TYPE: outcome-grid       (Team / Product / Business / Scale 2×2)
+    [8]  SLIDE TYPE: pull-quote         (single testimonial, large italic Fraunces)
+    [9]  SLIDE TYPE: reflection         (single column, generous whitespace)
+    [10] SLIDE TYPE: end                (link back to portfolio)
+
+  ═══════════════════════════════════════════════ -->
+
+
+  <!-- ─────────────────────────────────────────
+       SLIDE TYPE: title
+       USAGE: Opening slide — project name, tagline, meta
+       COPY THIS BLOCK ↓
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--light slide-title" data-type="title">
+    <div class="slide-title__top">
+      <a href="../index.html" class="deck-back-link">← Back to portfolio</a>
+    </div>
+    <div class="slide-title__body">
+      <h1 class="slide-title__name">Rebuilding<br>Afterpay Design</h1>
+      <p class="slide-title__tagline">Rebuilding a design discipline as a strategic function during a regulatory pivot and a rebrand.</p>
+      <p class="slide-title__meta">Block (Afterpay) &nbsp;//&nbsp; 2024–2025 &nbsp;//&nbsp; Design Director</p>
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       SLIDE TYPE: two-col-text
+       USAGE: Present a problem/situation on the left and an insight/goal on the right
+       COPY THIS BLOCK ↓
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--light" data-type="two-col-text">
+    <p class="slide-label">Context</p>
+    <div class="slide-two-col__body">
+      <div class="slide-two-col__col">
+        <span class="col-label">Situation</span>
+        <h2 class="col-heading">A team of two navigating a regulatory pivot.</h2>
+        <p class="col-body">The Afterpay design team had shrunk to 2 people. The business was navigating a regulatory pivot across AU, UK, and US markets while simultaneously rebranding under Block.</p>
+      </div>
+      <div class="slide-two-col__col">
+        <span class="col-label">Goal</span>
+        <h2 class="col-heading">Rebuild trust, team, and throughput.</h2>
+        <p class="col-body">Rebuild the team, establish design as a trusted strategic partner, and ship regulated product changes without slowing delivery.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       SLIDE TYPE: statement
+       USAGE: A single bold goal or conviction — palette-shifting dark moment
+       COPY THIS BLOCK ↓
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--dark slide-statement" data-type="statement">
+    <div class="slide-statement__inner">
+      <span class="slide-statement__label">The Goal</span>
+      <p class="slide-statement__text">Design as a trusted strategic partner — not just a delivery resource.</p>
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       SLIDE TYPE: three-col-approach
+       USAGE: Show three parallel workstreams or pillars of an approach
+       COPY THIS BLOCK ↓
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--light" data-type="three-col-approach">
+    <p class="slide-label">Approach</p>
+    <div class="slide-three-col__body">
+
+      <div class="slide-three-col__col">
+        <span class="col-label">01</span>
+        <h3 class="col-subheading">Hiring &amp; team structure</h3>
+        <p class="col-body">Grew from 2 to 7 designers across 3 markets, embedded directly in product squads to build influence through proximity and output.</p>
+        <p class="col-pull-quote">"Hire for craft first — trust follows from doing the work well."</p>
+      </div>
+
+      <div class="slide-three-col__col">
+        <span class="col-label">02</span>
+        <h3 class="col-subheading">Rituals &amp; craft standards</h3>
+        <p class="col-body">Weekly critique, shared design principles, and a Figma component library rebuilt from scratch for the Block rebrand.</p>
+        <p class="col-pull-quote">"Consistency compounds — every shared component is a decision you don't have to make twice."</p>
+      </div>
+
+      <div class="slide-three-col__col">
+        <span class="col-label">03</span>
+        <h3 class="col-subheading">Strategic positioning</h3>
+        <p class="col-body">Design reviews with the CPO, a quarterly design strategy narrative, and a clear RACI that elevated design from executor to author.</p>
+        <p class="col-pull-quote">"Speak in outcomes. Earn the room. Then hold the line."</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       SLIDE TYPE: image-caption
+       USAGE: Show a key output, process artefact, or research capture
+       COPY THIS BLOCK ↓
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--dark slide-image-cap" data-type="image-caption">
+    <p class="slide-image-cap__label">Output</p>
+    <div class="slide-image-cap__img-wrap">
+      <img src="../assets/imagery/afterpay-1.png" alt="Afterpay design system component library">
+    </div>
+    <p class="slide-image-cap__caption">Figma component library — 2025 rebrand-ready</p>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       SLIDE TYPE: stat-cards
+       USAGE: Lead with quantified outcomes — 3 or 4 numbers that land
+       COPY THIS BLOCK ↓
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--light" data-type="stat-cards">
+    <p class="slide-label">Impact</p>
+    <div class="slide-stat-cards__body">
+      <div class="stat-cards">
+
+        <div class="stat-card">
+          <span class="stat-card__number">2→7</span>
+          <span class="stat-card__label">Designers</span>
+          <span class="stat-card__desc">Hired 5 designers across AU, UK &amp; US</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-card__number">+36%</span>
+          <span class="stat-card__label">YoY GMV</span>
+          <span class="stat-card__desc">Gross merchandise value growth</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-card__number">1.5–6×</span>
+          <span class="stat-card__label">Referral lift</span>
+          <span class="stat-card__desc">On Shop across markets</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-card__number">3</span>
+          <span class="stat-card__label">Markets shipped</span>
+          <span class="stat-card__desc">AU, UK &amp; US regulatory releases</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       SLIDE TYPE: outcome-grid
+       USAGE: Categorise outcomes across Team / Product / Business / Scale (or similar 2×2 frame)
+       COPY THIS BLOCK ↓
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--light" data-type="outcome-grid">
+    <p class="slide-label">Outcome categories</p>
+    <div class="slide-outcome-grid__body">
+
+      <div class="outcome-card">
+        <span class="outcome-card__label">Team</span>
+        <ul class="outcome-card__list">
+          <li>Hired 5 designers — embedded squad model</li>
+          <li>Mentorship programme established</li>
+          <li>Weekly critique culture</li>
+        </ul>
+      </div>
+
+      <div class="outcome-card">
+        <span class="outcome-card__label">Product</span>
+        <ul class="outcome-card__list">
+          <li>Design system rebuilt for Block rebrand</li>
+          <li>Compliance-ready component library</li>
+          <li>3 major product launches shipped</li>
+        </ul>
+      </div>
+
+      <div class="outcome-card">
+        <span class="outcome-card__label">Business</span>
+        <ul class="outcome-card__list">
+          <li>+36% YoY GMV growth</li>
+          <li>Design represented at exec level</li>
+          <li>Quarterly design strategy narrative</li>
+        </ul>
+      </div>
+
+      <div class="outcome-card">
+        <span class="outcome-card__label">Scale</span>
+        <ul class="outcome-card__list">
+          <li>AU, UK &amp; US delivery in parallel</li>
+          <li>Regulatory-ready design process</li>
+          <li>Cross-market component standards</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       SLIDE TYPE: pull-quote
+       USAGE: A single strong testimonial or standout line — give it room to breathe
+       COPY THIS BLOCK ↓
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--light slide-pull-quote" data-type="pull-quote">
+    <div class="slide-pull-quote__inner">
+      <span class="slide-pull-quote__mark" aria-hidden="true">"</span>
+      <blockquote class="slide-pull-quote__text">The hardest thing wasn't the hiring or the shipping — it was convincing the organisation that design could hold strategic intent while operating at pace in a regulated environment.</blockquote>
+      <p class="slide-pull-quote__attribution">— Carrie Francis-Miller, Design Director</p>
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       SLIDE TYPE: reflection
+       USAGE: Close the narrative with personal insight — what you'd carry forward
+       COPY THIS BLOCK ↓
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--light slide-reflection" data-type="reflection">
+    <div class="slide-reflection__inner">
+      <span class="slide-reflection__label">Reflection</span>
+      <h2 class="slide-reflection__heading">We did it by showing up consistently.</h2>
+      <p class="slide-reflection__body">The hardest thing wasn't the hiring or the shipping — it was convincing the organisation that design could hold strategic intent while operating at pace in a regulated environment. We did it by showing up consistently, speaking in outcomes, and doing the work.</p>
+    </div>
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       SLIDE TYPE: end
+       USAGE: Close the deck — bookend with dark palette, link back to portfolio
+       COPY THIS BLOCK ↓
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--dark slide-end" data-type="end">
+    <div class="slide-end__inner">
+      <p class="slide-end__name">Rebuilding<br>Afterpay Design</p>
+      <p class="slide-end__sub">Block (Afterpay) · 2024–2025 · Design Director</p>
+      <a href="../index.html" class="slide-end__link">← Back to portfolio</a>
+    </div>
+  </section>
+
+</div><!-- /.deck -->
+
+<div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 10</div>
+<div class="deck-hint" aria-hidden="true">← → &nbsp; arrow keys to navigate</div>
+
+<script>
+  /* ─── DECK NAVIGATION — vanilla JS, no dependencies ─── */
+  (function () {
+    const slides  = Array.from(document.querySelectorAll('.deck-slide'));
+    const counter = document.querySelector('.deck-counter');
+    const hint    = document.querySelector('.deck-hint');
+    const body    = document.body;
+    const total   = slides.length;
+    let   current = 0;
+
+    /* Show keyboard hint on first visit this session, then fade */
+    if (!sessionStorage.getItem('deck-hint-seen')) {
+      setTimeout(function () {
+        hint.classList.add('is-hidden');
+        sessionStorage.setItem('deck-hint-seen', '1');
+      }, 3000);
+    } else {
+      hint.classList.add('is-hidden');
+    }
+
+    function goTo(index) {
+      /* Wrap around cleanly */
+      index = ((index % total) + total) % total;
+
+      slides[current].classList.remove('is-active');
+      current = index;
+      slides[current].classList.add('is-active');
+
+      counter.textContent = (current + 1) + ' / ' + total;
+
+      /* Flip counter/hint colour on dark slides */
+      if (slides[current].classList.contains('deck-slide--dark')) {
+        body.classList.add('deck-is-dark');
+      } else {
+        body.classList.remove('deck-is-dark');
+      }
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    /* Keyboard: right/down = advance, left/up = back */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); next(); }
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); prev(); }
+    });
+
+    /* Click anywhere on the deck to advance */
+    document.getElementById('deck').addEventListener('click', next);
+
+    /* Initialise — sets first slide visible and counter colour */
+    goTo(0);
+  })();
+</script>
+
+</body>
+</html>

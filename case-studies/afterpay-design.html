@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="/js/analytics.js"></script>
-  <title>Rebuilding Afterpay design — case study by Carrie Francis-Miller</title>
-  <meta name="description" content="Case study: rebuilding the Afterpay design discipline as a strategic function (Block, 2024–2025) — 2 to 7 designers, regulated fintech delivery across three markets, +36% YoY growth, 1.5–6× referral lift on Shop.">
+  <title>The rebuild of Afterpay Design — Carrie Francis-Miller</title>
+  <meta name="description" content="Case study: the rebuild of Afterpay Design as a strategic function (Block, 2024–2025) — 2 to 7 designers, regulated fintech delivery across three markets, +36% YoY growth, 1.5–6× referral lift on Shop.">
   <meta name="author" content="Carrie Francis-Miller">
   <meta name="theme-color" content="#ffffff">
 
@@ -20,8 +20,8 @@
   <meta property="og:site_name" content="Carrie Francis-Miller">
   <meta property="og:locale" content="en_AU">
   <meta property="og:url" content="https://carriejfm.github.io/case-studies/afterpay-design.html">
-  <meta property="og:title" content="Rebuilding Afterpay design — case study by Carrie Francis-Miller">
-  <meta property="og:description" content="Rebuilding the Afterpay design discipline as a strategic function — 2→7 designers, regulated fintech across three markets, +36% YoY growth.">
+  <meta property="og:title" content="The rebuild of Afterpay Design — Carrie Francis-Miller">
+  <meta property="og:description" content="The rebuild of Afterpay Design as a strategic function — 2→7 designers, regulated fintech across three markets, +36% YoY growth.">
   <meta property="og:image" content="https://carriejfm.github.io/assets/imagery/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -31,8 +31,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Rebuilding Afterpay design — case study by Carrie Francis-Miller">
-  <meta name="twitter:description" content="Rebuilding the Afterpay design discipline as a strategic function — 2→7 designers, regulated fintech across three markets, +36% YoY growth.">
+  <meta name="twitter:title" content="The rebuild of Afterpay Design — Carrie Francis-Miller">
+  <meta name="twitter:description" content="The rebuild of Afterpay Design as a strategic function — 2→7 designers, regulated fintech across three markets, +36% YoY growth.">
   <meta name="twitter:image" content="https://carriejfm.github.io/assets/imagery/og-image.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,8 +47,8 @@
   {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    "name": "Rebuilding Afterpay design as a strategic function",
-    "headline": "Rebuilding Afterpay design as a strategic function during a regulatory pivot and a rebrand",
+    "name": "The rebuild of Afterpay Design",
+    "headline": "The rebuild of Afterpay Design as a strategic function during a regulatory pivot and a rebrand",
     "url": "https://carriejfm.github.io/case-studies/afterpay-design.html",
     "image": "https://carriejfm.github.io/assets/imagery/og-image.jpg",
     "datePublished": "2025",
@@ -63,6 +63,34 @@
     "keywords": "design leadership case study, principal product designer, Afterpay, Block, regulated fintech, design management, Buy Now Pay Later"
   }
   </script>
+
+  <style>
+    /* ─── M SWITCHER MENU ─── */
+    .deck-switcher {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(26, 26, 23, 0.97);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 250ms ease;
+    }
+    .deck-switcher.is-open { opacity: 1; pointer-events: auto; }
+    .deck-switcher__inner  { display: flex; flex-direction: column; align-items: center; gap: 1.75rem; }
+    .deck-switcher__option {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8125rem; font-weight: 300;
+      color: rgba(243,243,241,0.45); text-transform: uppercase;
+      letter-spacing: 0.15em; text-decoration: none;
+      transition: color 150ms ease;
+    }
+    .deck-switcher__option:hover   { color: #F3F3F1; }
+    .deck-switcher__option--active { color: rgba(243,243,241,0.90); }
+    .deck-switcher__hint {
+      margin-top: 3rem;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.6875rem;
+      font-weight: 300; color: rgba(243,243,241,0.50); letter-spacing: 0.08em;
+    }
+  </style>
 </head>
 <body>
 
@@ -87,16 +115,12 @@
   <header class="cs-hero">
     <div class="cs-hero__inner">
 
-<h1 class="cs-hero__title">Rebuilding Afterpay design as a strategic function during a regulatory pivot and a rebrand</h1>
+<h1 class="cs-hero__title" data-ap-copy="case_title">The rebuild of Afterpay Design</h1>
 
       <div class="cs-hero__meta">
-        <span class="cs-meta__client">Afterpay</span>
-        <span class="cs-meta__sep">/</span>
-        <span class="cs-meta__client">Block</span>
+        <span data-ap-copy="project_string">Block · Afterpay // 2024–2025</span>
         <span class="cs-meta__sep">//</span>
-        <span>Product design manager</span>
-        <span class="cs-meta__sep">//</span>
-        <span>2024–2025</span>
+        <span data-ap-copy="role_title">Head of design</span>
       </div>
 
       <div class="cs-hero__image va-asset reveal">
@@ -113,22 +137,21 @@
 
 
       <!-- ── Row 1: Opportunity ── -->
-      <div class="cs-row">
+      <div class="cs-row" id="s-opportunity">
 
         <div class="cs-row__left">
-          <span class="cs-label">Opportunity</span>
+          <span class="cs-label" data-ap-copy="section_opportunity">Opportunity</span>
         </div>
 
         <div class="cs-row__right">
-          <p>Afterpay operates in the Buy Now, Pay Later (BNPL) space, where consumer trust and regulation are critical to growth. In 2024, the business was in the middle of global BNPL regulatory shift, requiring rapid coordination across regions and disciplines while juggling a rebrand within the US region and continuing to drive growth.</p>
-          <p>At the same time, the system was under strain. Design was under-resourced, brought in late, and often asked to execute predefined solutions. Roadmap priorities were volatile, and teams were beginning to ship without design input.</p>
+          <p data-ap-copy="opportunity_0">Afterpay operates in the Buy Now, Pay Later (BNPL) space, where consumer trust and regulation are critical to growth.</p>
+          <p data-ap-copy="opportunity_1">In 2024, the business was in the middle of global BNPL regulatory shift, requiring rapid coordination across regions and disciplines while juggling a rebrand within the US region and continuing to drive growth.</p>
+          <p data-ap-copy="opportunity_2">At the same time, the system was under strain. Design was under-resourced, brought in late, and often asked to execute predefined solutions. Roadmap priorities were volatile, and teams were beginning to ship without design input.</p>
         </div>
 
       </div>
 
-      <blockquote class="cs-goal">
-        The goal: rebuild the design discipline, and shift from execution to strategic partnership — while fulfilling urgent regulatory deadlines (and a roadmap of promises).
-      </blockquote>
+      <blockquote class="cs-goal">Goal: <span data-ap-copy="goal">Rebuild the design discipline, and shift from execution to strategic partnership — while fulfilling urgent regulatory deadlines.</span></blockquote>
 
 
       <!-- ── Row 2: Role ── -->
@@ -139,6 +162,7 @@
         </div>
 
         <div class="cs-row__right">
+          <h3 class="cs-approach-block__heading" data-ap-copy="role_title">Head of design</h3>
           <div class="cs-role-list">
 
             <div class="cs-role-item">
@@ -163,22 +187,22 @@
 
 
       <!-- ── Row 3: Approach ── -->
-      <div class="cs-row">
+      <div class="cs-row" id="s-approach">
 
         <div class="cs-row__left">
           <span class="cs-label">Approach</span>
           <div class="cs-stat-stack">
             <div>
               <span class="cs-stat__value">7</span>
-              <span class="cs-stat__label">designers</span>
+              <span class="cs-stat__label">Designers</span>
             </div>
             <div>
               <span class="cs-stat__value">6</span>
-              <span class="cs-stat__label">workstreams</span>
+              <span class="cs-stat__label">Workstreams</span>
             </div>
             <div>
               <span class="cs-stat__value">5</span>
-              <span class="cs-stat__label">regions</span>
+              <span class="cs-stat__label">Regions</span>
             </div>
           </div>
         </div>
@@ -187,79 +211,201 @@
           <div class="cs-approach">
 
             <div class="cs-approach-block">
-              <h3>Rebuild team &amp; trust</h3>
-              <p>I rebuilt the team from the ground up, establishing clear ownership across work streams and introducing best practices in team rituals and tooling.</p>
-              <p>A culture of clear feedback and psychological safety was grown with clarity in roles, consistency in the day-to-day and reconnection with the broader design org. I stepped into difficult conversations with adjacent teams to mediate and reset. I coached individuals through challenging situations, including unblocking a high-performing, autonomous designer from a performance misunderstanding.</p>
+              <h3 data-ap-copy="section_hypothesis">Hypothesis</h3>
+              <p data-ap-copy="hypothesis">I believe teams that understand the problem, ship better solutions than teams that execute predefined ones</p>
+            </div>
+
+            <div class="cs-approach-block">
+              <h3 data-ap-copy="section_rebuild">Rebuild team &amp; trust</h3>
+              <p data-ap-copy="approach_rebuild_0">I rebuilt the team from the ground up, establishing clear ownership across work streams and introducing best practices in team rituals and tooling.</p>
+              <p data-ap-copy="approach_rebuild_1">A culture of clear feedback and psychological safety was grown with clarity in roles, consistency in the day-to-day and reconnection with the broader design org. I stepped into difficult conversations with adjacent teams to mediate and reset.</p>
+              <p data-ap-copy="approach_rebuild_2">I coached individuals through challenging situations, including unblocking a high-performing, autonomous designer from a performance misunderstanding.</p>
               <blockquote class="cs-quote">
-                <p>"Carrie built an incredibly talented team and created the environment for them to lean in with ownership."</p>
-                <footer>— Product partner</footer>
+                <p data-ap-copy="quote_product_partner_text">"Carrie built an incredibly talented team and created the environment for them to lean in with ownership."</p>
+                <footer data-ap-copy="quote_product_partner_attr">— Product partner</footer>
               </blockquote>
             </div>
 
             <div class="cs-approach-block">
-              <h3>Solution-led to problem-led</h3>
-              <p>I shifted the team from executing predefined solutions to defining problems. Through the unpacking of regulatory, business, and behavioral drivers we aligned as a team to redefine and understand opportunities.</p>
-              <p>Designers worked with measurable success criteria in mind and solved problems with true ownership. It made for better cross-functional culture and better delivery outcomes.</p>
+              <h3 data-ap-copy="section_problem">Solution-led to problem-led</h3>
+              <p data-ap-copy="approach_problem_0">I shifted the team from executing predefined solutions to defining problems. Through the unpacking of regulatory, business, and behavioral drivers we aligned as a team to redefine and understand opportunities.</p>
+              <p data-ap-copy="approach_problem_1">Designers worked with measurable success criteria in mind and solved problems with true ownership. It made for better cross-functional culture and better delivery outcomes.</p>
               <blockquote class="cs-quote">
-                <p>"She pushed back and held the line when warranted… while building credibility and trust across teams."</p>
-                <footer>— Design manager</footer>
+                <p data-ap-copy="quote_design_manager_text">"She pushed back and held the line when warranted… while building credibility and trust across teams."</p>
+                <footer data-ap-copy="quote_design_manager_attr">— Design manager</footer>
               </blockquote>
             </div>
 
             <div class="cs-approach-block">
-              <h3>Cross-functional alignment</h3>
-              <p>I established consistent alignment across product, engineering, legal, and compliance through a shared roadmap with design capacity visibility, regular 1:1s with product partners and actively embedding research and JTBDs into roadmap and PRDs.</p>
-              <p>When last-minute requests came up or scope thrashed (as they do), we had the footing to handle it — allowing us to reprioritize, make better tradeoffs or push back if needed. Embedded within the regional leadership team, I influenced strategy and presented to C-suite.</p>
+              <h3 data-ap-copy="section_xfn">Cross-functional alignment</h3>
+              <p data-ap-copy="approach_xfn_0">I established consistent alignment across product, engineering, legal, and compliance through a shared roadmap with design capacity visibility, regular 1:1s with product partners and actively embedding research and JTBDs into roadmap and PRDs.</p>
+              <p data-ap-copy="approach_xfn_1">When last-minute requests came up or scope thrashed (as they do), we had the footing to handle it — allowing us to reprioritize, make better tradeoffs or push back if needed. Embedded within the regional leadership team, I influenced strategy and presented to C-suite.</p>
               <blockquote class="cs-quote">
-                <p>"Her prioritization was crucial in helping the team focus on the most impactful work and ultimately meet our release timeline."</p>
-                <footer>— Engineering partner</footer>
+                <p data-ap-copy="quote_eng_partner_text">"Her prioritization was crucial in helping the team focus on the most impactful work and ultimately meet our release timeline."</p>
+                <footer data-ap-copy="quote_eng_partner_attr">— Engineering partner</footer>
               </blockquote>
             </div>
 
-          </div>
-
-          <div class="ai-callout">
-            <span class="ai-callout__label">AI in Practice</span>
-            <p>If I were to embark on this journey now I would use AI to take and synth weekly notes into actions and support tracking. I would build out the regulation playbook structure, onboarding docs and the design system regional rollout tooling using AI. I would have flexed AI to smash out the manual content audit and publish a living content 'bot that brand and marketing partners could input into and co-own.</p>
           </div>
         </div>
 
       </div>
 
 
-      <!-- ── Row 4: Key outputs ── -->
-      <div class="cs-row">
+      <!-- ── Row 4: Outputs ── -->
+      <div class="cs-row" id="s-outputs">
 
-        <div class="cs-row__left"></div>
+        <div class="cs-row__left">
+          <span class="cs-label">Outputs</span>
+        </div>
 
         <div class="cs-row__right">
           <div class="cs-output-right">
 
+            <!-- A regulated Afterpay -->
             <div class="cs-output-item">
-              <p>End-to-end design improvements across the shopping experience — tile system, search, and video reel.</p>
-              <div class="va-asset va-asset--w7-r reveal">
-                <video autoplay muted loop playsinline preload="metadata" poster="">
-                  <source src="" type="video/mp4">
-                </video>
+              <p class="cs-output-item__title" data-ap-copy="section_regulated">A regulated Afterpay →</p>
+              <p data-ap-copy="regulated_0">Aligning Afterpay to responsible buy now pay later lending obligations included the design and redesign of key experiences and required variation from region to region:</p>
+              <p data-ap-copy="regulated_1">Credit limit increases, onboarding improvements, user-initiated spend controls to support responsible usage, KYC and compliance flows, autopay to reduce late fees, fraud protection and dispute flows.</p>
+              <p data-ap-copy="regulated_2">I had 2 designers focused on regulation workstreams.</p>
+              <p data-ap-copy="regulated_3">I co-wrote a reusable regulation playbook with product to enable consistent execution across US, AU, NZ and kickstart proactive conversations with UK regulatory bodies.</p>
+              <div class="va-asset reveal">
+                <div class="va-carousel" data-carousel>
+                  <div class="va-carousel__track va-carousel__track--manual">
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Autopay.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/BASIC%20DDO%20Application%20intro%20screen.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/ProcessingLoader.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Settings%20-%20Documents.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Success%20-%20Avaialble%20to%20spend.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Unsuitability-questions-form.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Autopay-1.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Unsuitability-questions-form-1.png" alt="" loading="lazy"></div>
+                    <!-- duplicate for seamless loop -->
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Autopay.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/BASIC%20DDO%20Application%20intro%20screen.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/ProcessingLoader.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Settings%20-%20Documents.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Success%20-%20Avaialble%20to%20spend.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Unsuitability-questions-form.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Autopay-1.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/regulation/Unsuitability-questions-form-1.png" alt="" loading="lazy"></div>
+                  </div>
+                </div>
               </div>
             </div>
 
+            <!-- Global design system rollout and US rebrand -->
             <div class="cs-output-item">
-              <p>Reusable design system rollout tooling. Card animation, global design system, regional release strategy.</p>
-              <div class="va-asset va-asset--w7-r reveal">
-                <img src="" alt="Afterpay US rebrand design system — component library and regional rollout tooling" loading="lazy">
+              <p class="cs-output-item__title" data-ap-copy="section_designsystem">Global design system rollout and US rebrand →</p>
+              <p data-ap-copy="designsystem_0">The Afterpay app, operating in 6 international markets, migrated to a new the parent Cash App design system–within both Afterpay Mint and Cash Green themes.</p>
+              <p data-ap-copy="designsystem_1">I had 2 primary designers working on the design system overhaul, building up token themes and component libraries, 1 designer who overhauled 75 emails into 2 templates using core library components and 1 content designer who did a cross-region audit of all surfaces.</p>
+              <p data-ap-copy="designsystem_2">I oversaw design across all of the above while managing the release strategy facilitation, building out reusable tooling in Notion for the cross-functional team to follow for each regional rollout that would subsequently become a cross-region source of truth.</p>
+              <!-- Mint carousel -->
+              <div class="va-asset reveal">
+                <div class="va-carousel" data-carousel>
+                  <div class="va-carousel__track va-carousel__track--manual">
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/01-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/02-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/03-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/04-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/05-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/06-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/07-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/08-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <!-- duplicate for seamless loop -->
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/01-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/02-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/03-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/04-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/05-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/06-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/07-afterpay-mint.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/08-afterpay-mint.png" alt="" loading="lazy"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- Green carousel -->
+              <div class="va-asset reveal">
+                <div class="va-carousel" data-carousel>
+                  <div class="va-carousel__track va-carousel__track--manual">
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/01-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/02-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/03-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/04-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/05-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/06-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/07-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/08-afterpay-green.png" alt="" loading="lazy"></div>
+                    <!-- duplicate for seamless loop -->
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/01-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/02-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/03-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/04-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/05-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/06-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/07-afterpay-green.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/design%20system/08-afterpay-green.png" alt="" loading="lazy"></div>
+                  </div>
+                </div>
               </div>
             </div>
 
+            <!-- Hero brand moments in app -->
             <div class="cs-output-item">
-              <p>A reusable regulation playbook enabling consistent execution across AU, NZ, and future regions.</p>
-              <ul>
-                <li>Credit limit increases and onboarding improvements</li>
-                <li>Spend controls to support responsible usage</li>
-                <li>KYC and compliance flows</li>
-                <li>Autopay to reduce late fees</li>
-                <li>Fraud protection and disputes</li>
-              </ul>
+              <p class="cs-output-item__title" data-ap-copy="section_hero">Hero brand moments in app →</p>
+              <p data-ap-copy="hero_0">I personally owned the hero brand moments within the app, designing the new US Afterpay Card and how it fit into the wider branding story with my brand partners.</p>
+              <p data-ap-copy="hero_1">The abstracted loop micro-animation on load gave a wink and a nod to Afterpay roots within the new cash green brand.</p>
+              <div class="ai-callout">
+                <span class="ai-callout__label">✦ AI in action</span>
+                <p data-ap-copy="hero_ai">Later, when we needed to adapt the card animation for the UK — different brand mark, different colorway — I leveraged AI via a combo of internal agent Goose and ChatGPT to rewrite the Lottie JSON directly and tested it in the Lottie viewer.</p>
+              </div>
+              <div class="cs-output-image reveal">
+                <img src="../assets/afterpay/card/card-brand-language.png" alt="Afterpay card brand language" loading="lazy">
+              </div>
+              <div class="cs-output-videos">
+                <div class="cs-output-video">
+                  <video autoplay muted loop playsinline>
+                    <source src="../assets/afterpay/card/green-card-animation.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="cs-output-video">
+                  <video autoplay muted loop playsinline>
+                    <source src="../assets/afterpay/card/mint-card-animation.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <!-- Afterpay Shop uplift -->
+            <div class="cs-output-item">
+              <p class="cs-output-item__title" data-ap-copy="section_shop">Afterpay Shop uplift →</p>
+              <p data-ap-copy="shop_0">We ran a series of component optimization experiments across our shopping surface to maximize referrals and GPV:</p>
+              <p data-ap-copy="shop_1">Editorial, Banner ad, Category tiles, Sale tag, Merchant avatars, and In app Browser flow all got a little nip and tuck. This workstream also introduced consumer funded checkout for out of network merchants in the US–all resulted in meaningful GPV increase.</p>
+              <p data-ap-copy="shop_2">I had 1 designer focussed on this workstream.</p>
+              <p data-ap-copy="shop_3">I personally managed the relationship with the internal ad teams, helping build tooling and constraints for visual asset standards and consistency.</p>
+              <div class="va-asset reveal">
+                <div class="va-carousel" data-carousel>
+                  <div class="va-carousel__track va-carousel__track--manual">
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/Editorial%20tile.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/Categories.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/New%20ad%20banner.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/%25%20off%20sale%20tag.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/IAB%20SUP.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/IAB%20SUP%202.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/Gift%20Cards%20lockup.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/Payment%20-%20Filled%20-%20Toast.png" alt="" loading="lazy"></div>
+                    <!-- duplicate for seamless loop -->
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/Editorial%20tile.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/Categories.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/New%20ad%20banner.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/%25%20off%20sale%20tag.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/IAB%20SUP.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/IAB%20SUP%202.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/Gift%20Cards%20lockup.png" alt="" loading="lazy"></div>
+                    <div class="va-carousel__item"><img src="../assets/afterpay/shop%20uplift/Payment%20-%20Filled%20-%20Toast.png" alt="" loading="lazy"></div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -269,22 +415,22 @@
 
 
       <!-- ── Row 6: Outcomes ── -->
-      <div class="cs-row">
+      <div class="cs-row" id="s-outcomes">
 
         <div class="cs-row__left">
           <span class="cs-label">Outcomes</span>
           <div class="cs-stat-stack">
             <div>
               <span class="cs-stat__value">2→7</span>
-              <span class="cs-stat__label">designers</span>
+              <span class="cs-stat__label">Design team grown</span>
             </div>
             <div>
-              <span class="cs-stat__value">1.5–6×</span>
-              <span class="cs-stat__label">referral lift on shop</span>
+              <span class="cs-stat__value">1.5–6x</span>
+              <span class="cs-stat__label">Referral lift on shop surfaces</span>
             </div>
             <div>
-              <span class="cs-stat__value">36%</span>
-              <span class="cs-stat__label">YoY growth</span>
+              <span class="cs-stat__value">↑36%</span>
+              <span class="cs-stat__label">Year on year GPV growth</span>
             </div>
           </div>
         </div>
@@ -295,10 +441,10 @@
             <div class="cs-outcome-category">
               <span class="cs-outcome-label">Scale</span>
               <ul>
-                <li>Established repeatable regulatory playbook — 908 earned media stories at 91% positive sentiment validated the approach as a category-leading model</li>
+                <li>Established repeatable regulatory playbook</li>
                 <li>Reusable design system rollout approach across regions</li>
                 <li>Improved design system and accessibility standards</li>
-                <li>Positioned Afterpay as a leader in consumer trust within BNPL</li>
+                <li>Positioned Afterpay as a leader in consumer trust within BNPL — 908 earned media stories at 91% positive sentiment validated the approach as a category-leading model</li>
               </ul>
             </div>
 
@@ -327,6 +473,7 @@
                 <li>Shift to problem-led design across workstreams</li>
                 <li>Reduced rework and reactive delivery</li>
                 <li>Improved experimentation quality</li>
+                <li>Shaved substantial* time off onboarding and limit approval flow</li>
               </ul>
             </div>
 
@@ -345,13 +492,13 @@
           <div class="cs-closing-quotes">
 
             <blockquote class="cs-quote">
-              <p>"Carrie has been able to effectively communicate and align strategies across teams, adapting team structures and resources to meet evolving business needs."</p>
-              <footer>— Cross-functional partner</footer>
+              <p data-ap-copy="quote_xfn_partner_text">"Carrie has been able to effectively communicate and align strategies across teams, adapting team structures and resources to meet evolving business needs."</p>
+              <footer data-ap-copy="quote_xfn_partner_attr">— Cross-functional partner</footer>
             </blockquote>
 
             <blockquote class="cs-quote">
-              <p>"She has a strong, positive influence at the leadership level — bringing both strategic thinking and empathy to complex initiatives."</p>
-              <footer>— Afterpay CMO</footer>
+              <p data-ap-copy="quote_cmo_text">"She has a strong, positive influence at the leadership level — bringing both strategic thinking and empathy to complex initiatives."</p>
+              <footer data-ap-copy="quote_cmo_attr">— Afterpay CMO</footer>
             </blockquote>
 
           </div>
@@ -361,15 +508,17 @@
 
 
       <!-- ── Row 8: Reflection ── -->
-      <div class="cs-row">
+      <div class="cs-row" id="s-reflection">
 
         <div class="cs-row__left">
-          <span class="cs-label">Reflection</span>
+          <span class="cs-label" data-ap-copy="section_reflection">Reflection</span>
         </div>
 
         <div class="cs-row__right cs-reflection">
-          <p>Helping the Afterpay product team get its mojo back was enormously rewarding, and hard-won. It proved what I already knew to be true: that health of the systems and teams we work in drives product outcomes.</p>
-          <p>It's also true that change only comes with trust, and that path isn't always straightforward. Proving new ways of working took time, consistency, and repeated clarity. Not everyone loved the changes from the beginning, and I didn't always nail the approach. I owned my missteps quickly, asked for feedback, and tried again. I can say with a lot of pride and confidence that I stepped out of this role a year later with a cross-functional team that truly trusted and valued design partnership.</p>
+          <p data-ap-copy="reflection_0">Helping the Afterpay product team get its mojo back was enormously rewarding, and hard-won. It proved what I already knew: the health of the systems and teams we work in drives product outcomes.</p>
+          <p data-ap-copy="reflection_1">My hypothesis was true — the design team shipped solutions that objectively improved the Afterpay product and business.</p>
+          <p data-ap-copy="reflection_2">It's also true that change only comes with trust, and that path isn't always straightforward. Proving new ways of working took time, consistency, and repeated clarity. Not everyone loved the changes from the beginning, and I didn't always nail the approach.</p>
+          <p data-ap-copy="reflection_3">I owned my missteps quickly, asked for feedback, and tried again. I can say with a lot of pride and confidence that I stepped out of this role a year later with a cross-functional team that truly trusted and valued design partnership.</p>
         </div>
 
       </div>
@@ -380,7 +529,7 @@
 
 
   <!-- ─── NEXT CASE STUDY ─── -->
-  <nav class="cs-next" aria-label="Next case study">
+  <nav class="cs-next" aria-label="Next case study" hidden>
     <div class="cs-next__inner">
       <span class="cs-next__label">Next</span>
       <a href="orange-chef-prep-pad.html" class="cs-next__title">Prep Pad →</a>
@@ -402,6 +551,63 @@
     </div>
   </footer>
 
+  <!-- ─── M SWITCHER MENU ─── -->
+  <div class="deck-switcher" id="deckSwitcher" aria-hidden="true" role="dialog" aria-label="View switcher">
+    <div class="deck-switcher__inner">
+      <a href="afterpay-deck.html" class="deck-switcher__option">Deck</a>
+      <a href="afterpay-design.html" class="deck-switcher__option deck-switcher__option--active">Scroll</a>
+    </div>
+    <p class="deck-switcher__hint">m or esc to close</p>
+  </div>
+
   <script src="../js/main.js"></script>
+  <script src="afterpay-copy.js"></script>
+  <script>
+    (function () {
+      var switcher = document.getElementById('deckSwitcher');
+      var deckLink = switcher.querySelector('a[href*="afterpay-deck"]');
+
+      /* Map visible scroll section → deck slide index */
+      var sectionSlideMap = {
+        's-reflection': 27,
+        's-outcomes':   22,
+        's-outputs':    15,
+        's-approach':    6,
+        's-opportunity': 3
+      };
+      /* Sections checked bottom-up so we find the deepest one already scrolled past */
+      var sectionOrder = ['s-reflection', 's-outcomes', 's-outputs', 's-approach', 's-opportunity'];
+
+      function getCurrentDeckSlide() {
+        for (var i = 0; i < sectionOrder.length; i++) {
+          var el = document.getElementById(sectionOrder[i]);
+          if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.65) {
+            return sectionSlideMap[sectionOrder[i]];
+          }
+        }
+        return 0;
+      }
+
+      function openSwitcher() {
+        /* Update deck link so it lands at the matching slide */
+        if (deckLink) {
+          var slide = getCurrentDeckSlide();
+          deckLink.href = 'afterpay-deck.html' + (slide > 0 ? '?slide=' + slide : '');
+        }
+        switcher.classList.add('is-open');
+        switcher.setAttribute('aria-hidden', 'false');
+      }
+      function closeSwitcher() {
+        switcher.classList.remove('is-open');
+        switcher.setAttribute('aria-hidden', 'true');
+      }
+
+      switcher.addEventListener('click', function (e) { if (e.target === switcher) closeSwitcher(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'm' || e.key === 'M') { switcher.classList.contains('is-open') ? closeSwitcher() : openSwitcher(); }
+        if (e.key === 'Escape') closeSwitcher();
+      });
+    })();
+  </script>
 </body>
 </html>
