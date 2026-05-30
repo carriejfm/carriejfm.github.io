@@ -7,13 +7,13 @@
 
   <!-- ─── REPLACE THESE PER CASE STUDY ─────────────────────────────────────── -->
   <!-- Title pattern: "{Project} at {Client} — case study by Carrie Francis-Miller" -->
-  <title>{Project} — case study by Carrie Francis-Miller</title>
+  <title>{Project} at {Client} — case study by Carrie Francis-Miller</title>
   <meta name="description" content="Case study: {one-line description with client, year, and 1–2 outcome metrics}.">
   <meta name="author" content="Carrie Francis-Miller">
   <meta name="theme-color" content="#ffffff">
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://carriejfm.github.io/case-studies/{slug}.html">
+  <!-- Canonical — use carriefrancismiller.com -->
+  <link rel="canonical" href="https://carriefrancismiller.com/case-studies/{slug}.html">
 
   <!-- Favicon -->
   <link rel="icon" href="../assets/favicon.ico">
@@ -22,10 +22,10 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Carrie Francis-Miller">
   <meta property="og:locale" content="en_AU">
-  <meta property="og:url" content="https://carriejfm.github.io/case-studies/{slug}.html">
-  <meta property="og:title" content="{Project} — case study by Carrie Francis-Miller">
+  <meta property="og:url" content="https://carriefrancismiller.com/case-studies/{slug}.html">
+  <meta property="og:title" content="{Project} at {Client} — case study by Carrie Francis-Miller">
   <meta property="og:description" content="{one-line OG description}">
-  <meta property="og:image" content="https://carriejfm.github.io/assets/imagery/og-image.jpg">
+  <meta property="og:image" content="https://carriefrancismiller.com/assets/imagery/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="article:author" content="Carrie Francis-Miller">
@@ -34,9 +34,31 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{Project} — case study by Carrie Francis-Miller">
+  <meta name="twitter:title" content="{Project} at {Client} — case study by Carrie Francis-Miller">
   <meta name="twitter:description" content="{one-line OG description}">
-  <meta name="twitter:image" content="https://carriejfm.github.io/assets/imagery/og-image.jpg">
+  <meta name="twitter:image" content="https://carriefrancismiller.com/assets/imagery/og-image.jpg">
+
+  <!-- Structured data: CreativeWork -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "{Project Name}",
+    "headline": "{Headline used as h1 / case study title}",
+    "url": "https://carriefrancismiller.com/case-studies/{slug}.html",
+    "image": "https://carriefrancismiller.com/assets/imagery/og-image.jpg",
+    "datePublished": "{YYYY}",
+    "inLanguage": "en-AU",
+    "creator": {
+      "@type": "Person",
+      "name": "Carrie Francis-Miller",
+      "url": "https://carriefrancismiller.com/"
+    },
+    "publisher": { "@type": "Organization", "name": "{Client / Studio}" },
+    "about": ["{Theme 1}", "{Theme 2}"],
+    "keywords": "{comma-separated keywords}"
+  }
+  </script>
   <!-- ──────────────────────────────────────────────────────────────────────── -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,27 +68,34 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/casestudy.css">
 
-  <!-- Structured data: CreativeWork -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "{Project Name}",
-    "headline": "{Headline used as h1 / case study title}",
-    "url": "https://carriejfm.github.io/case-studies/{slug}.html",
-    "image": "https://carriejfm.github.io/assets/imagery/og-image.jpg",
-    "datePublished": "{YYYY}",
-    "inLanguage": "en-AU",
-    "creator": {
-      "@type": "Person",
-      "name": "Carrie Francis-Miller",
-      "url": "https://carriejfm.github.io/"
-    },
-    "publisher": { "@type": "Organization", "name": "{Client / Studio}" },
-    "about": ["{Theme 1}", "{Theme 2}"],
-    "keywords": "{comma-separated keywords}"
-  }
-  </script>
+  <!-- ─── DECK SWITCHER STYLES (remove if this case study has no deck) ──────── -->
+  <style>
+    .deck-switcher {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(26, 26, 23, 0.97);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 250ms ease;
+    }
+    .deck-switcher.is-open { opacity: 1; pointer-events: auto; }
+    .deck-switcher__inner  { display: flex; flex-direction: column; align-items: center; gap: 1.75rem; }
+    .deck-switcher__option {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8125rem; font-weight: 300;
+      color: rgba(243,243,241,0.45); text-transform: uppercase;
+      letter-spacing: 0.15em; text-decoration: none;
+      transition: color 150ms ease;
+    }
+    .deck-switcher__option:hover   { color: #F3F3F1; }
+    .deck-switcher__option--active { color: rgba(243,243,241,0.90); }
+    .deck-switcher__hint {
+      margin-top: 3rem;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.6875rem;
+      font-weight: 300; color: rgba(243,243,241,0.50); letter-spacing: 0.08em;
+    }
+  </style>
+  <!-- ──────────────────────────────────────────────────────────────────────── -->
 </head>
 <body>
 
@@ -75,9 +104,7 @@
     <a href="../index.html" class="nav__logo">Carrie Francis-Miller</a>
     <ul class="nav__links">
       <li><a href="../index.html">Home</a></li>
-      <!-- <li><a href="/work.html">Work</a></li> -->
       <li><a href="../about.html">About</a></li>
-      <!-- <li><a href="/thoughtwork.html">Thoughtwork</a></li> -->
       <li><a href="mailto:carriefrancismiller@gmail.com">Contact</a></li>
     </ul>
     <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
@@ -86,28 +113,391 @@
     </button>
   </nav>
 
+
   <!-- ─── HERO ─── -->
+  <!--
+    COPY INJECTION NOTES:
+    - data-cs-copy="key" attributes are populated from {slug}-copy.js
+    - <head> meta tags are always hardcoded (injector only works on body elements)
+    - When a label text node must sit alongside injected copy, put data-cs-copy on
+      the inner <span>, not the parent <p> — the injector uses el.textContent which
+      strips all child elements
+    - Replace 'cs' in data-cs-copy with a project-specific prefix (e.g. data-ms-copy)
+      and update the querySelectorAll in {slug}-copy.js accordingly
+  -->
   <header class="cs-hero">
     <div class="cs-hero__inner">
 
-      <h1 class="cs-hero__title">Project Title</h1>
+      <h1 class="cs-hero__title" data-cs-copy="case_title">{Project title}</h1>
 
       <div class="cs-hero__meta">
-        <span class="cs-meta__client">Client</span>
+        <span data-cs-copy="project_string">{Client · Company // Year}</span>
         <span class="cs-meta__sep">//</span>
-        <span>Role</span>
-        <span class="cs-meta__sep">//</span>
-        <span>Year</span>
+        <span data-cs-copy="role_title">{Role}</span>
       </div>
 
-      <div class="cs-hero__image" role="img" aria-label="Project imagery — coming soon">
-        <span class="cs-hero__image-placeholder">Imagery coming soon</span>
+      <div class="cs-hero__image reveal">
+        <img src="../assets/{slug}/{slug}-hero.jpg" alt="{Descriptive alt text}" loading="lazy">
       </div>
 
     </div>
   </header>
 
-  <!-- Case study content goes here -->
+
+  <!-- ─── BODY ─── -->
+  <main class="cs-body">
+    <div class="cs-body__inner">
+
+
+      <!-- ── Row 1: Opportunity ── -->
+      <div class="cs-row" id="s-opportunity">
+
+        <div class="cs-row__left">
+          <span class="cs-label" data-cs-copy="section_opportunity">Opportunity</span>
+        </div>
+
+        <div class="cs-row__right">
+          <p data-cs-copy="opportunity_0">{Opportunity paragraph 1}</p>
+          <p data-cs-copy="opportunity_1">{Opportunity paragraph 2}</p>
+          <!-- Add more paragraphs as needed: opportunity_2, opportunity_3 … -->
+        </div>
+
+      </div>
+
+      <!--
+        Goal blockquote: "Goal: " is a hardcoded text node; the injected <span> follows inline.
+        Do NOT put data-cs-copy on the <blockquote> itself — it would strip "Goal: ".
+      -->
+      <blockquote class="cs-goal">Goal: <span data-cs-copy="goal">{Goal statement}</span></blockquote>
+
+
+      <!-- ── Row 2: Role ── -->
+      <div class="cs-row">
+
+        <div class="cs-row__left">
+          <span class="cs-label">Role</span>
+        </div>
+
+        <div class="cs-row__right">
+          <!-- .cs-approach-block__heading is a standalone alias class.
+               It does NOT inherit .cs-approach-block bottom border/padding. -->
+          <h3 class="cs-approach-block__heading" data-cs-copy="role_title">{Role title}</h3>
+          <div class="cs-role-list">
+
+            <div class="cs-role-item">
+              <span class="cs-role-tag">Responsible</span>
+              <p>{Responsible description}</p>
+            </div>
+
+            <div class="cs-role-item">
+              <span class="cs-role-tag">Accountable</span>
+              <p>{Accountable description}</p>
+            </div>
+
+            <div class="cs-role-item">
+              <span class="cs-role-tag">Consulted</span>
+              <p>{Consulted description}</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ── Row 3: Approach ── -->
+      <div class="cs-row" id="s-approach">
+
+        <div class="cs-row__left">
+          <span class="cs-label">Approach</span>
+          <!-- Stat stack in left column — remove if not used -->
+          <div class="cs-stat-stack">
+            <div>
+              <span class="cs-stat__value">{Stat}</span>
+              <span class="cs-stat__label">{Label}</span>
+            </div>
+            <!-- Clone for additional stats -->
+          </div>
+        </div>
+
+        <div class="cs-row__right">
+          <div class="cs-approach">
+
+            <!--
+              Hypothesis always comes first in the approach section (mirrors deck order).
+              Label and copy are inline — no separate label heading above.
+            -->
+            <div class="cs-approach-block">
+              <h3 data-cs-copy="section_hypothesis">Hypothesis</h3>
+              <p data-cs-copy="hypothesis">{Hypothesis statement}</p>
+            </div>
+
+            <!-- Approach block — clone for each pillar (Rebuild, Problem-led, XFN, etc.) -->
+            <div class="cs-approach-block">
+              <h3 data-cs-copy="section_{block_key}">{Approach block heading}</h3>
+              <p data-cs-copy="{block_key}_0">{Paragraph 1}</p>
+              <p data-cs-copy="{block_key}_1">{Paragraph 2}</p>
+              <!-- Optional quote after each block.
+                   Use _text / _attr split keys, not the combined quote_* key.
+                   The combined key is for deck only. -->
+              <blockquote class="cs-quote">
+                <p data-cs-copy="quote_{key}_text">"{Quote text}"</p>
+                <footer data-cs-copy="quote_{key}_attr">— {Attribution}</footer>
+              </blockquote>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ── Row 4: Outputs ── -->
+      <div class="cs-row" id="s-outputs">
+
+        <div class="cs-row__left">
+          <span class="cs-label">Outputs</span>
+        </div>
+
+        <div class="cs-row__right">
+          <div class="cs-output-right">
+
+            <!-- Output item — clone for each output workstream -->
+            <div class="cs-output-item">
+              <h3 class="cs-output-item__heading">{Output heading}</h3>
+
+              <!--
+                OPTION A: SCROLLING CAROUSEL
+                data-carousel enables IntersectionObserver activation (animates on scroll entry).
+                va-carousel__track--manual means tiles do not auto-advance (no click-to-advance on desktop).
+                Duplicate all items inside the track for a seamless loop.
+                Set animation-duration long enough for slow drift (e.g. 107s for 8 items).
+                Desktop interaction: mobile touch swipe only. Desktop arrow shelved.
+              -->
+              <div class="va-carousel reveal" data-carousel>
+                <div class="va-carousel__track va-carousel__track--manual" style="animation-duration: 107s;">
+                  <div class="va-carousel__item"><img src="../assets/{slug}/{img}.jpg" alt="{Descriptive alt}" loading="lazy"></div>
+                  <!-- more items … then duplicate all above for seamless loop -->
+                </div>
+              </div>
+
+              <!--
+                OPTION B: STATIC SIDE-BY-SIDE BRAND HERO (image + video)
+                Use for hero brand moments. No carousel.
+                No-radius rule for --contain-img tiles must apply at all screen sizes (mobile override required).
+                Remove OPTION A above and uncomment this block.
+              -->
+              <!--
+              <div class="cs-brand-assets reveal">
+                <div class="va-carousel__item va-carousel__item--contain-img">
+                  <img src="../assets/{slug}/{image}.png" alt="{alt}" loading="lazy">
+                </div>
+                <div class="va-carousel__item va-carousel__item--video-crop">
+                  <video autoplay muted loop playsinline>
+                    <source src="../assets/{slug}/{video}.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              -->
+
+              <p data-cs-copy="{output_key}_0">{Output paragraph 1}</p>
+              <p data-cs-copy="{output_key}_1">{Output paragraph 2}</p>
+
+              <!--
+                OPTIONAL: AI callout.
+                Uses .ai-callout light-theme style — not the deck's dark output-ai-card.
+              -->
+              <!--
+              <div class="ai-callout">
+                <span class="ai-callout__label">✦ AI in action</span>
+                <p data-cs-copy="{output_key}_ai">{AI callout text}</p>
+              </div>
+              -->
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ── Row 5: Outcomes ── -->
+      <div class="cs-row" id="s-outcomes">
+
+        <div class="cs-row__left">
+          <span class="cs-label">Outcomes</span>
+          <div class="cs-stat-stack">
+            <div>
+              <span class="cs-stat__value">{Stat}</span>
+              <span class="cs-stat__label">{Label}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-row__right">
+          <div class="cs-outcomes">
+
+            <!-- Clone for each category. Standard order: Scale · Business · Team · Product -->
+            <div class="cs-outcome-category">
+              <span class="cs-outcome-label">{Category}</span>
+              <ul>
+                <li>{Outcome bullet}</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ── Row 6: Closing quotes (empty left column) ── -->
+      <div class="cs-row">
+
+        <div class="cs-row__left"></div>
+
+        <div class="cs-row__right">
+          <div class="cs-closing-quotes">
+
+            <blockquote class="cs-quote">
+              <p data-cs-copy="quote_{key}_text">"{Quote text}"</p>
+              <footer data-cs-copy="quote_{key}_attr">— {Attribution}</footer>
+            </blockquote>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ── Row 7: Reflection ── -->
+      <div class="cs-row" id="s-reflection">
+
+        <div class="cs-row__left">
+          <span class="cs-label" data-cs-copy="section_reflection">Reflection</span>
+        </div>
+
+        <div class="cs-row__right cs-reflection">
+          <p data-cs-copy="reflection_0">{Reflection paragraph 1}</p>
+          <p data-cs-copy="reflection_1">{Reflection paragraph 2}</p>
+        </div>
+
+      </div>
+
+
+    </div>
+  </main>
+
+
+  <!-- ─── BACK TO SELECTED WORK ─── -->
+  <!-- Style: right-aligned, mono font, → arrow, no border-top. Matches "View case study" CTA. -->
+  <nav class="cs-next" aria-label="Back to selected work">
+    <div class="cs-next__inner">
+      <a href="../index.html" class="cs-back-to-work">Back to selected work</a>
+    </div>
+  </nav>
+
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <span class="footer__name">Carrie Francis-Miller</span>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="mailto:carriefrancismiller@gmail.com">Contact</a>
+      </nav>
+      <span class="footer__credit">Sydney, Australia</span>
+    </div>
+  </footer>
+
+
+  <!-- ─── DECK SWITCHER MARKUP (remove if this case study has no deck) ─────── -->
+  <!--
+    Press 'm' to open / close. Links to {slug}-deck.html?slide=N based on scroll depth.
+    Update sectionSlideMap values to match your deck's actual slide numbers.
+  -->
+  <div class="deck-switcher" id="deckSwitcher" aria-hidden="true" role="dialog" aria-label="View switcher">
+    <div class="deck-switcher__inner">
+      <a href="{slug}-deck.html" class="deck-switcher__option">Deck</a>
+      <a href="{slug}-design.html" class="deck-switcher__option deck-switcher__option--active">Scroll</a>
+    </div>
+    <p class="deck-switcher__hint">m or esc to close</p>
+  </div>
+  <!-- ──────────────────────────────────────────────────────────────────────── -->
+
+
   <script src="../js/main.js"></script>
+
+  <!-- Copy injection — rename per project (e.g. money-stories-copy.js) -->
+  <script src="{slug}-copy.js"></script>
+
+  <!-- ─── CAROUSEL INTERSECTION OBSERVER ──────────────────────────────────── -->
+  <!-- Activates .va-carousel[data-carousel] elements as they scroll into view  -->
+  <script>
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var carousels = document.querySelectorAll('.va-carousel[data-carousel]');
+      if (!carousels.length) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          entry.target.classList.toggle('is-active', entry.isIntersecting);
+        });
+      }, { threshold: 0.1 });
+      carousels.forEach(function (c) { io.observe(c); });
+    })();
+  </script>
+
+  <!-- ─── DECK SWITCHER SCRIPT (remove if this case study has no deck) ──────── -->
+  <script>
+    (function () {
+      var switcher = document.getElementById('deckSwitcher');
+      var deckLink = switcher.querySelector('a[href*="-deck"]');
+
+      /*
+        Map visible scroll section → deck slide index.
+        Update these to match your deck's slide order.
+      */
+      var sectionSlideMap = {
+        's-reflection': 27,
+        's-outcomes':   22,
+        's-outputs':    15,
+        's-approach':    6,
+        's-opportunity': 3
+      };
+      var sectionOrder = ['s-reflection', 's-outcomes', 's-outputs', 's-approach', 's-opportunity'];
+
+      function getCurrentDeckSlide() {
+        for (var i = 0; i < sectionOrder.length; i++) {
+          var el = document.getElementById(sectionOrder[i]);
+          if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.65) {
+            return sectionSlideMap[sectionOrder[i]];
+          }
+        }
+        return 0;
+      }
+
+      function openSwitcher() {
+        if (deckLink) {
+          var slide = getCurrentDeckSlide();
+          deckLink.href = deckLink.href.split('?')[0] + (slide > 0 ? '?slide=' + slide : '');
+        }
+        switcher.classList.add('is-open');
+        switcher.setAttribute('aria-hidden', 'false');
+      }
+      function closeSwitcher() {
+        switcher.classList.remove('is-open');
+        switcher.setAttribute('aria-hidden', 'true');
+      }
+
+      switcher.addEventListener('click', function (e) { if (e.target === switcher) closeSwitcher(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'm' || e.key === 'M') { switcher.classList.contains('is-open') ? closeSwitcher() : openSwitcher(); }
+        if (e.key === 'Escape') closeSwitcher();
+      });
+    })();
+  </script>
+  <!-- ──────────────────────────────────────────────────────────────────────── -->
+
 </body>
 </html>

@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rebuilding Afterpay Design — Carrie Francis-Miller</title>
+  <!-- ─── REPLACE PER CASE STUDY ──── -->
+  <title>{Project} — {Client} — Carrie Francis-Miller</title>
+  <!-- ────────────────────────────── -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
 
   <style>
-    /* ─────────────────────────────────────────
-       DECK TEMPLATE — embedded styles only
-       All tokens mirror css/style.css :root
-       No external stylesheet, no !important
-    ───────────────────────────────────────── */
+    /* ─────────────────────────────────────────────────────
+       DECK TEMPLATE — all CSS is embedded, no external sheet.
+       Tokens mirror css/style.css :root exactly.
+       No !important. No inline style="" attributes.
+    ───────────────────────────────────────────────────── */
 
     /* ─── TOKENS ─── */
     :root {
@@ -36,22 +38,12 @@
       --size-xl:   2rem;
       --size-2xl:  3rem;
 
-      --space-xs:  0.5rem;
-      --space-sm:  1rem;
-      --space-md:  2rem;
-      --space-lg:  4rem;
-      --space-xl:  6rem;
-
+      --side-pad: clamp(1.5rem, 4vw, 3rem);
       --transition: 200ms ease;
-      --side-pad:   clamp(1.5rem, 5vw, 4rem);
     }
 
     /* ─── RESET ─── */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
       width: 100%;
@@ -68,15 +60,8 @@
       background: var(--text); /* dark chrome visible during crossfade */
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
     /* ─── DECK CONTAINER ─── */
     .deck {
@@ -87,6 +72,11 @@
     }
 
     /* ─── SLIDES ─── */
+    /*
+      Every slide is position: fixed so it fills the viewport.
+      Only one slide is visible at a time (opacity 1 + pointer-events).
+      Crossfade transition: 350ms ease.
+    */
     .deck-slide {
       position: absolute;
       inset: 0;
@@ -95,9 +85,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 350ms ease;
-      padding: var(--side-pad);
-      display: flex;
-      flex-direction: column;
+      overflow: hidden;
     }
 
     .deck-slide.is-active {
@@ -105,9 +93,8 @@
       pointer-events: auto;
     }
 
-    /* Slide palette variants */
-    .deck-slide--light { background: var(--bg); color: var(--text); }
-    .deck-slide--dark  { background: var(--text); color: var(--bg); }
+    .deck-slide--light { background: var(--bg);  color: var(--text); }
+    .deck-slide--dark  { background: var(--text); color: var(--bg);  }
 
     /* ─── SLIDE COUNTER ─── */
     .deck-counter {
@@ -122,7 +109,6 @@
       font-weight: 300;
     }
 
-    /* Counter stays legible on dark slides */
     body.deck-is-dark .deck-counter {
       color: rgba(243, 243, 241, 0.4);
     }
@@ -142,484 +128,585 @@
       white-space: nowrap;
     }
 
-    .deck-hint.is-hidden {
-      opacity: 0;
-    }
+    .deck-hint.is-hidden { opacity: 0; }
 
     body.deck-is-dark .deck-hint {
       color: rgba(243, 243, 241, 0.4);
     }
 
-    /* ─── BACK LINK ─── */
+    /* ─── SHARED: BACK LINK ─── */
     .deck-back-link {
+      position: absolute;
+      top: clamp(1.25rem, 3vw, 2rem);
+      left: var(--side-pad);
       font-family: var(--font-mono);
       font-size: var(--size-xs);
-      color: var(--text-faint);
       letter-spacing: 0.04em;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.375rem;
-      transition: color var(--transition);
+      transition: opacity var(--transition);
     }
 
-    .deck-back-link:hover { color: var(--text-muted); }
+    .deck-slide--light .deck-back-link { color: var(--text-faint); }
+    .deck-slide--dark  .deck-back-link { color: rgba(243,243,241,0.4); }
+    .deck-back-link:hover { opacity: 0.7; }
 
-    .deck-slide--dark .deck-back-link {
-      color: rgba(243, 243, 241, 0.4);
-    }
-
-    .deck-slide--dark .deck-back-link:hover {
-      color: rgba(243, 243, 241, 0.7);
-    }
-
-    /* ─── SHARED: SLIDE LABEL (top-left tag) ─── */
-    .slide-label {
+    /* ─── SHARED: PERSISTENT HEADER (light slides) ─── */
+    /*
+      Top-left tag: "PROJECT NAME  CLIENT"
+      First part: --text-muted  Second part: --text-faint
+      Same font/size, one space gap.
+      Dark slides: omit or render in white at low opacity.
+    */
+    .slide-header {
+      position: absolute;
+      top: clamp(1.25rem, 3vw, 2rem);
+      left: var(--side-pad);
       font-family: var(--font-mono);
       font-size: var(--size-xs);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-faint);
-      margin-bottom: var(--space-md);
-    }
-
-    .deck-slide--dark .slide-label {
-      color: rgba(243, 243, 241, 0.35);
-    }
-
-    /* ─── SHARED: COLUMN ANATOMY ─── */
-    .col-label {
-      font-family: var(--font-mono);
-      font-size: var(--size-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-faint);
-    }
-
-    .col-heading {
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      font-weight: 300;
-      line-height: 1.15;
-      color: var(--text);
-    }
-
-    .col-body {
-      font-family: var(--font-mono);
-      font-size: var(--size-sm);
-      color: var(--text-muted);
-      line-height: 1.7;
-      max-width: 48ch;
-    }
-
-    .col-subheading {
-      font-family: var(--font-display);
-      font-size: var(--size-lg);
-      font-weight: 300;
-      line-height: 1.2;
-      color: var(--text);
-    }
-
-    .col-pull-quote {
-      font-family: var(--font-display);
-      font-size: var(--size-base);
-      font-weight: 300;
-      font-style: italic;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-top: auto;
-      padding-top: var(--space-sm);
-    }
-
-
-    /* ═══════════════════════════════════════════════
-       [1] SLIDE TYPE: title
-    ═══════════════════════════════════════════════ */
-    .slide-title {
-      justify-content: space-between;
-    }
-
-    .slide-title__body {
-      flex: 1;
+      letter-spacing: 0.08em;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: var(--space-md);
+      gap: 0.5em;
     }
 
-    .slide-title__name {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 300;
-      line-height: 1.05;
-      color: var(--text);
-    }
+    .deck-slide--light .slide-header__project { color: var(--text-muted); }
+    .deck-slide--light .slide-header__client  { color: var(--text-faint); }
+    .deck-slide--dark  .slide-header__project { color: rgba(243,243,241,0.5); }
+    .deck-slide--dark  .slide-header__client  { color: rgba(243,243,241,0.3); }
 
-    .slide-title__tagline {
-      font-family: var(--font-mono);
-      font-size: var(--size-sm);
-      color: var(--text-muted);
-      max-width: 56ch;
-      line-height: 1.6;
-    }
-
-    .slide-title__meta {
+    /* ─── SHARED: CONFIDENTIAL WATERMARK ─── */
+    .slide-confidential {
+      position: absolute;
+      bottom: var(--side-pad);
+      right: var(--side-pad);
       font-family: var(--font-mono);
       font-size: var(--size-xs);
       color: var(--text-faint);
       letter-spacing: 0.08em;
-      text-transform: uppercase;
     }
 
 
     /* ═══════════════════════════════════════════════
-       [2] SLIDE TYPE: two-col-text
+       [01] SLIDE TYPE: title (dark)
     ═══════════════════════════════════════════════ */
-    .slide-two-col__body {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-content: center;
+    .slide-title__name {
+      position: absolute;
+      bottom: 15%;
+      left: var(--side-pad);
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--bg);
+      max-width: 80%;
     }
 
-    .slide-two-col__col {
-      padding: 0 var(--space-lg) 0 0;
+    .slide-title__meta {
+      position: absolute;
+      bottom: clamp(1.5rem, 3vw, 2.5rem);
+      right: var(--side-pad);
       display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-
-    .slide-two-col__col + .slide-two-col__col {
-      padding: 0 0 0 var(--space-lg);
-      border-left: 1px solid var(--border);
-    }
-
-
-    /* ═══════════════════════════════════════════════
-       [3] SLIDE TYPE: statement
-    ═══════════════════════════════════════════════ */
-    .slide-statement {
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .slide-statement__inner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-md);
-      max-width: 900px;
-    }
-
-    .slide-statement__label {
+      gap: 4rem;
       font-family: var(--font-mono);
       font-size: var(--size-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: rgba(243, 243, 241, 0.35);
+      letter-spacing: 0.08em;
     }
 
-    .slide-statement__text {
+    .slide-title__meta-project { color: rgba(243,243,241,0.5); }
+    .slide-title__meta-role    { color: var(--bg); }
+
+
+    /* ═══════════════════════════════════════════════
+       [02] SLIDE TYPE: index (light)
+       Four numbered section items, lower-right quadrant
+    ═══════════════════════════════════════════════ */
+    .slide-index__list {
+      position: absolute;
+      right: 20%;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .slide-index__item {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+    }
+
+    .slide-index__num  {
+      font-family: var(--font-mono);
+      font-size: var(--size-lg);
+      color: var(--text-faint);
+    }
+
+    .slide-index__name {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 4.5rem);
+      font-size: var(--size-lg);
       font-weight: 300;
-      line-height: 1.15;
+      color: var(--text-faint);
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [03] SLIDE TYPE: section-title (dark, animated ticker)
+       Right 55% of slide. Word repeats, scrolls upward, loops.
+    ═══════════════════════════════════════════════ */
+    .slide-section-title__track {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 55%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .slide-section-title__list {
+      display: flex;
+      flex-direction: column;
+      /* JS sets translateY to start mid-column, then animates to -50% */
+    }
+
+    .slide-section-title__word {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 8vw, 7rem);
+      font-weight: 300;
+      color: var(--bg);
+      line-height: 1.1;
+      display: block;
+      white-space: nowrap;
+    }
+
+    @keyframes section-title-scroll {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+
+    .slide-section-title__list--animating {
+      animation: section-title-scroll 12s linear infinite;
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [04] SLIDE TYPE: content (light)
+       Heading top-left; body text bottom-left.
+    ═══════════════════════════════════════════════ */
+    .slide-content__heading {
+      position: absolute;
+      top: 5rem;
+      left: var(--side-pad);
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 300;
+      color: var(--text);
+    }
+
+    .slide-content__body {
+      position: absolute;
+      bottom: var(--side-pad);
+      left: var(--side-pad);
+      width: min(38ch, 40%);
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      color: var(--text-faint);
+      line-height: 1.7;
+    }
+
+    .slide-content__body p + p { margin-top: 1em; }
+
+
+    /* ═══════════════════════════════════════════════
+       [05] SLIDE TYPE: goal (dark)
+       Label top-left; large statement lower-centre.
+    ═══════════════════════════════════════════════ */
+    .slide-goal__label {
+      position: absolute;
+      top: clamp(1.25rem, 3vw, 2rem);
+      left: var(--side-pad);
+      font-family: var(--font-display);
+      font-size: var(--size-xl);
+      font-weight: 300;
       color: var(--bg);
     }
 
-
-    /* ═══════════════════════════════════════════════
-       [4] SLIDE TYPE: three-col-approach
-    ═══════════════════════════════════════════════ */
-    .slide-three-col__body {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      align-content: center;
+    .slide-goal__statement {
+      position: absolute;
+      top: 35%;
+      left: 18%;
+      width: 75%;
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4.5vw, 4rem);
+      font-weight: 300;
+      color: var(--bg);
+      line-height: 1.15;
     }
 
-    .slide-three-col__col {
-      padding: 0 var(--space-lg) 0 0;
+
+    /* ═══════════════════════════════════════════════
+       [06] SLIDE TYPE: role (light)
+       Heading top-left; role block at ~55% from top.
+    ═══════════════════════════════════════════════ */
+    .slide-role__heading {
+      position: absolute;
+      top: 5rem;
+      left: var(--side-pad);
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 300;
+      color: var(--text);
+    }
+
+    .slide-role__block {
+      position: absolute;
+      top: 55%;
+      left: var(--side-pad);
+      width: min(55ch, 55%);
+    }
+
+    .slide-role__title {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      color: var(--text-muted);
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .slide-role__row {
+      display: flex;
+      gap: 0.5em;
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .slide-role__row strong { color: var(--text-muted); }
+    .slide-role__row span   { color: var(--text-faint); }
+
+
+    /* ═══════════════════════════════════════════════
+       [07] SLIDE TYPE: hypothesis (light, two-column)
+       Left: heading + italic statement. Right: full-bleed image.
+    ═══════════════════════════════════════════════ */
+    .slide-hypothesis__left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 100%;
+      padding: clamp(1.25rem, 3vw, 2rem) var(--side-pad);
       display: flex;
       flex-direction: column;
-      gap: var(--space-sm);
     }
 
-    .slide-three-col__col + .slide-three-col__col {
-      padding: 0 var(--space-lg);
-      border-left: 1px solid var(--border);
+    .slide-hypothesis__heading {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text);
     }
 
-    .slide-three-col__col:last-child {
-      padding-right: 0;
+    .slide-hypothesis__statement {
+      margin-top: auto;
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.2;
     }
 
-
-    /* ═══════════════════════════════════════════════
-       [5] SLIDE TYPE: image-caption
-    ═══════════════════════════════════════════════ */
-    .slide-image-cap {
-      gap: var(--space-sm);
-    }
-
-    .slide-image-cap__label {
-      font-family: var(--font-mono);
-      font-size: var(--size-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: rgba(243, 243, 241, 0.35);
-      margin-bottom: var(--space-xs);
-    }
-
-    .slide-image-cap__img-wrap {
-      flex: 1;
+    .slide-hypothesis__right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60%;
+      height: 100%;
       overflow: hidden;
-      min-height: 0;
     }
 
-    .slide-image-cap__img-wrap img {
+    .slide-hypothesis__right img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
-    }
-
-    .slide-image-cap__caption {
-      font-family: var(--font-mono);
-      font-size: var(--size-xs);
-      color: rgba(243, 243, 241, 0.4);
-      line-height: 1.5;
     }
 
 
     /* ═══════════════════════════════════════════════
-       [6] SLIDE TYPE: stat-cards
+       [08] SLIDE TYPE: quote (light)
+       Lower-left quadrant. Inline attribution.
     ═══════════════════════════════════════════════ */
-    .slide-stat-cards__body {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .stat-cards {
-      display: flex;
-      align-items: stretch;
-    }
-
-    .stat-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: var(--space-xs);
-      padding: 0 var(--space-xl);
-    }
-
-    .stat-card + .stat-card {
-      border-left: 1px solid var(--border);
-    }
-
-    .stat-card__number {
-      font-family: var(--font-display);
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      font-weight: 300;
-      line-height: 1;
-      color: var(--text);
-    }
-
-    .stat-card__label {
-      font-family: var(--font-mono);
-      font-size: var(--size-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-faint);
-    }
-
-    .stat-card__desc {
-      font-family: var(--font-mono);
-      font-size: var(--size-xs);
-      color: var(--text-faint);
-      max-width: 20ch;
-      line-height: 1.5;
-    }
-
-
-    /* ═══════════════════════════════════════════════
-       [7] SLIDE TYPE: outcome-grid
-    ═══════════════════════════════════════════════ */
-    .slide-outcome-grid__body {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: var(--space-sm);
-      min-height: 0;
-    }
-
-    .outcome-card {
-      border: 1px solid var(--border);
-      padding: var(--space-md);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-
-    .outcome-card__label {
-      font-family: var(--font-mono);
-      font-size: var(--size-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-faint);
-    }
-
-    .outcome-card__list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.375rem;
-    }
-
-    .outcome-card__list li {
-      font-family: var(--font-mono);
-      font-size: var(--size-sm);
-      color: var(--text-muted);
-      line-height: 1.5;
-      padding-left: 1em;
-      position: relative;
-    }
-
-    .outcome-card__list li::before {
-      content: '·';
+    .slide-quote__inner {
       position: absolute;
-      left: 0;
-      color: var(--text-faint);
+      bottom: var(--side-pad);
+      left: var(--side-pad);
+      width: min(55ch, 50%);
     }
 
-
-    /* ═══════════════════════════════════════════════
-       [8] SLIDE TYPE: pull-quote
-    ═══════════════════════════════════════════════ */
-    .slide-pull-quote {
-      justify-content: center;
-      align-items: center;
-    }
-
-    .slide-pull-quote__inner {
-      max-width: 760px;
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-
-    .slide-pull-quote__mark {
+    .slide-quote__text {
       font-family: var(--font-display);
-      font-size: 8rem;
-      font-weight: 300;
-      line-height: 0.6;
-      color: var(--border);
-      display: block;
-      margin-bottom: var(--space-xs);
-      user-select: none;
-    }
-
-    .slide-pull-quote__text {
-      font-family: var(--font-display);
-      font-size: clamp(1.75rem, 4vw, 3.5rem);
-      font-weight: 300;
+      font-size: clamp(1.75rem, 3.5vw, 3rem);
       font-style: italic;
-      color: var(--text);
+      font-weight: 300;
+      color: var(--text-faint);
       line-height: 1.25;
     }
 
-    .slide-pull-quote__attribution {
+    /* Attribution runs inline at end of quote text, same size, preceded by em-dash */
+
+
+    /* ═══════════════════════════════════════════════
+       [09] SLIDE TYPE: stats (light)
+       Three items across lower half. Numbers in --text-faint (muted grey).
+    ═══════════════════════════════════════════════ */
+    .slide-stats__items {
+      position: absolute;
+      top: 55%;
+      left: 0;
+      right: 0;
+      display: flex;
+    }
+
+    .slide-stats__item {
+      flex: 1;
+      padding-left: var(--side-pad);
+    }
+
+    .slide-stats__value {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(4.5rem, 9vw, 8rem);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1;
+    }
+
+    .slide-stats__label {
+      display: block;
       font-family: var(--font-mono);
       font-size: var(--size-xs);
       color: var(--text-faint);
-      letter-spacing: 0.05em;
+      margin-top: 1rem;
     }
 
 
     /* ═══════════════════════════════════════════════
-       [9] SLIDE TYPE: reflection
+       [10A] SLIDE TYPE: output-a — phone grid (dark)
+       Left panel: text. Right panel: 3 scrolling phone columns.
     ═══════════════════════════════════════════════ */
-    .slide-reflection {
-      justify-content: center;
-      align-items: center;
-    }
-
-    .slide-reflection__inner {
-      max-width: 640px;
+    .slide-output-a__left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 27%;
+      height: 100%;
+      padding: clamp(1.25rem, 3vw, 2rem) var(--side-pad);
       display: flex;
       flex-direction: column;
-      gap: var(--space-md);
     }
 
-    .slide-reflection__label {
+    .slide-output-a__title {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      color: var(--bg);
+      font-weight: 300;
+      margin-top: 5rem;
+      margin-bottom: 2rem;
+    }
+
+    .slide-output-a__body {
       font-family: var(--font-mono);
       font-size: var(--size-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-faint);
+      color: rgba(243,243,241,0.55);
+      line-height: 1.7;
     }
 
-    .slide-reflection__heading {
+    .slide-output-a__right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 73%;
+      height: 100%;
+      display: flex;
+      gap: 12px;
+      overflow: hidden;
+      padding: 0 12px 0 0;
+    }
+
+    .phone-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Phone frame placeholder */
+    .phone-frame {
+      flex-shrink: 0;
+      width: 100%;
+      height: 430px;
+      border-radius: 2.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .phone-frame img,
+    .phone-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Phone crop: apply to the media inside phone-frame, not the frame itself */
+    .phone-frame__media--cropped {
+      margin-top: -50px;
+      height: calc(100% + 50px);
+    }
+
+    /* Column scroll animations */
+    @keyframes phone-col-scroll { to { transform: translateY(-50%); } }
+
+    .phone-col--1 { animation: phone-col-scroll 25s linear infinite; }
+    .phone-col--2 { animation: phone-col-scroll 30s linear infinite; transform: translateY(-15%); }
+    .phone-col--3 { animation: phone-col-scroll 20s linear infinite; }
+
+
+    /* ═══════════════════════════════════════════════
+       [10B] SLIDE TYPE: output-b — image right (dark)
+       Left panel: text. Right panel: full-bleed image.
+    ═══════════════════════════════════════════════ */
+    .slide-output-b__right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 73%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .slide-output-b__right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [10C] SLIDE TYPE: output-c — hero phone (dark)
+       Left panel: text (~40%). Right panel: single large phone (~60%).
+    ═══════════════════════════════════════════════ */
+    .slide-output-c__left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 100%;
+      padding: clamp(1.25rem, 3vw, 2rem) var(--side-pad);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-output-c__phone-wrap {
+      position: absolute;
+      right: var(--side-pad);
+      top: 50%;
+      transform: translateY(-50%);
+      height: 85%;
+    }
+
+    .slide-output-c__phone-wrap img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+    }
+
+
+    /* ═══════════════════════════════════════════════
+       [13] SLIDE TYPE: impact (light)
+       Four equal columns, full bleed, no outer padding.
+    ═══════════════════════════════════════════════ */
+    .slide-impact {
+      display: flex;
+      align-items: stretch;
+      padding: 0;
+    }
+
+    .slide-impact__col {
+      flex: 1;
+      border-right: 1px solid var(--border);
+      padding: 0 clamp(1.5rem, 3vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: clamp(2rem, 5vh, 4rem);
+    }
+
+    .slide-impact__col:last-child { border-right: none; }
+
+    .slide-impact__category {
       font-family: var(--font-display);
-      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-size: clamp(2rem, 4vw, 3.5rem);
       font-weight: 300;
-      line-height: 1.2;
       color: var(--text);
+      margin-bottom: 1.25rem;
     }
 
-    .slide-reflection__body {
+    .slide-impact__list {
+      list-style: none;
       font-family: var(--font-mono);
-      font-size: var(--size-base);
-      color: var(--text-muted);
-      line-height: 1.8;
+      font-size: var(--size-xs);
+      color: var(--text-faint);
+      line-height: 1.6;
+    }
+
+    .slide-impact__list li {
+      padding-left: 1em;
+      position: relative;
+      margin-bottom: 0.25em;
+    }
+
+    .slide-impact__list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
     }
 
 
     /* ═══════════════════════════════════════════════
-       [10] SLIDE TYPE: end
+       [14] SLIDE TYPE: qa (dark)
+       Back link top-left. Large "Q+A" lower-left.
     ═══════════════════════════════════════════════ */
-    .slide-end {
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .slide-end__inner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-md);
-    }
-
-    .slide-end__name {
+    .slide-qa__heading {
+      position: absolute;
+      bottom: 15%;
+      left: var(--side-pad);
       font-family: var(--font-display);
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-size: clamp(5rem, 10vw, 9rem);
       font-weight: 300;
       color: var(--bg);
-      line-height: 1.05;
     }
 
-    .slide-end__sub {
+
+    /* ─── IMAGE PLACEHOLDER ─── */
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-placeholder span {
       font-family: var(--font-mono);
-      font-size: var(--size-sm);
-      color: rgba(243, 243, 241, 0.5);
-    }
-
-    .slide-end__link {
-      font-family: var(--font-mono);
-      font-size: var(--size-sm);
-      color: rgba(243, 243, 241, 0.6);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      transition: color var(--transition);
-    }
-
-    .slide-end__link:hover {
-      color: var(--bg);
+      font-size: var(--size-xs);
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+      padding: 1rem;
     }
 
   </style>
@@ -628,271 +715,435 @@
 
 <div class="deck" id="deck">
 
-  <!-- ═══════════════════════════════════════════════
-       TEMPLATE INDEX
-       Copy the block you need, paste after the last
-       .deck-slide, and fill in the {PLACEHOLDERS}.
-       ═══════════════════════════════════════════════
+  <!--
+  ═══════════════════════════════════════════════════════════════════
+  SLIDE TYPE REFERENCE
 
-    [1]  SLIDE TYPE: title
-    [2]  SLIDE TYPE: two-col-text       (problem left / insight right)
-    [3]  SLIDE TYPE: statement          (full-width Fraunces quote or goal)
-    [4]  SLIDE TYPE: three-col-approach (subhead + body + quote, ×3 columns)
-    [5]  SLIDE TYPE: image-caption      (full-bleed image, caption below)
-    [6]  SLIDE TYPE: stat-cards         (3–4 large Fraunces numbers + mono labels)
-    [7]  SLIDE TYPE: outcome-grid       (Team / Product / Business / Scale 2×2)
-    [8]  SLIDE TYPE: pull-quote         (single testimonial, large italic Fraunces)
-    [9]  SLIDE TYPE: reflection         (single column, generous whitespace)
-    [10] SLIDE TYPE: end                (link back to portfolio)
+  Copy the block you need, paste after the last .deck-slide, fill in {PLACEHOLDERS}.
+  Delete all comment blocks before shipping.
 
-  ═══════════════════════════════════════════════ -->
+  Each slide must have:
+    class="deck-slide deck-slide--[light|dark]"
+    data-type="{type}"
+
+  Slide types:
+    [01] title          — opening, dark
+    [02] index          — section list, light
+    [03] section-title  — animated ticker, dark
+    [04] content        — narrative text slide, light
+    [05] goal           — bold statement, dark
+    [06] role           — RACI block, light
+    [07] hypothesis     — split text/image, light
+    [08] quote          — testimonial, light
+    [09] stats          — three big numbers, light
+    [10a] output-a      — phone grid (scrolling columns), dark
+    [10b] output-b      — full-bleed image right, dark
+    [10c] output-c      — hero phone right, dark
+    [13] impact         — four-column outcome grid, light
+    [14] qa             — end slide, dark
+
+  data-header-project / data-header-client attributes on slides are read by the
+  persistent header rendering in JS below — set them on every light slide.
+  ═══════════════════════════════════════════════════════════════════
+  -->
 
 
   <!-- ─────────────────────────────────────────
-       SLIDE TYPE: title
-       USAGE: Opening slide — project name, tagline, meta
-       COPY THIS BLOCK ↓
+       [01] SLIDE TYPE: title
+       Dark. Back link top-left. Title lower-left. Meta bottom-right.
   ───────────────────────────────────────── -->
-  <section class="deck-slide deck-slide--light slide-title" data-type="title">
-    <div class="slide-title__top">
-      <a href="../index.html" class="deck-back-link">← Back to portfolio</a>
+  <section class="deck-slide deck-slide--dark" data-type="title">
+
+    <a href="../index.html" class="deck-back-link">← back to selected work</a>
+
+    <h1 class="slide-title__name">{Project Title}</h1>
+
+    <div class="slide-title__meta">
+      <span class="slide-title__meta-project">{Company} · {Client} · {Year}</span>
+      <span class="slide-title__meta-role">{Role}</span>
     </div>
-    <div class="slide-title__body">
-      <h1 class="slide-title__name">Rebuilding<br>Afterpay Design</h1>
-      <p class="slide-title__tagline">Rebuilding a design discipline as a strategic function during a regulatory pivot and a rebrand.</p>
-      <p class="slide-title__meta">Block (Afterpay) &nbsp;//&nbsp; 2024–2025 &nbsp;//&nbsp; Design Director</p>
-    </div>
+
   </section>
 
 
   <!-- ─────────────────────────────────────────
-       SLIDE TYPE: two-col-text
-       USAGE: Present a problem/situation on the left and an insight/goal on the right
-       COPY THIS BLOCK ↓
+       [02] SLIDE TYPE: index
+       Light. Numbered section list, lower-right quadrant.
   ───────────────────────────────────────── -->
-  <section class="deck-slide deck-slide--light" data-type="two-col-text">
-    <p class="slide-label">Context</p>
-    <div class="slide-two-col__body">
-      <div class="slide-two-col__col">
-        <span class="col-label">Situation</span>
-        <h2 class="col-heading">A team of two navigating a regulatory pivot.</h2>
-        <p class="col-body">The Afterpay design team had shrunk to 2 people. The business was navigating a regulatory pivot across AU, UK, and US markets while simultaneously rebranding under Block.</p>
+  <section class="deck-slide deck-slide--light" data-type="index"
+           data-header-project="{PROJECT NAME}" data-header-client="{CLIENT}">
+
+    <div class="slide-header">
+      <span class="slide-header__project">{PROJECT NAME}</span>
+      <span class="slide-header__client">{CLIENT}</span>
+    </div>
+
+    <div class="slide-index__list">
+      <div class="slide-index__item">
+        <span class="slide-index__num">01</span>
+        <span class="slide-index__name">Context</span>
       </div>
-      <div class="slide-two-col__col">
-        <span class="col-label">Goal</span>
-        <h2 class="col-heading">Rebuild trust, team, and throughput.</h2>
-        <p class="col-body">Rebuild the team, establish design as a trusted strategic partner, and ship regulated product changes without slowing delivery.</p>
+      <div class="slide-index__item">
+        <span class="slide-index__num">02</span>
+        <span class="slide-index__name">Approach</span>
+      </div>
+      <div class="slide-index__item">
+        <span class="slide-index__num">03</span>
+        <span class="slide-index__name">Outputs</span>
+      </div>
+      <div class="slide-index__item">
+        <span class="slide-index__num">04</span>
+        <span class="slide-index__name">Outcomes</span>
       </div>
     </div>
+
   </section>
 
 
   <!-- ─────────────────────────────────────────
-       SLIDE TYPE: statement
-       USAGE: A single bold goal or conviction — palette-shifting dark moment
-       COPY THIS BLOCK ↓
+       [03] SLIDE TYPE: section-title
+       Dark. Animated vertical ticker, right 55%.
+       Set data-section-word to the section name — JS populates the track.
+       Use for: Context, Approach, Outputs, Outcomes.
   ───────────────────────────────────────── -->
-  <section class="deck-slide deck-slide--dark slide-statement" data-type="statement">
-    <div class="slide-statement__inner">
-      <span class="slide-statement__label">The Goal</span>
-      <p class="slide-statement__text">Design as a trusted strategic partner — not just a delivery resource.</p>
+  <section class="deck-slide deck-slide--dark" data-type="section-title"
+           data-section-word="Context">
+
+    <div class="slide-section-title__track">
+      <div class="slide-section-title__list slide-section-title__list--animating">
+        <!-- JS populates this with repeated words. For no-JS fallback, add 14 manually. -->
+      </div>
     </div>
+
   </section>
 
 
   <!-- ─────────────────────────────────────────
-       SLIDE TYPE: three-col-approach
-       USAGE: Show three parallel workstreams or pillars of an approach
-       COPY THIS BLOCK ↓
+       [04] SLIDE TYPE: content
+       Light. Heading top-left. Body text bottom-left.
+       Use for: Opportunity, any narrative slide.
   ───────────────────────────────────────── -->
-  <section class="deck-slide deck-slide--light" data-type="three-col-approach">
-    <p class="slide-label">Approach</p>
-    <div class="slide-three-col__body">
+  <section class="deck-slide deck-slide--light" data-type="content"
+           data-header-project="{PROJECT NAME}" data-header-client="{CLIENT}">
 
-      <div class="slide-three-col__col">
-        <span class="col-label">01</span>
-        <h3 class="col-subheading">Hiring &amp; team structure</h3>
-        <p class="col-body">Grew from 2 to 7 designers across 3 markets, embedded directly in product squads to build influence through proximity and output.</p>
-        <p class="col-pull-quote">"Hire for craft first — trust follows from doing the work well."</p>
-      </div>
-
-      <div class="slide-three-col__col">
-        <span class="col-label">02</span>
-        <h3 class="col-subheading">Rituals &amp; craft standards</h3>
-        <p class="col-body">Weekly critique, shared design principles, and a Figma component library rebuilt from scratch for the Block rebrand.</p>
-        <p class="col-pull-quote">"Consistency compounds — every shared component is a decision you don't have to make twice."</p>
-      </div>
-
-      <div class="slide-three-col__col">
-        <span class="col-label">03</span>
-        <h3 class="col-subheading">Strategic positioning</h3>
-        <p class="col-body">Design reviews with the CPO, a quarterly design strategy narrative, and a clear RACI that elevated design from executor to author.</p>
-        <p class="col-pull-quote">"Speak in outcomes. Earn the room. Then hold the line."</p>
-      </div>
-
+    <div class="slide-header">
+      <span class="slide-header__project">{PROJECT NAME}</span>
+      <span class="slide-header__client">{CLIENT}</span>
     </div>
+
+    <h2 class="slide-content__heading">{Heading}</h2>
+
+    <div class="slide-content__body">
+      <p>{Paragraph 1}</p>
+      <p>{Paragraph 2}</p>
+    </div>
+
   </section>
 
 
   <!-- ─────────────────────────────────────────
-       SLIDE TYPE: image-caption
-       USAGE: Show a key output, process artefact, or research capture
-       COPY THIS BLOCK ↓
+       [05] SLIDE TYPE: goal
+       Dark. "Goal" label top-left. Large statement lower-centre.
   ───────────────────────────────────────── -->
-  <section class="deck-slide deck-slide--dark slide-image-cap" data-type="image-caption">
-    <p class="slide-image-cap__label">Output</p>
-    <div class="slide-image-cap__img-wrap">
-      <img src="../assets/imagery/afterpay-1.png" alt="Afterpay design system component library">
+  <section class="deck-slide deck-slide--dark" data-type="goal">
+
+    <div class="slide-header">
+      <span class="slide-header__project">{PROJECT NAME}</span>
+      <span class="slide-header__client">{CLIENT}</span>
     </div>
-    <p class="slide-image-cap__caption">Figma component library — 2025 rebrand-ready</p>
+
+    <span class="slide-goal__label">Goal</span>
+    <p class="slide-goal__statement">{Goal statement text}</p>
+
   </section>
 
 
   <!-- ─────────────────────────────────────────
-       SLIDE TYPE: stat-cards
-       USAGE: Lead with quantified outcomes — 3 or 4 numbers that land
-       COPY THIS BLOCK ↓
+       [06] SLIDE TYPE: role
+       Light. "Role" heading top-left. RACI block at ~55%.
+       PRIVILEGED & CONFIDENTIAL watermark bottom-right.
   ───────────────────────────────────────── -->
-  <section class="deck-slide deck-slide--light" data-type="stat-cards">
-    <p class="slide-label">Impact</p>
-    <div class="slide-stat-cards__body">
-      <div class="stat-cards">
+  <section class="deck-slide deck-slide--light" data-type="role"
+           data-header-project="{PROJECT NAME}" data-header-client="{CLIENT}">
 
-        <div class="stat-card">
-          <span class="stat-card__number">2→7</span>
-          <span class="stat-card__label">Designers</span>
-          <span class="stat-card__desc">Hired 5 designers across AU, UK &amp; US</span>
-        </div>
+    <div class="slide-header">
+      <span class="slide-header__project">{PROJECT NAME}</span>
+      <span class="slide-header__client">{CLIENT}</span>
+    </div>
 
-        <div class="stat-card">
-          <span class="stat-card__number">+36%</span>
-          <span class="stat-card__label">YoY GMV</span>
-          <span class="stat-card__desc">Gross merchandise value growth</span>
-        </div>
+    <h2 class="slide-role__heading">Role</h2>
 
-        <div class="stat-card">
-          <span class="stat-card__number">1.5–6×</span>
-          <span class="stat-card__label">Referral lift</span>
-          <span class="stat-card__desc">On Shop across markets</span>
-        </div>
-
-        <div class="stat-card">
-          <span class="stat-card__number">3</span>
-          <span class="stat-card__label">Markets shipped</span>
-          <span class="stat-card__desc">AU, UK &amp; US regulatory releases</span>
-        </div>
-
+    <div class="slide-role__block">
+      <p class="slide-role__title">{Role title}</p>
+      <div class="slide-role__row">
+        <strong>Responsible</strong>
+        <span>— {Responsible description}</span>
+      </div>
+      <div class="slide-role__row">
+        <strong>Accountable</strong>
+        <span>— {Accountable description}</span>
+      </div>
+      <div class="slide-role__row">
+        <strong>Consulted</strong>
+        <span>— {Consulted description}</span>
       </div>
     </div>
+
+    <span class="slide-confidential">PRIVILEGED &amp; CONFIDENTIAL</span>
+
   </section>
 
 
   <!-- ─────────────────────────────────────────
-       SLIDE TYPE: outcome-grid
-       USAGE: Categorise outcomes across Team / Product / Business / Scale (or similar 2×2 frame)
-       COPY THIS BLOCK ↓
+       [07] SLIDE TYPE: hypothesis
+       Light. Left: heading + italic statement. Right: full-bleed image.
+       Statement: "I believe [teams that understand the problem]…"
   ───────────────────────────────────────── -->
-  <section class="deck-slide deck-slide--light" data-type="outcome-grid">
-    <p class="slide-label">Outcome categories</p>
-    <div class="slide-outcome-grid__body">
+  <section class="deck-slide deck-slide--light" data-type="hypothesis"
+           data-header-project="{PROJECT NAME}" data-header-client="{CLIENT}">
 
-      <div class="outcome-card">
-        <span class="outcome-card__label">Team</span>
-        <ul class="outcome-card__list">
-          <li>Hired 5 designers — embedded squad model</li>
-          <li>Mentorship programme established</li>
-          <li>Weekly critique culture</li>
-        </ul>
-      </div>
-
-      <div class="outcome-card">
-        <span class="outcome-card__label">Product</span>
-        <ul class="outcome-card__list">
-          <li>Design system rebuilt for Block rebrand</li>
-          <li>Compliance-ready component library</li>
-          <li>3 major product launches shipped</li>
-        </ul>
-      </div>
-
-      <div class="outcome-card">
-        <span class="outcome-card__label">Business</span>
-        <ul class="outcome-card__list">
-          <li>+36% YoY GMV growth</li>
-          <li>Design represented at exec level</li>
-          <li>Quarterly design strategy narrative</li>
-        </ul>
-      </div>
-
-      <div class="outcome-card">
-        <span class="outcome-card__label">Scale</span>
-        <ul class="outcome-card__list">
-          <li>AU, UK &amp; US delivery in parallel</li>
-          <li>Regulatory-ready design process</li>
-          <li>Cross-market component standards</li>
-        </ul>
-      </div>
-
+    <div class="slide-header">
+      <span class="slide-header__project">{PROJECT NAME}</span>
+      <span class="slide-header__client">{CLIENT}</span>
     </div>
+
+    <div class="slide-hypothesis__left">
+      <h2 class="slide-hypothesis__heading">Hypothesis</h2>
+      <p class="slide-hypothesis__statement">"{Hypothesis statement}"</p>
+    </div>
+
+    <div class="slide-hypothesis__right">
+      <div class="img-placeholder" aria-label="{Image description}">
+        <span>{Image description}</span>
+      </div>
+    </div>
+
   </section>
 
 
   <!-- ─────────────────────────────────────────
-       SLIDE TYPE: pull-quote
-       USAGE: A single strong testimonial or standout line — give it room to breathe
-       COPY THIS BLOCK ↓
+       [08] SLIDE TYPE: quote
+       Light. Testimonial lower-left, ~55%–75% from top.
+       Attribution inline at end of quote text.
   ───────────────────────────────────────── -->
-  <section class="deck-slide deck-slide--light slide-pull-quote" data-type="pull-quote">
-    <div class="slide-pull-quote__inner">
-      <span class="slide-pull-quote__mark" aria-hidden="true">"</span>
-      <blockquote class="slide-pull-quote__text">The hardest thing wasn't the hiring or the shipping — it was convincing the organisation that design could hold strategic intent while operating at pace in a regulated environment.</blockquote>
-      <p class="slide-pull-quote__attribution">— Carrie Francis-Miller, Design Director</p>
+  <section class="deck-slide deck-slide--light" data-type="quote"
+           data-header-project="{PROJECT NAME}" data-header-client="{CLIENT}">
+
+    <div class="slide-header">
+      <span class="slide-header__project">{PROJECT NAME}</span>
+      <span class="slide-header__client">{CLIENT}</span>
     </div>
+
+    <div class="slide-quote__inner">
+      <p class="slide-quote__text">
+        "{Quote text}" — {Attribution}
+      </p>
+    </div>
+
   </section>
 
 
   <!-- ─────────────────────────────────────────
-       SLIDE TYPE: reflection
-       USAGE: Close the narrative with personal insight — what you'd carry forward
-       COPY THIS BLOCK ↓
+       [09] SLIDE TYPE: stats
+       Light. Three items across lower half.
+       Number in --text-faint (muted grey), not --text.
   ───────────────────────────────────────── -->
-  <section class="deck-slide deck-slide--light slide-reflection" data-type="reflection">
-    <div class="slide-reflection__inner">
-      <span class="slide-reflection__label">Reflection</span>
-      <h2 class="slide-reflection__heading">We did it by showing up consistently.</h2>
-      <p class="slide-reflection__body">The hardest thing wasn't the hiring or the shipping — it was convincing the organisation that design could hold strategic intent while operating at pace in a regulated environment. We did it by showing up consistently, speaking in outcomes, and doing the work.</p>
+  <section class="deck-slide deck-slide--light" data-type="stats"
+           data-header-project="{PROJECT NAME}" data-header-client="{CLIENT}">
+
+    <div class="slide-header">
+      <span class="slide-header__project">{PROJECT NAME}</span>
+      <span class="slide-header__client">{CLIENT}</span>
     </div>
+
+    <div class="slide-stats__items">
+      <div class="slide-stats__item">
+        <span class="slide-stats__value">{Stat 1}</span>
+        <span class="slide-stats__label">{Label 1}</span>
+      </div>
+      <div class="slide-stats__item">
+        <span class="slide-stats__value">{Stat 2}</span>
+        <span class="slide-stats__label">{Label 2}</span>
+      </div>
+      <div class="slide-stats__item">
+        <span class="slide-stats__value">{Stat 3}</span>
+        <span class="slide-stats__label">{Label 3}</span>
+      </div>
+    </div>
+
   </section>
 
 
   <!-- ─────────────────────────────────────────
-       SLIDE TYPE: end
-       USAGE: Close the deck — bookend with dark palette, link back to portfolio
-       COPY THIS BLOCK ↓
+       [10A] SLIDE TYPE: output-a — phone grid
+       Dark. Left panel text. Right: 3 scrolling phone columns.
+       Duplicate all phone-frame items inside each column for seamless loop.
   ───────────────────────────────────────── -->
-  <section class="deck-slide deck-slide--dark slide-end" data-type="end">
-    <div class="slide-end__inner">
-      <p class="slide-end__name">Rebuilding<br>Afterpay Design</p>
-      <p class="slide-end__sub">Block (Afterpay) · 2024–2025 · Design Director</p>
-      <a href="../index.html" class="slide-end__link">← Back to portfolio</a>
+  <section class="deck-slide deck-slide--dark" data-type="output-a">
+
+    <div class="slide-output-a__left">
+      <div class="slide-header">
+        <span class="slide-header__project">{PROJECT NAME}</span>
+        <span class="slide-header__client">{CLIENT}</span>
+      </div>
+      <p class="slide-output-a__title">{Output title} →</p>
+      <p class="slide-output-a__body">{Output description paragraph 1}</p>
+      <p class="slide-output-a__body">{Output description paragraph 2}</p>
     </div>
+
+    <div class="slide-output-a__right">
+      <!-- Column 1 -->
+      <div class="phone-col phone-col--1">
+        <div class="phone-frame"><div class="img-placeholder"><span>{Screen}</span></div></div>
+        <div class="phone-frame"><div class="img-placeholder"><span>{Screen}</span></div></div>
+        <div class="phone-frame"><div class="img-placeholder"><span>{Screen}</span></div></div>
+        <!-- Duplicate all above for seamless loop -->
+      </div>
+      <!-- Column 2 -->
+      <div class="phone-col phone-col--2">
+        <div class="phone-frame"><div class="img-placeholder"><span>{Screen}</span></div></div>
+        <div class="phone-frame"><div class="img-placeholder"><span>{Screen}</span></div></div>
+        <div class="phone-frame"><div class="img-placeholder"><span>{Screen}</span></div></div>
+        <!-- Duplicate all above for seamless loop -->
+      </div>
+      <!-- Column 3 -->
+      <div class="phone-col phone-col--3">
+        <div class="phone-frame"><div class="img-placeholder"><span>{Screen}</span></div></div>
+        <div class="phone-frame"><div class="img-placeholder"><span>{Screen}</span></div></div>
+        <div class="phone-frame"><div class="img-placeholder"><span>{Screen}</span></div></div>
+        <!-- Duplicate all above for seamless loop -->
+      </div>
+    </div>
+
+    <span class="slide-confidential">PRIVILEGED &amp; CONFIDENTIAL</span>
+
   </section>
+
+
+  <!-- ─────────────────────────────────────────
+       [10B] SLIDE TYPE: output-b — full-bleed image right
+       Dark. Left panel text (~27%). Right: single full-bleed image (~73%).
+       No border-radius on image. Bleeds to right, top, and bottom edges.
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--dark" data-type="output-b">
+
+    <div class="slide-output-a__left">
+      <div class="slide-header">
+        <span class="slide-header__project">{PROJECT NAME}</span>
+        <span class="slide-header__client">{CLIENT}</span>
+      </div>
+      <p class="slide-output-a__title">{Output title} →</p>
+      <p class="slide-output-a__body">{Output description}</p>
+    </div>
+
+    <div class="slide-output-b__right">
+      <div class="img-placeholder" aria-label="{Image description}">
+        <span>{Image description}</span>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       [10C] SLIDE TYPE: output-c — hero phone
+       Dark. Left text (~40%). Right: single phone image (~60%), 85% slide height.
+       Phone crop: apply margin-top: -50px + height: calc(100% + 50px) to MEDIA
+       inside the phone-wrap, not the wrap itself.
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--dark" data-type="output-c">
+
+    <div class="slide-output-c__left">
+      <div class="slide-header">
+        <span class="slide-header__project">{PROJECT NAME}</span>
+        <span class="slide-header__client">{CLIENT}</span>
+      </div>
+      <p class="slide-output-a__title">{Output title} →</p>
+      <p class="slide-output-a__body">{Output description}</p>
+    </div>
+
+    <div class="slide-output-c__phone-wrap">
+      <div class="img-placeholder" style="height:100%; width:240px;">
+        <span>{Phone screen placeholder}</span>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       [13] SLIDE TYPE: impact
+       Light. Four full-bleed columns. No outer padding.
+       Column order: Scale · Business · Team · Product
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--light slide-impact" data-type="impact">
+
+    <div class="slide-impact__col">
+      <span class="slide-impact__category">Scale</span>
+      <ul class="slide-impact__list">
+        <li>{Bullet}</li>
+      </ul>
+    </div>
+
+    <div class="slide-impact__col">
+      <span class="slide-impact__category">Business</span>
+      <ul class="slide-impact__list">
+        <li>{Bullet}</li>
+      </ul>
+    </div>
+
+    <div class="slide-impact__col">
+      <span class="slide-impact__category">Team</span>
+      <ul class="slide-impact__list">
+        <li>{Bullet}</li>
+      </ul>
+    </div>
+
+    <div class="slide-impact__col">
+      <span class="slide-impact__category">Product</span>
+      <ul class="slide-impact__list">
+        <li>{Bullet}</li>
+      </ul>
+    </div>
+
+    <span class="slide-confidential">PRIVILEGED &amp; CONFIDENTIAL</span>
+
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       [14] SLIDE TYPE: qa — closing slide
+       Dark. Back link top-left. "Q+A" text lower-left.
+  ───────────────────────────────────────── -->
+  <section class="deck-slide deck-slide--dark" data-type="qa">
+
+    <a href="../index.html" class="deck-back-link">← back to selected work</a>
+    <p class="slide-qa__heading">Q+A</p>
+
+  </section>
+
 
 </div><!-- /.deck -->
 
-<div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 10</div>
-<div class="deck-hint" aria-hidden="true">← → &nbsp; arrow keys to navigate</div>
+<div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 14</div>
+<div class="deck-hint" aria-hidden="true">← → arrow keys to navigate</div>
 
 <script>
-  /* ─── DECK NAVIGATION — vanilla JS, no dependencies ─── */
+  /* ─────────────────────────────────────────────────────────────────
+     DECK NAVIGATION — vanilla JS, no dependencies
+     Navigate: → ↓ or click = forward; ← ↑ = back. No wrap.
+     Counter updates on every transition.
+     Body class deck-is-dark flips counter/hint colour on dark slides.
+  ───────────────────────────────────────────────────────────────── */
   (function () {
-    const slides  = Array.from(document.querySelectorAll('.deck-slide'));
-    const counter = document.querySelector('.deck-counter');
-    const hint    = document.querySelector('.deck-hint');
-    const body    = document.body;
-    const total   = slides.length;
-    let   current = 0;
+    var slides  = Array.from(document.querySelectorAll('.deck-slide'));
+    var counter = document.querySelector('.deck-counter');
+    var hint    = document.querySelector('.deck-hint');
+    var body    = document.body;
+    var total   = slides.length;
+    var current = 0;
 
-    /* Show keyboard hint on first visit this session, then fade */
+    /* Keyboard hint — fade after 3s, don't show again this session */
     if (!sessionStorage.getItem('deck-hint-seen')) {
       setTimeout(function () {
         hint.classList.add('is-hidden');
@@ -902,38 +1153,42 @@
       hint.classList.add('is-hidden');
     }
 
-    function goTo(index) {
-      /* Wrap around cleanly */
-      index = ((index % total) + total) % total;
+    /* Deep-link: ?slide=N opens at that slide (0-indexed) */
+    var params = new URLSearchParams(window.location.search);
+    var startSlide = parseInt(params.get('slide'), 10) || 0;
 
+    function goTo(index) {
+      /* Clamp — no wrap */
+      index = Math.max(0, Math.min(index, total - 1));
       slides[current].classList.remove('is-active');
       current = index;
       slides[current].classList.add('is-active');
-
       counter.textContent = (current + 1) + ' / ' + total;
-
-      /* Flip counter/hint colour on dark slides */
-      if (slides[current].classList.contains('deck-slide--dark')) {
-        body.classList.add('deck-is-dark');
-      } else {
-        body.classList.remove('deck-is-dark');
-      }
+      body.classList.toggle('deck-is-dark', slides[current].classList.contains('deck-slide--dark'));
     }
 
-    function next() { goTo(current + 1); }
-    function prev() { goTo(current - 1); }
-
-    /* Keyboard: right/down = advance, left/up = back */
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); next(); }
-      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); prev(); }
+    /* Section-title slides: populate ticker from data-section-word */
+    slides.forEach(function (slide) {
+      if (slide.dataset.type !== 'section-title') return;
+      var word  = slide.dataset.sectionWord || '';
+      var list  = slide.querySelector('.slide-section-title__list');
+      if (!list || !word) return;
+      for (var i = 0; i < 14; i++) {
+        var span = document.createElement('span');
+        span.className = 'slide-section-title__word';
+        span.textContent = word;
+        list.appendChild(span);
+      }
     });
 
-    /* Click anywhere on the deck to advance */
-    document.getElementById('deck').addEventListener('click', next);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); goTo(current + 1); }
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); goTo(current - 1); }
+    });
 
-    /* Initialise — sets first slide visible and counter colour */
-    goTo(0);
+    document.getElementById('deck').addEventListener('click', function () { goTo(current + 1); });
+
+    goTo(startSlide);
   })();
 </script>
 
