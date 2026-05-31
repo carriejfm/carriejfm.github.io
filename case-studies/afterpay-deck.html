@@ -624,6 +624,14 @@
       line-height: 1.65;
     }
 
+    /* Credit / stat line — "X designers · workstream" — mono print at section bottom */
+    .output-left__credit {
+      font-size: var(--size-xs) !important;
+      color: rgba(243,243,241,0.35) !important;
+      margin-top: 1.25rem !important;
+      letter-spacing: 0.04em;
+    }
+
     /* Phone grid (output-a right panel)
        overflow: visible — tiles bleed above/below; .slide overflow:hidden clips at viewport */
     .output-phones {
@@ -1361,7 +1369,7 @@
       <p data-ap-copy="regulated_0">Aligning Afterpay to responsible buy now pay later lending obligations included the design and redesign of key experiences and required variation from region to region:</p>
       <p data-ap-copy="regulated_1">Credit limit increases, onboarding improvements, user-initiated spend controls to support responsible usage, KYC and compliance flows, autopay to reduce late fees, fraud protection and dispute flows.</p>
       <p data-ap-copy="regulated_2">I had 2 designers focused on regulation workstreams.</p>
-      <p data-ap-copy="regulated_3">I co-wrote a reusable regulation playbook with product to enable consistent execution across US, AU, NZ and kickstart proactive conversations with UK regulatory bodies.</p>
+      <p class="output-left__credit" data-ap-copy="regulated_3">I co-wrote a reusable regulation playbook with product to enable consistent execution across US, AU, NZ and kickstart proactive conversations with UK regulatory bodies.</p>
     </div>
     <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
   </div>
@@ -1470,6 +1478,7 @@
       <p data-ap-copy="designsystem_0">The Afterpay app, operating in 6 international markets, migrated to a new the parent Cash App design system–within both Afterpay Mint and Cash Green themes.</p>
       <p data-ap-copy="designsystem_1">I had 2 primary designers working on the design system overhaul, building up token themes and component libraries, 1 designer who overhauled 75 emails into 2 templates using core library components and 1 content designer who did a cross-region audit of all surfaces.</p>
       <p data-ap-copy="designsystem_2">I oversaw design across all of the above while managing the release strategy facilitation, building out reusable tooling in Notion for the cross-functional team to follow for each regional rollout that would subsequently become a cross-region source of truth.</p>
+      <p class="output-left__credit" data-ap-copy="designsystem_3">4 designers · design system + rebrand</p>
     </div>
     <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
   </div>
@@ -1524,6 +1533,7 @@
     <p class="output-left__title" data-ap-copy="section_hero">Hero brand moments in app →</p>
     <div class="output-left__body">
       <p data-ap-copy="hero_0">I personally owned the hero brand moments within the app, designing the new US Afterpay Card and how it fit into the wider branding story with my brand partners.</p>
+      <p class="output-left__credit" data-ap-copy="hero_2">IC · card design + motion direction</p>
     </div>
     <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
   </div>
@@ -1548,6 +1558,7 @@
     <div class="output-left__body">
       <p data-ap-copy="hero_0">I personally owned the hero brand moments within the app, designing the new US Afterpay Card and how it fit into the wider branding story with my brand partners.</p>
       <p data-ap-copy="hero_1">The abstracted loop micro-animation on load gave a wink and a nod to Afterpay roots within the new cash green brand.</p>
+      <p class="output-left__credit" data-ap-copy="hero_2">IC · card design + motion direction</p>
     </div>
     <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
   </div>
@@ -1576,6 +1587,7 @@
     <div class="output-left__body">
       <p data-ap-copy="hero_0">I personally owned the hero brand moments within the app, designing the new US Afterpay Card and how it fit into the wider branding story with my brand partners.</p>
       <p data-ap-copy="hero_1" data-immediate>The abstracted loop micro-animation on load gave a wink and a nod to Afterpay roots within the new cash green brand.</p>
+      <p class="output-left__credit" data-ap-copy="hero_2">IC · card design + motion direction</p>
     </div>
     <div class="output-ai-card" data-immediate>
       <span class="output-ai-card__label">✦ AI in action</span>
@@ -1610,7 +1622,7 @@
       <p data-ap-copy="shop_0">We ran a series of component optimization experiments across our shopping surface to maximize referrals and GPV:</p>
       <p data-ap-copy="shop_1">Editorial, Banner ad, Category tiles, Sale tag, Merchant avatars, and In app Browser flow all got a little nip and tuck. This workstream also introduced consumer funded checkout for out of network merchants in the US–all resulted in meaningful GPV increase.</p>
       <p data-ap-copy="shop_2">I had 1 designer focussed on this workstream.</p>
-      <p data-ap-copy="shop_3">I personally managed the relationship with the internal ad teams, helping build tooling and constraints for visual asset standards and consistency.</p>
+      <p class="output-left__credit" data-ap-copy="shop_3">I personally managed the relationship with the internal ad teams, helping build tooling and constraints for visual asset standards and consistency.</p>
     </div>
     <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
   </div>
@@ -1826,7 +1838,7 @@
 </div>
 
 <!-- ─── COPY SOURCE ─── -->
-<script src="afterpay-copy.js?v=20260530"></script>
+<script src="afterpay-copy.js?v=20260531"></script>
 
 <script>
   /* ─── DECK ENGINE — vanilla JS, no dependencies ─── */

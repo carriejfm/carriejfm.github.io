@@ -105,7 +105,7 @@ var AP_COPY = {
 
   /* ── Hero brand moments in app ─────────────────────────────────── */
   hero_0: "I personally owned the hero brand moments within the app, including design of the new US Afterpay Card and how it fit into the wider branding story with my brand partners.",
-  hero_1: "The abstracted loop micro-animation on load gave a wink and a nod to Afterpay roots within the new cash green brand.",
+  hero_1: "The abstracted loop micro-animation on load gave a wink and a nod to Afterpay roots within the new Cash green brand.",
   hero_2:  "IC · card design + motion direction",
   hero_ai: "When we needed to adapt the card animation for the UK — different brand mark, different colorway — I used a combination of internal agent Goose and ChatGPT to rewrite the Lottie JSON directly and tested it in the Lottie viewer before shipping it.",
 

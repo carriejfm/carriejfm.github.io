@@ -211,7 +211,7 @@
   font-family: var(--font-display);
   font-weight: 300;
   font-style: normal;
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-size: var(--size-lg);
   line-height: 1.6;
   color: var(--text);
   padding: var(--space-xl) 0;
@@ -402,6 +402,16 @@
   line-height: 1.75;
 }
 
+/* Credit / stat line — "X designers · workstream" — mono print at section bottom */
+.cs-output-credit {
+  font-family: var(--font-mono) !important;
+  font-size: var(--size-xs) !important;
+  color: var(--text-faint) !important;
+  line-height: 1.5 !important;
+  margin-top: var(--space-sm) !important;
+  letter-spacing: 0.04em;
+}
+
 .cs-output-item ul {
   list-style: none;
   display: flex;
@@ -488,6 +498,14 @@
   .cs-snap-scroll__item {
     border-radius: 24px;
   }
+}
+
+/* Prevent native image/video drag from fighting pointer-drag on carousels */
+.va-carousel img,
+.va-carousel video {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* Auto-scroll va-carousel inside output items */
@@ -965,6 +983,10 @@
    RESPONSIVE
 ───────────────────────────────────────── */
 @media (max-width: 768px) {
+  .cs-hero {
+    padding-bottom: 3rem;
+  }
+
   .cs-hero__inner {
     grid-template-columns: 1fr;
   }

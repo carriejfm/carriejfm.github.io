@@ -327,97 +327,127 @@ const CASE_STUDIES = [
 })();
 
 
-/* ─── VA CAROUSEL — touch swipe + desktop arrow ─── */
+/* ─── VA CAROUSEL — smooth pointer drag with momentum ─── */
 (function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   document.querySelectorAll('.va-carousel').forEach(function (carousel) {
     var track = carousel.querySelector('.va-carousel__track');
     if (!track) return;
 
-    var startX  = 0;
-    var startTx = 0;
-    var dragging = false;
+    var active   = false;
+    var locked   = false;
+    var startX   = 0;
+    var startY   = 0;
+    var startTx  = 0;
+    var currentTx = 0;
+    var lastX    = 0;
+    var lastTime = 0;
+    var velocity = 0;
+    var rafId    = null;
 
-    /* Read live translateX from the running animation */
-    function getTx() {
-      return new DOMMatrix(getComputedStyle(track).transform).m41;
-    }
-
-    /* Half the doubled track = one full loop length */
     function halfWidth() {
       return track.scrollWidth / 2;
     }
 
-    /* Resume animation from position tx after a drag/step */
+    function wrapTx(tx) {
+      var half = halfWidth();
+      if (half === 0) return tx;
+      tx = tx % -half;
+      if (tx > 0) tx -= half;
+      return tx;
+    }
+
+    function getTx() {
+      return new DOMMatrix(getComputedStyle(track).transform).m41;
+    }
+
     function resumeFrom(tx) {
       var half     = halfWidth();
-      var duration = parseFloat(getComputedStyle(track).animationDuration) || 80;
+      if (half === 0) return;
+      var duration = parseFloat(track.style.animationDuration ||
+                     getComputedStyle(track).animationDuration) || 80;
       var progress = Math.abs(tx) / half;
       track.style.animationDelay     = (-progress * duration) + 's';
       track.style.transform          = '';
       track.style.animationPlayState = '';
     }
 
-    /* ── Touch swipe ── */
-    track.addEventListener('touchstart', function (e) {
-      startX  = e.touches[0].clientX;
-      startTx = getTx();
-      dragging = true;
-      track.style.transform          = 'translateX(' + startTx + 'px)';
+    function cancelRaf() {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    }
+
+    carousel.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0) return;
+      cancelRaf();
+      active    = true;
+      locked    = false;
+      startX    = e.clientX;
+      startY    = e.clientY;
+      startTx   = getTx();
+      currentTx = startTx;
+      lastX     = e.clientX;
+      lastTime  = Date.now();
+      velocity  = 0;
       track.style.animationPlayState = 'paused';
-    }, { passive: true });
-
-    track.addEventListener('touchmove', function (e) {
-      if (!dragging) return;
-      var delta = e.touches[0].clientX - startX;
-      var half  = halfWidth();
-      var tx    = startTx + delta;
-      if (tx > 0)     tx -= half;
-      if (tx < -half) tx += half;
-      track.style.transform = 'translateX(' + tx + 'px)';
-    }, { passive: true });
-
-    track.addEventListener('touchend', function () {
-      if (!dragging) return;
-      dragging = false;
-      resumeFrom(getTx());
-    }, { passive: true });
-
-    /* ── Desktop arrow — commented out, revisit later ──
-    var arrow = document.createElement('button');
-    arrow.className = 'va-carousel__arrow';
-    arrow.setAttribute('aria-label', 'Next');
-    arrow.textContent = '→';
-    carousel.appendChild(arrow);
-
-    var busy = false;
-
-    arrow.addEventListener('click', function () {
-      if (busy) return;
-      busy = true;
-
-      var step      = carousel.offsetWidth;
-      var currentTx = getTx();
-      var half      = halfWidth();
-      var rawTx     = currentTx - step;
-      var wrapTx    = rawTx;
-      while (wrapTx < -half) wrapTx += half;
-      if (wrapTx > 0) wrapTx -= half;
-
-      track.style.animationPlayState = 'paused';
-      track.style.transform          = 'translateX(' + currentTx + 'px)';
-
-      requestAnimationFrame(function () {
-        track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-        requestAnimationFrame(function () {
-          track.style.transform = 'translateX(' + rawTx + 'px)';
-          setTimeout(function () {
-            track.style.transition = '';
-            resumeFrom(wrapTx);
-            busy = false;
-          }, 620);
-        });
-      });
+      track.style.transform = 'translateX(' + startTx + 'px)';
     });
-    ── end desktop arrow ── */
+
+    carousel.addEventListener('pointermove', function (e) {
+      if (!active) return;
+      var dx = e.clientX - startX;
+      var dy = e.clientY - startY;
+
+      if (!locked) {
+        /* Wait for enough movement to determine intent */
+        if (Math.abs(dx) < 4 && Math.abs(dy) < 4) return;
+        /* Vertical intent — abandon drag so page can scroll */
+        if (Math.abs(dy) > Math.abs(dx)) {
+          active = false;
+          resumeFrom(startTx);
+          return;
+        }
+        locked = true;
+        try { carousel.setPointerCapture(e.pointerId); } catch (_) {}
+      }
+
+      var now = Date.now();
+      var dt  = now - lastTime;
+      if (dt > 0) velocity = (e.clientX - lastX) / dt;
+      lastX    = e.clientX;
+      lastTime = now;
+
+      currentTx = wrapTx(startTx + dx);
+      track.style.transform = 'translateX(' + currentTx + 'px)';
+    });
+
+    function endDrag() {
+      if (!active) return;
+      active = false;
+      locked = false;
+
+      var vel = velocity * 16;
+      var tx  = currentTx;
+
+      function decelerate() {
+        vel *= 0.90;
+        tx   = wrapTx(tx + vel);
+        track.style.transform = 'translateX(' + tx + 'px)';
+        if (Math.abs(vel) > 0.3) {
+          rafId = requestAnimationFrame(decelerate);
+        } else {
+          resumeFrom(tx);
+        }
+      }
+
+      if (Math.abs(vel) > 0.5) {
+        rafId = requestAnimationFrame(decelerate);
+      } else {
+        resumeFrom(tx);
+      }
+    }
+
+    carousel.addEventListener('pointerup',     endDrag);
+    carousel.addEventListener('pointercancel', endDrag);
   });
 })();
