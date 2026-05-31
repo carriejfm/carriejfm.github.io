@@ -71,6 +71,15 @@ var CS_COPY = {
   /* output_{key}_1: "{Paragraph 2}", */
   /* output_{key}_ai: "{AI in action callout text}", */
 
+  /* ── Output credit lines (scroll + deck) ────────────────────────── */
+  /* One line per output workstream. Pattern: "N designers · stream name"
+     or "IC · scope" for solo work. Shown as subtitle beneath output copy
+     in both the scroll view (.cs-output-credit) and deck (.output-left__credit). */
+  /* output_1_credit: "{N designers · stream name | or IC · scope}", */
+  /* output_2_credit: "{…}", */
+  /* output_3_credit: "{…}", */
+  /* output_4_credit: "{…}", */
+
   /* ── Reflection ─────────────────────────────────────────────────── */
   reflection_0: "{Reflection paragraph 1}",
   reflection_1: "{Reflection paragraph 2}",

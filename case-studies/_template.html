@@ -300,6 +300,37 @@
               </div>
               -->
 
+              <!--
+                OPTION C: BRAND HERO CAROUSEL — image + video tiles, auto-scrolling
+                Use for hero brand moments where you want mixed media in a looping carousel
+                rather than a static side-by-side (OPTION B). Add data-carousel to enable
+                IntersectionObserver activation. Items alternate --contain-img and --video-crop.
+                Duplicate all items inside the track for a seamless loop.
+                Remove OPTION A above and uncomment this block.
+              -->
+              <!--
+              <div class="va-carousel reveal" data-carousel>
+                <div class="va-carousel__track va-carousel__track--manual" style="animation-duration: 40s;">
+                  <div class="va-carousel__item va-carousel__item--contain-img">
+                    <img src="../assets/{slug}/{image}.png" alt="{alt}" loading="lazy">
+                  </div>
+                  <div class="va-carousel__item va-carousel__item--video-crop">
+                    <video autoplay muted loop playsinline>
+                      <source src="../assets/{slug}/{video}.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="va-carousel__item va-carousel__item--contain-img">
+                    <img src="../assets/{slug}/{image}.png" alt="{alt}" loading="lazy">
+                  </div>
+                  <div class="va-carousel__item va-carousel__item--video-crop">
+                    <video autoplay muted loop playsinline>
+                      <source src="../assets/{slug}/{video}.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+              -->
+
               <p data-cs-copy="{output_key}_0">{Output paragraph 1}</p>
               <p data-cs-copy="{output_key}_1">{Output paragraph 2}</p>
 
@@ -313,6 +344,8 @@
                 <p data-cs-copy="{output_key}_ai">{AI callout text}</p>
               </div>
               -->
+
+              <p class="cs-output-credit" data-cs-copy="{output_credit}">{e.g. "N designers · stream name" or "IC · scope"}</p>
             </div>
 
           </div>
