@@ -53,7 +53,7 @@ var AP_COPY = {
   /* ── Section headings (editable per case study) ─────────────────── */
   section_opportunity: "Opportunity",
   section_hypothesis:  "Hypothesis",
-  section_rebuild:     "Rebuild team & trust",
+  section_rebuild:     "Rebuild team and trust",
   section_problem:     "Solution-led to problem-led",
   section_xfn:         "Cross-functional alignment",
   section_reflection:  "Reflection",
