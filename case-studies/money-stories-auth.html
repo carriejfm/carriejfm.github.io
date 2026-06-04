@@ -152,6 +152,7 @@
 
       function attempt() {
         if (input.value.trim() === PASSWORD) {
+          sessionStorage.setItem('ms_auth', '1');
           window.location.replace(DEST);
         } else {
           error.classList.add('is-visible');

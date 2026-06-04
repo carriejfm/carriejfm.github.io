@@ -97,6 +97,51 @@
   display: block;
 }
 
+/* Inline image within an approach block — full width, natural ratio, caption below */
+.cs-approach-figure {
+  margin: var(--space-md) 0;
+}
+
+/* Crossfading image pair inside an approach figure.
+   Two images stacked; CSS animates opacity to swap every 6s. */
+.cs-approach-figure__swap {
+  position: relative;
+  width: 100%;
+}
+
+.cs-approach-figure__swap img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cs-approach-figure__swap img:last-child {
+  position: absolute;
+  inset: 0;
+  animation: cs-figure-swap 12s infinite;
+}
+
+@keyframes cs-figure-swap {
+  0%,  45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100%      { opacity: 1; }
+}
+
+.cs-approach-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cs-approach-figure figcaption {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--text-faint);
+  line-height: 1.6;
+  text-align: left;
+}
+
 /* Natural-ratio hero — full width, no fixed height, no crop.
    Use when the hero asset is shorter than the standard 1224×800 box. */
 .cs-hero__image--natural {

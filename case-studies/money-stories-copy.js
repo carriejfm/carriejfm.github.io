@@ -41,27 +41,45 @@ var MS_COPY = {
   section_hypothesis:    "Hypothesis",
   section_reflection:    "Reflection",
   section_accessible:    "Making finances accessible",
-  section_format:        "Designing the format: avatars, stories, outros",
+  section_format:        "Designing the format",
+  section_live_data:     "Live data stories",
   section_partnerships:  "Partnerships that made it a franchise, not a feature",
   section_facilitating:  "Facilitating, mapping, and stress-testing the system",
 
   /* ── Context / Opportunity ──────────────────────────────────────── */
-  opportunity_0: "In 2021 Afterpay had embarked on a new proposition: Money by Afterpay — a money-positive neobank-style product for the Afterpay consumer base. A year into the Covid digital surge, the Afterpay audience wasn't asking for a spreadsheet or dashboard to help manage their finances; they were living on Instagram, consuming Reels, swiping stories.",
-  opportunity_1: "I was brought in as design principal to help Millennials and Gen Z 'feel' their money. Banking UX had no native format for the behavior young money-anxious users were already fluent in. I put two and two together and Money Stories was born.",
+  opportunity_0: "In 2021 Afterpay had embarked on a new proposition: Money by Afterpay — a money-positive neobank-style product for the Afterpay consumer base.",
+  opportunity_1: "A year into the Covid digital surge, the Afterpay audience wasn't asking for a spreadsheet or dashboard to help manage their finances; they were living on Instagram, consuming Reels, swiping stories.",
+  opportunity_2: "I was brought in as design principal to help Millennials and Gen Z 'feel' their money. Banking UX had no native format for the behavior young money-anxious users were already fluent in. I put two and two together and Money Stories was born.",
 
   /* ── Goal ───────────────────────────────────────────────────────── */
   goal: "make money feel as easy as Instagram — turning raw spending data into bite-sized insight and low-barrier-to-entry action.",
 
   /* ── Hypothesis ─────────────────────────────────────────────────── */
-  hypothesis: "Using a known low-effort digital content pattern would lower the barrier to engagement, and improve feelings and behavior around money.",
+  hypothesis: "I believe using a known low-effort digital content pattern will lower the barrier to engagement with - and improve feelings and behavior around - money.",
 
   /* ── Approach blocks ─────────────────────────────────────────────── */
-  accessible_0: "My hunch was that a low-effort digital content pattern the audience was already familiar with — in a low-stress environment — would lower the barrier to entry and help people change their feelings and behavior within the high-stress money environment. Like Nike Training Club made fitness feel bite-sized and manageable, Money Stories would make money feel simple and accessible.",
-  accessible_1: "The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly. Money insight stories were generated from the user's own data and delivered as bite-size content, ending in a one-tap action. When we took the concept back to research participants the response was unanimously positive.",
-  accessible_2: "I'd been in the role weeks when I pushed back on leadership to keep Money Stories in the founder deck. We had the qual backing, I had the conviction — and I was right.",
+  accessible_0: "My hunch was that the content consumption habits used in low-stress environments could translate to, and ease the friction within, the higher-stress money environment. Like Nike Training Club made fitness feel bite-sized and manageable, Money Stories would make money feel simple and accessible.",
+  accessible_1: "Money insight stories were generated from the user's own data and delivered in story reel content, ending in a one-tap action.",
 
-  format_0: "I designed a reel of avatars that sat at eye level on the home surface, just below the hero balance. There were three user data-based stories that populated on an async cadence.",
-  format_1: "Daily Spend was live and answered the question: what did I spend today? Afterpay Spend was live and showed current balance, orders and status. Weekly Insights dropped every Monday — the big Spotify-reel payoff with bite-sized data on where last week's money went across Wants, Needs and savings. Playful messaging and deep links to take action were punctuated throughout. Each weekly drop ended with an Outro — a deliberately mindful bookend that helped users pause and ground in positivity.",
+
+  /* ── Flywheel figure ─────────────────────────────────────────────── */
+  flywheel_caption: "The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly.",
+
+  /* ── Format taxonomy figure ──────────────────────────────────────── */
+  format_figure_caption: "We leveraged known habitual Reels patterns so users didn't need to learn new mental models or interaction patterns.",
+
+  /* ── User research and validation ────────────────────────────────── */
+  section_research: "User research and validation",
+  research_0: "Our initial opportunity research had given us reason to believe a content-first approach to data was the direction to take",
+  research_1: "When we took the concept back to research participants the response was unanimously positive.",
+  research_2: "I'd been in the role weeks when I pushed back on leadership to keep Money Stories in the founder deck. We had the qual backing, I had the conviction — and I was right.",
+
+
+  format_0: "I designed a reel of avatars that sat at eye level on the home surface, just below the hero balance.",
+  format_1: "There were three user data-based stories that populated on an async cadence:",
+  format_2: "1) Daily Spend was live and answered the question: what did I spend today?",
+  format_3: "2) Afterpay Spend was live and showed current balance, orders and status.",
+  format_4: "3) Weekly Insights dropped every Monday — the big Spotify-reel payoff with bite-sized data on where last week's money went across Wants, Needs and savings.",
 
   partnerships_0: "I worked with my marketing partner to harness media partnerships that would make Money Stories about more than just self-reflection.",
   partnerships_1: "We partnered with Refinery29 to translate their long-form editorial hit, Money Diaries, into weekly short-form Money Stories dropping each Thursday. In our most successful program, we partnered with Pedestrian on Makes Cents — a co-created editorial franchise that polled our respective communities on Instagram on Tuesday and dropped the visualised results in the app the following Tuesday, with a link out to a long-form data-backed editorial article on Pedestrian. This story format held a 55% engagement rate.",
@@ -82,7 +100,7 @@ var MS_COPY = {
 
   /* ── Output body copy ────────────────────────────────────────────── */
   output_avatar_0:      "Familiar format. Unfamiliar subject: your money. A horizontal avatar reel at eye level on the home screen — the same swipe mechanic users already ran on autopilot every morning.",
-  output_stories_0:     "Three story types on three distinct cadences — Daily Spend, Afterpay Spend, and Weekly Insights — each generated from the user's own data and ending in a one-tap action.",
+  output_stories_0:     "Three story types on three distinct cadences — Daily Spend, Afterpay Spend, and Weekly Insights — each generated from the user's own data and ending in a one-tap action. Playful messaging and deep links to take action were punctuated throughout. Each weekly drop ended with an Outro — a deliberately mindful bookend that helped users pause and ground in positivity.",
   output_makes_cents_0: "A closed loop between community, app, and publisher. Instagram poll on Tuesday → in-app results story the following Tuesday → link out to a long-form data-backed editorial on Pedestrian.com. Held a 55% engagement rate.",
   output_r29_0:         "Long-form editorial, re-cut for a swipe. Refinery29's Money Diaries franchise translated into a weekly short-form story dropping each Thursday.",
   output_calm_0:        "Money anxiety, addressed in the surface itself. Co-designed with Calm as a deliberate mindful bookend after the Weekly Insights data drop.",

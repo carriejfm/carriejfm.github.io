@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>if(!sessionStorage.getItem('ms_auth'))window.location.replace('money-stories-auth.html');</script>
   <script src="/js/analytics.js?v=20260604"></script>
   <title>Money Stories at Money by Afterpay — case study by Carrie Francis-Miller</title>
   <meta name="description" content="Case study: Money Stories at Money by Afterpay (Block, 2021–2022). Personalized, data-led, swipeable spending stories — 55% engagement rate, 400K story views, 27% of actives.">
@@ -141,8 +142,9 @@
         </div>
 
         <div class="cs-row__right">
-          <p data-ms-copy="opportunity_0">The 2021 Afterpay was scaling and had embarked on a new proposition: Money by Afterpay — a money-positive neobank-style product for the existing Afterpay consumer base. A year into the covid digital surge, the Afterpay audience wasn't asking for a spreadsheet or dashboard to help manage their finances; they were living on Instagram, consuming Reels, swiping stories.</p>
-          <p data-ms-copy="opportunity_1">I was brought in as a principal to help Millennials and Gen Z 'feel' their money. Banking UX really had no native format for the behavior young money-anxious users were already fluent in. I put two and two together and Money Stories was born.</p>
+          <p data-ms-copy="opportunity_0">In 2021 Afterpay had embarked on a new proposition: Money by Afterpay — a money-positive neobank-style product for the Afterpay consumer base.</p>
+          <p data-ms-copy="opportunity_1">A year into the Covid digital surge, the Afterpay audience wasn't asking for a spreadsheet or dashboard to help manage their finances; they were living on Instagram, consuming Reels, swiping stories.</p>
+          <p data-ms-copy="opportunity_2">I was brought in as design principal to help Millennials and Gen Z 'feel' their money. Banking UX had no native format for the behavior young money-anxious users were already fluent in. I put two and two together and Money Stories was born.</p>
         </div>
 
       </div>
@@ -213,9 +215,19 @@
 
             <div class="cs-approach-block">
               <h3 data-ms-copy="section_accessible">Making finances accessible</h3>
-              <p data-ms-copy="accessible_0">My hunch was that a low-effort digital content pattern the audience was already familiar with — in a low-stress environment — would lower the barrier to entry and help people change their feelings and behavior within the high-stress money environment. Like Nike Training Club made fitness feel bite-sized and manageable, Money Stories would make money feel simple and accessible.</p>
-              <p data-ms-copy="accessible_1">The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly. Money insight stories were generated from the user's own data and delivered as bite-size content, ending in a one-tap action. When we took the concept back to research participants the response was unanimously positive.</p>
-              <p data-ms-copy="accessible_2">I'd been in the role weeks when I pushed back on leadership to keep Money Stories in the founder deck. We had the qual backing, I had the conviction — and I was right.</p>
+              <p data-ms-copy="accessible_0">My hunch was that the content consumption habits used in low-stress environments could translate to and ease the friction within the higher-stress money environment. Like Nike Training Club made fitness feel bite-sized and manageable, Money Stories would make money feel simple and accessible.</p>
+              <p data-ms-copy="accessible_1">The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly. Money insight stories were generated from the user's own data and delivered in story reel content, ending in a one-tap action.</p>
+              <figure class="cs-approach-figure">
+                <img src="../assets/money stories/flywheel.png" alt="Money Stories flywheel concept — Data to Content to Action, repeating daily and weekly" loading="lazy">
+                <figcaption data-ms-copy="flywheel_caption">The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly.</figcaption>
+              </figure>
+            </div>
+
+            <div class="cs-approach-block">
+              <h3 data-ms-copy="section_research">User research and validation</h3>
+              <p data-ms-copy="research_0">Our initial qualitative field research had given us reason to believe a content-first approach to data was the direction to take</p>
+              <p data-ms-copy="research_1">When we took the concept back to research participants the response was unanimously positive.</p>
+              <p data-ms-copy="research_2">I'd been in the role weeks when I pushed back on leadership to keep Money Stories in the founder deck. We had the qual backing, I had the conviction — and I was right.</p>
               <blockquote class="cs-quote">
                 <p data-ms-copy="quote_research_text">"It's visually pleasing to go through stories like that. It's not as time consuming as a spreadsheet. I think it would be helpful for me personally because of the data they can gather for me — having it at your fingertips is useful."</p>
                 <footer data-ms-copy="quote_research_attr">— Research participant</footer>
@@ -224,8 +236,22 @@
 
             <div class="cs-approach-block">
               <h3 data-ms-copy="section_format">Designing the format: avatars, stories, outros</h3>
-              <p data-ms-copy="format_0">I designed a reel of avatars that sat at eye level on the home surface, just below the hero balance. There were three user data-based stories that populated on an async cadence.</p>
-              <p data-ms-copy="format_1">Daily Spend was live and answered the question: what did I spend today? Afterpay Spend was live and showed current balance, orders and status. Weekly Insights dropped every Monday — the big Spotify-reel payoff with bite-sized data on where last week's money went across Wants, Needs and savings. Playful messaging and deep links to take action were punctuated throughout. Each weekly drop ended with an Outro — a deliberately mindful bookend that helped users pause and ground in positivity.</p>
+              <p data-ms-copy="format_0">I designed a reel of avatars that sat at eye level on the home surface, just below the hero balance.</p>
+              <figure class="cs-approach-figure">
+                <div class="cs-approach-figure__swap">
+                  <img src="../assets/money stories/story-taxonomy.png" alt="Money Stories story taxonomy — types of stories and their data sources" loading="lazy">
+                  <img src="../assets/money stories/page-taxonomy.png" alt="Money Stories page taxonomy — structure of the home screen story surface" loading="lazy">
+                </div>
+                <figcaption data-ms-copy="format_figure_caption">We leveraged the known habitual Reels patterns so users didn't need to learn a new mental model and interaction patterns.</figcaption>
+              </figure>
+            </div>
+
+            <div class="cs-approach-block">
+              <h3 data-ms-copy="section_live_data">Live data stories</h3>
+              <p data-ms-copy="format_1">There were three user data-based stories that populated on an async cadence.</p>
+              <p data-ms-copy="format_2">Daily Spend was live and answered the question: what did I spend today?</p>
+              <p data-ms-copy="format_3">Afterpay Spend was live and showed current balance, orders and status.</p>
+              <p data-ms-copy="format_4">Weekly Insights dropped every Monday — the big Spotify-reel payoff with bite-sized data on where last week's money went across Wants, Needs and savings.</p>
             </div>
 
             <div class="cs-approach-block">
@@ -524,9 +550,9 @@
       var deckLink = switcher.querySelector('a[href*="-deck"]');
 
       var sectionSlideMap = {
-        's-reflection': 21,
-        's-outcomes':   18,
-        's-outputs':    14,
+        's-reflection': 27,
+        's-outcomes':   24,
+        's-outputs':    20,
         's-approach':    7,
         's-opportunity': 3
       };

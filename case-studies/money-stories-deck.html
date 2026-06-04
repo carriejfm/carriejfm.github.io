@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>if(!sessionStorage.getItem('ms_auth'))window.location.replace('money-stories-auth.html');</script>
   <title>Money Stories — Money by Afterpay — Carrie Francis-Miller</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -412,6 +413,10 @@
       line-height: 1.3;
     }
 
+    .slide--quote .quote-attr {
+      color: var(--text-faint);
+    }
+
     /* ─────────────────────────────────────────
        [09] STATS
     ───────────────────────────────────────── */
@@ -702,6 +707,65 @@
     }
 
     /* ─────────────────────────────────────────
+       [NEW] SLIDE TYPE: figure
+       Light. Centered image with caption below.
+    ───────────────────────────────────────── */
+
+    .slide--figure .figure-inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(72%, 900px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .slide--figure .figure-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Crossfading image pair inside a figure slide */
+    .figure-swap {
+      position: relative;
+      width: 100%;
+    }
+
+    .figure-swap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .figure-swap img:last-child {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation: figureSwap 12s infinite;
+    }
+
+    @keyframes figureSwap {
+      0%,  45% { opacity: 1; }
+      50%, 95% { opacity: 0; }
+      100%      { opacity: 1; }
+    }
+
+    .slide--figure .figure-caption {
+      margin-top: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: var(--text-faint);
+      text-align: left;
+      line-height: 1.6;
+      width: 100%;
+    }
+
+    /* ─────────────────────────────────────────
        IMAGE PLACEHOLDER
     ───────────────────────────────────────── */
 
@@ -885,8 +949,9 @@
 
   <div class="content-body">
     <h2 class="content-heading" data-ms-copy="section_opportunity">Opportunity</h2>
-    <p data-ms-copy="opportunity_0">The 2021 Afterpay was scaling and had embarked on a new proposition: Money by Afterpay — a money-positive neobank-style product for the existing Afterpay consumer base. A year into the covid digital surge, the Afterpay audience wasn't asking for a spreadsheet or dashboard to help manage their finances; they were living on Instagram, consuming Reels, swiping stories.</p>
-    <p data-ms-copy="opportunity_1">I was brought in as a principal to help Millennials and Gen Z 'feel' their money. Banking UX really had no native format for the behavior young money-anxious users were already fluent in. I put two and two together and Money Stories was born.</p>
+    <p data-ms-copy="opportunity_0">In 2021 Afterpay had embarked on a new proposition: Money by Afterpay — a money-positive neobank-style product for the Afterpay consumer base.</p>
+    <p data-ms-copy="opportunity_1">A year into the Covid digital surge, the Afterpay audience wasn't asking for a spreadsheet or dashboard to help manage their finances; they were living on Instagram, consuming Reels, swiping stories.</p>
+    <p data-ms-copy="opportunity_2">I was brought in as design principal to help Millennials and Gen Z 'feel' their money. Banking UX had no native format for the behavior young money-anxious users were already fluent in. I put two and two together and Money Stories was born.</p>
   </div>
 </section>
 
@@ -956,28 +1021,30 @@
 
   <div class="content-body">
     <h2 class="content-heading" data-ms-copy="section_accessible">Making finances accessible</h2>
-    <p data-ms-copy="accessible_0">My hunch was that a low-effort digital content pattern the audience was already familiar with — in a low-stress environment — would lower the barrier to entry and help people change their feelings and behavior within the high-stress money environment. Like Nike Training Club made fitness feel bite-sized and manageable, Money Stories would make money feel simple and accessible.</p>
-    <p data-ms-copy="accessible_1">The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly. Money insight stories were generated from the user's own data and delivered as bite-size content, ending in a one-tap action.</p>
-    <p data-ms-copy="accessible_2">I'd been in the role weeks when I pushed back on leadership to keep Money Stories in the founder deck. We had the qual backing, I had the conviction — and I was right.</p>
+    <p data-ms-copy="accessible_0">My hunch was that the content consumption habits used in low-stress environments could translate to and ease the friction within the higher-stress money environment. Like Nike Training Club made fitness feel bite-sized and manageable, Money Stories would make money feel simple and accessible.</p>
+    <p data-ms-copy="accessible_1">The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly. Money insight stories were generated from the user's own data and delivered in story reel content, ending in a one-tap action.</p>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 10 OF 23 — quote: research participant
+     SLIDE 10 OF 25 — figure: flywheel
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--quote" data-type="quote" data-index="9">
+<section class="slide slide--light slide--figure" data-type="figure" data-index="9">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
   </div>
 
-  <p class="quote-text" data-ms-copy="quote_research">"It's visually pleasing to go through stories like that. It's not as time consuming as a spreadsheet. Having it at your fingertips is useful." — Research participant</p>
+  <div class="figure-inner">
+    <img src="../assets/money stories/flywheel.png" alt="Money Stories flywheel — Data to Content to Action" class="figure-img">
+    <p class="figure-caption" data-ms-copy="flywheel_caption">The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly.</p>
+  </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 11 OF 23 — content: Designing the format
+     SLIDE 11 OF 25 — content: User research and validation
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--content" data-type="content" data-index="10">
   <div class="slide-header">
@@ -986,17 +1053,85 @@
   </div>
 
   <div class="content-body">
-    <h2 class="content-heading" data-ms-copy="section_format">Designing the format</h2>
-    <p data-ms-copy="format_0">I designed a reel of avatars at eye level on the home surface, just below the hero balance. Three data-based story types on three distinct cadences: Daily Spend, Afterpay Spend, and Weekly Insights — each ending in a one-tap action.</p>
-    <p data-ms-copy="format_1">Weekly Insights dropped every Monday with bite-sized data on where last week's money went across Wants, Needs and savings. Each drop ended with an Outro — a deliberately mindful bookend that helped users pause and ground in positivity.</p>
+    <h2 class="content-heading" data-ms-copy="section_research">User research and validation</h2>
+    <p data-ms-copy="research_0">Our initial qualitative field research had given us reason to believe a content-first approach to data was the direction to take</p>
+    <p data-ms-copy="research_1">When we took the concept back to research participants the response was unanimously positive.</p>
+    <p data-ms-copy="research_2">I'd been in the role weeks when I pushed back on leadership to keep Money Stories in the founder deck. We had the qual backing, I had the conviction — and I was right.</p>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 12 OF 23 — content: A franchise not a feature
+     SLIDE 12 OF 25 — quote: research participant
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--content" data-type="content" data-index="11">
+<section class="slide slide--light slide--quote" data-type="quote" data-index="11">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <p class="quote-text"><span data-ms-copy="quote_research_text">"It's visually pleasing to go through stories like that. It's not as time consuming as a spreadsheet. Having it at your fingertips is useful."</span> <span class="quote-attr" data-ms-copy="quote_research_attr">— Research participant</span></p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 13 OF 27 — content: Designing the format (intro)
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="12">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_format">Designing the format</h2>
+    <p data-ms-copy="format_0">I designed a reel of avatars at eye level on the home surface, just below the hero balance. Three data-based story types on three distinct cadences: Daily Spend, Afterpay Spend, and Weekly Insights — each ending in a one-tap action.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 14 OF 27 — figure: story & page taxonomy
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--figure" data-type="figure" data-index="13">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="figure-inner">
+    <div class="figure-swap">
+      <img src="../assets/money stories/story-taxonomy.png" alt="Money Stories story taxonomy" class="figure-img">
+      <img src="../assets/money stories/page-taxonomy.png" alt="Money Stories page taxonomy">
+    </div>
+    <p class="figure-caption" data-ms-copy="format_figure_caption">We leveraged the known habitual Reels patterns so users didn't need to learn a new mental model and interaction patterns.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 15 OF 27 — content: Live data stories
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="14">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_live_data">Live data stories</h2>
+    <p data-ms-copy="format_1">There were three user data-based stories that populated on an async cadence.</p>
+    <p data-ms-copy="format_2">Daily Spend was live and answered the question: what did I spend today?</p>
+    <p data-ms-copy="format_3">Afterpay Spend was live and showed current balance, orders and status.</p>
+    <p data-ms-copy="format_4">Weekly Insights dropped every Monday — the big Spotify-reel payoff with bite-sized data on where last week's money went across Wants, Needs and savings.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 16 OF 27 — content: A franchise not a feature
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="15">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1012,31 +1147,66 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 13 OF 23 — quote: CPO
+     SLIDE 17 OF 27 — quote: CPO
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--quote" data-type="quote" data-index="12">
+<section class="slide slide--light slide--quote" data-type="quote" data-index="16">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
   </div>
 
-  <p class="quote-text" data-ms-copy="quote_cpo">"Carrie is great at forming through ambiguity, breaking things apart and guiding cross-functional teams through messiness to outcome. Money Stories was an example of that — pushing forward with an idea, getting buy-in from senior stakeholders and then delivering on a really cool experience all the way from insights to content." — Chief product officer</p>
+  <p class="quote-text"><span data-ms-copy="quote_cpo_text">"Carrie is great at forming through ambiguity, breaking things apart and guiding cross-functional teams through messiness to outcome. Money Stories was an example of that — pushing forward with an idea, getting buy-in from senior stakeholders and then delivering on a really cool experience all the way from insights to content."</span> <span class="quote-attr" data-ms-copy="quote_cpo_attr">— Chief product officer</span></p>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 14 OF 23 — section-title: Outputs
+     SLIDE 18 OF 29 — content: Facilitating, mapping and stress-testing
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="13">
+<section class="slide slide--light slide--content" data-type="content" data-index="17">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_facilitating">Facilitating, mapping, and stress-testing the system</h2>
+    <p data-ms-copy="facilitating_0">Money insight storytelling — while visually simple to users — needed complex mapping to ensure ins, outs, savings and transfers were attributed in a meaningful way. I facilitated co-creation workshops with director-level stakeholders to align on potential money management systems, then took our top ideas back to research to sense-check with users.</p>
+    <p data-ms-copy="facilitating_1">I mapped multiple use cases and hypothetical spend data scenarios, then pulled in my engineering counterparts to collaboratively stress-test them, teasing out edge cases and ensuring every story template could survive the messiness of real user data.</p>
+    <p data-ms-copy="facilitating_2">A surface with an active content publishing rhythm isn't a 'set and forget' feature. I personally designed the systems, content workflow and CMS tooling to support the various content formats and cadences — then owned those workflows myself before hiring and handing over to a content marketing partner.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 19 OF 29 — content: AI in Practice
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="18">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading">AI in Practice</h2>
+    <p data-ms-copy="ai_then">We collaboratively mapped multiple data scenarios and edge cases with engineering so every story template could survive the messiness of real user data. The limit of that era was that this was manual and inefficient.</p>
+    <p data-ms-copy="ai_now">AI is most useful when it removes the wait between an idea and seeing it under stress — and this is an ideal scenario to leverage it. Today I would use an AI scenario partner to generate realistic synthetic data across the long tail (high spenders, no-spenders, lumpy pay cycles, weird edge cases) and instantly render the visual story for each one. This would have saved weeks on Money Insight stories.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 20 OF 29 — section-title: Outputs
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="19">
   <p class="section-title__word">Outputs</p>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 15 OF 23 — output-a: Avatar reel + story cards (phone grid)
+     SLIDE 21 OF 29 — output-a: Avatar reel + story cards (phone grid)
      PLACEHOLDER: replace phone-tile images with real story card screens
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output" data-type="output-a" data-index="14">
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="20">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">MONEY STORIES</span>
@@ -1089,10 +1259,10 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 16 OF 23 — output-b: Makes Cents flow
+     SLIDE 22 OF 29 — output-b: Makes Cents flow
      PLACEHOLDER: replace img with real Makes Cents visual
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="15">
+<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="21">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">MONEY STORIES</span>
@@ -1114,10 +1284,10 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 17 OF 23 — output-b: Editorial partnerships (R29 + Calm)
+     SLIDE 23 OF 29 — output-b: Editorial partnerships (R29 + Calm)
      PLACEHOLDER: replace img with real partnership visual
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="16">
+<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="22">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">MONEY STORIES</span>
@@ -1139,10 +1309,10 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 18 OF 23 — output-c: Weekly Outro (hero phone)
+     SLIDE 24 OF 29 — output-c: Weekly Outro (hero phone)
      PLACEHOLDER: replace img-placeholder with real Outro phone screen
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output slide--output-c" data-type="output-c" data-index="17">
+<section class="slide slide--dark slide--output slide--output-c" data-type="output-c" data-index="23">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">MONEY STORIES</span>
@@ -1168,17 +1338,17 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 19 OF 23 — section-title: Outcomes
+     SLIDE 25 OF 29 — section-title: Outcomes
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="18">
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="24">
   <p class="section-title__word">Outcomes</p>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 20 OF 23 — stats
+     SLIDE 26 OF 29 — stats
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--stats" data-type="stats" data-index="19">
+<section class="slide slide--light slide--stats" data-type="stats" data-index="25">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1202,9 +1372,9 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 21 OF 23 — impact
+     SLIDE 27 OF 29 — impact
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--impact" data-type="impact" data-index="20">
+<section class="slide slide--light slide--impact" data-type="impact" data-index="26">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1255,22 +1425,22 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 22 OF 23 — quote: viewer
+     SLIDE 28 OF 29 — quote: viewer
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--quote" data-type="quote" data-index="21">
+<section class="slide slide--light slide--quote" data-type="quote" data-index="27">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
   </div>
 
-  <p class="quote-text" data-ms-copy="quote_viewer">"It's like Spotify's yearly review, but for your money." — Money Stories viewer</p>
+  <p class="quote-text"><span data-ms-copy="quote_viewer_text">"It's like Spotify's yearly review, but for your money."</span> <span class="quote-attr" data-ms-copy="quote_viewer_attr">— Money Stories viewer</span></p>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 23 OF 23 — qa
+     SLIDE 29 OF 29 — qa
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--qa" data-type="qa" data-index="22">
+<section class="slide slide--dark slide--qa" data-type="qa" data-index="28">
   <a href="../index.html" class="back-link">← back to selected work</a>
   <p class="qa-text">Q+A</p>
 </section>
@@ -1279,7 +1449,7 @@
 <!-- ─── FIXED UI ─── -->
 <div class="deck-confidential" aria-hidden="true">PRIVILEGED &amp; CONFIDENTIAL</div>
 <div class="deck-counter-group">
-  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 23</div>
+  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 29</div>
 </div>
 <div class="deck-hint" aria-hidden="true">← → to navigate</div>
 
@@ -1455,8 +1625,8 @@
     var switcher = document.getElementById('deckSwitcher');
 
     function slideToScrollAnchor(idx) {
-      if (idx >= 18) return '#s-outcomes';
-      if (idx >= 13) return '#s-outputs';
+      if (idx >= 24) return '#s-outcomes';
+      if (idx >= 19) return '#s-outputs';
       if (idx >= 6)  return '#s-approach';
       if (idx >= 3)  return '#s-opportunity';
       return '';
