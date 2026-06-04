@@ -70,8 +70,8 @@ var MS_COPY = {
 
   /* ── User research and validation ────────────────────────────────── */
   section_research: "User research and validation",
-  research_0: "Our initial opportunity research had given us reason to believe a content-first approach to data was the direction to take",
-  research_1: "When we took the concept back to research participants the response was unanimously positive.",
+  research_0: "Discovery research had given us reason to believe a content-first approach to data was the direction to take",
+  research_1: "When we took the Money Stories concept back to research participants the response was unanimously positive.",
   research_2: "I'd been in the role weeks when I pushed back on leadership to keep Money Stories in the founder deck. We had the qual backing, I had the conviction — and I was right.",
 
 
