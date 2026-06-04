@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Money Stories — Money by Afterpay — Carrie Francis-Miller</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────
+       MONEY STORIES DECK — embedded styles
+       All tokens mirror css/style.css :root
+       Matches afterpay-deck.html architecture
+    ───────────────────────────────────────── */
+
+    /* ─── TOKENS ─── */
+    :root {
+      --bg:           #F3F3F1;
+      --text:         #1A1A17;
+      --text-muted:   #2E2E2A;
+      --text-faint:   #7A7A72;
+      --border:       #DDD9D0;
+      --border-light: #EAE7E0;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+
+      --size-xs:   0.6875rem;
+      --size-sm:   0.8125rem;
+      --size-base: 1rem;
+      --size-md:   1.125rem;
+      --size-lg:   1.5rem;
+      --size-xl:   2rem;
+      --size-2xl:  3rem;
+
+      --slide-pad-h: clamp(1.5rem, 4vw, 3rem);
+      --slide-pad-v: clamp(1.25rem, 3vw, 2rem);
+      --transition:  200ms ease;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-mono);
+      font-weight: 300;
+      background: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+
+    /* ─────────────────────────────────────────
+       SLIDE FOUNDATION
+    ───────────────────────────────────────── */
+
+    .slide {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 400ms ease;
+    }
+
+    .slide.is-active { opacity: 1; pointer-events: auto; }
+
+    body.no-transition .slide { transition: none; }
+
+    .slide--light { background: var(--bg);   color: var(--text); }
+    .slide--dark  { background: var(--text); color: var(--bg);   }
+
+    /* ─────────────────────────────────────────
+       PERSISTENT HEADER
+       "MONEY STORIES  / SECTION"
+    ───────────────────────────────────────── */
+
+    .slide-header {
+      position: absolute;
+      top: var(--slide-pad-v);
+      left: var(--slide-pad-h);
+      display: flex;
+      align-items: baseline;
+      gap: 0.5ch;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .slide-header__client  { display: none; }
+    .slide-header__project { color: var(--text-faint); order: 1; }
+    .slide-header__section { color: var(--text-muted); order: 2; }
+
+    .slide-header__section::before { content: '/ '; color: var(--text-faint); }
+
+    .slide-header--dark .slide-header__project { color: rgba(243,243,241,0.30); }
+    .slide-header--dark .slide-header__section { color: rgba(243,243,241,0.60); }
+    .slide-header--dark .slide-header__section::before { color: rgba(243,243,241,0.25); }
+
+    /* ─────────────────────────────────────────
+       BACK LINK
+    ───────────────────────────────────────── */
+
+    .back-link {
+      position: absolute;
+      top: var(--slide-pad-v);
+      left: var(--slide-pad-h);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #F3F3F1;
+      letter-spacing: 0.04em;
+      transition: color var(--transition);
+    }
+
+    .back-link:hover { color: rgba(243,243,241,0.7); }
+
+    /* ─────────────────────────────────────────
+       FIXED UI: CONFIDENTIAL / COUNTER / HINT
+    ───────────────────────────────────────── */
+
+    .deck-confidential {
+      position: fixed;
+      top: var(--slide-pad-v);
+      right: 2rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    body.is-dark-slide  .deck-confidential { color: rgba(243,243,241,0.35); }
+    body.is-meta-slide  .deck-confidential { display: none; }
+
+    .deck-counter-group {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 2rem;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    body.is-title-slide .deck-counter-group { display: none; }
+
+    .deck-counter {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+    }
+
+    body.is-dark-slide .deck-counter { color: rgba(243,243,241,0.35); }
+
+    .deck-hint {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      z-index: 1000;
+      pointer-events: none;
+      white-space: nowrap;
+      transition: opacity 600ms ease;
+    }
+
+    body.is-dark-slide .deck-hint { color: rgba(243,243,241,0.35); }
+    .deck-hint.fade-out { opacity: 0; }
+
+    /* ─────────────────────────────────────────
+       PER-SLIDE CONFIDENTIAL WATERMARK
+    ───────────────────────────────────────── */
+
+    .confidential {
+      position: absolute;
+      bottom: var(--slide-pad-v);
+      right: var(--slide-pad-h);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─────────────────────────────────────────
+       [01] TITLE
+    ───────────────────────────────────────── */
+
+    .slide--title .title-text {
+      position: absolute;
+      left: var(--slide-pad-h);
+      top: 50%;
+      transform: translateY(-20%);
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.0;
+    }
+
+    .slide--title .title-meta {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+    }
+
+    .slide--title .title-meta__company {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #7A7A72;
+      letter-spacing: 0.04em;
+    }
+
+    .slide--title .title-meta__role {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #F3F3F1;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─────────────────────────────────────────
+       [02] INDEX
+    ───────────────────────────────────────── */
+
+    .slide--index .index-list {
+      position: absolute;
+      left: 58%;
+      top: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .index-item { display: flex; align-items: baseline; gap: 1.5rem; }
+
+    .index-item__num {
+      font-family: var(--font-mono);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+      min-width: 2.5ch;
+    }
+
+    .index-item__name {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+    }
+
+    /* ─────────────────────────────────────────
+       [03] SECTION-TITLE
+       Static word — same position/size as index list name column
+    ───────────────────────────────────────── */
+
+    .slide--section-title .section-title__word {
+      position: absolute;
+      left: calc(58% + 3.75rem);
+      top: 50%;
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: #F3F3F1;
+    }
+
+    /* ─────────────────────────────────────────
+       [04] CONTENT
+    ───────────────────────────────────────── */
+
+    .slide--content .content-heading {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .slide--content .content-body {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 42%;
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.7;
+    }
+
+    .slide--content .content-body p + p { margin-top: 1em; }
+
+    /* ─────────────────────────────────────────
+       [05] GOAL
+    ───────────────────────────────────────── */
+
+    .goal-label { color: var(--text-faint); }
+
+    .slide--goal .goal-statement {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 70%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4.5vw, 4rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.15;
+    }
+
+    /* ─────────────────────────────────────────
+       [06] ROLE
+    ───────────────────────────────────────── */
+
+    .slide--role .role-block {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 42%;
+      transform: translate(-50%, -50%);
+    }
+
+    .role-block__title {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .role-block__rows {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .role-row {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.5;
+    }
+
+    .role-row strong { color: var(--text-muted); font-weight: 300; }
+
+    /* ─────────────────────────────────────────
+       [07] HYPOTHESIS
+    ───────────────────────────────────────── */
+
+    .hyp-label { color: var(--text-faint); }
+
+    .slide--hypothesis .hyp-statement {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 70%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4.5vw, 4rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.15;
+    }
+
+    /* ─────────────────────────────────────────
+       [08] QUOTE
+    ───────────────────────────────────────── */
+
+    .slide--quote .quote-text {
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(55ch, 55%);
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* ─────────────────────────────────────────
+       [09] STATS
+    ───────────────────────────────────────── */
+
+    .slide--stats .stats-row {
+      position: absolute;
+      top: 50%;
+      left: clamp(4rem, 8vw, 7rem);
+      right: clamp(4rem, 8vw, 7rem);
+      transform: translateY(-50%);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+    }
+
+    .stat-item { display: flex; flex-direction: column; }
+
+    .stat-item__number {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 7rem);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1;
+      display: block;
+      white-space: nowrap;
+    }
+
+    .stat-item__label {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      margin-top: 1rem;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       [10A] OUTPUT-A — phone grid
+    ───────────────────────────────────────── */
+
+    .slide--output .output-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 27%;
+      height: 100%;
+      padding: var(--slide-pad-v) var(--slide-pad-h);
+    }
+
+    .output-left__header {
+      display: flex;
+      gap: 0.75ch;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .output-left__header-project { color: rgba(243,243,241,0.35); }
+    .output-left__header-client  { display: none; }
+
+    .output-left__title {
+      margin-top: 2rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 500;
+      color: #F3F3F1;
+      line-height: 1.5;
+    }
+
+    .output-left__body {
+      margin-top: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 400;
+      color: #F3F3F1;
+      line-height: 1.7;
+    }
+
+    .output-left__body p + p { margin-top: 0.875em; }
+
+    .output-left__confidential { display: none; }
+
+    .output-left__credit {
+      font-size: var(--size-xs) !important;
+      color: rgba(243,243,241,0.35) !important;
+      margin-top: 1.25rem !important;
+      letter-spacing: 0.04em;
+    }
+
+    /* Phone grid */
+    .output-phones {
+      position: absolute;
+      top: 0;
+      left: 27%;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      gap: 12px;
+      overflow: visible;
+      padding: 0 12px;
+    }
+
+    .phone-col { flex: 1; display: flex; flex-direction: column; }
+
+    .phone-col__track { display: flex; flex-direction: column; gap: 10px; }
+
+    .output-phones .phone-col:nth-child(1) .phone-col__track {
+      margin-top: -260px;
+      animation: phoneScroll 47s linear infinite;
+    }
+    .output-phones .phone-col:nth-child(2) .phone-col__track {
+      margin-top: 180px;
+      animation: phoneScroll 60s linear infinite;
+    }
+    .output-phones .phone-col:nth-child(3) .phone-col__track {
+      margin-top: -120px;
+      animation: phoneScroll 47s linear infinite;
+    }
+
+    @keyframes phoneScroll {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+
+    .phone-tile {
+      flex-shrink: 0;
+      width: 100%;
+      aspect-ratio: 375 / 812;
+      border-radius: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      overflow: hidden;
+    }
+
+    .phone-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       [10B] OUTPUT-B — image right
+    ───────────────────────────────────────── */
+
+    .slide--output-b .output-image-right {
+      position: absolute;
+      top: 0;
+      left: 27%;
+      right: 0;
+      bottom: 0;
+      padding: clamp(2rem, 4vw, 4rem);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide--output-b .output-image-right img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       [10C] OUTPUT-C — hero phone
+    ───────────────────────────────────────── */
+
+    .slide--output-c .output-left { width: 27%; }
+
+    .slide--output-c .output-phone-hero {
+      position: absolute;
+      top: 0;
+      left: 27%;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      padding-top: clamp(5rem, 15vh, 10rem);
+    }
+
+    .slide--output-c .phone-wrap {
+      position: relative;
+      height: 120%;
+      flex-shrink: 0;
+      border-radius: calc(12vh * 375 / 812) calc(12vh * 375 / 812) 0 0;
+      overflow: hidden;
+    }
+
+    .slide--output-c .phone-wrap video,
+    .slide--output-c .phone-wrap img,
+    .slide--output-c .phone-wrap .img-placeholder {
+      height: calc(100% + 50px);
+      width: auto;
+      display: block;
+      margin-top: -50px;
+    }
+
+    .slide--output-c .phone-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 7%;
+      background: #fff;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* ─────────────────────────────────────────
+       [13] IMPACT
+    ───────────────────────────────────────── */
+
+    .slide--impact .impact-grid {
+      position: absolute;
+      inset: 0;
+      display: flex;
+    }
+
+    .impact-col {
+      flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 38vh clamp(1.5rem, 3vw, 2.5rem) clamp(4rem, 7vh, 5.5rem);
+    }
+
+    .impact-col:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent 0%, var(--border) 38%, var(--border) 62%, transparent 100%);
+    }
+
+    .impact-col__name {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .impact-col__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .impact-col__list li {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.6;
+      padding-left: 1em;
+      position: relative;
+    }
+
+    .impact-col__list li::before { content: '•'; position: absolute; left: 0; color: var(--text-faint); }
+
+    /* ─────────────────────────────────────────
+       [14] QA
+    ───────────────────────────────────────── */
+
+    .slide--qa .qa-text {
+      position: absolute;
+      top: 60%;
+      left: var(--slide-pad-h);
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.0;
+    }
+
+    /* ─────────────────────────────────────────
+       IMAGE PLACEHOLDER
+    ───────────────────────────────────────── */
+
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-placeholder span {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* ─────────────────────────────────────────
+       BUILD-IN ITEMS
+    ───────────────────────────────────────── */
+
+    .slide--content .content-body p:nth-of-type(n+2),
+    .slide--role .role-row,
+    .slide--impact .impact-col:nth-child(n+2),
+    .slide--output .output-left__body p:nth-of-type(n+2):not([data-immediate]),
+    .slide--output:not([data-continue]) .output-phones,
+    .slide--output-b:not([data-continue]) .output-image-right,
+    .slide--output-c:not([data-continue]) .output-phone-hero {
+      opacity: 0;
+      transition: opacity 400ms ease;
+    }
+
+    .slide--content .content-body p:nth-of-type(n+2).is-visible,
+    .slide--role .role-row.is-visible,
+    .slide--impact .impact-col:nth-child(n+2).is-visible,
+    .slide--output .output-left__body p:nth-of-type(n+2):not([data-immediate]).is-visible,
+    .slide--output:not([data-continue]) .output-phones.is-visible,
+    .slide--output-b:not([data-continue]) .output-image-right.is-visible,
+    .slide--output-c:not([data-continue]) .output-phone-hero.is-visible {
+      opacity: 1;
+    }
+
+    /* ─────────────────────────────────────────
+       M SWITCHER MENU
+    ───────────────────────────────────────── */
+
+    .deck-switcher {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(26, 26, 23, 0.97);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 250ms ease;
+    }
+
+    .deck-switcher.is-open { opacity: 1; pointer-events: auto; }
+
+    .deck-switcher__inner { display: flex; flex-direction: column; align-items: center; gap: 1.75rem; }
+
+    .deck-switcher__option {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 300;
+      color: rgba(243, 243, 241, 0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+
+    .deck-switcher__option:hover   { color: #F3F3F1; }
+    .deck-switcher__option--active { color: rgba(243, 243, 241, 0.90); }
+
+    .deck-switcher__hint {
+      margin-top: 3rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: rgba(243, 243, 241, 0.50);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+
+    @media (max-width: 768px) {
+      .deck-confidential { top: calc(var(--slide-pad-v) + 1.6em); left: var(--slide-pad-h); right: auto; }
+      .slide--content .content-body { width: 88%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+      .slide--stats .stats-row { flex-direction: column; align-items: flex-start; top: 50%; left: var(--slide-pad-h); right: var(--slide-pad-h); gap: 2rem; }
+      .slide--output { overflow-y: auto; }
+      .slide--output .output-left { position: relative; width: 100%; height: auto; padding: var(--slide-pad-v) var(--slide-pad-h) 1.5rem; }
+      .slide--output .output-phones,
+      .slide--output-b .output-image-right,
+      .slide--output-c .output-phone-hero { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: 100%; height: 50vw; min-height: 220px; }
+      .slide--output-c .phone-wrap { height: 100%; }
+      .slide--output-c .phone-wrap img,
+      .slide--output-c .phone-wrap video { height: 100%; width: auto; }
+      .slide--impact { overflow-y: auto; }
+      .slide--impact .impact-grid { position: relative; flex-direction: column; }
+      .impact-col { padding: 2rem var(--slide-pad-h) 1.5rem; }
+      .impact-col:not(:last-child)::after { display: none; }
+      .impact-col:not(:first-child) { border-top: 1px solid var(--border); }
+    }
+
+  </style>
+</head>
+<body>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 1 OF 23 — title
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--title is-active" data-type="title" data-index="0">
+  <a href="../index.html" class="back-link">← back to selected work</a>
+
+  <h1 class="title-text" data-ms-copy="deck_title">Money Stories</h1>
+
+  <div class="title-meta">
+    <span class="title-meta__company" data-ms-copy="deck_company">Money by Afterpay · Block · 2021–2022</span>
+    <span class="title-meta__role" data-ms-copy="role_title">Design Principal &amp; Lead</span>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 2 OF 23 — index
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--index" data-type="index" data-index="1">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <nav class="index-list" aria-label="Deck sections">
+    <div class="index-item">
+      <span class="index-item__num">01</span>
+      <span class="index-item__name">Context</span>
+    </div>
+    <div class="index-item">
+      <span class="index-item__num">02</span>
+      <span class="index-item__name">Approach</span>
+    </div>
+    <div class="index-item">
+      <span class="index-item__num">03</span>
+      <span class="index-item__name">Outputs</span>
+    </div>
+    <div class="index-item">
+      <span class="index-item__num">04</span>
+      <span class="index-item__name">Outcomes</span>
+    </div>
+  </nav>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 3 OF 23 — section-title: Context
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="2">
+  <p class="section-title__word">Context</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 4 OF 23 — content: Opportunity
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="3">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_opportunity">Opportunity</h2>
+    <p data-ms-copy="opportunity_0">The 2021 Afterpay was scaling and had embarked on a new proposition: Money by Afterpay — a money-positive neobank-style product for the existing Afterpay consumer base. A year into the covid digital surge, the Afterpay audience wasn't asking for a spreadsheet or dashboard to help manage their finances; they were living on Instagram, consuming Reels, swiping stories.</p>
+    <p data-ms-copy="opportunity_1">I was brought in as a principal to help Millennials and Gen Z 'feel' their money. Banking UX really had no native format for the behavior young money-anxious users were already fluent in. I put two and two together and Money Stories was born.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 5 OF 23 — goal
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--goal" data-type="goal" data-index="4">
+  <div class="slide-header slide-header--dark">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <p class="goal-statement"><span class="goal-label">Goal: </span><span data-ms-copy="goal">make money feel as flick-through and actionable as Reels — turning raw spending data into small, personalized moments of insight and low-barrier-to-entry action.</span></p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 6 OF 23 — role
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--role" data-type="role" data-index="5">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="role-block">
+    <p class="role-block__title">Role: <span data-ms-copy="role_title">Design Principal &amp; Lead</span></p>
+    <div class="role-block__rows">
+      <p class="role-row"><strong>Responsible</strong> — <span data-ms-copy="role_responsible">Creator, designer and design lead on Money Stories and subsequent workstreams</span></p>
+      <p class="role-row"><strong>Accountable</strong> — <span data-ms-copy="role_accountable">Design partner to media and content; driving standards for design team ways of working, culture and craft</span></p>
+      <p class="role-row"><strong>Consulted</strong> — <span data-ms-copy="role_consulted">Broader Money by Afterpay positioning strategy, engineering and product decisions</span></p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 7 OF 23 — section-title: Approach
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="6">
+  <p class="section-title__word">Approach</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 8 OF 23 — hypothesis
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--hypothesis" data-type="hypothesis" data-index="7">
+  <div class="slide-header slide-header--dark">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <p class="hyp-statement"><span class="hyp-label">Hypothesis: </span><span data-ms-copy="hypothesis">A low-effort digital content pattern the audience was already fluent in would lower the barrier to engaging with money, helping people change their feelings and behavior inside a high-stress subject.</span></p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 9 OF 23 — content: Making finances accessible
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="8">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_accessible">Making finances accessible</h2>
+    <p data-ms-copy="accessible_0">My hunch was that a low-effort digital content pattern the audience was already familiar with — in a low-stress environment — would lower the barrier to entry and help people change their feelings and behavior within the high-stress money environment. Like Nike Training Club made fitness feel bite-sized and manageable, Money Stories would make money feel simple and accessible.</p>
+    <p data-ms-copy="accessible_1">The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly. Money insight stories were generated from the user's own data and delivered as bite-size content, ending in a one-tap action.</p>
+    <p data-ms-copy="accessible_2">I'd been in the role weeks when I pushed back on leadership to keep Money Stories in the founder deck. We had the qual backing, I had the conviction — and I was right.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 10 OF 23 — quote: research participant
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--quote" data-type="quote" data-index="9">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <p class="quote-text" data-ms-copy="quote_research">"It's visually pleasing to go through stories like that. It's not as time consuming as a spreadsheet. Having it at your fingertips is useful." — Research participant</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 11 OF 23 — content: Designing the format
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="10">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_format">Designing the format</h2>
+    <p data-ms-copy="format_0">I designed a reel of avatars at eye level on the home surface, just below the hero balance. Three data-based story types on three distinct cadences: Daily Spend, Afterpay Spend, and Weekly Insights — each ending in a one-tap action.</p>
+    <p data-ms-copy="format_1">Weekly Insights dropped every Monday with bite-sized data on where last week's money went across Wants, Needs and savings. Each drop ended with an Outro — a deliberately mindful bookend that helped users pause and ground in positivity.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 12 OF 23 — content: A franchise not a feature
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="11">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_partnerships">A franchise, not a feature</h2>
+    <p data-ms-copy="partnerships_0">I worked with my marketing partner to harness media partnerships that would make Money Stories about more than just self-reflection.</p>
+    <p data-ms-copy="partnerships_1">Pedestrian Makes Cents — a co-created editorial franchise that polled communities on Instagram on Tuesday and dropped the visualised results in-app the following Tuesday, linking to a long-form Pedestrian article. This story format held a 55% engagement rate.</p>
+    <p data-ms-copy="partnerships_2">Refinery29 Money Diaries in-app weekly, Calm Money Mindfulness co-design, and a Lil Nas X talent series in flight — three editorial partnerships that made Money Stories a content franchise.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 13 OF 23 — quote: CPO
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--quote" data-type="quote" data-index="12">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <p class="quote-text" data-ms-copy="quote_cpo">"Carrie is great at forming through ambiguity, breaking things apart and guiding cross-functional teams through messiness to outcome. Money Stories was an example of that — pushing forward with an idea, getting buy-in from senior stakeholders and then delivering on a really cool experience all the way from insights to content." — Chief product officer</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 14 OF 23 — section-title: Outputs
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="13">
+  <p class="section-title__word">Outputs</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 15 OF 23 — output-a: Avatar reel + story cards (phone grid)
+     PLACEHOLDER: replace phone-tile images with real story card screens
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="14">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">MONEY STORIES</span>
+      <span class="output-left__header-client">BLOCK</span>
+    </div>
+    <p class="output-left__title" data-ms-copy="section_output_avatar">Money Stories avatar reel on app home →</p>
+    <div class="output-left__body">
+      <p data-ms-copy="output_avatar_0">Familiar format. Unfamiliar subject: your money. A horizontal avatar reel at eye level on the home screen — the same swipe mechanic users already ran on autopilot every morning.</p>
+      <p data-ms-copy="output_stories_0">Three story types on three distinct cadences — Daily Spend, Afterpay Spend, and Weekly Insights — each generated from the user's own data and ending in a one-tap action.</p>
+      <p class="output-left__credit" data-ms-copy="output_avatar_credit">IC · home surface, avatar reel design, story system</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phones" aria-hidden="true">
+    <!-- PLACEHOLDER: replace with real Money Stories screen assets -->
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-3.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-5.jpg" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-3.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-5.jpg" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-3.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-5.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-1.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-3.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-5.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-1.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track">
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-5.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-1.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-5.jpg" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-stories-1.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 16 OF 23 — output-b: Makes Cents flow
+     PLACEHOLDER: replace img with real Makes Cents visual
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="15">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">MONEY STORIES</span>
+      <span class="output-left__header-client">BLOCK</span>
+    </div>
+    <p class="output-left__title" data-ms-copy="section_output_makes_cents">Pedestrian Makes Cents →</p>
+    <div class="output-left__body">
+      <p data-ms-copy="output_makes_cents_0">A closed loop between community, app, and publisher. Instagram poll → in-app results story → Pedestrian editorial. 55% engagement rate — the most successful program.</p>
+      <p class="output-left__credit" data-ms-copy="output_makes_cents_credit">IC · partnership creative direction, in-app story design</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-image-right">
+    <!-- PLACEHOLDER: Makes Cents multi-step flow visual -->
+    <img src="../assets/money stories/money-stories-5.jpg" alt="Makes Cents — Instagram poll to in-app results story to Pedestrian editorial">
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 17 OF 23 — output-b: Editorial partnerships (R29 + Calm)
+     PLACEHOLDER: replace img with real partnership visual
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="16">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">MONEY STORIES</span>
+      <span class="output-left__header-client">BLOCK</span>
+    </div>
+    <p class="output-left__title" data-ms-copy="section_output_editorial">Editorial partnerships →</p>
+    <div class="output-left__body">
+      <p data-ms-copy="output_r29_0">Refinery29 Money Diaries re-cut into weekly short-form stories. Calm co-designed Money Mindfulness Outros. Both within the same story system.</p>
+      <p class="output-left__credit" data-ms-copy="output_r29_credit">IC · editorial partnership, story format design</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-image-right">
+    <!-- PLACEHOLDER: R29 Money Diaries / Calm Mindfulness story visual -->
+    <img src="../assets/money stories/money-stories-3.jpg" alt="Refinery29 Money Diaries in-app story and Calm Money Mindfulness Outro">
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 18 OF 23 — output-c: Weekly Outro (hero phone)
+     PLACEHOLDER: replace img-placeholder with real Outro phone screen
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output slide--output-c" data-type="output-c" data-index="17">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">MONEY STORIES</span>
+      <span class="output-left__header-client">BLOCK</span>
+    </div>
+    <p class="output-left__title" data-ms-copy="section_output_outro">Weekly Outro →</p>
+    <div class="output-left__body">
+      <p data-ms-copy="output_outro_0">A mindful bookend after the data. Each Weekly Insights drop closed with an Outro — a deliberately calm screen to help users pause and ground in positivity.</p>
+      <p class="output-left__credit" data-ms-copy="output_outro_credit">IC · Outro design, content cadence</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phone-hero">
+    <div class="phone-wrap">
+      <!-- PLACEHOLDER: replace with real Outro card phone screen -->
+      <div class="img-placeholder" style="width: 260px;">
+        <span>Outro card<br>phone screen</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 19 OF 23 — section-title: Outcomes
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="18">
+  <p class="section-title__word">Outcomes</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 20 OF 23 — stats
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--stats" data-type="stats" data-index="19">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <span class="stat-item__number" data-ms-copy="stat_1_value">55%</span>
+      <span class="stat-item__label" data-ms-copy="stat_1_label">engagement rate · Makes Cents</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-item__number" data-ms-copy="stat_2_value">400K</span>
+      <span class="stat-item__label" data-ms-copy="stat_2_label">total story views</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-item__number" data-ms-copy="stat_3_value">27%</span>
+      <span class="stat-item__label" data-ms-copy="stat_3_label">of actives viewing stories</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 21 OF 23 — impact
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--impact" data-type="impact" data-index="20">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="impact-grid">
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-ms-copy="outcome_scale">Scale</h3>
+      <ul class="impact-col__list">
+        <li data-ms-copy="impact_scale_0">400K total story views, 64K unique viewers</li>
+        <li data-ms-copy="impact_scale_1">489 total hours watched</li>
+        <li data-ms-copy="impact_scale_2">27% of active users viewing</li>
+        <li data-ms-copy="impact_scale_3">55% engagement rate on Makes Cents</li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-ms-copy="outcome_business">Business</h3>
+      <ul class="impact-col__list">
+        <li data-ms-copy="impact_business_0">Measurable engagement at a scale the AU org hadn't seen on content surfaces</li>
+        <li data-ms-copy="impact_business_1">Repeatable partnership playbook — editorial → in-app, with publishing rhythm</li>
+        <li data-ms-copy="impact_business_2">Press-worthy creative moments supporting Money Positive brand narrative</li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-ms-copy="outcome_team">Team</h3>
+      <ul class="impact-col__list">
+        <li data-ms-copy="impact_team_0">Led multi-stream design across Money Stories, Savers, Categories, Fit</li>
+        <li data-ms-copy="impact_team_1">Built tooling and ways of working that influenced the wider design team</li>
+        <li data-ms-copy="impact_team_2">Modelled lead by participating — hands-on in Figma while scaling craft</li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-ms-copy="outcome_product">Product</h3>
+      <ul class="impact-col__list">
+        <li data-ms-copy="impact_product_0">Shipped new content-led surface inside Money by Afterpay</li>
+        <li data-ms-copy="impact_product_1">Designed story template system — Daily, Afterpay Spend, Weekly Insights, Outros</li>
+        <li data-ms-copy="impact_product_2">Connected Stories into Categories (wants/needs) and Savers</li>
+        <li data-ms-copy="impact_product_3">Partner authoring model for R29, Pedestrian, and Calm</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 22 OF 23 — quote: viewer
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--quote" data-type="quote" data-index="21">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <p class="quote-text" data-ms-copy="quote_viewer">"It's like Spotify's yearly review, but for your money." — Money Stories viewer</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 23 OF 23 — qa
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--qa" data-type="qa" data-index="22">
+  <a href="../index.html" class="back-link">← back to selected work</a>
+  <p class="qa-text">Q+A</p>
+</section>
+
+
+<!-- ─── FIXED UI ─── -->
+<div class="deck-confidential" aria-hidden="true">PRIVILEGED &amp; CONFIDENTIAL</div>
+<div class="deck-counter-group">
+  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 23</div>
+</div>
+<div class="deck-hint" aria-hidden="true">← → to navigate</div>
+
+<!-- ─── M SWITCHER MENU ─── -->
+<div class="deck-switcher" id="deckSwitcher" aria-hidden="true" role="dialog" aria-label="View switcher">
+  <div class="deck-switcher__inner">
+    <a href="money-stories-deck.html" class="deck-switcher__option deck-switcher__option--active">Deck</a>
+    <a href="money-stories-design.html" class="deck-switcher__option">Scroll</a>
+  </div>
+  <p class="deck-switcher__hint">m or esc to close</p>
+</div>
+
+<!-- ─── COPY SOURCE ─── -->
+<script src="money-stories-copy.js?v=20260604"></script>
+
+<script>
+  /* ─── DECK ENGINE — matches afterpay-deck.html ─── */
+  (function () {
+
+    /* Mobile redirect — always show scroll on small screens */
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      window.location.replace('money-stories-design.html');
+    }
+
+    /* State */
+    const slides  = Array.from(document.querySelectorAll('.slide'));
+    const counter = document.querySelector('.deck-counter');
+    const hint    = document.querySelector('.deck-hint');
+    const body    = document.body;
+    const total   = slides.length;
+    let   current = 0;
+
+    /* Eyebrow section labels — inject from section-title word into subsequent slide-headers */
+    (function () {
+      var section = '';
+      slides.forEach(function (slide) {
+        var word = slide.querySelector('.section-title__word');
+        if (word) { section = word.textContent.trim().toUpperCase(); return; }
+        if (!section) return;
+        var header = slide.querySelector('.slide-header');
+        if (!header || header.querySelector('.slide-header__section')) return;
+        var span = document.createElement('span');
+        span.className = 'slide-header__section';
+        span.textContent = section;
+        header.appendChild(span);
+      });
+    })();
+
+    /* Keyboard hint — fade after 3s, once per session */
+    if (!sessionStorage.getItem('ms-deck-hint')) {
+      setTimeout(function () {
+        hint.classList.add('fade-out');
+        sessionStorage.setItem('ms-deck-hint', '1');
+      }, 3000);
+    } else {
+      hint.classList.add('fade-out');
+    }
+
+    /* Build-in helpers */
+    function getBuildItems(slide) {
+      var type = slide.dataset.type;
+      if (type === 'content') {
+        var all = Array.from(slide.querySelectorAll('.content-body p'));
+        return all.slice(1);
+      }
+      if (type === 'role') {
+        return Array.from(slide.querySelectorAll('.role-row'));
+      }
+      if (type === 'impact') {
+        var cols = Array.from(slide.querySelectorAll('.impact-col'));
+        return cols.slice(1);
+      }
+      if (type === 'output-a' || type === 'output-b' || type === 'output-c') {
+        var isContinue = slide.hasAttribute('data-continue');
+        var assetPanel = !isContinue
+          ? slide.querySelector('.output-phones, .output-image-right, .output-phone-hero')
+          : null;
+        var bodyParas = Array.from(slide.querySelectorAll('.output-left__body p'))
+          .slice(1)
+          .filter(function (p) { return !p.hasAttribute('data-immediate'); });
+        var items;
+        if (type === 'output-c' && assetPanel && bodyParas.length > 0) {
+          items = [[bodyParas[0], assetPanel]].concat(bodyParas.slice(1));
+        } else {
+          items = assetPanel ? [assetPanel] : [];
+          items = items.concat(bodyParas);
+        }
+        return items;
+      }
+      return [];
+    }
+
+    function eachBuildEl(item, fn) {
+      if (Array.isArray(item)) { item.forEach(fn); } else { fn(item); }
+    }
+
+    function showAllBuildItems(slide) {
+      getBuildItems(slide).forEach(function (item) {
+        eachBuildEl(item, function (el) { el.classList.add('is-visible'); });
+      });
+    }
+
+    function resetBuildItems(slide) {
+      getBuildItems(slide).forEach(function (item) {
+        eachBuildEl(item, function (el) { el.classList.remove('is-visible'); });
+      });
+    }
+
+    function hasPendingBuild(slide) {
+      return getBuildItems(slide).some(function (item) {
+        var els = Array.isArray(item) ? item : [item];
+        return els.some(function (el) { return !el.classList.contains('is-visible'); });
+      });
+    }
+
+    function advanceBuild(slide) {
+      var next = getBuildItems(slide).find(function (item) {
+        var els = Array.isArray(item) ? item : [item];
+        return els.some(function (el) { return !el.classList.contains('is-visible'); });
+      });
+      if (next) {
+        eachBuildEl(next, function (el) { el.classList.add('is-visible'); });
+      }
+    }
+
+    /* Go to slide */
+    function goTo(index, direction) {
+      if (index < 0)      index = 0;
+      if (index >= total) index = total - 1;
+      if (index === current) return;
+
+      slides[current].classList.remove('is-active');
+      current = index;
+
+      if (direction === 'back') {
+        showAllBuildItems(slides[current]);
+      } else {
+        resetBuildItems(slides[current]);
+      }
+
+      slides[current].classList.add('is-active');
+      counter.textContent = (current + 1) + ' / ' + total;
+
+      if (slides[current].classList.contains('slide--dark')) {
+        body.classList.add('is-dark-slide');
+      } else {
+        body.classList.remove('is-dark-slide');
+      }
+
+      var t = slides[current].dataset.type;
+      if (t === 'index' || t === 'section-title') {
+        body.classList.add('is-meta-slide');
+      } else {
+        body.classList.remove('is-meta-slide');
+      }
+
+      if (t === 'title') {
+        body.classList.add('is-title-slide');
+      } else {
+        body.classList.remove('is-title-slide');
+      }
+    }
+
+    /* Navigation */
+    function handleForward() {
+      if (hasPendingBuild(slides[current])) { advanceBuild(slides[current]); }
+      else { goTo(current + 1, 'forward'); }
+    }
+
+    function handleBack() { goTo(current - 1, 'back'); }
+
+    /* 'm' key view switcher */
+    var switcher = document.getElementById('deckSwitcher');
+
+    function slideToScrollAnchor(idx) {
+      if (idx >= 18) return '#s-outcomes';
+      if (idx >= 13) return '#s-outputs';
+      if (idx >= 6)  return '#s-approach';
+      if (idx >= 3)  return '#s-opportunity';
+      return '';
+    }
+
+    function openSwitcher() {
+      var scrollLink = switcher.querySelector('a[href*="money-stories-design"]');
+      if (scrollLink) scrollLink.href = 'money-stories-design.html' + slideToScrollAnchor(current);
+      switcher.classList.add('is-open');
+      switcher.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeSwitcher() {
+      switcher.classList.remove('is-open');
+      switcher.setAttribute('aria-hidden', 'true');
+    }
+
+    switcher.addEventListener('click', function (e) { if (e.target === switcher) closeSwitcher(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'm' || e.key === 'M') { switcher.classList.contains('is-open') ? closeSwitcher() : openSwitcher(); return; }
+      if (e.key === 'Escape') { closeSwitcher(); return; }
+      if (switcher.classList.contains('is-open')) return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); handleForward(); }
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); handleBack(); }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      handleForward();
+    });
+
+    /* Init — ?slide=N deep link */
+    var startSlide = 0;
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var s = parseInt(params.get('slide'), 10);
+      if (!isNaN(s) && s > 0 && s < total) startSlide = s;
+    })();
+
+    if (startSlide > 0) {
+      body.classList.add('no-transition');
+      slides[0].classList.remove('is-active');
+      slides[startSlide].classList.add('is-active');
+      current = startSlide;
+      counter.textContent = (current + 1) + ' / ' + total;
+      requestAnimationFrame(function () { body.classList.remove('no-transition'); });
+    }
+
+    var initSlide = slides[startSlide];
+    resetBuildItems(initSlide);
+    if (initSlide.classList.contains('slide--dark')) { body.classList.add('is-dark-slide'); }
+    var initType = initSlide.dataset.type;
+    if (initType === 'index' || initType === 'section-title') { body.classList.add('is-meta-slide'); }
+    if (initType === 'title') { body.classList.add('is-title-slide'); }
+
+  })();
+</script>
+
+</body>
+</html>
