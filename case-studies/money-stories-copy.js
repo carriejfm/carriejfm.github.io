@@ -68,9 +68,19 @@ var MS_COPY = {
   /* ── Format taxonomy figure ──────────────────────────────────────── */
   format_figure_caption: "We leveraged known habitual Reels patterns so users didn't need to learn new mental models or interaction patterns.",
 
+  /* ── Live data stories figure ────────────────────────────────────── */
+  live_data_figure_caption: "Three user data-based stories populated on an async cadence.",
+
+  /* ── Partner stories figure ──────────────────────────────────────── */
+  partner_figure_caption: "I worked with my marketing partner to harness media partnerships that would make Money Stories about more than just self-reflection.",
+
+  /* ── Facilitating figures ────────────────────────────────────────── */
+  facilitating_figure_1_caption: "Mapping scenarios and data rules with engineering",
+  facilitating_figure_2_caption: "The system and tooling behind money stories",
+
   /* ── User research and validation ────────────────────────────────── */
   section_research: "User research and validation",
-  research_0: "Discovery research had given us reason to believe a content-first approach to data was the direction to take",
+  research_0: "Discovery research had given us reason to believe a content-first approach to data was the direction to take.",
   research_1: "When we took the Money Stories concept back to research participants the response was unanimously positive.",
   research_2: "I'd been in the role weeks when I pushed back on leadership to keep Money Stories in the founder deck. We had the qual backing, I had the conviction — and I was right.",
 
@@ -81,8 +91,8 @@ var MS_COPY = {
   format_3: "2) Afterpay Spend was live and showed current balance, orders and status.",
   format_4: "3) Weekly Insights dropped every Monday — the big Spotify-reel payoff with bite-sized data on where last week's money went across Wants, Needs and savings.",
 
-  partnerships_0: "I worked with my marketing partner to harness media partnerships that would make Money Stories about more than just self-reflection.",
-  partnerships_1: "We partnered with Refinery29 to translate their long-form editorial hit, Money Diaries, into weekly short-form Money Stories dropping each Thursday. In our most successful program, we partnered with Pedestrian on Makes Cents — a co-created editorial franchise that polled our respective communities on Instagram on Tuesday and dropped the visualised results in the app the following Tuesday, with a link out to a long-form data-backed editorial article on Pedestrian. This story format held a 55% engagement rate.",
+  partnerships_0: "We partnered with Refinery29 to translate their long-form editorial hit, Money Diaries, into weekly short-form Money Stories dropping each Thursday.",
+  partnerships_1: "In our most successful program, we co-created Makes Cents, an editorial franchise with Pedestrian that polled our respective communities on Instagram on Tuesday and dropped the visualised results in the app the following Tuesday, with a link out to a long-form data-backed editorial article on Pedestrian. This story format held a 55% engagement rate.",
   partnerships_2: "With Calm, we were co-designing Money Mindfulness for our Weekly Outros and a new Money Fit track. In parallel, a talent and founder series (starting with a Lil Nas X concept around \"Every money story starts somewhere\") was in flight when org changes shifted priorities.",
 
   facilitating_0: "Money insight storytelling — while visually simple to users — needed complex mapping to ensure ins, outs, savings and transfers were attributed in a meaningful way. I facilitated co-creation workshops with director-level stakeholders to align on potential money management systems, then took our top ideas back to research to sense-check with users.",
@@ -90,33 +100,29 @@ var MS_COPY = {
   facilitating_2: "A surface with an active content publishing rhythm isn't a 'set and forget' feature. I personally designed the systems, content workflow and CMS tooling to support the various content formats and cadences — then owned those workflows myself before hiring and handing over to a content marketing partner.",
 
   /* ── Output headings ─────────────────────────────────────────────── */
-  section_output_editorial:    "Editorial partnerships →",
-  section_output_avatar:       "Money Stories avatar reel on app home →",
-  section_output_stories:      "Daily Spend · Afterpay Spend · Weekly Insights →",
-  section_output_makes_cents:  "Pedestrian Makes Cents →",
-  section_output_r29:          "Refinery29 Money Diaries in-app story →",
-  section_output_calm:         "Calm × Money Mindfulness →",
-  section_output_outro:        "Weekly Outro →",
+  section_output_stories:         "User data Money Stories →",
+  section_output_r29:             "Money Diaries with Refinery29 →",
+  section_output_makes_cents:     "Makes Cents with Pedestrian TV →",
+  section_output_money_insights:  "Money insights →",
+  section_output_future_me:       "Future me savers and Money Fit →",
 
   /* ── Output body copy ────────────────────────────────────────────── */
-  output_avatar_0:      "Familiar format. Unfamiliar subject: your money. A horizontal avatar reel at eye level on the home screen — the same swipe mechanic users already ran on autopilot every morning.",
-  output_stories_0:     "Three story types on three distinct cadences — Daily Spend, Afterpay Spend, and Weekly Insights — each generated from the user's own data and ending in a one-tap action. Playful messaging and deep links to take action were punctuated throughout. Each weekly drop ended with an Outro — a deliberately mindful bookend that helped users pause and ground in positivity.",
-  output_makes_cents_0: "A closed loop between community, app, and publisher. Instagram poll on Tuesday → in-app results story the following Tuesday → link out to a long-form data-backed editorial on Pedestrian.com. Held a 55% engagement rate.",
-  output_r29_0:         "Long-form editorial, re-cut for a swipe. Refinery29's Money Diaries franchise translated into a weekly short-form story dropping each Thursday.",
-  output_calm_0:        "Money anxiety, addressed in the surface itself. Co-designed with Calm as a deliberate mindful bookend after the Weekly Insights data drop.",
-  output_outro_0:       "A mindful bookend after the data. Each Weekly Insights drop closed with an Outro — a deliberately calm screen to help users pause and ground in positivity.",
+  output_stories_0:           "Three story types on three distinct cadences — Daily Spend, Afterpay Spend, and Weekly Insights — each generated from the user's own data and ending in a one-tap action. Playful messaging and deep links to take action were punctuated throughout. Each weekly drop ended with an Outro — a deliberately mindful bookend that helped users pause and ground in positivity.",
+  output_r29_0:               "Long-form editorial, re-cut for a swipe. Refinery29's Money Diaries franchise translated into a weekly short-form story dropping each Thursday.",
+  output_makes_cents_0:       "A closed loop between community, app, and publisher. Instagram poll on Tuesday → in-app results story the following Tuesday → link out to a long-form data-backed editorial on Pedestrian.com. Held a 55% engagement rate.",
+  output_money_insights_0:    "",
+  output_future_me_0:         "",
 
   /* ── AI in Practice ──────────────────────────────────────────────── */
   ai_then: "We collaboratively mapped multiple data scenarios and edge cases with engineering so every story template could survive the messiness of real user data. The limit of that era was that this was manual and inefficient.",
   ai_now:  "AI is most useful when it removes the wait between an idea and seeing it under stress — and this is an ideal scenario to leverage it. Today I would use an AI scenario partner to generate realistic synthetic data across the long tail (high spenders, no-spenders, lumpy pay cycles, weird edge cases) and instantly render the visual story for each one. This would have saved weeks on Money Insight stories.",
 
   /* ── Output credit lines ─────────────────────────────────────────── */
-  output_avatar_credit:      "IC · home surface, avatar reel design, story system",
-  output_stories_credit:     "IC · story type design, content system, CMS tooling",
-  output_makes_cents_credit: "IC · partnership creative direction, in-app story design",
-  output_r29_credit:         "IC · editorial partnership, story format design",
-  output_calm_credit:        "IC · partnership creative direction, Outro design",
-  output_outro_credit:       "IC · Outro design, content cadence",
+  output_stories_credit:          "IC · story type design, content system, CMS tooling",
+  output_r29_credit:              "IC · editorial partnership, story format design",
+  output_makes_cents_credit:      "IC · partnership creative direction, in-app story design",
+  output_money_insights_credit:   "",
+  output_future_me_credit:        "",
 
   /* ── Stats — values shared across scroll + deck ─────────────────── */
   stat_1_value: "55%",  stat_1_label: "engagement rate · Makes Cents",
@@ -164,6 +170,8 @@ var MS_COPY = {
   /* ── Reflection ─────────────────────────────────────────────────── */
   reflection_0: "I came into the Money by Afterpay team with fresh eyes and trusted my instincts. I recall a lead getting cold feet just before the first Money Stories founder presentation and I pushed back; we had the qualitative backing and I had confidence it was right. I told them I didn't want to drop it from the deck.",
   reflection_1: "And I was right. Money Stories achieved 55% engagement — unusually high for a feature that asked people to slow down inside a utility app. Money Stories leveraged the right behavior at the right time.",
+  reflection_3: "We collaboratively mapped multiple data scenarios and edge cases with engineering so every story template could survive the messiness of real user data. The limit of that era was that this was manual and inefficient.",
+  reflection_4: "AI is most useful when it removes the wait between an idea and seeing it under stress — and this is an ideal scenario to leverage it. Today I would use an AI scenario partner to generate realistic synthetic data across the long tail (high spenders, no-spenders, lumpy pay cycles, weird edge cases) and instantly render the visual story for each one. This would have saved weeks on Money Insight stories.",
   reflection_2: "Lateral thinking is easy to talk about and not always as easy to nail. I built out a 'parallel worlds' workshop when working agency side that helped clients get outside of their own segment and competitor silos and into adjacent human behavior. I still think it's one of the most interesting exercises a team can go through. Market landscape research is important; behavioral landscape? Maybe even more.",
 
   /* ── Quotes — combined (deck) ────────────────────────────────────── */

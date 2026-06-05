@@ -133,6 +133,13 @@
   display: block;
 }
 
+/* Placeholder block — swap for <img> or <video> when asset is ready */
+.cs-approach-figure__placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--border-light);
+}
+
 .cs-approach-figure figcaption {
   margin-top: 0.75rem;
   font-family: var(--font-mono);
