@@ -65,8 +65,9 @@ var MS_COPY = {
   /* ── Flywheel figure ─────────────────────────────────────────────── */
   flywheel_caption: "The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly.",
 
-  /* ── Format taxonomy figure ──────────────────────────────────────── */
-  format_figure_caption: "We leveraged known habitual Reels patterns so users didn't need to learn new mental models or interaction patterns.",
+  /* ── Format taxonomy figures (two stacked / two deck slides) ──────── */
+  taxonomy_1_caption: "A story reel entry point and interaction design aligned with known content consumption mental models",
+  taxonomy_2_caption: "We leveraged known habitual Reels patterns so users didn't need to learn new interaction patterns.",
 
   /* ── Live data stories figure ────────────────────────────────────── */
   live_data_figure_caption: "Three user data-based stories populated on an async cadence.",

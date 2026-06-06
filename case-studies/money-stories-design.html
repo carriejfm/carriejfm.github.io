@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>if(!sessionStorage.getItem('ms_auth'))window.location.replace('money-stories-auth.html');</script>
-  <script src="/js/analytics.js?v=20260605"></script>
+  <script src="/js/analytics.js?v=20260606"></script>
   <title>Money Stories at Money by Afterpay — case study by Carrie Francis-Miller</title>
   <meta name="description" content="Case study: Money Stories at Money by Afterpay (Block, 2021–2022). Personalized, data-led, swipeable spending stories — 55% engagement rate, 400K story views, 27% of actives.">
   <meta name="author" content="Carrie Francis-Miller">
@@ -62,8 +62,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260605">
-  <link rel="stylesheet" href="../css/casestudy.css?v=20260605">
+  <link rel="stylesheet" href="../css/style.css?v=20260606">
+  <link rel="stylesheet" href="../css/casestudy.css?v=20260606">
 
   <style>
     .deck-switcher {
@@ -238,11 +238,12 @@
               <h3 data-ms-copy="section_format">Designing the format: avatars, stories, outros</h3>
               <p data-ms-copy="format_0">I designed a reel of avatars that sat at eye level on the home surface, just below the hero balance.</p>
               <figure class="cs-approach-figure">
-                <div class="cs-approach-figure__swap">
-                  <img src="../assets/money stories/story-taxonomy.png" alt="Money Stories story taxonomy — types of stories and their data sources" loading="lazy">
-                  <img src="../assets/money stories/page-taxonomy.png" alt="Money Stories page taxonomy — structure of the home screen story surface" loading="lazy">
-                </div>
-                <figcaption data-ms-copy="format_figure_caption">We leveraged the known habitual Reels patterns so users didn't need to learn a new mental model and interaction patterns.</figcaption>
+                <img src="../assets/money stories/page-taxonomy.png" alt="Money Stories page taxonomy — story reel entry point on the home surface" loading="lazy">
+                <figcaption data-ms-copy="taxonomy_1_caption">A story reel entry point and interaction design aligned with known content consumption mental models</figcaption>
+              </figure>
+              <figure class="cs-approach-figure">
+                <img src="../assets/money stories/story-taxonomy.png" alt="Money Stories story taxonomy — types of stories and their data sources" loading="lazy">
+                <figcaption data-ms-copy="taxonomy_2_caption">We leveraged known habitual Reels patterns so users didn't need to learn new interaction patterns.</figcaption>
               </figure>
             </div>
 
@@ -279,13 +280,15 @@
               <p data-ms-copy="facilitating_1">I mapped multiple use cases and hypothetical spend data scenarios, then pulled in my engineering counterparts to collaboratively stress-test them, teasing out edge cases and ensuring every story template could survive the messiness of real user data.</p>
               <p data-ms-copy="facilitating_2">A surface with an active content publishing rhythm isn't a 'set and forget' feature. I personally designed the systems, content workflow and CMS tooling to support the various content formats and cadences — then owned those workflows myself before hiring and handing over to a content marketing partner.</p>
               <figure class="cs-approach-figure">
-                <!-- PLACEHOLDER: replace with img or video asset when ready -->
-                <div class="cs-approach-figure__placeholder"></div>
+                <video muted loop playsinline preload="none" class="cs-approach-video">
+                  <source src="../assets/money stories/scenarios-and-data-rules3.mp4" type="video/mp4">
+                </video>
                 <figcaption data-ms-copy="facilitating_figure_1_caption">Mapping scenarios and data rules with engineering</figcaption>
               </figure>
               <figure class="cs-approach-figure">
-                <!-- PLACEHOLDER: replace with img or video asset when ready -->
-                <div class="cs-approach-figure__placeholder"></div>
+                <video muted loop playsinline preload="none" class="cs-approach-video">
+                  <source src="../assets/money stories/money-stories-toolingv2.mp4" type="video/mp4">
+                </video>
                 <figcaption data-ms-copy="facilitating_figure_2_caption">The system and tooling behind money stories</figcaption>
               </figure>
               <blockquote class="cs-quote">
@@ -508,8 +511,8 @@
   </div>
 
 
-  <script src="../js/main.js?v=20260605"></script>
-  <script src="money-stories-copy.js?v=20260605"></script>
+  <script src="../js/main.js?v=20260606"></script>
+  <script src="money-stories-copy.js?v=20260606"></script>
 
   <!-- ─── CAROUSEL INTERSECTION OBSERVER ─── -->
   <script>
@@ -526,6 +529,42 @@
     })();
   </script>
 
+  <!-- ─── APPROACH VIDEO FOCUS OBSERVER ─── -->
+  <!-- Only one approach video plays at a time: the most-visible one in view. -->
+  <script>
+    (function () {
+      var videos = Array.prototype.slice.call(document.querySelectorAll('.cs-approach-video'));
+      if (!videos.length) return;
+
+      var ratios = new Map();
+      videos.forEach(function (v) { ratios.set(v, 0); });
+
+      function refocus() {
+        var best = null, bestRatio = 0;
+        ratios.forEach(function (ratio, v) {
+          if (ratio > bestRatio) { bestRatio = ratio; best = v; }
+        });
+        videos.forEach(function (v) {
+          if (v === best && bestRatio >= 0.25) {
+            var p = v.play();
+            if (p && p.catch) { p.catch(function () {}); }
+          } else if (!v.paused) {
+            v.pause();
+          }
+        });
+      }
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          ratios.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
+        });
+        refocus();
+      }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+      videos.forEach(function (v) { io.observe(v); });
+    })();
+  </script>
+
   <!-- ─── DECK SWITCHER SCRIPT ─── -->
   <script>
     (function () {
@@ -533,9 +572,9 @@
       var deckLink = switcher.querySelector('a[href*="-deck"]');
 
       var sectionSlideMap = {
-        's-reflection': 31,
-        's-outcomes':   28,
-        's-outputs':    23,
+        's-reflection': 32,
+        's-outcomes':   29,
+        's-outputs':    24,
         's-approach':    7,
         's-opportunity': 3
       };

@@ -102,35 +102,16 @@
   margin: var(--space-md) 0;
 }
 
-/* Crossfading image pair inside an approach figure.
-   Two images stacked; CSS animates opacity to swap every 6s. */
-.cs-approach-figure__swap {
-  position: relative;
-  width: 100%;
-}
-
-.cs-approach-figure__swap img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.cs-approach-figure__swap img:last-child {
-  position: absolute;
-  inset: 0;
-  animation: cs-figure-swap 12s infinite;
-}
-
-@keyframes cs-figure-swap {
-  0%,  45% { opacity: 1; }
-  50%, 95% { opacity: 0; }
-  100%      { opacity: 1; }
-}
-
-.cs-approach-figure img {
+.cs-approach-figure img,
+.cs-approach-figure video {
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* Stacked images within one figure get vertical spacing between them */
+.cs-approach-figure img + img {
+  margin-top: var(--space-md);
 }
 
 /* Placeholder block — swap for <img> or <video> when asset is ready */
