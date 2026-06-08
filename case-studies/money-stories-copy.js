@@ -104,28 +104,28 @@ var MS_COPY = {
   section_output_stories:         "User data Money Stories →",
   section_output_r29:             "Money Diaries with Refinery29 →",
   section_output_makes_cents:     "Makes Cents with Pedestrian TV →",
-  section_output_savers_insights: "Savers and insights →",
+  section_output_savers_insights: "Taking action with savings and money insights →",
 
   /* ── Output body copy ────────────────────────────────────────────── */
   output_stories_0:           "Three story types on three distinct cadences — Daily Spend, Afterpay Spend, and Weekly Insights — each generated from the user's own data. Playful messaging and deep links to take action were punctuated throughout. Each weekly drop ended with an Outro — a deliberately mindful bookend that helped users pause and ground in positivity.",
   output_r29_0:               "Long-form editorial, re-cut for a swipe. Refinery29's Money Diaries franchise translated into a weekly short-form story dropping each Thursday.",
-  output_makes_cents_0:       "A closed loop between community, app, and publisher. Instagram poll on Tuesday → in-app results story the following Tuesday → link out to a long-form data-backed editorial on Pedestrian.com. Held a 55% engagement rate.",
-  output_savers_insights_0:   "",
+  output_makes_cents_0:       "A closed loop between community, app, and publisher. A poll went out on Tuesdays and in-app results posted a week later with a link out to a long-form data-backed editorial on Pedestrian.com. This story held a 55% engagement rate in-app.",
+  output_savers_insights_0:   "The flywheel only closes if users act on what they see. Money Insights, Future Me savers and roundups, and Money Fit challenges were the three workstreams designed to do exactly that, turn a story into a next step.",
 
   /* ── AI in Practice ──────────────────────────────────────────────── */
   ai_then: "We collaboratively mapped multiple data scenarios and edge cases with engineering so every story template could survive the messiness of real user data. The limit of that era was that this was manual and inefficient.",
   ai_now:  "AI is most useful when it removes the wait between an idea and seeing it under stress — and this is an ideal scenario to leverage it. Today I would use an AI scenario partner to generate realistic synthetic data across the long tail (high spenders, no-spenders, lumpy pay cycles, weird edge cases) and instantly render the visual story for each one. This would have saved weeks on Money Insight stories.",
 
   /* ── Output credit lines ─────────────────────────────────────────── */
-  output_stories_credit:          "IC & lead · Design, strategy, content system and tooling",
+  output_stories_credit:          "IC & lead · Design, strategy, system and tooling",
   output_r29_credit:              "IC & lead · Strategy, partnership creative direction",
-  output_makes_cents_credit:      "IC & lead · partnership creative direction, in-app story design",
-  output_savers_insights_credit:  "",
+  output_makes_cents_credit:      "IC & lead · Strategy, partnership creative direction",
+  output_savers_insights_credit:  "Lead on Savers and Money fit · IC on Money Insights",
 
   /* ── Stats — values shared across scroll + deck ─────────────────── */
-  stat_1_value: "55%",  stat_1_label: "engagement rate · Makes Cents",
-  stat_2_value: "400K", stat_2_label: "total story views",
-  stat_3_value: "27%",  stat_3_label: "of actives viewing stories",
+  stat_1_value: "55%",  stat_1_label: "Engagement rate · Makes Cents",
+  stat_2_value: "400K", stat_2_label: "Total story views",
+  stat_3_value: "27%",  stat_3_label: "Actives viewing stories",
 
   /* ── Outcome category labels (scroll + deck) ─────────────────────── */
   outcome_scale:    "Scale",
@@ -145,8 +145,8 @@ var MS_COPY = {
   impact_team_1:     "Built tooling and ways of working that influenced the wider design team",
   impact_team_2:     "Modelled lead by participating — hands-on in Figma while scaling craft",
   impact_product_0:  "Shipped new content-led surface inside Money by Afterpay",
-  impact_product_1:  "Designed story template system — Daily, Afterpay Spend, Weekly Insights, Outros",
-  impact_product_2:  "Connected Stories into Categories (wants/needs) and Savers",
+  impact_product_1:  "Designed story template system and logic",
+  impact_product_2:  "Connected Stories into banking workstreams",
   impact_product_3:  "Partner authoring model for R29, Pedestrian, and Calm",
 
   /* ── Outcome bullets — scroll (longer/more detailed) ─────────────── */
@@ -155,11 +155,11 @@ var MS_COPY = {
   outcome_scale_2:    "27% of active app users viewing stories",
   outcome_scale_3:    "55% engagement rate on Makes Cents — the most successful program",
   outcome_business_0: "Delivered measurable engagement at a scale the AU org hadn't seen on content surfaces before",
-  outcome_business_1: "Created a repeatable partnership playbook (editorial → in-app content, with a publishing rhythm)",
+  outcome_business_1: "Created a repeatable partnership playbook (in-app content → editorial publishing rhythm)",
   outcome_business_2: "Generated press-worthy creative moments supporting the Money Positive brand narrative",
-  outcome_team_0:     "Led a multi-stream design group across Money Stories, Money Savers, Money Categories, Money Fit",
+  outcome_team_0:     "Led a multi-stream design group across Money Stories, Savers, Insights and Money Fit",
   outcome_team_1:     "Built tooling, ways of working and rituals that influenced the wider design team",
-  outcome_team_2:     "Modelled lead by participating — hands-on in Figma while scaling the craft bar",
+  outcome_team_2:     "Modelled hands-on leadership, building product while scaling the craft",
   outcome_product_0:  "Shipped Money Stories as a new content-led surface inside the Money by Afterpay app",
   outcome_product_1:  "Designed the story template system (Daily Spend, Afterpay Spend, Weekly Insights, Weekly Outros)",
   outcome_product_2:  "Connected Money Stories into Money Categories (wants/needs) and Money Savers",
@@ -168,9 +168,8 @@ var MS_COPY = {
   /* ── Reflection ─────────────────────────────────────────────────── */
   reflection_0: "I came into the Money by Afterpay team with fresh eyes and trusted my instincts. I recall a lead getting cold feet just before the first Money Stories founder presentation and I pushed back; we had the qualitative backing and I had confidence it was right. I told them I didn't want to drop it from the deck.",
   reflection_1: "And I was right. Money Stories achieved 55% engagement — unusually high for a feature that asked people to slow down inside a utility app. Money Stories leveraged the right behavior at the right time.",
-  reflection_3: "We collaboratively mapped multiple data scenarios and edge cases with engineering so every story template could survive the messiness of real user data. The limit of that era was that this was manual and inefficient.",
-  reflection_4: "AI is most useful when it removes the wait between an idea and seeing it under stress — and this is an ideal scenario to leverage it. Today I would use an AI scenario partner to generate realistic synthetic data across the long tail (high spenders, no-spenders, lumpy pay cycles, weird edge cases) and instantly render the visual story for each one. This would have saved weeks on Money Insight stories.",
   reflection_2: "Lateral thinking is easy to talk about and not always as easy to nail. I built out a 'parallel worlds' workshop when working agency side that helped clients get outside of their own segment and competitor silos and into adjacent human behavior. I still think it's one of the most interesting exercises a team can go through. Market landscape research is important; behavioral landscape? Maybe even more.",
+  reflection_3: "AI is most useful when it removes the wait between an idea and seeing it under stress — and this is an ideal scenario to leverage it. I collaboratively mapped countless data scenarios and edge cases with engineering so every story template could survive the messiness of real user data. The limit of that era was that this was manual and inefficient–Today I would use an AI scenario partner to generate realistic synthetic data across the long tail (high spenders, no-spenders, lumpy pay cycles, weird edge cases) and instantly render the visual story for each one. This would have saved weeks on Money Insight stories.",
 
   /* ── Quotes — combined (deck) ────────────────────────────────────── */
   quote_research: '"It\'s visually pleasing to go through stories like that. It\'s not as time consuming as a spreadsheet. I think it would be helpful for me personally because of the data they can gather for me — having it at your fingertips is useful." — Research participant',

@@ -557,11 +557,18 @@
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var carousels = document.querySelectorAll('.va-carousel[data-carousel]');
       if (!carousels.length) return;
+      var ratios = new Map();
+      carousels.forEach(function (c) { ratios.set(c, 0); });
+      function refocus() {
+        var best = null, bestRatio = 0;
+        ratios.forEach(function (r, c) { if (r > bestRatio) { bestRatio = r; best = c; } });
+        carousels.forEach(function (c) { c.classList.toggle('is-active', c === best && bestRatio > 0); });
+      }
+      var steps = Array.from({ length: 11 }, function (_, i) { return i / 10; });
       var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          entry.target.classList.toggle('is-active', entry.isIntersecting);
-        });
-      }, { threshold: 0.1 });
+        entries.forEach(function (e) { ratios.set(e.target, e.intersectionRatio); });
+        refocus();
+      }, { threshold: steps });
       carousels.forEach(function (c) { io.observe(c); });
     })();
   </script>
