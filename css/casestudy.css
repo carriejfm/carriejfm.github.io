@@ -574,6 +574,21 @@
   display: block;
 }
 
+/* Video tile that anchors to the top so the iOS status bar shows, then masks it */
+.va-carousel__item--video-crop.va-carousel__item--mask-top video {
+  object-position: center top;
+}
+.va-carousel__item .va-record-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(6% + 2px);
+  background: #fff;
+  z-index: 2;
+  pointer-events: none;
+}
+
 /* Static side-by-side asset pair (brand hero — no carousel) */
 .cs-brand-assets {
   display: flex;

@@ -552,9 +552,23 @@
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.04);
       overflow: hidden;
+      position: relative;
     }
 
-    .phone-tile img {
+    /* White opaque mask over the status bar to hide iOS screen-record badge */
+    .phone-tile__record-mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(6% + 2px);
+      background: #fff;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .phone-tile img,
+    .phone-tile video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -859,7 +873,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 1 OF 34 — title
+     SLIDE 1 OF 33 — title
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--title is-active" data-type="title" data-index="0">
   <a href="../index.html" class="back-link">← back to selected work</a>
@@ -874,7 +888,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 2 OF 34 — index
+     SLIDE 2 OF 33 — index
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--index" data-type="index" data-index="1">
   <div class="slide-header">
@@ -904,7 +918,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 3 OF 34 — section-title: Context
+     SLIDE 3 OF 33 — section-title: Context
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--section-title" data-type="section-title" data-index="2">
   <p class="section-title__word">Context</p>
@@ -912,7 +926,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 4 OF 34 — content: Opportunity
+     SLIDE 4 OF 33 — content: Opportunity
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--content" data-type="content" data-index="3">
   <div class="slide-header">
@@ -930,7 +944,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 5 OF 34 — goal
+     SLIDE 5 OF 33 — goal
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--goal" data-type="goal" data-index="4">
   <div class="slide-header slide-header--dark">
@@ -943,7 +957,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 6 OF 34 — role
+     SLIDE 6 OF 33 — role
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--role" data-type="role" data-index="5">
   <div class="slide-header">
@@ -963,7 +977,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 7 OF 34 — section-title: Approach
+     SLIDE 7 OF 33 — section-title: Approach
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--section-title" data-type="section-title" data-index="6">
   <p class="section-title__word">Approach</p>
@@ -971,7 +985,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 8 OF 34 — hypothesis
+     SLIDE 8 OF 33 — hypothesis
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--hypothesis" data-type="hypothesis" data-index="7">
   <div class="slide-header slide-header--dark">
@@ -984,7 +998,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 9 OF 34 — content: Making finances accessible
+     SLIDE 9 OF 33 — content: Making finances accessible
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--content" data-type="content" data-index="8">
   <div class="slide-header">
@@ -1001,7 +1015,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 10 OF 34 — figure: flywheel
+     SLIDE 10 OF 33 — figure: flywheel
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--figure" data-type="figure" data-index="9">
   <div class="slide-header">
@@ -1017,7 +1031,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 11 OF 34 — content: User research and validation
+     SLIDE 11 OF 33 — content: User research and validation
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--content" data-type="content" data-index="10">
   <div class="slide-header">
@@ -1035,7 +1049,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 12 OF 34 — quote: research participant
+     SLIDE 12 OF 33 — quote: research participant
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--quote" data-type="quote" data-index="11">
   <div class="slide-header">
@@ -1048,7 +1062,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 13 OF 34 — content: Designing the format (intro)
+     SLIDE 13 OF 33 — content: Designing the format (intro)
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--content" data-type="content" data-index="12">
   <div class="slide-header">
@@ -1064,7 +1078,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 14 OF 34 — figure: page taxonomy
+     SLIDE 14 OF 33 — figure: page taxonomy
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--figure" data-type="figure" data-index="13">
   <div class="slide-header">
@@ -1080,7 +1094,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 15 OF 34 — figure: story taxonomy
+     SLIDE 15 OF 33 — figure: story taxonomy
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--figure" data-type="figure" data-index="14">
   <div class="slide-header">
@@ -1096,7 +1110,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 16 OF 34 — content: Live data stories
+     SLIDE 16 OF 33 — content: Live data stories
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--content" data-type="content" data-index="15">
   <div class="slide-header">
@@ -1115,7 +1129,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 17 OF 34 — figure: live data stories
+     SLIDE 17 OF 33 — figure: live data stories
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--figure" data-type="figure" data-index="16">
   <div class="slide-header">
@@ -1131,7 +1145,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 18 OF 34 — content: A franchise not a feature
+     SLIDE 18 OF 33 — content: A franchise not a feature
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--content" data-type="content" data-index="17">
   <div class="slide-header">
@@ -1149,7 +1163,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 19 OF 34 — figure: partner stories
+     SLIDE 19 OF 33 — figure: partner stories
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--figure" data-type="figure" data-index="18">
   <div class="slide-header">
@@ -1165,7 +1179,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 20 OF 34 — quote: CPO
+     SLIDE 20 OF 33 — quote: CPO
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--quote" data-type="quote" data-index="19">
   <div class="slide-header">
@@ -1178,7 +1192,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 21 OF 34 — content: Facilitating, mapping and stress-testing
+     SLIDE 21 OF 33 — content: Facilitating, mapping and stress-testing
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--content" data-type="content" data-index="20">
   <div class="slide-header">
@@ -1196,7 +1210,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 22 OF 34 — figure: mapping scenarios
+     SLIDE 22 OF 33 — figure: mapping scenarios
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--figure" data-type="figure" data-index="21">
   <div class="slide-header">
@@ -1214,7 +1228,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 23 OF 34 — figure: system and tooling
+     SLIDE 23 OF 33 — figure: system and tooling
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--figure" data-type="figure" data-index="22">
   <div class="slide-header">
@@ -1232,7 +1246,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 24 OF 34 — section-title: Outputs
+     SLIDE 24 OF 33 — section-title: Outputs
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--section-title" data-type="section-title" data-index="23">
   <p class="section-title__word">Outputs</p>
@@ -1240,9 +1254,9 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 25 OF 34 — output-b: a) User data Money Stories
+     SLIDE 25 OF 33 — output-b: a) User data Money Stories
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="24">
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="24">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">MONEY STORIES</span>
@@ -1256,16 +1270,58 @@
     <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
   </div>
 
-  <div class="output-image-right">
-    <img src="../assets/money stories/money-stories-1.png" alt="User data Money Stories — story cards">
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 60s">
+        <div class="phone-tile"><img src="../assets/money stories/user-data-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-4.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-7.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-10.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-afterpay-1.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/user-data-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-4.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-7.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-10.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-afterpay-1.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 75s">
+        <div class="phone-tile"><img src="../assets/money stories/user-data-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-5.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-8.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-11.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-afterpay-2.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/user-data-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-5.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-8.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-11.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-afterpay-2.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 48s">
+        <div class="phone-tile"><img src="../assets/money stories/user-data-3.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-6.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-9.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-daily.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/user-data-3.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-6.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-9.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-daily.png" alt=""></div>
+      </div>
+    </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 26 OF 34 — output-b: b) Money Diaries with Refinery29
+     SLIDE 26 OF 33 — output-b: b) Money Diaries with Refinery29
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="25">
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="25">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">MONEY STORIES</span>
@@ -1279,16 +1335,44 @@
     <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
   </div>
 
-  <div class="output-image-right">
-    <img src="../assets/money stories/money-stories-3.jpg" alt="Refinery29 Money Diaries in-app story">
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 36s">
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/money-diaries-video-1.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-4.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/money-diaries-video-1.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-4.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 30s">
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-5.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-5.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 24s">
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/money-diaries-video-2.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-3.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/money-diaries-video-2.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-3.png" alt=""></div>
+      </div>
+    </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 27 OF 34 — output-b: c) Makes Cents with Pedestrian TV
+     SLIDE 27 OF 33 — output-b: c) Makes Cents with Pedestrian TV
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="26">
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="26">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">MONEY STORIES</span>
@@ -1302,70 +1386,103 @@
     <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
   </div>
 
-  <div class="output-image-right">
-    <img src="../assets/money stories/money-stories-5.jpg" alt="Makes Cents — Instagram poll to in-app results story to Pedestrian editorial">
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 36s">
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents-video-1.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-1.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents.mp4" type="video/mp4"></video></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents-video-1.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-1.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 45s">
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents-video-2.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-2.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents-video-4.mp4" type="video/mp4"></video></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents-video-2.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-2.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents-video-4.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 24s">
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents-video-3.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-3.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents-video-3.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-3.png" alt=""></div>
+      </div>
+    </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 28 OF 34 — output-b: d) Money insights (placeholder)
+     SLIDE 28 OF 33 — output-a: d) Savers and insights (phone grid, combined)
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="27">
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="27">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">MONEY STORIES</span>
       <span class="output-left__header-client">BLOCK</span>
     </div>
-    <p class="output-left__title" data-ms-copy="section_output_money_insights">Money insights →</p>
+    <p class="output-left__title" data-ms-copy="section_output_savers_insights">Savers and insights →</p>
     <div class="output-left__body">
-      <p data-ms-copy="output_money_insights_0"></p>
-      <p class="output-left__credit" data-ms-copy="output_money_insights_credit"></p>
+      <p data-ms-copy="output_savers_insights_0"></p>
+      <p class="output-left__credit" data-ms-copy="output_savers_insights_credit"></p>
     </div>
     <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
   </div>
 
-  <div class="output-image-right">
-    <div class="img-placeholder"><span>Asset coming soon</span></div>
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 24s">
+        <div class="phone-tile"><img src="../assets/money stories/savers-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/savers-2.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/savers-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/savers-2.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 30s">
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/savers-video-2.mp4" type="video/mp4"></video><span class="phone-tile__record-mask"></span></div>
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/savers-video-3.mp4" type="video/mp4"></video></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/savers-video-2.mp4" type="video/mp4"></video><span class="phone-tile__record-mask"></span></div>
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/savers-video-3.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 24s">
+        <div class="phone-tile"><img src="../assets/money stories/insights-1.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/insights-video-1.mp4" type="video/mp4"></video></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/insights-1.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/insights-video-1.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 29 OF 34 — output-b: e) Future me savers and Money Fit (placeholder)
+     SLIDE 29 OF 33 — section-title: Outcomes
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="28">
-  <div class="output-left">
-    <div class="output-left__header">
-      <span class="output-left__header-project">MONEY STORIES</span>
-      <span class="output-left__header-client">BLOCK</span>
-    </div>
-    <p class="output-left__title" data-ms-copy="section_output_future_me">Future me savers and Money Fit →</p>
-    <div class="output-left__body">
-      <p data-ms-copy="output_future_me_0"></p>
-      <p class="output-left__credit" data-ms-copy="output_future_me_credit"></p>
-    </div>
-    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
-  </div>
-
-  <div class="output-image-right">
-    <div class="img-placeholder"><span>Asset coming soon</span></div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     SLIDE 30 OF 34 — section-title: Outcomes
-     ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="29">
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="28">
   <p class="section-title__word">Outcomes</p>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 31 OF 34 — stats
+     SLIDE 30 OF 33 — stats
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--stats" data-type="stats" data-index="30">
+<section class="slide slide--light slide--stats" data-type="stats" data-index="29">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1389,9 +1506,9 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 32 OF 34 — impact
+     SLIDE 31 OF 33 — impact
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--impact" data-type="impact" data-index="31">
+<section class="slide slide--light slide--impact" data-type="impact" data-index="30">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1442,9 +1559,9 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 33 OF 34 — quote: viewer
+     SLIDE 32 OF 33 — quote: viewer
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--quote" data-type="quote" data-index="32">
+<section class="slide slide--light slide--quote" data-type="quote" data-index="31">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1455,9 +1572,9 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 34 OF 34 — qa
+     SLIDE 33 OF 33 — qa
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--qa" data-type="qa" data-index="33">
+<section class="slide slide--dark slide--qa" data-type="qa" data-index="32">
   <a href="../index.html" class="back-link">← back to selected work</a>
   <p class="qa-text">Q+A</p>
 </section>
@@ -1466,7 +1583,7 @@
 <!-- ─── FIXED UI ─── -->
 <div class="deck-confidential" aria-hidden="true">PRIVILEGED &amp; CONFIDENTIAL</div>
 <div class="deck-counter-group">
-  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 34</div>
+  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 33</div>
 </div>
 <div class="deck-hint" aria-hidden="true">← → to navigate</div>
 
@@ -1480,7 +1597,7 @@
 </div>
 
 <!-- ─── COPY SOURCE ─── -->
-<script src="money-stories-copy.js?v=20260606"></script>
+<script src="money-stories-copy.js?v=20260608"></script>
 
 <script>
   /* ─── DECK ENGINE — matches afterpay-deck.html ─── */
@@ -1660,7 +1777,7 @@
     var switcher = document.getElementById('deckSwitcher');
 
     function slideToScrollAnchor(idx) {
-      if (idx >= 29) return '#s-outcomes';
+      if (idx >= 28) return '#s-outcomes';
       if (idx >= 23) return '#s-outputs';
       if (idx >= 6)  return '#s-approach';
       if (idx >= 3)  return '#s-opportunity';
