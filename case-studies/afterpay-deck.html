@@ -1872,9 +1872,10 @@
   (function () {
 
     /* ── Mobile redirect — always show scroll layout on small screens ── */
-    if (window.matchMedia('(max-width: 768px)').matches) {
-      window.location.replace('afterpay-design.html');
-    }
+    var mobileQuery = window.matchMedia('(max-width: 768px)');
+    function checkMobile(e) { if (e.matches) window.location.replace('afterpay-design.html'); }
+    checkMobile(mobileQuery);
+    mobileQuery.addEventListener('change', checkMobile);
 
     /* ── State ── */
     const slides  = Array.from(document.querySelectorAll('.slide'));
