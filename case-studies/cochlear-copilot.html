@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>if(!sessionStorage.getItem('cc_auth')&&!sessionStorage.getItem('portfolio_auth'))window.location.replace('cochlear-auth.html');</script>
   <script src="/js/analytics.js?v=20260609"></script>
-  <title>Cochlear Copilot hearing rehab — case study by Carrie Francis-Miller</title>
-  <meta name="description" content="Case study: Cochlear Copilot at ustwo (2021). Designed clinically-grounded hearing rehabilitation exercises by aligning design, engineering and clinical teams on what reuse really means.">
+  <title>Cochlear CoPilot hearing rehab — case study by Carrie Francis-Miller</title>
+  <meta name="description" content="Case study: Cochlear CoPilot at ustwo (2020–2021). Embedded cross-functional design lead — built a hearing rehab product, a UX research culture, and an agency partnership that outlasted the engagement.">
   <meta name="author" content="Carrie Francis-Miller">
   <meta name="theme-color" content="#ffffff">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://carriejfm.github.io/case-studies/cochlear-copilot.html">
+  <link rel="canonical" href="https://carriefrancismiller.com/case-studies/cochlear-copilot.html">
 
   <!-- Favicon -->
   <link rel="icon" href="../assets/favicon.ico">
@@ -19,58 +20,86 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Carrie Francis-Miller">
   <meta property="og:locale" content="en_AU">
-  <meta property="og:url" content="https://carriejfm.github.io/case-studies/cochlear-copilot.html">
-  <meta property="og:title" content="Cochlear Copilot hearing rehab — case study by Carrie Francis-Miller">
-  <meta property="og:description" content="Hearing rehabilitation exercises for Cochlear, shipped by aligning design, engineering and clinical teams on reuse.">
-  <meta property="og:image" content="https://carriejfm.github.io/assets/imagery/og-image.jpg">
+  <meta property="og:url" content="https://carriefrancismiller.com/case-studies/cochlear-copilot.html">
+  <meta property="og:title" content="Cochlear CoPilot hearing rehab — case study by Carrie Francis-Miller">
+  <meta property="og:description" content="18 months embedded with Cochlear's CoPilot team — building a hearing rehab product, a research culture, and an agency partnership in parallel.">
+  <meta property="og:image" content="https://carriefrancismiller.com/assets/imagery/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="article:author" content="Carrie Francis-Miller">
   <meta property="article:section" content="Healthtech case study">
-  <meta property="article:tag" content="Healthtech, Clinical product design, Cochlear, ustwo, Cross-functional alignment">
+  <meta property="article:tag" content="Healthtech, Clinical product design, Cochlear, ustwo, Cross-functional leadership, Research culture">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cochlear Copilot hearing rehab — case study by Carrie Francis-Miller">
-  <meta name="twitter:description" content="Hearing rehabilitation exercises for Cochlear, shipped by aligning design, engineering and clinical teams on reuse.">
-  <meta name="twitter:image" content="https://carriejfm.github.io/assets/imagery/og-image.jpg">
+  <meta name="twitter:title" content="Cochlear CoPilot hearing rehab — case study by Carrie Francis-Miller">
+  <meta name="twitter:description" content="18 months embedded with Cochlear's CoPilot team — building a hearing rehab product, a research culture, and an agency partnership in parallel.">
+  <meta name="twitter:image" content="https://carriefrancismiller.com/assets/imagery/og-image.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Cochlear CoPilot — hearing rehabilitation",
+    "headline": "Building a hearing rehab product, a research culture, and an agency partnership in parallel",
+    "url": "https://carriefrancismiller.com/case-studies/cochlear-copilot.html",
+    "image": "https://carriefrancismiller.com/assets/imagery/og-image.jpg",
+    "datePublished": "2021",
+    "inLanguage": "en-AU",
+    "creator": {
+      "@type": "Person",
+      "name": "Carrie Francis-Miller",
+      "url": "https://carriefrancismiller.com/"
+    },
+    "publisher": { "@type": "Organization", "name": "ustwo for Cochlear" },
+    "about": ["Healthtech product design", "Embedded design leadership", "Clinical UX research", "Cross-functional alignment"],
+    "keywords": "healthtech case study, clinical product design, Cochlear, ustwo, hearing rehabilitation, embedded design lead, research culture"
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=20260609">
+  <link rel="stylesheet" href="../css/casestudy.css?v=20260609">
 
-  <!-- Structured data: CreativeWork -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "Cochlear Copilot — hearing rehabilitation exercises",
-    "headline": "Hearing rehab exercises for Cochlear, shipped by aligning design, engineering and clinical on what \"reuse\" really means",
-    "url": "https://carriejfm.github.io/case-studies/cochlear-copilot.html",
-    "image": "https://carriejfm.github.io/assets/imagery/og-image.jpg",
-    "datePublished": "2021",
-    "inLanguage": "en-AU",
-    "creator": {
-      "@type": "Person",
-      "name": "Carrie Francis-Miller",
-      "url": "https://carriejfm.github.io/"
-    },
-    "publisher": { "@type": "Organization", "name": "ustwo for Cochlear" },
-    "about": ["Healthtech product design", "Clinical product workflows", "Cross-functional alignment", "Hearing health"],
-    "keywords": "healthtech case study, clinical product design, Cochlear, ustwo, hearing rehabilitation, design engineering alignment"
-  }
-  </script>
+  <style>
+    .deck-switcher {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(26, 26, 23, 0.97);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 250ms ease;
+    }
+    .deck-switcher.is-open { opacity: 1; pointer-events: auto; }
+    .deck-switcher__inner  { display: flex; flex-direction: column; align-items: center; gap: 1.75rem; }
+    .deck-switcher__option {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8125rem; font-weight: 300;
+      color: rgba(243,243,241,0.45); text-transform: uppercase;
+      letter-spacing: 0.15em; text-decoration: none;
+      transition: color 150ms ease;
+    }
+    .deck-switcher__option:hover   { color: #F3F3F1; }
+    .deck-switcher__option--active { color: rgba(243,243,241,0.90); }
+    .deck-switcher__hint {
+      margin-top: 3rem;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.6875rem;
+      font-weight: 300; color: rgba(243,243,241,0.50); letter-spacing: 0.08em;
+    }
+  </style>
 </head>
 <body>
-  <nav class="nav" id="nav">
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav" id="nav" aria-label="Main navigation">
     <a href="../index.html" class="nav__logo">Carrie Francis-Miller</a>
     <ul class="nav__links">
       <li><a href="../index.html">Home</a></li>
-      <!-- <li><a href="/work.html">Work</a></li> -->
       <li><a href="../about.html">About</a></li>
-      <!-- <li><a href="/thoughtwork.html">Thoughtwork</a></li> -->
       <li><a href="mailto:carriefrancismiller@gmail.com">Contact</a></li>
     </ul>
     <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
@@ -78,45 +107,402 @@
       <span></span>
     </button>
   </nav>
-  <section class="hero">
-    <div class="hero__inner">
-      <p class="hero__ticker">Case study</p>
-      <h1 class="hero__name">Project<br>Title</h1>
-      <p class="hero__tagline">Client · Year</p>
 
-    </div>
-  </section>
-  <!-- Case study content goes here -->
 
-  <!-- ─── CLIENTS ─── -->
-  <section class="section clients" id="clients" aria-label="Clients and collaborators">
-    <div class="section__inner">
+  <!-- ─── HERO ─── -->
+  <header class="cs-hero">
+    <div class="cs-hero__inner">
 
-      <header class="section__header reveal">
-        <span class="section__label">Clients + collaborators</span>
-      </header>
+      <h1 class="cs-hero__title" data-cc-copy="case_title">CoPilot: building a hearing rehab product, a research culture, and an agency partnership</h1>
 
-      <div class="logo-wall reveal" role="list" aria-label="Client logos">
-        <div class="logo-item" role="listitem"><img src="../assets/logos/block_logos.jpg" alt="Block" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/afterpay_logos.jpg" alt="Afterpay" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/google_logos.jpg" alt="Google" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/gv_logos.jpg" alt="Google Ventures" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/nike_logos.jpg" alt="Nike" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/cochlear_logos.jpg" alt="Cochlear" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/ustwo_logos.jpg" alt="ustwo" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/qantas_logos.jpg" alt="Qantas" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/amex_logos.jpg" alt="American Express" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/cba_logos.jpg" alt="Commonwealth Bank" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/classpass_logos.jpg" alt="ClassPass" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/jetstar_logos.jpg" alt="Jetstar" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/lilly_logos.jpg" alt="Eli Lilly" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/stockland_logos.jpg" alt="Stockland" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/vitamix_logos.jpg" alt="Vitamix" class="logo-img"></div>
-        <div class="logo-item" role="listitem"><img src="../assets/logos/jawbone_logos.jpg" alt="Jawbone" class="logo-img"></div>
+      <div class="cs-hero__meta">
+        <span data-cc-copy="project_string">Cochlear · ustwo // 2020–2021</span>
+        <span class="cs-meta__sep">//</span>
+        <span data-cc-copy="role_title">Embedded cross-functional design lead</span>
+      </div>
+
+      <div class="cs-hero__image reveal">
+        <img src="../assets/cochlear/cochlear-3.jpg" alt="Cochlear CoPilot hearing rehabilitation app" loading="lazy">
       </div>
 
     </div>
-  </section>
+  </header>
+
+
+  <!-- ─── BODY ─── -->
+  <main class="cs-body">
+    <div class="cs-body__inner">
+
+
+      <!-- ── Row 1: Opportunity ── -->
+      <div class="cs-row" id="s-opportunity">
+
+        <div class="cs-row__left">
+          <span class="cs-label" data-cc-copy="section_opportunity">Opportunity</span>
+        </div>
+
+        <div class="cs-row__right">
+          <p data-cc-copy="opportunity_0"></p>
+          <p data-cc-copy="opportunity_1"></p>
+          <p data-cc-copy="opportunity_2"></p>
+        </div>
+
+      </div>
+
+      <blockquote class="cs-goal">Goal: <span data-cc-copy="goal"></span></blockquote>
+
+
+      <!-- ── Row 2: Role ── -->
+      <div class="cs-row">
+
+        <div class="cs-row__left">
+          <span class="cs-label">Role</span>
+        </div>
+
+        <div class="cs-row__right">
+          <h3 class="cs-approach-block__heading" data-cc-copy="role_title"></h3>
+          <div class="cs-role-list">
+
+            <div class="cs-role-item">
+              <span class="cs-role-tag">Responsible</span>
+              <p><span data-cc-copy="role_responsible"></span></p>
+            </div>
+
+            <div class="cs-role-item">
+              <span class="cs-role-tag">Accountable</span>
+              <p><span data-cc-copy="role_accountable"></span></p>
+            </div>
+
+            <div class="cs-role-item">
+              <span class="cs-role-tag">Consulted</span>
+              <p><span data-cc-copy="role_consulted"></span></p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ── Row 3a: Approach (first half) ── -->
+      <div class="cs-row" id="s-approach">
+
+        <div class="cs-row__left">
+          <span class="cs-label">Approach</span>
+          <div class="cs-stat-stack">
+            <div>
+              <span class="cs-stat__value" data-cc-copy="stat_1_value"></span>
+              <span class="cs-stat__label" data-cc-copy="stat_1_label"></span>
+            </div>
+            <div>
+              <span class="cs-stat__value" data-cc-copy="stat_2_value"></span>
+              <span class="cs-stat__label" data-cc-copy="stat_2_label"></span>
+            </div>
+            <div>
+              <span class="cs-stat__value" data-cc-copy="stat_3_value"></span>
+              <span class="cs-stat__label" data-cc-copy="stat_3_label"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-row__right">
+          <div class="cs-approach">
+
+            <div class="cs-approach-block">
+              <h3 data-cc-copy="section_hypothesis">Hypothesis</h3>
+              <p data-cc-copy="hypothesis"></p>
+            </div>
+
+            <div class="cs-approach-block">
+              <h3 data-cc-copy="section_embedded">Embedded leadership</h3>
+              <p data-cc-copy="embedded_0"></p>
+              <p data-cc-copy="embedded_1"></p>
+            </div>
+
+            <div class="cs-approach-block">
+              <h3 data-cc-copy="section_cocreators">The CoCreators programme</h3>
+              <p data-cc-copy="cocreators_0"></p>
+              <p data-cc-copy="cocreators_1"></p>
+              <p data-cc-copy="cocreators_2"></p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-cc-copy="quote_stakeholder_text"></p>
+          <footer data-cc-copy="quote_stakeholder_attr"></footer>
+        </div>
+      </blockquote>
+
+
+      <!-- ── Row 3b: Approach (second half) ── -->
+      <div class="cs-row">
+        <div class="cs-row__left"></div>
+        <div class="cs-row__right">
+          <div class="cs-approach">
+
+            <div class="cs-approach-block">
+              <h3 data-cc-copy="section_measure">A measure-learn discipline</h3>
+              <p data-cc-copy="measure_0"></p>
+              <p data-cc-copy="measure_1"></p>
+            </div>
+
+            <div class="cs-approach-block">
+              <h3 data-cc-copy="section_content">Content strategy, tagging, and a personalisation foundation</h3>
+              <p data-cc-copy="content_0"></p>
+              <p data-cc-copy="content_1"></p>
+              <p data-cc-copy="content_2"></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-cc-copy="quote_vijay_text"></p>
+          <footer data-cc-copy="quote_vijay_attr"></footer>
+        </div>
+      </blockquote>
+
+
+      <!-- ── Row 3c: Approach (Recycle & Reuse + AI) ── -->
+      <div class="cs-row">
+        <div class="cs-row__left"></div>
+        <div class="cs-row__right">
+          <div class="cs-approach">
+
+            <div class="cs-approach-block">
+              <h3 data-cc-copy="section_reuse">Recycle & Reuse → five Skill Builders</h3>
+              <p data-cc-copy="reuse_0"></p>
+              <p data-cc-copy="reuse_1"></p>
+              <p data-cc-copy="reuse_2"></p>
+              <p data-cc-copy="reuse_3"></p>
+            </div>
+
+            <div class="ai-callout">
+              <span class="ai-callout__label">✦ AI in practice</span>
+              <p data-cc-copy="ai_practice"></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ── Row 4: Outputs ── -->
+      <div class="cs-row" id="s-outputs">
+
+        <div class="cs-row__left">
+          <span class="cs-label">Outputs</span>
+        </div>
+
+        <div class="cs-row__right">
+          <div class="cs-output-right">
+
+
+            <!-- Output 1: CoCreators programme -->
+            <div class="cs-output-item">
+              <h3 class="cs-output-item__heading" data-cc-copy="section_output_cocreators"></h3>
+              <!-- Carousel placeholder — assets TBC (welcome kit, cohort map, test guide screens) -->
+              <p data-cc-copy="output_cocreators_0"></p>
+              <p data-cc-copy="output_cocreators_1"></p>
+              <p class="cs-output-credit" data-cc-copy="output_cocreators_credit"></p>
+            </div>
+
+
+            <!-- Output 2: Design infrastructure -->
+            <div class="cs-output-item">
+              <h3 class="cs-output-item__heading" data-cc-copy="section_output_infrastructure"></h3>
+              <!-- Carousel placeholder — assets TBC (tracker tabs, cadence diagram, priorities doc) -->
+              <p data-cc-copy="output_infrastructure_0"></p>
+              <p data-cc-copy="output_infrastructure_1"></p>
+              <p class="cs-output-credit" data-cc-copy="output_infrastructure_credit"></p>
+            </div>
+
+
+            <!-- Output 3: Need Enablers + Personalisation -->
+            <div class="cs-output-item">
+              <h3 class="cs-output-item__heading" data-cc-copy="section_output_needenablers"></h3>
+              <!-- Carousel placeholder — assets TBC (personalisation deck, NE prototypes) -->
+              <p data-cc-copy="output_needenablers_0"></p>
+              <p data-cc-copy="output_needenablers_1"></p>
+              <p class="cs-output-credit" data-cc-copy="output_needenablers_credit"></p>
+            </div>
+
+
+            <!-- Output 4: Five Skill Builders — scrolling carousel with app screens -->
+            <div class="cs-output-item">
+              <h3 class="cs-output-item__heading" data-cc-copy="section_output_skillbuilders"></h3>
+
+              <!-- OPTION A: SCROLLING CAROUSEL
+                   4 items × 13.5 s/tile = 54 s. Duplicated for seamless loop.
+              -->
+              <div class="va-carousel reveal" data-carousel>
+                <div class="va-carousel__track va-carousel__track--manual" style="animation-duration: 54s;">
+                  <div class="va-carousel__item va-carousel__item--video-crop">
+                    <video autoplay muted loop playsinline>
+                      <source src="../assets/cochlear/cochlear-1.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="va-carousel__item va-carousel__item--video-crop">
+                    <video autoplay muted loop playsinline>
+                      <source src="../assets/cochlear/cochlear-2.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="va-carousel__item">
+                    <img src="../assets/cochlear/cochlear-3.jpg" alt="CoPilot Skill Builder screen" loading="lazy">
+                  </div>
+                  <div class="va-carousel__item va-carousel__item--video-crop">
+                    <video autoplay muted loop playsinline>
+                      <source src="../assets/cochlear/cochlear-4.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <!-- duplicate for seamless loop -->
+                  <div class="va-carousel__item va-carousel__item--video-crop">
+                    <video autoplay muted loop playsinline>
+                      <source src="../assets/cochlear/cochlear-1.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="va-carousel__item va-carousel__item--video-crop">
+                    <video autoplay muted loop playsinline>
+                      <source src="../assets/cochlear/cochlear-2.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="va-carousel__item">
+                    <img src="../assets/cochlear/cochlear-3.jpg" alt="CoPilot Skill Builder screen" loading="lazy">
+                  </div>
+                  <div class="va-carousel__item va-carousel__item--video-crop">
+                    <video autoplay muted loop playsinline>
+                      <source src="../assets/cochlear/cochlear-4.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+
+              <p data-cc-copy="output_skillbuilders_0"></p>
+              <p data-cc-copy="output_skillbuilders_1"></p>
+              <p class="cs-output-credit" data-cc-copy="output_skillbuilders_credit"></p>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ── Row 5: Outcomes ── -->
+      <div class="cs-row" id="s-outcomes">
+
+        <div class="cs-row__left">
+          <span class="cs-label">Outcomes</span>
+          <div class="cs-stat-stack">
+            <div>
+              <span class="cs-stat__value" data-cc-copy="stat_1_value"></span>
+              <span class="cs-stat__label" data-cc-copy="stat_1_label"></span>
+            </div>
+            <div>
+              <span class="cs-stat__value" data-cc-copy="stat_2_value"></span>
+              <span class="cs-stat__label" data-cc-copy="stat_2_label"></span>
+            </div>
+            <div>
+              <span class="cs-stat__value" data-cc-copy="stat_3_value"></span>
+              <span class="cs-stat__label" data-cc-copy="stat_3_label"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-row__right">
+          <div class="cs-outcomes">
+
+            <div class="cs-outcome-category">
+              <span class="cs-outcome-label" data-cc-copy="outcome_team">Team</span>
+              <ul>
+                <li data-cc-copy="outcome_team_0"></li>
+                <li data-cc-copy="outcome_team_1"></li>
+                <li data-cc-copy="outcome_team_2"></li>
+                <li data-cc-copy="outcome_team_3"></li>
+              </ul>
+            </div>
+
+            <div class="cs-outcome-category">
+              <span class="cs-outcome-label" data-cc-copy="outcome_product">Product</span>
+              <ul>
+                <li data-cc-copy="outcome_product_0"></li>
+                <li data-cc-copy="outcome_product_1"></li>
+                <li data-cc-copy="outcome_product_2"></li>
+                <li data-cc-copy="outcome_product_3"></li>
+                <li data-cc-copy="outcome_product_4"></li>
+                <li data-cc-copy="outcome_product_5"></li>
+              </ul>
+            </div>
+
+            <div class="cs-outcome-category">
+              <span class="cs-outcome-label" data-cc-copy="outcome_business">Business</span>
+              <ul>
+                <li data-cc-copy="outcome_business_0"></li>
+                <li data-cc-copy="outcome_business_1"></li>
+                <li data-cc-copy="outcome_business_2"></li>
+              </ul>
+            </div>
+
+            <div class="cs-outcome-category">
+              <span class="cs-outcome-label" data-cc-copy="outcome_scale">Scale</span>
+              <ul>
+                <li data-cc-copy="outcome_scale_0"></li>
+                <li data-cc-copy="outcome_scale_1"></li>
+                <li data-cc-copy="outcome_scale_2"></li>
+                <li data-cc-copy="outcome_scale_3"></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-cc-copy="quote_paz_text"></p>
+          <footer data-cc-copy="quote_paz_attr"></footer>
+        </div>
+      </blockquote>
+
+
+      <!-- ── Row 6: Reflection ── -->
+      <div class="cs-row" id="s-reflection">
+
+        <div class="cs-row__left">
+          <span class="cs-label" data-cc-copy="section_reflection">Reflection</span>
+        </div>
+
+        <div class="cs-row__right cs-reflection">
+          <p data-cc-copy="reflection_0"></p>
+          <p data-cc-copy="reflection_1"></p>
+          <p data-cc-copy="reflection_2"></p>
+        </div>
+
+      </div>
+
+
+    </div>
+  </main>
+
+
+  <!-- ─── BOTTOM NAV ─── -->
+  <nav class="cs-next" aria-label="Case study navigation">
+    <div class="cs-next__inner">
+      <a href="../index.html" class="cs-back-to-index">← Back to selected work</a>
+      <a href="afterpay-design.html" class="cs-back-to-work">Next: Afterpay Design</a>
+    </div>
+  </nav>
+
 
   <!-- ─── FOOTER ─── -->
   <footer class="footer" role="contentinfo">
@@ -131,6 +517,81 @@
     </div>
   </footer>
 
+
+  <!-- ─── DECK SWITCHER ─── -->
+  <div class="deck-switcher" id="deckSwitcher" aria-hidden="true" role="dialog" aria-label="View switcher">
+    <div class="deck-switcher__inner">
+      <a href="cochlear-deck.html" class="deck-switcher__option">Deck</a>
+      <a href="cochlear-copilot.html" class="deck-switcher__option deck-switcher__option--active">Scroll</a>
+    </div>
+    <p class="deck-switcher__hint">m or esc to close</p>
+  </div>
+
+
   <script src="../js/main.js?v=20260609"></script>
+  <script src="cochlear-copy.js?v=20260609"></script>
+
+  <!-- ─── CAROUSEL INTERSECTION OBSERVER ─── -->
+  <script>
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var carousels = document.querySelectorAll('.va-carousel[data-carousel]');
+      if (!carousels.length) return;
+      var ratios = new Map();
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { ratios.set(e.target, e.intersectionRatio); });
+        var best = null, bestR = 0;
+        ratios.forEach(function (r, el) { if (r > bestR) { bestR = r; best = el; } });
+        carousels.forEach(function (c) { c.classList.toggle('is-active', c === best && bestR > 0); });
+      }, { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] });
+      carousels.forEach(function (c) { io.observe(c); });
+    })();
+  </script>
+
+  <!-- ─── DECK SWITCHER SCRIPT ─── -->
+  <script>
+    (function () {
+      var switcher = document.getElementById('deckSwitcher');
+      var deckLink = switcher.querySelector('a[href*="-deck"]');
+      var sectionSlideMap = {
+        's-reflection': 24,
+        's-outcomes':   20,
+        's-outputs':    15,
+        's-approach':    6,
+        's-opportunity': 3
+      };
+      var sectionOrder = ['s-reflection', 's-outcomes', 's-outputs', 's-approach', 's-opportunity'];
+
+      function getCurrentDeckSlide() {
+        for (var i = 0; i < sectionOrder.length; i++) {
+          var el = document.getElementById(sectionOrder[i]);
+          if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.65) {
+            return sectionSlideMap[sectionOrder[i]];
+          }
+        }
+        return 0;
+      }
+
+      function openSwitcher() {
+        if (deckLink) {
+          var slide = getCurrentDeckSlide();
+          deckLink.href = deckLink.href.split('?')[0] + (slide > 0 ? '?slide=' + slide : '');
+        }
+        switcher.classList.add('is-open');
+        switcher.setAttribute('aria-hidden', 'false');
+      }
+      function closeSwitcher() {
+        switcher.classList.remove('is-open');
+        switcher.setAttribute('aria-hidden', 'true');
+      }
+
+      switcher.addEventListener('click', function (e) { if (e.target === switcher) closeSwitcher(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'm' || e.key === 'M') { switcher.classList.contains('is-open') ? closeSwitcher() : openSwitcher(); }
+        if (e.key === 'Escape') closeSwitcher();
+      });
+    })();
+  </script>
+
 </body>
 </html>
