@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>if(!sessionStorage.getItem('ms_auth'))window.location.replace('money-stories-auth.html');</script>
-  <script src="/js/analytics.js?v=20260608"></script>
+  <script>if(!sessionStorage.getItem('ms_auth')&&!sessionStorage.getItem('portfolio_auth'))window.location.replace('money-stories-auth.html');</script>
+  <script src="/js/analytics.js?v=20260609"></script>
   <title>Money Stories at Money by Afterpay — case study by Carrie Francis-Miller</title>
   <meta name="description" content="Case study: Money Stories at Money by Afterpay (Block, 2021–2022). Personalized, data-led, swipeable spending stories — 55% engagement rate, 400K story views, 27% of actives.">
   <meta name="author" content="Carrie Francis-Miller">
@@ -62,8 +62,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260608">
-  <link rel="stylesheet" href="../css/casestudy.css?v=20260608">
+  <link rel="stylesheet" href="../css/style.css?v=20260609">
+  <link rel="stylesheet" href="../css/casestudy.css?v=20260609">
 
   <style>
     .deck-switcher {
@@ -225,14 +225,29 @@
 
             <div class="cs-approach-block">
               <h3 data-ms-copy="section_research">User research and validation</h3>
-              <p data-ms-copy="research_0">Our initial qualitative field research had given us reason to believe a content-first approach to data was the direction to take</p>
+              <p data-ms-copy="research_0">Our initial qualitative field research had given us reason to believe a content-first approach to data was the direction to take.</p>
               <p data-ms-copy="research_1">When we took the concept back to research participants the response was unanimously positive.</p>
               <p data-ms-copy="research_2">I'd been in the role weeks when I pushed back on leadership to keep Money Stories in the founder deck. We had the qual backing, I had the conviction — and I was right.</p>
-              <blockquote class="cs-quote">
-                <p data-ms-copy="quote_research_text">"It's visually pleasing to go through stories like that. It's not as time consuming as a spreadsheet. I think it would be helpful for me personally because of the data they can gather for me — having it at your fingertips is useful."</p>
-                <footer data-ms-copy="quote_research_attr">— Research participant</footer>
-              </blockquote>
             </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-ms-copy="quote_research_text">"It's visually pleasing to go through stories like that. It's not as time consuming as a spreadsheet. I think it would be helpful for me personally because of the data they can gather for me — having it at your fingertips is useful."</p>
+          <footer data-ms-copy="quote_research_attr">— Research participant</footer>
+        </div>
+      </blockquote>
+
+      <div class="cs-row">
+
+        <div class="cs-row__left"></div>
+
+        <div class="cs-row__right">
+          <div class="cs-approach">
 
             <div class="cs-approach-block">
               <h3 data-ms-copy="section_format">Designing the format: avatars, stories, outros</h3>
@@ -268,11 +283,26 @@
                 <img src="../assets/money stories/partner-stories.png" alt="Money Stories editorial partnerships — Refinery29, Pedestrian Makes Cents, Calm" loading="lazy">
                 <figcaption data-ms-copy="partner_figure_caption">I worked with my marketing partner to harness media partnerships that would make Money Stories about more than just self-reflection.</figcaption>
               </figure>
-              <blockquote class="cs-quote">
-                <p data-ms-copy="quote_cpo_text">"Carrie is great at forming through ambiguity, breaking things apart and guiding cross-functional teams through messiness to outcome. Money Stories was an example of that — pushing forward with an idea, getting buy-in from senior stakeholders and then delivering on a really cool experience all the way from insights to content."</p>
-                <footer data-ms-copy="quote_cpo_attr">— Chief product officer</footer>
-              </blockquote>
             </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-ms-copy="quote_cpo_text">"Carrie is great at forming through ambiguity, breaking things apart and guiding cross-functional teams through messiness to outcome. Money Stories was an example of that — pushing forward with an idea, getting buy-in from senior stakeholders and then delivering on a really cool experience all the way from insights to content."</p>
+          <footer data-ms-copy="quote_cpo_attr">— Chief product officer</footer>
+        </div>
+      </blockquote>
+
+      <div class="cs-row">
+
+        <div class="cs-row__left"></div>
+
+        <div class="cs-row__right">
+          <div class="cs-approach">
 
             <div class="cs-approach-block">
               <h3 data-ms-copy="section_facilitating">Facilitating, mapping, and stress-testing the system</h3>
@@ -285,17 +315,23 @@
                 </video>
                 <figcaption data-ms-copy="facilitating_figure_1_caption">Mapping scenarios and data rules with engineering</figcaption>
               </figure>
-              <blockquote class="cs-quote">
-                <p data-ms-copy="quote_pp_text">"Your work on Money Stories was incredible!"</p>
-                <footer data-ms-copy="quote_pp_attr">— Product partner</footer>
-              </blockquote>
+              <div class="ai-callout">
+                <span class="ai-callout__label">✦ AI in practice</span>
+                <p data-ms-copy="ai_now">AI is most useful when it removes the wait between an idea and seeing it under stress — and this is an ideal scenario to leverage it. Today I would use an AI scenario partner to generate realistic synthetic data across the long tail (high spenders, no-spenders, lumpy pay cycles, weird edge cases) and instantly render the visual story for each one. This would have saved weeks on Money Insight stories.</p>
+              </div>
             </div>
 
           </div>
-
         </div>
 
       </div>
+
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-ms-copy="quote_pp_text">"Your work on Money Stories was incredible!"</p>
+          <footer data-ms-copy="quote_pp_attr">— Product partner</footer>
+        </div>
+      </blockquote>
 
 
       <!-- ── Row 4: Outputs ── -->
@@ -379,7 +415,7 @@
               <h3 class="cs-output-item__heading" data-ms-copy="section_output_makes_cents">Makes Cents with Pedestrian TV →</h3>
               <p data-ms-copy="output_makes_cents_0">A closed loop between community, app, and publisher. Instagram poll on Tuesday → in-app results story the following Tuesday → link out to a long-form data-backed editorial on Pedestrian.com. Held a 55% engagement rate.</p>
               <div class="va-carousel reveal" data-carousel>
-                <div class="va-carousel__track va-carousel__track--manual" style="animation-duration: 121.5s;">
+                <div class="va-carousel__track va-carousel__track--manual" style="animation-duration: 135s;">
                   <div class="va-carousel__item va-carousel__item--video-crop"><video autoplay muted loop playsinline><source src="../assets/money stories/makecents-video-1.mp4" type="video/mp4"></video></div>
                   <div class="va-carousel__item"><img src="../assets/money stories/makecents-1.png" alt="Makes Cents — in-app results story screen 1" loading="lazy"></div>
                   <div class="va-carousel__item va-carousel__item--video-crop"><video autoplay muted loop playsinline><source src="../assets/money stories/makecents-video-2.mp4" type="video/mp4"></video></div>
@@ -389,6 +425,7 @@
                   <div class="va-carousel__item va-carousel__item--video-crop"><video autoplay muted loop playsinline><source src="../assets/money stories/makecents.mp4" type="video/mp4"></video></div>
                   <div class="va-carousel__item"><img src="../assets/money stories/makecents-4.png" alt="Makes Cents — community poll results" loading="lazy"></div>
                   <div class="va-carousel__item"><img src="../assets/money stories/makecents-5.png" alt="Makes Cents — community poll results" loading="lazy"></div>
+                  <div class="va-carousel__item"><img src="../assets/money stories/makecents-6.png" alt="Makes Cents — community poll results" loading="lazy"></div>
                   <!-- Duplicate for seamless loop -->
                   <div class="va-carousel__item va-carousel__item--video-crop"><video autoplay muted loop playsinline><source src="../assets/money stories/makecents-video-1.mp4" type="video/mp4"></video></div>
                   <div class="va-carousel__item"><img src="../assets/money stories/makecents-1.png" alt="" loading="lazy"></div>
@@ -399,6 +436,7 @@
                   <div class="va-carousel__item va-carousel__item--video-crop"><video autoplay muted loop playsinline><source src="../assets/money stories/makecents.mp4" type="video/mp4"></video></div>
                   <div class="va-carousel__item"><img src="../assets/money stories/makecents-4.png" alt="" loading="lazy"></div>
                   <div class="va-carousel__item"><img src="../assets/money stories/makecents-5.png" alt="" loading="lazy"></div>
+                  <div class="va-carousel__item"><img src="../assets/money stories/makecents-6.png" alt="" loading="lazy"></div>
                 </div>
               </div>
               <p class="cs-output-credit" data-ms-copy="output_makes_cents_credit">IC · partnership creative direction, in-app story design</p>
@@ -474,6 +512,7 @@
                 <li data-ms-copy="outcome_business_0">Delivered measurable engagement at a scale the AU org hadn't seen on content surfaces before</li>
                 <li data-ms-copy="outcome_business_1">Created a repeatable partnership playbook (editorial → in-app content, with a publishing rhythm)</li>
                 <li data-ms-copy="outcome_business_2">Generated press-worthy creative moments supporting the Money Positive brand narrative</li>
+                <li data-ms-copy="outcome_business_3">Mumbrella Publish Awards shortlist · Best Publisher-led Advertising Campaign · 2022</li>
               </ul>
             </div>
 
@@ -502,23 +541,12 @@
       </div>
 
 
-      <!-- ── Row 6: Closing quotes ── -->
-      <div class="cs-row">
-
-        <div class="cs-row__left"></div>
-
-        <div class="cs-row__right">
-          <div class="cs-closing-quotes">
-
-            <blockquote class="cs-quote">
-              <p data-ms-copy="quote_viewer_text">"It's like Spotify's yearly review, but for your money."</p>
-              <footer data-ms-copy="quote_viewer_attr">— Money Stories viewer</footer>
-            </blockquote>
-
-          </div>
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-ms-copy="quote_viewer_text">"It's like Spotify's yearly review, but for your money."</p>
+          <footer data-ms-copy="quote_viewer_attr">— Money Stories viewer</footer>
         </div>
-
-      </div>
+      </blockquote>
 
 
       <!-- ── Row 7: Reflection ── -->
@@ -532,7 +560,6 @@
           <p data-ms-copy="reflection_0">I came into the Money by Afterpay team with fresh eyes and trusted my instincts. I recall a lead getting cold feet just before the first Money Stories founder presentation and I pushed back; we had the qualitative backing and I had confidence it was right. I told them I didn't want to drop it from the deck.</p>
           <p data-ms-copy="reflection_1">And I was right. Money Stories achieved 55% engagement — unusually high for a feature that asked people to slow down inside a utility app. Money Stories leveraged the right behavior at the right time.</p>
           <p data-ms-copy="reflection_2">Lateral thinking is easy to talk about and not always as easy to nail. I built out a 'parallel worlds' workshop when working agency side that helped clients get outside of their own segment and competitor silos and into adjacent human behavior. I still think it's one of the most interesting exercises a team can go through. Market landscape research is important; behavioral landscape? Maybe even more.</p>
-          <p data-ms-copy="reflection_3">We collaboratively mapped multiple data scenarios and edge cases with engineering so every story template could survive the messiness of real user data. The limit of that era was that this was manual and inefficient.</p>
         </div>
 
       </div>
@@ -542,10 +569,11 @@
   </main>
 
 
-  <!-- ─── BACK TO SELECTED WORK ─── -->
-  <nav class="cs-next" aria-label="Back to selected work">
+  <!-- ─── NEXT / BACK NAV ─── -->
+  <nav class="cs-next" aria-label="Case study navigation">
     <div class="cs-next__inner">
-      <a href="../index.html" class="cs-back-to-work">Back to selected work →</a>
+      <a href="../index.html" class="cs-back-to-index">← Back to selected work</a>
+      <a href="afterpay-design.html" class="cs-back-to-work">Next: Afterpay Design</a>
     </div>
   </nav>
 
@@ -574,8 +602,8 @@
   </div>
 
 
-  <script src="../js/main.js?v=20260608"></script>
-  <script src="money-stories-copy.js?v=20260608"></script>
+  <script src="../js/main.js?v=20260609"></script>
+  <script src="money-stories-copy.js?v=20260609"></script>
 
   <!-- ─── CAROUSEL INTERSECTION OBSERVER — single winner ─── -->
   <script>

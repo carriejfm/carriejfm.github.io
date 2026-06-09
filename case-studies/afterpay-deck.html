@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>if(!sessionStorage.getItem('ap_auth'))window.location.replace('afterpay-auth.html');</script>
+  <script>if(!sessionStorage.getItem('ap_auth')&&!sessionStorage.getItem('portfolio_auth'))window.location.replace('afterpay-auth.html?dest=deck');</script>
   <title>The rebuild of Afterpay Design — Carrie Francis-Miller</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -204,6 +204,21 @@
     body.is-dark-slide .deck-counter {
       color: rgba(243,243,241,0.35);
     }
+
+    .deck-next-link {
+      display: none;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #F3F3F1;
+      letter-spacing: 0.04em;
+      pointer-events: auto;
+      transition: color var(--transition);
+    }
+    body.is-qa-slide .deck-next-link { display: block; color: #F3F3F1; }
+    body.is-qa-slide .deck-counter { display: none; }
+    .deck-next-link:hover { color: rgba(243,243,241,0.7); }
 
     .deck-hint {
       position: fixed;
@@ -605,9 +620,13 @@
       bottom: var(--slide-pad-v);
       left: var(--slide-pad-h);
       right: var(--slide-pad-h);
-      background: rgba(255,255,255,0.10);
+      background: #EAE7E0;
       border-radius: 0.375rem;
       padding: 0.875rem 1rem;
+    }
+
+    .slide--dark .output-ai-card {
+      background: rgba(255,255,255,0.10);
     }
 
     .output-ai-card__label {
@@ -769,14 +788,17 @@
       margin-top: -50px;
     }
 
-    /* White bar covers the status bar / brand mark area at the top of the phone. */
+    /* White bar covers the status bar / brand mark area at the top of the phone.
+       Uses calc() to stay proportional at all viewport heights: the video is
+       height: calc(100% + 50px) with margin-top: -50px, so the visible brand area
+       = 12% × (phone-wrap + 50px) − 50px = calc(12% − 44px). */
     .slide--output-c .phone-wrap::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 7%;
+      height: calc(12% - 44px);
       background: #fff;
       z-index: 2;
       pointer-events: none;
@@ -784,7 +806,7 @@
 
     /* Mint card: slightly taller bar + off-white to match the mint colorway */
     .slide--output-c .phone-wrap--mint::before {
-      height: calc(7% + 2px);
+      height: calc(12% - 42px);
       background: #FBFBFB;
     }
 
@@ -1083,7 +1105,7 @@
      Duplicate this block for each new slide of this type.
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--title is-active" data-type="title" data-index="0">
-  <a href="../index.html" class="back-link">← back to selected work</a>
+  <a href="../index.html" class="back-link">← Back to selected work</a>
 
   <h1 class="title-text" data-ap-copy="case_title">The rebuild of <span style="white-space:nowrap">Afterpay Design</span></h1>
 
@@ -1538,7 +1560,6 @@
     <p class="output-left__title" data-ap-copy="section_hero">Hero brand moments in app →</p>
     <div class="output-left__body">
       <p data-ap-copy="hero_0">I personally owned the hero brand moments within the app, designing the new US Afterpay Card and how it fit into the wider branding story with my brand partners.</p>
-      <p class="output-left__credit" data-ap-copy="hero_2">IC · card design + motion direction</p>
     </div>
     <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
   </div>
@@ -1550,7 +1571,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 21 OF 30
+     SLIDE 21 OF 29
      SLIDE TYPE: output-c — "Hero brand moments in app" (Green card animation)
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--output slide--output-c" data-type="output-c" data-index="20">
@@ -1579,8 +1600,8 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 22 OF 30
-     SLIDE TYPE: output-c — "Hero brand moments in app" (Mint card animation)
+     SLIDE 22 OF 29
+     SLIDE TYPE: output-c — "Hero brand moments in app" (Mint card — AI callout builds in)
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--output slide--output-c" data-type="output-c" data-index="21" data-continue="true">
   <div class="output-left">
@@ -1590,11 +1611,11 @@
     </div>
     <p class="output-left__title" data-ap-copy="section_hero">Hero brand moments in app →</p>
     <div class="output-left__body">
-      <p data-ap-copy="hero_0">I personally owned the hero brand moments within the app, designing the new US Afterpay Card and how it fit into the wider branding story with my brand partners.</p>
+      <p data-ap-copy="hero_0" data-immediate>I personally owned the hero brand moments within the app, designing the new US Afterpay Card and how it fit into the wider branding story with my brand partners.</p>
       <p data-ap-copy="hero_1" data-immediate>The abstracted loop micro-animation on load gave a wink and a nod to Afterpay roots within the new cash green brand.</p>
-      <p class="output-left__credit" data-ap-copy="hero_2">IC · card design + motion direction</p>
+      <p class="output-left__credit" data-ap-copy="hero_2" data-immediate>IC · card design + motion direction</p>
     </div>
-    <div class="output-ai-card" data-immediate>
+    <div class="output-ai-card">
       <span class="output-ai-card__label">✦ AI in action</span>
       <p data-ap-copy="hero_ai">Later, when we needed to adapt the card animation for the UK — different brand mark, different colorway — I leveraged AI via a combo of internal agent Goose and ChatGPT to rewrite the Lottie JSON directly and tested it in the Lottie viewer.</p>
     </div>
@@ -1821,7 +1842,7 @@
      Duplicate this block for each new slide of this type.
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--qa" data-type="qa" data-index="28">
-  <a href="../index.html" class="back-link">← back to selected work</a>
+  <a href="../index.html" class="back-link">← Back to selected work</a>
   <p class="qa-text">Q+A</p>
 </section>
 
@@ -1829,6 +1850,7 @@
 <!-- ─── FIXED UI ─── -->
 <div class="deck-confidential" aria-hidden="true">PRIVILEGED &amp; CONFIDENTIAL</div>
 <div class="deck-counter-group">
+  <a id="deck-next-link" href="../index.html" class="deck-next-link">Back to selected work →</a>
   <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 29</div>
 </div>
 <div class="deck-hint" aria-hidden="true">← → to navigate</div>
@@ -1843,7 +1865,7 @@
 </div>
 
 <!-- ─── COPY SOURCE ─── -->
-<script src="afterpay-copy.js?v=20260608"></script>
+<script src="afterpay-copy.js?v=20260609"></script>
 
 <script>
   /* ─── DECK ENGINE — vanilla JS, no dependencies ─── */
@@ -2017,6 +2039,13 @@
       } else {
         body.classList.remove('is-title-slide');
       }
+
+      /* QA-slide flag — shows next/back link only on the final slide */
+      if (t === 'qa') {
+        body.classList.add('is-qa-slide');
+      } else {
+        body.classList.remove('is-qa-slide');
+      }
     }
 
     /* ── Navigation handlers ── */
@@ -2103,6 +2132,12 @@
       body.classList.add('is-title-slide');
     }
 
+  })();
+</script>
+<script>
+  (function () {
+    var link = document.getElementById('deck-next-link');
+    if (link) { link.href = 'money-stories-deck.html'; link.textContent = 'Next: Money Stories →'; }
   })();
 </script>
 

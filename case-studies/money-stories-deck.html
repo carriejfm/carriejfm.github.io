@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>if(!sessionStorage.getItem('ms_auth'))window.location.replace('money-stories-auth.html');</script>
+  <script>if(!sessionStorage.getItem('ms_auth')&&!sessionStorage.getItem('portfolio_auth'))window.location.replace('money-stories-auth.html?dest=deck');</script>
   <title>Money Stories — Money by Afterpay — Carrie Francis-Miller</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -170,6 +170,21 @@
     }
 
     body.is-dark-slide .deck-counter { color: rgba(243,243,241,0.35); }
+
+    .deck-next-link {
+      display: none;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #F3F3F1;
+      letter-spacing: 0.04em;
+      pointer-events: auto;
+      transition: color var(--transition);
+    }
+    body.is-qa-slide .deck-next-link { display: block; }
+    body.is-qa-slide .deck-counter { display: none; }
+    .deck-next-link:hover { color: rgba(243,243,241,0.7); }
 
     .deck-hint {
       position: fixed;
@@ -775,6 +790,38 @@
     }
 
     /* ─────────────────────────────────────────
+       AI CALLOUT — content slide
+    ───────────────────────────────────────── */
+
+    .output-ai-card {
+      position: relative;
+      margin-top: 2rem;
+      background: #EAE7E0;
+      border-radius: 0.375rem;
+      padding: 0.875rem 1rem;
+    }
+
+    .output-ai-card__label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.5625rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .output-ai-card p {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ─────────────────────────────────────────
        BUILD-IN ITEMS
     ───────────────────────────────────────── */
 
@@ -876,7 +923,7 @@
      SLIDE 1 OF 33 — title
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--title is-active" data-type="title" data-index="0">
-  <a href="../index.html" class="back-link">← back to selected work</a>
+  <a href="../index.html" class="back-link">← Back to selected work</a>
 
   <h1 class="title-text" data-ms-copy="deck_title">Money Stories</h1>
 
@@ -1041,7 +1088,7 @@
 
   <div class="content-body">
     <h2 class="content-heading" data-ms-copy="section_research">User research and validation</h2>
-    <p data-ms-copy="research_0">Our initial qualitative field research had given us reason to believe a content-first approach to data was the direction to take</p>
+    <p data-ms-copy="research_0">Our initial qualitative field research had given us reason to believe a content-first approach to data was the direction to take.</p>
     <p data-ms-copy="research_1">When we took the concept back to research participants the response was unanimously positive.</p>
     <p data-ms-copy="research_2">I'd been in the role weeks when I pushed back on leadership to keep Money Stories in the founder deck. We had the qual backing, I had the conviction — and I was right.</p>
   </div>
@@ -1223,6 +1270,10 @@
       <source src="../assets/money stories/scenarios-and-data-rules3.mp4" type="video/mp4">
     </video>
     <p class="figure-caption" data-ms-copy="facilitating_figure_1_caption">Mapping scenarios and data rules with engineering</p>
+    <div class="output-ai-card">
+      <span class="output-ai-card__label">✦ AI in practice</span>
+      <p data-ms-copy="ai_now">AI is most useful when it removes the wait between an idea and seeing it under stress — and this is an ideal scenario to leverage it. Today I would use an AI scenario partner to generate realistic synthetic data across the long tail (high spenders, no-spenders, lumpy pay cycles, weird edge cases) and instantly render the visual story for each one. This would have saved weeks on Money Insight stories.</p>
+    </div>
   </div>
 </section>
 
@@ -1370,14 +1421,16 @@
 
   <div class="output-phones" aria-hidden="true">
     <div class="phone-col">
-      <div class="phone-col__track" style="animation-duration: 36s">
+      <div class="phone-col__track" style="animation-duration: 48s">
         <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents-video-1.mp4" type="video/mp4"></video></div>
         <div class="phone-tile"><img src="../assets/money stories/makecents-1.png" alt=""></div>
         <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-6.png" alt=""></div>
         <!-- duplicate for seamless loop -->
         <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents-video-1.mp4" type="video/mp4"></video></div>
         <div class="phone-tile"><img src="../assets/money stories/makecents-1.png" alt=""></div>
         <div class="phone-tile"><video muted loop playsinline><source src="../assets/money stories/makecents.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-6.png" alt=""></div>
       </div>
     </div>
     <div class="phone-col">
@@ -1516,6 +1569,7 @@
         <li data-ms-copy="impact_business_0">Measurable engagement at a scale the AU org hadn't seen on content surfaces</li>
         <li data-ms-copy="impact_business_1">Repeatable partnership playbook — editorial → in-app, with publishing rhythm</li>
         <li data-ms-copy="impact_business_2">Press-worthy creative moments supporting Money Positive brand narrative</li>
+        <li data-ms-copy="impact_business_3">Mumbrella Publish Awards shortlist · Best Publisher-led Advertising Campaign · 2022</li>
       </ul>
     </div>
 
@@ -1569,7 +1623,6 @@
     <p data-ms-copy="reflection_0">I came into the Money by Afterpay team with fresh eyes and trusted my instincts. I recall a lead getting cold feet just before the first Money Stories founder presentation and I pushed back; we had the qualitative backing and I had confidence it was right. I told them I didn't want to drop it from the deck.</p>
     <p data-ms-copy="reflection_1">And I was right. Money Stories achieved 55% engagement — unusually high for a feature that asked people to slow down inside a utility app. Money Stories leveraged the right behavior at the right time.</p>
     <p data-ms-copy="reflection_2">Lateral thinking is easy to talk about and not always as easy to nail. I built out a 'parallel worlds' workshop when working agency side that helped clients get outside of their own segment and competitor silos and into adjacent human behavior. I still think it's one of the most interesting exercises a team can go through. Market landscape research is important; behavioral landscape? Maybe even more.</p>
-    <p data-ms-copy="reflection_3">AI is most useful when it removes the wait between an idea and seeing it under stress — and this is an ideal scenario to leverage it. I collaboratively mapped countless data scenarios and edge cases with engineering so every story template could survive the messiness of real user data. The limit of that era was that this was manual and inefficient — today I would use an AI scenario partner to generate realistic synthetic data across the long tail and instantly render the visual story for each one. This would have saved weeks.</p>
   </div>
 </section>
 
@@ -1578,7 +1631,7 @@
      SLIDE 34 OF 34 — qa
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--qa" data-type="qa" data-index="33">
-  <a href="../index.html" class="back-link">← back to selected work</a>
+  <a href="../index.html" class="back-link">← Back to selected work</a>
   <p class="qa-text">Q+A</p>
 </section>
 
@@ -1586,6 +1639,7 @@
 <!-- ─── FIXED UI ─── -->
 <div class="deck-confidential" aria-hidden="true">PRIVILEGED &amp; CONFIDENTIAL</div>
 <div class="deck-counter-group">
+  <a id="deck-next-link" href="../index.html" class="deck-next-link">Back to selected work →</a>
   <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 33</div>
 </div>
 <div class="deck-hint" aria-hidden="true">← → to navigate</div>
@@ -1600,7 +1654,7 @@
 </div>
 
 <!-- ─── COPY SOURCE ─── -->
-<script src="money-stories-copy.js?v=20260608"></script>
+<script src="money-stories-copy.js?v=20260609"></script>
 
 <script>
   /* ─── DECK ENGINE — matches afterpay-deck.html ─── */
@@ -1749,6 +1803,12 @@
         body.classList.remove('is-title-slide');
       }
 
+      if (t === 'qa') {
+        body.classList.add('is-qa-slide');
+      } else {
+        body.classList.remove('is-qa-slide');
+      }
+
       syncSlideVideos();
     }
 
@@ -1841,6 +1901,12 @@
 
     syncSlideVideos();
 
+  })();
+</script>
+<script>
+  (function () {
+    var link = document.getElementById('deck-next-link');
+    if (link) { link.href = 'afterpay-deck.html'; link.textContent = 'Next: Afterpay Design →'; }
   })();
 </script>
 

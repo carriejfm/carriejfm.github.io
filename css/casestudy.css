@@ -252,8 +252,7 @@
    GOAL CALLOUT — standalone, between rows
 ───────────────────────────────────────── */
 .cs-goal {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border-light);
   font-family: var(--font-display);
   font-weight: 300;
   font-style: normal;
@@ -346,7 +345,25 @@
    QUOTE
 ───────────────────────────────────────── */
 .cs-quote {
-  margin-top: var(--space-sm);
+  border-top: 1px solid var(--border-light);
+  padding: var(--space-xl) 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+}
+
+.cs-quote__inner {
+  grid-column: 6 / 13;
+}
+
+@media (max-width: 768px) {
+  .cs-quote {
+    grid-template-columns: 1fr;
+    padding: 3rem 0;
+  }
+  .cs-quote__inner {
+    grid-column: 1;
+  }
 }
 
 .cs-quote p {
@@ -373,7 +390,7 @@
    AI CALLOUT — reuse from style.css
 ───────────────────────────────────────── */
 .cs-row__right .ai-callout {
-  margin-top: var(--space-xl);
+  margin-top: 1rem;
 }
 
 .cs-output-item .ai-callout {
@@ -765,10 +782,24 @@
   max-width: var(--max-w);
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.4rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
+
+/* Back-to-index link — left side of bottom nav row */
+.cs-back-to-index {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--size-sm);
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  transition: opacity var(--transition);
+}
+.cs-back-to-index:hover { opacity: 0.6; }
 
 .cs-next__label {
   display: none;

@@ -6,7 +6,7 @@
   <!-- AUTH GUARD — add this if the case study is password-gated. Must be FIRST in <head>. -->
   <!-- Replace {slug}_auth with e.g. ap_auth or ms_auth, and {slug}-auth.html with the auth page. -->
   <!-- <script>if(!sessionStorage.getItem('{slug}_auth'))window.location.replace('{slug}-auth.html');</script> -->
-  <script src="/js/analytics.js?v=20260608"></script>
+  <script src="/js/analytics.js?v=20260609"></script>
 
   <!-- ─── REPLACE THESE PER CASE STUDY ─────────────────────────────────────── -->
   <!-- Title pattern: "{Project} at {Client} — case study by Carrie Francis-Miller" -->
@@ -68,8 +68,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260608">
-  <link rel="stylesheet" href="../css/casestudy.css?v=20260608">
+  <link rel="stylesheet" href="../css/style.css?v=20260609">
+  <link rel="stylesheet" href="../css/casestudy.css?v=20260609">
 
   <!-- ─── DECK SWITCHER STYLES (remove if this case study has no deck) ──────── -->
   <style>
@@ -240,18 +240,39 @@
               <h3 data-cs-copy="section_{block_key}">{Approach block heading}</h3>
               <p data-cs-copy="{block_key}_0">{Paragraph 1}</p>
               <p data-cs-copy="{block_key}_1">{Paragraph 2}</p>
-              <!-- Optional quote after each block.
-                   Use _text / _attr split keys, not the combined quote_* key.
-                   The combined key is for deck only. -->
-              <blockquote class="cs-quote">
-                <p data-cs-copy="quote_{key}_text">"{Quote text}"</p>
-                <footer data-cs-copy="quote_{key}_attr">— {Attribution}</footer>
-              </blockquote>
             </div>
 
           </div>
         </div>
 
+      </div>
+
+      <!-- Quote: lifted to cs-body__inner level so border spans full width.
+           cs-quote__inner constrains text to the right column (grid-column 6/13).
+           Use _text / _attr split keys; combined quote_* key is for deck only. -->
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-cs-copy="quote_{key}_text">"{Quote text}"</p>
+          <footer data-cs-copy="quote_{key}_attr">— {Attribution}</footer>
+        </div>
+      </blockquote>
+
+      <!-- Continue approach in a new row with empty left column.
+           Repeat the quote + new cs-row pattern for each additional quote. -->
+      <div class="cs-row">
+        <div class="cs-row__left"></div>
+        <div class="cs-row__right">
+          <div class="cs-approach">
+
+            <!-- Clone cs-approach-block elements as needed -->
+            <div class="cs-approach-block">
+              <h3 data-cs-copy="section_{block_key}">{Approach block heading}</h3>
+              <p data-cs-copy="{block_key}_0">{Paragraph 1}</p>
+              <p data-cs-copy="{block_key}_1">{Paragraph 2}</p>
+            </div>
+
+          </div>
+        </div>
       </div>
 
 
@@ -387,23 +408,13 @@
       </div>
 
 
-      <!-- ── Row 6: Closing quotes (empty left column) ── -->
-      <div class="cs-row">
-
-        <div class="cs-row__left"></div>
-
-        <div class="cs-row__right">
-          <div class="cs-closing-quotes">
-
-            <blockquote class="cs-quote">
-              <p data-cs-copy="quote_{key}_text">"{Quote text}"</p>
-              <footer data-cs-copy="quote_{key}_attr">— {Attribution}</footer>
-            </blockquote>
-
-          </div>
+      <!-- Closing quote: same pattern as approach quotes — lifted to cs-body__inner level. -->
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-cs-copy="quote_{key}_text">"{Quote text}"</p>
+          <footer data-cs-copy="quote_{key}_attr">— {Attribution}</footer>
         </div>
-
-      </div>
+      </blockquote>
 
 
       <!-- ── Row 7: Reflection ── -->
@@ -463,10 +474,10 @@
   <!-- ──────────────────────────────────────────────────────────────────────── -->
 
 
-  <script src="../js/main.js?v=20260608"></script>
+  <script src="../js/main.js?v=20260609"></script>
 
   <!-- Copy injection — rename per project (e.g. money-stories-copy.js) -->
-  <script src="{slug}-copy.js?v=20260608"></script>
+  <script src="{slug}-copy.js?v=20260609"></script>
 
   <!-- ─── CAROUSEL INTERSECTION OBSERVER ──────────────────────────────────── -->
   <!-- Activates .va-carousel[data-carousel] elements as they scroll into view  -->
@@ -475,11 +486,13 @@
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var carousels = document.querySelectorAll('.va-carousel[data-carousel]');
       if (!carousels.length) return;
+      var ratios = new Map();
       var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          entry.target.classList.toggle('is-active', entry.isIntersecting);
-        });
-      }, { threshold: 0.1 });
+        entries.forEach(function (e) { ratios.set(e.target, e.intersectionRatio); });
+        var best = null, bestR = 0;
+        ratios.forEach(function (r, el) { if (r > bestR) { bestR = r; best = el; } });
+        carousels.forEach(function (c) { c.classList.toggle('is-active', c === best && bestR > 0); });
+      }, { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] });
       carousels.forEach(function (c) { io.observe(c); });
     })();
   </script>

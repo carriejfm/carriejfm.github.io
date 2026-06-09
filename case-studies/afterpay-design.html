@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>if(!sessionStorage.getItem('ap_auth'))window.location.replace('afterpay-auth.html');</script>
-  <script src="/js/analytics.js?v=20260608"></script>
+  <script>if(!sessionStorage.getItem('ap_auth')&&!sessionStorage.getItem('portfolio_auth'))window.location.replace('afterpay-auth.html');</script>
+  <script src="/js/analytics.js?v=20260609"></script>
   <title>The rebuild of Afterpay Design — Carrie Francis-Miller</title>
   <meta name="description" content="Case study: the rebuild of Afterpay Design as a strategic function (Block, 2024–2025) — 2 to 7 designers, regulated fintech delivery across three markets, +36% YoY growth, 1.5–6× referral lift on Shop.">
   <meta name="author" content="Carrie Francis-Miller">
@@ -40,8 +40,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260608">
-  <link rel="stylesheet" href="../css/casestudy.css?v=20260608">
+  <link rel="stylesheet" href="../css/style.css?v=20260609">
+  <link rel="stylesheet" href="../css/casestudy.css?v=20260609">
 
   <!-- Structured data: CreativeWork -->
   <script type="application/ld+json">
@@ -221,36 +221,69 @@
               <p data-ap-copy="approach_rebuild_0">I rebuilt the team from the ground up, establishing clear ownership across work streams and introducing best practices in team rituals and tooling.</p>
               <p data-ap-copy="approach_rebuild_1">A culture of clear feedback and psychological safety was grown with clarity in roles, consistency in the day-to-day and reconnection with the broader design org. I stepped into difficult conversations with adjacent teams to mediate and reset.</p>
               <p data-ap-copy="approach_rebuild_2">I coached individuals through challenging situations, including unblocking a high-performing, autonomous designer from a performance misunderstanding.</p>
-              <blockquote class="cs-quote">
-                <p data-ap-copy="quote_product_partner_text">"Carrie built an incredibly talented team and created the environment for them to lean in with ownership."</p>
-                <footer data-ap-copy="quote_product_partner_attr">— Product partner</footer>
-              </blockquote>
-            </div>
-
-            <div class="cs-approach-block">
-              <h3 data-ap-copy="section_problem">Solution-led to problem-led</h3>
-              <p data-ap-copy="approach_problem_0">I shifted the team from executing predefined solutions to defining problems. Through the unpacking of regulatory, business, and behavioral drivers we aligned as a team to redefine and understand opportunities.</p>
-              <p data-ap-copy="approach_problem_1">Designers worked with measurable success criteria in mind and solved problems with true ownership. It made for better cross-functional culture and better delivery outcomes.</p>
-              <blockquote class="cs-quote">
-                <p data-ap-copy="quote_design_manager_text">"She pushed back and held the line when warranted… while building credibility and trust across teams."</p>
-                <footer data-ap-copy="quote_design_manager_attr">— Design manager</footer>
-              </blockquote>
-            </div>
-
-            <div class="cs-approach-block">
-              <h3 data-ap-copy="section_xfn">Cross-functional alignment</h3>
-              <p data-ap-copy="approach_xfn_0">I established consistent alignment across product, engineering, legal, and compliance through a shared roadmap with design capacity visibility, regular 1:1s with product partners and actively embedding research and JTBDs into roadmap and PRDs.</p>
-              <p data-ap-copy="approach_xfn_1">When last-minute requests came up or scope thrashed (as they do), we had the footing to handle it — allowing us to reprioritize, make better tradeoffs or push back if needed. Embedded within the regional leadership team, I influenced strategy and presented to C-suite.</p>
-              <blockquote class="cs-quote">
-                <p data-ap-copy="quote_eng_partner_text">"Her prioritization was crucial in helping the team focus on the most impactful work and ultimately meet our release timeline."</p>
-                <footer data-ap-copy="quote_eng_partner_attr">— Engineering partner</footer>
-              </blockquote>
             </div>
 
           </div>
         </div>
 
       </div>
+
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-ap-copy="quote_product_partner_text">"Carrie built an incredibly talented team and created the environment for them to lean in with ownership."</p>
+          <footer data-ap-copy="quote_product_partner_attr">— Product partner</footer>
+        </div>
+      </blockquote>
+
+      <div class="cs-row">
+
+        <div class="cs-row__left"></div>
+
+        <div class="cs-row__right">
+          <div class="cs-approach">
+
+            <div class="cs-approach-block">
+              <h3 data-ap-copy="section_problem">Solution-led to problem-led</h3>
+              <p data-ap-copy="approach_problem_0">I shifted the team from executing predefined solutions to defining problems. Through the unpacking of regulatory, business, and behavioral drivers we aligned as a team to redefine and understand opportunities.</p>
+              <p data-ap-copy="approach_problem_1">Designers worked with measurable success criteria in mind and solved problems with true ownership. It made for better cross-functional culture and better delivery outcomes.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-ap-copy="quote_design_manager_text">"She pushed back and held the line when warranted… while building credibility and trust across teams."</p>
+          <footer data-ap-copy="quote_design_manager_attr">— Design manager</footer>
+        </div>
+      </blockquote>
+
+      <div class="cs-row">
+
+        <div class="cs-row__left"></div>
+
+        <div class="cs-row__right">
+          <div class="cs-approach">
+
+            <div class="cs-approach-block">
+              <h3 data-ap-copy="section_xfn">Cross-functional alignment</h3>
+              <p data-ap-copy="approach_xfn_0">I established consistent alignment across product, engineering, legal, and compliance through a shared roadmap with design capacity visibility, regular 1:1s with product partners and actively embedding research and JTBDs into roadmap and PRDs.</p>
+              <p data-ap-copy="approach_xfn_1">When last-minute requests came up or scope thrashed (as they do), we had the footing to handle it — allowing us to reprioritize, make better tradeoffs or push back if needed. Embedded within the regional leadership team, I influenced strategy and presented to C-suite.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-ap-copy="quote_eng_partner_text">"Her prioritization was crucial in helping the team focus on the most impactful work and ultimately meet our release timeline."</p>
+          <footer data-ap-copy="quote_eng_partner_attr">— Engineering partner</footer>
+        </div>
+      </blockquote>
 
 
       <!-- ── Row 4: Outputs ── -->
@@ -474,28 +507,19 @@
       </div>
 
 
-      <!-- ── Row 7: Closing quotes (empty left) ── -->
-      <div class="cs-row">
-
-        <div class="cs-row__left"></div>
-
-        <div class="cs-row__right">
-          <div class="cs-closing-quotes">
-
-            <blockquote class="cs-quote">
-              <p data-ap-copy="quote_xfn_partner_text">"Carrie has been able to effectively communicate and align strategies across teams, adapting team structures and resources to meet evolving business needs."</p>
-              <footer data-ap-copy="quote_xfn_partner_attr">— Cross-functional partner</footer>
-            </blockquote>
-
-            <blockquote class="cs-quote">
-              <p data-ap-copy="quote_cmo_text">"She has a strong, positive influence at the leadership level — bringing both strategic thinking and empathy to complex initiatives."</p>
-              <footer data-ap-copy="quote_cmo_attr">— Afterpay CMO</footer>
-            </blockquote>
-
-          </div>
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-ap-copy="quote_xfn_partner_text">"Carrie has been able to effectively communicate and align strategies across teams, adapting team structures and resources to meet evolving business needs."</p>
+          <footer data-ap-copy="quote_xfn_partner_attr">— Cross-functional partner</footer>
         </div>
+      </blockquote>
 
-      </div>
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-ap-copy="quote_cmo_text">"She has a strong, positive influence at the leadership level — bringing both strategic thinking and empathy to complex initiatives."</p>
+          <footer data-ap-copy="quote_cmo_attr">— Afterpay CMO</footer>
+        </div>
+      </blockquote>
 
 
       <!-- ── Row 8: Reflection ── -->
@@ -519,10 +543,11 @@
   </main>
 
 
-  <!-- ─── BACK TO SELECTED WORK ─── -->
-  <nav class="cs-next" aria-label="Back to selected work">
+  <!-- ─── NEXT / BACK NAV ─── -->
+  <nav class="cs-next" aria-label="Case study navigation">
     <div class="cs-next__inner">
-      <a href="../index.html" class="cs-back-to-work">Back to selected work</a>
+      <a href="../index.html" class="cs-back-to-index">← Back to selected work</a>
+      <a href="money-stories-design.html" class="cs-back-to-work">Next: Money Stories</a>
     </div>
   </nav>
 
@@ -550,8 +575,8 @@
     <p class="deck-switcher__hint">m or esc to close</p>
   </div>
 
-  <script src="../js/main.js?v=20260608"></script>
-  <script src="afterpay-copy.js?v=20260608"></script>
+  <script src="../js/main.js?v=20260609"></script>
+  <script src="afterpay-copy.js?v=20260609"></script>
   <script>
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -619,5 +644,6 @@
       });
     })();
   </script>
+
 </body>
 </html>

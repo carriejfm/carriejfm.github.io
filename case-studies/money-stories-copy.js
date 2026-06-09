@@ -32,9 +32,9 @@ var MS_COPY = {
   deck_company: "Money by Afterpay · Block · 2021–2022",
 
   /* ── Role rows (scroll + deck) ───────────────────────────────────── */
-  role_responsible: "Creator, designer and design lead on Money Stories and subsequent workstreams",
-  role_accountable: "Design partner to media and content, driving standards for design team ways of working, culture and craft",
-  role_consulted:   "Broader Money by Afterpay positioning strategy, engineering and product decisions",
+  role_responsible: "Originated the concept and led design across Money Stories, Insights and adjacent content workstreams",
+  role_accountable: "Established content systems and partner publishing workflows; drove design team ways of working, culture and craft",
+  role_consulted:   "Broader Money by Afterpay positioning strategy, product and engineering decisions",
 
   /* ── Section headings ────────────────────────────────────────────── */
   section_opportunity:   "Opportunity",
@@ -49,7 +49,7 @@ var MS_COPY = {
   /* ── Context / Opportunity ──────────────────────────────────────── */
   opportunity_0: "In 2021 Afterpay had embarked on a new proposition: Money by Afterpay — a money-positive neobank-style product for the Afterpay consumer base.",
   opportunity_1: "A year into the Covid digital surge, the Afterpay audience wasn't asking for a spreadsheet or dashboard to help manage their finances; they were living on Instagram, consuming Reels, swiping stories.",
-  opportunity_2: "I was brought in as design principal to help Millennials and Gen Z 'feel' their money. Banking UX had no native format for the behavior young money-anxious users were already fluent in. I put two and two together and Money Stories was born.",
+  opportunity_2: "I was brought in as design principal to help Millennials and Gen Z 'feel' their money. Banking UX had no native format for the behavior young money-anxious users were already fluent in. Money Stories was the obvious solution — once you stopped looking at banking competitors and started looking at how people actually spent their attention.",
 
   /* ── Goal ───────────────────────────────────────────────────────── */
   goal: "make money feel as easy as Instagram — turning raw spending data into bite-sized insight and low-barrier-to-entry action.",
@@ -110,7 +110,7 @@ var MS_COPY = {
   output_stories_0:           "Three story types on three distinct cadences — Daily Spend, Afterpay Spend, and Weekly Insights — each generated from the user's own data. Playful messaging and deep links to take action were punctuated throughout. Each weekly drop ended with an Outro — a deliberately mindful bookend that helped users pause and ground in positivity.",
   output_r29_0:               "Long-form editorial, re-cut for a swipe. Refinery29's Money Diaries franchise translated into a weekly short-form story dropping each Thursday.",
   output_makes_cents_0:       "A closed loop between community, app, and publisher. A poll went out on Tuesdays and in-app results posted a week later with a link out to a long-form data-backed editorial on Pedestrian.com. This story held a 55% engagement rate in-app.",
-  output_savers_insights_0:   "The flywheel only closes if users act on what they see. Money Insights, Future Me savers and roundups, and Money Fit challenges were the three workstreams designed to do exactly that, turn a story into a next step.",
+  output_savers_insights_0:   "The flywheel only closes if users act on what they see. Money Insights, Future Me savers and roundups, and Money Fit challenges were the three workstreams designed to do exactly that — turning a story into a next step.",
 
   /* ── AI in Practice ──────────────────────────────────────────────── */
   ai_then: "We collaboratively mapped multiple data scenarios and edge cases with engineering so every story template could survive the messiness of real user data. The limit of that era was that this was manual and inefficient.",
@@ -120,7 +120,7 @@ var MS_COPY = {
   output_stories_credit:          "IC & lead · Design, strategy, system and tooling",
   output_r29_credit:              "IC & lead · Strategy, partnership creative direction",
   output_makes_cents_credit:      "IC & lead · Strategy, partnership creative direction",
-  output_savers_insights_credit:  "Lead on Savers and Money fit · IC on Money Insights",
+  output_savers_insights_credit:  "Lead on Savers and Money Fit · IC on Money Insights",
 
   /* ── Stats — values shared across scroll + deck ─────────────────── */
   stat_1_value: "55%",  stat_1_label: "Engagement rate · Makes Cents",
@@ -141,6 +141,7 @@ var MS_COPY = {
   impact_business_0: "Measurable engagement at a scale the AU org hadn't seen on content surfaces",
   impact_business_1: "Repeatable partnership playbook — editorial → in-app, with publishing rhythm",
   impact_business_2: "Press-worthy creative moments supporting Money Positive brand narrative",
+  impact_business_3: "Mumbrella Publish Awards shortlist · Best Publisher-led Advertising Campaign · 2022",
   impact_team_0:     "Led multi-stream design across Money Stories, Savers, Categories, Fit",
   impact_team_1:     "Built tooling and ways of working that influenced the wider design team",
   impact_team_2:     "Modelled lead by participating — hands-on in Figma while scaling craft",
@@ -157,6 +158,7 @@ var MS_COPY = {
   outcome_business_0: "Delivered measurable engagement at a scale the AU org hadn't seen on content surfaces before",
   outcome_business_1: "Created a repeatable partnership playbook (in-app content → editorial publishing rhythm)",
   outcome_business_2: "Generated press-worthy creative moments supporting the Money Positive brand narrative",
+  outcome_business_3: "Mumbrella Publish Awards shortlist · Best Publisher-led Advertising Campaign · 2022",
   outcome_team_0:     "Led a multi-stream design group across Money Stories, Savers, Insights and Money Fit",
   outcome_team_1:     "Built tooling, ways of working and rituals that influenced the wider design team",
   outcome_team_2:     "Modelled hands-on leadership, building product while scaling the craft",
@@ -166,10 +168,9 @@ var MS_COPY = {
   outcome_product_3:  "Stood up a partner authoring model so R29, Pedestrian and Calm could publish within the system",
 
   /* ── Reflection ─────────────────────────────────────────────────── */
-  reflection_0: "I came into the Money by Afterpay team with fresh eyes and trusted my instincts. I recall a lead getting cold feet just before the first Money Stories founder presentation and I pushed back; we had the qualitative backing and I had confidence it was right. I told them I didn't want to drop it from the deck.",
+  reflection_0: "I came into the Money by Afterpay team with fresh eyes and trusted my instincts. I recall a lead getting cold feet just before the first Money Stories founder presentation and I pushed back; we had the qualitative backing and I had confidence it was right. I told them we should keep it in the deck.",
   reflection_1: "And I was right. Money Stories achieved 55% engagement — unusually high for a feature that asked people to slow down inside a utility app. Money Stories leveraged the right behavior at the right time.",
   reflection_2: "Lateral thinking is easy to talk about and not always as easy to nail. I built out a 'parallel worlds' workshop when working agency side that helped clients get outside of their own segment and competitor silos and into adjacent human behavior. I still think it's one of the most interesting exercises a team can go through. Market landscape research is important; behavioral landscape? Maybe even more.",
-  reflection_3: "AI is most useful when it removes the wait between an idea and seeing it under stress — and this is an ideal scenario to leverage it. I collaboratively mapped countless data scenarios and edge cases with engineering so every story template could survive the messiness of real user data. The limit of that era was that this was manual and inefficient–Today I would use an AI scenario partner to generate realistic synthetic data across the long tail (high spenders, no-spenders, lumpy pay cycles, weird edge cases) and instantly render the visual story for each one. This would have saved weeks on Money Insight stories.",
 
   /* ── Quotes — combined (deck) ────────────────────────────────────── */
   quote_research: '"It\'s visually pleasing to go through stories like that. It\'s not as time consuming as a spreadsheet. I think it would be helpful for me personally because of the data they can gather for me — having it at your fingertips is useful." — Research participant',

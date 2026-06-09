@@ -144,7 +144,7 @@
   <script>
     (function () {
       var PASSWORD = 'canipetthatdog';
-      var DEST     = 'afterpay-design.html';
+      var DEST     = new URLSearchParams(window.location.search).get('dest') === 'deck' ? 'afterpay-deck.html' : 'afterpay-design.html';
 
       var input = document.getElementById('pwInput');
       var btn   = document.getElementById('submitBtn');
@@ -153,6 +153,7 @@
       function attempt() {
         if (input.value.trim() === PASSWORD) {
           sessionStorage.setItem('ap_auth', '1');
+          sessionStorage.setItem('portfolio_auth', '1');
           window.location.replace(DEST);
         } else {
           error.classList.add('is-visible');
