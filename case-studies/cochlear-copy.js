@@ -62,7 +62,7 @@ var CC_COPY = {
   opportunity_2: "I quickly assessed the work to be done wasn't just design. We needed to rebuild shared language, frameworks, and infrastructure to make good work possible even when I wasn't in the room to push things forward. We needed to win back trust and forge a shared way of working across clinical, product and design.",
 
   /* ── Goal ───────────────────────────────────────────────────────── */
-  goal: "Build a product, research culture, and a way of working that Cochlear would still be using long after ustwo handed over.",
+  goal: "Build a product, research culture, and ways of working that Cochlear can use long after ustwo hands over.",
 
   /* ── Hypothesis ─────────────────────────────────────────────────── */
   hypothesis: "I believe that interpersonal work and design work are reliant on one another — investing in both will leave Cochlear with more capability, not just more product.",
