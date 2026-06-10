@@ -97,6 +97,15 @@
   display: block;
 }
 
+.cs-hero__caption {
+  grid-column: 1 / 13;
+  margin-top: -0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--text-faint);
+  line-height: 1.6;
+}
+
 /* Inline image within an approach block — full width, natural ratio, caption below */
 .cs-approach-figure {
   margin: var(--space-md) 0;

@@ -26,6 +26,7 @@ var MS_COPY = {
   case_title:     "Money Stories: swipeable money management",
   project_string: "Money by Afterpay · Block // 2021–2022",
   role_title:     "Design Principal and Lead",
+  hero_caption:   "Money Stories – swipeable, actionable money management inside a low-barrier neo-banking app",
 
   /* ── Deck-specific meta (deck only) ─────────────────────────────── */
   deck_title:   "Money Stories: swipeable money management",

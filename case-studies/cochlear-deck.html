@@ -135,7 +135,7 @@
     .slide--title .title-text {
       position: absolute; left: var(--slide-pad-h);
       top: 50%; transform: translateY(-20%);
-      font-family: var(--font-display); font-size: clamp(4rem, 8vw, 7rem);
+      font-family: var(--font-display); font-size: clamp(5rem, 10vw, 9rem);
       font-weight: 300; color: #F3F3F1; line-height: 1.05;
     }
     .slide--title .title-meta {
@@ -343,6 +343,23 @@
       font-weight: 300; color: #F3F3F1; line-height: 1.0;
     }
 
+    /* ─── FIGURE SLIDE ─── */
+    .slide--figure .figure-inner {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(72%, 900px);
+      display: flex; flex-direction: column; align-items: flex-start;
+    }
+    .slide--figure .figure-img {
+      width: 100%; height: auto; display: block;
+    }
+    .slide--figure .figure-caption {
+      margin-top: 1.25rem;
+      font-family: var(--font-mono); font-size: var(--size-xs);
+      color: var(--text-faint); text-align: left; line-height: 1.6; width: 100%;
+    }
+
     /* ─── IMAGE PLACEHOLDER ─── */
     .img-placeholder {
       width: 100%; height: 100%;
@@ -424,11 +441,11 @@
 <section class="slide slide--dark slide--title is-active" data-type="title" data-index="0">
   <a href="../index.html" class="back-link">← Back to selected work</a>
 
-  <h1 class="title-text" data-cc-copy="deck_title">CoPilot: building a hearing rehab product, a research culture, and an agency partnership</h1>
+  <h1 class="title-text" data-cc-copy="deck_title">Building hearing rehab with Cochlear Copilot</h1>
 
   <div class="title-meta">
     <span class="title-meta__company" data-cc-copy="deck_company">Cochlear · ustwo · 2020–2021</span>
-    <span class="title-meta__role" data-cc-copy="role_title">Embedded cross-functional design lead</span>
+    <span class="title-meta__role" data-cc-copy="role_title">Embedded design lead</span>
   </div>
 </section>
 
@@ -556,12 +573,30 @@
     <h2 class="content-heading" data-cc-copy="section_embedded">Embedded leadership</h2>
     <p data-cc-copy="embedded_0"></p>
     <p data-cc-copy="embedded_1"></p>
+    <p data-cc-copy="embedded_2"></p>
+    <p data-cc-copy="embedded_3"></p>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 10 OF 27 — CONTENT: CoCreators programme
+     SLIDE 10 OF 28 — FIGURE: Design + Learn cadence
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--figure" data-type="figure" data-index="9">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/design-cadence-categories.png" alt="Design + Learn cadence — six categories of design work">
+    <p class="figure-caption" data-cc-copy="design_cadence_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 11 OF 28 — CONTENT: CoCreators programme
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--content" data-type="content" data-index="9">
   <div class="slide-header">
@@ -900,7 +935,7 @@
 <div class="deck-confidential" aria-hidden="true">PRIVILEGED &amp; CONFIDENTIAL</div>
 <div class="deck-counter-group">
   <a id="deck-next-link" href="afterpay-deck.html" class="deck-next-link">Next: Afterpay Design →</a>
-  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 27</div>
+  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 28</div>
 </div>
 <div class="deck-hint" aria-hidden="true">← → to navigate</div>
 
@@ -1085,9 +1120,9 @@
     var switcher = document.getElementById('deckSwitcher');
 
     function slideToScrollAnchor(idx) {
-      if (idx >= 25) return '#s-reflection';
-      if (idx >= 21) return '#s-outcomes';
-      if (idx >= 16) return '#s-outputs';
+      if (idx >= 26) return '#s-reflection';
+      if (idx >= 22) return '#s-outcomes';
+      if (idx >= 17) return '#s-outputs';
       if (idx >= 6)  return '#s-approach';
       if (idx >= 3)  return '#s-opportunity';
       return '';

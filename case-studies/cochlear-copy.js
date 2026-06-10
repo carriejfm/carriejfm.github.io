@@ -27,18 +27,18 @@
 var CC_COPY = {
 
   /* ── Meta ───────────────────────────────────────────────────────── */
-  case_title:     "CoPilot: building a hearing rehab product, a research culture, and an agency partnership",
+  case_title:     "Building hearing rehab with Cochlear Copilot",
   project_string: "Cochlear · ustwo // 2020–2021",
-  role_title:     "Embedded cross-functional design lead",
+  role_title:     "Embedded design lead",
 
   /* ── Deck-specific meta ──────────────────────────────────────────── */
-  deck_title:   "CoPilot: building a hearing rehab product, a research culture, and an agency partnership",
+  deck_title:   "Building hearing rehab with Cochlear Copilot",
   deck_company: "Cochlear · ustwo · 2020–2021",
 
   /* ── Role rows ───────────────────────────────────────────────────── */
-  role_responsible: "Cross-functional design lead embedded with the Cochlear product team. Facilitator across strategy, ideation, research, and delivery. Hands-on design contributor to Skill Builders, Need Enablers, Content Tagging, FTU, Wayfinding, and Personalisation.",
-  role_accountable: "Design quality, research rigour, and delivery cadence across CoPilot. Single design point of contact between Cochlear stakeholders and the ustwo team. Articulation of design priorities across the 2020–2021 roadmap.",
-  role_consulted:   "Cochlear clinical researchers and SMEs (Janette and team), product leads (Val, Jim), in-house clinicians. ustwo team: Bec, Andrés, Pouria, Kenny, Vijay, Howo, Alex D, Libby.",
+  role_responsible: "Led the embedded cross-functional product team across research, facilitation, delivery, content and personalization strategy.",
+  role_accountable: "Owned the Cochlear stakeholder relationship, design quality, research rigor and articulation of roadmap design priorities.",
+  role_consulted:   "Partnered with product on roadmap planning and worked with Cochlear's clinical research SMEs to translate clinical requirements into product and design language.",
 
   /* ── Section headings ────────────────────────────────────────────── */
   section_opportunity:   "Opportunity",
@@ -57,19 +57,23 @@ var CC_COPY = {
   section_output_skillbuilders:  "Five Skill Builders →",
 
   /* ── Context / Opportunity ──────────────────────────────────────── */
-  opportunity_0: "Cochlear is a global leader in hearing implant technology. After a recipient receives an implant, their brain needs to relearn how to interpret sound — a rehabilitation journey traditionally supported by in-clinic sessions with a hearing therapist. ustwo partnered with Cochlear to build CoPilot, a companion app that brings that rehab programme home.",
-  opportunity_1: "By the time I came in, an early version was live with a small set of beta recipients. The relationship between ustwo and Cochlear was working but transactional — design was being asked to execute defined scope, not to shape product, research, or content direction.",
-  opportunity_2: "I was placed as the embedded cross-functional design lead from the agency, working directly day-to-day with the Cochlear product lead. The brief from ustwo was open: stabilise design across an under-resourced team, ship the existing roadmap. The brief I gave myself was bigger: build the practices and infrastructure Cochlear would still be using long after ustwo handed over.",
+  opportunity_0: "Cochlear is a global leader in hearing implant technology. After a recipient receives an implant, their brain needs to relearn how to interpret sound, a rehabilitation journey that is traditionally supported by in-clinic sessions with a hearing therapist. Cochlear partnered with ustwo to build CoPilot, a rehab companion app.",
+  opportunity_1: "I was brought in as an embedded cross-functional design lead to help execute in a moment when trust had broken down between clinical research, product and design. An early version of the app was live with a small set of beta recipients, but UX research was hamstrung and clinical research requirements were blocking rather than informing the work. The team dynamic was taking a toll and the previous design lead was leaving the project.",
+  opportunity_2: "I quickly assessed the work to be done wasn't just design. We needed to rebuild shared language, frameworks, and infrastructure to make good work possible even when I wasn't in the room to push things forward. We needed to win back trust and forge a shared way of working across clinical, product and design.",
 
   /* ── Goal ───────────────────────────────────────────────────────── */
-  goal: "build a product, a research culture, and an agency partnership that all reinforced each other — so Cochlear ended the engagement with more capability, not just more product.",
+  goal: "Build a product, research culture, and a way of working that Cochlear would still be using long after ustwo handed over.",
 
   /* ── Hypothesis ─────────────────────────────────────────────────── */
-  hypothesis: "If we shifted the agency relationship from execution-only to genuine product partnership — and built the research and design infrastructure to hold that up — Cochlear would end the engagement with more capability, not just more product.",
+  hypothesis: "I believe that interpersonal work and design work are reliant on one another — investing in both will leave Cochlear with more capability, not just more product.",
 
   /* ── Approach: Embedded leadership ──────────────────────────────── */
-  embedded_0: "I worked directly with the product lead day-to-day on prioritisation, planning, and stakeholder management — playing the leadership role for the squad alongside her, not adjacent to it.",
-  embedded_1: "Built the Design Priorities document — a multi-quarter visible plan making trade-offs negotiable instead of invisible. Built the Design + Learn Cadence — six categories of design work each with risk profile, expected timeline, and recommended testing approach. Made the question 'what kind of work is this?' answerable without me in the room.",
+  embedded_0: "I worked directly with the Cochlear product owner day-to-day on prioritization, planning, and stakeholder management — playing the leadership role for the squad alongside her.",
+  embedded_1: "I built out a living Design Priorities document — a transparent multi-quarter plan that made trade-offs negotiable instead of invisible.",
+  embedded_2: "I mapped the team's learning inputs and methods — a framework for deciding which research tool to use based on what we needed to learn and how fast we needed the feedback. I also audited the existing tooling stack, surfacing friction in what wasn't working and driving the migration to tools that actually supported the way the team needed to operate.",
+  embedded_3: "I created the Design + Learn cadence — a framework for differentiating and planning design work across six categories, each with a risk profile, average timeline, and recommended testing approach. It gave the team a shared vocabulary for the work itself and made questions like 'what kind of work is this?' and 'can we get this done by next release?' answerable without me in the room.",
+
+  design_cadence_caption: "Six categories of design work — the foundation for the Design + Learn Cadence.",
 
   /* ── Approach: CoCreators ────────────────────────────────────────── */
   cocreators_0: "Cochlear's research instinct was clinical and quantitative — efficacy, statistical relevance, sample size. UX qualitative research had to earn its place. I built the CoCreators programme as the proof point.",
@@ -168,14 +172,14 @@ var CC_COPY = {
   impact_scale_3: "Dual Lego Set architecture — inheritable for future Skill Builders.",
 
   /* ── Quotes — combined (deck) ────────────────────────────────────── */
-  quote_stakeholder: "“Carrie goes above and beyond her role as a product designer and plays a key leadership role for the squad, helping us achieve to our timelines and product goals, championing the customer experience, and maintaining transparency in all communications.” — Cochlear stakeholder, 2020 360 feedback",
+  quote_stakeholder: "“Carrie plays a key leadership role for the squad, helping us achieve to our timelines and product goals, championing the customer experience, encouraging a collaborative approach to ways of working, striving towards continuous improvements and maintaining transparency in all communications with myself and the team.” — Copilot Product owner",
   quote_vijay:       "“Carrie is an incredible facilitator and collaborator which transcends design into every other discipline.” — Vijay, Engineering Lead, ustwo",
   quote_paz:         "“It was like I had another brain outside my brain.” — Paz, Director, ustwo",
   quote_jonathan:    "“I like them. More than one (per session). I think interaction is flavourful. I would want to see multiple each time you open.” — Jonathan, Cochlear recipient, Need Enablers co-creation session",
 
   /* ── Quotes — split (scroll) ─────────────────────────────────────── */
-  quote_stakeholder_text: "“Carrie goes above and beyond her role as a product designer and plays a key leadership role for the squad, helping us achieve to our timelines and product goals, championing the customer experience, encouraging a collaborative approach to ways of working, striving towards continuous improvements and maintaining transparency in all communications with myself and the team.”",
-  quote_stakeholder_attr: "— Cochlear stakeholder, 2020 360 feedback",
+  quote_stakeholder_text: "“Carrie plays a key leadership role for the squad, helping us achieve to our timelines and product goals, championing the customer experience, encouraging a collaborative approach to ways of working, striving towards continuous improvements and maintaining transparency in all communications with myself and the team.”",
+  quote_stakeholder_attr: "— Copilot Product owner",
 
   quote_vijay_text: "“Carrie is an incredible facilitator and collaborator which transcends design into every other discipline.”",
   quote_vijay_attr: "— Vijay, Engineering Lead, ustwo",

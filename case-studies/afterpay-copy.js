@@ -49,6 +49,7 @@ var AP_COPY = {
   case_title:     "The rebuild of Afterpay Design",
   project_string: "Block · Afterpay // 2024–2025",
   role_title:     "Head of design",
+  hero_caption:   "Rebuild of the Afterpay design discipline through a multi-region regulatory uplift, US rebrand, and design system overhaul",
 
   /* ── Section headings (editable per case study) ─────────────────── */
   section_opportunity: "Opportunity",
