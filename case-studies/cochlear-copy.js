@@ -51,7 +51,10 @@ var CC_COPY = {
   section_reuse:         "Reuse + Recycle — workshop and Skill Builder delivery",
 
   /* ── Context / Opportunity ──────────────────────────────────────── */
-  opportunity_0: "Cochlear is a global leader in hearing implant technology. After a recipient receives an implant, their brain needs to relearn how to interpret sound, a rehabilitation journey that is traditionally supported by in-clinic sessions with a hearing therapist. Cochlear partnered with ustwo to build CoPilot, a rehab companion app.",
+  /* opportunity_0 = full text for deck. Scroll splits it around a linked "CoPilot" via _0a/_0b. */
+  opportunity_0:  "Cochlear is a global leader in hearing implant technology. After a recipient receives an implant, their brain needs to relearn how to interpret sound, a rehabilitation journey that is traditionally supported by in-clinic sessions with a hearing therapist. Cochlear partnered with ustwo to build CoPilot, a rehab companion app.",
+  opportunity_0a: "Cochlear is a global leader in hearing implant technology. After a recipient receives an implant, their brain needs to relearn how to interpret sound, a rehabilitation journey that is traditionally supported by in-clinic sessions with a hearing therapist. Cochlear partnered with ustwo to build ",
+  opportunity_0b: ", a rehab companion app.",
   opportunity_1: "I was brought in as an embedded cross-functional design lead to help execute in a moment when trust had broken down between clinical research, product and design. An early version of the app was live with a small set of beta recipients, but UX research was hamstrung and clinical requirements were blocking rather than informing. The team dynamic was taking a toll and the previous design lead was leaving the project.",
   opportunity_2: "I quickly assessed the work to be done wasn't just design. We needed to rebuild shared language, frameworks, and infrastructure to make good work possible. We needed to win back trust and forge a shared way of working across clinical, product and design.",
 

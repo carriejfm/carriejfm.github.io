@@ -105,6 +105,11 @@
   color: var(--text-faint);
   line-height: 1.6;
 }
+.cs-caption__link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 
 /* Inline image within an approach block — full width, natural ratio, caption below */
 .cs-approach-figure {
