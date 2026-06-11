@@ -394,6 +394,70 @@
       opacity: 1;
     }
 
+    /* ─── PHONE GRID (output-a) ─── */
+    .output-phones {
+      position: absolute;
+      top: 0;
+      left: 27%;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      gap: 12px;
+      overflow: visible;
+      padding: 0 12px;
+    }
+
+    .phone-col { flex: 1; display: flex; flex-direction: column; }
+
+    .phone-col__track { display: flex; flex-direction: column; gap: 10px; }
+
+    .output-phones .phone-col:nth-child(1) .phone-col__track {
+      margin-top: -260px;
+      animation: phoneScroll 36s linear infinite;
+    }
+    .output-phones .phone-col:nth-child(2) .phone-col__track {
+      margin-top: 180px;
+      animation: phoneScroll 45s linear infinite;
+    }
+    .output-phones .phone-col:nth-child(3) .phone-col__track {
+      margin-top: -120px;
+      animation: phoneScroll 24s linear infinite;
+    }
+
+    @keyframes phoneScroll {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+
+    .phone-tile {
+      flex-shrink: 0;
+      width: 100%;
+      aspect-ratio: 375 / 812;
+      border-radius: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-tile__record-mask {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: calc(6% + 2px);
+      background: #fff;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .phone-tile img,
+    .phone-tile video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     /* ─── M SWITCHER ─── */
     .deck-switcher {
       position: fixed; inset: 0; z-index: 9999;
@@ -759,9 +823,9 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 18 OF 30 — OUTPUT-B: Content and personalisation
+     SLIDE 18 OF 30 — OUTPUT-A: Content and personalisation
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="17">
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="17">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">COCHLEAR COPILOT</span>
@@ -774,17 +838,49 @@
     </div>
   </div>
 
-  <!-- Placeholder — replace with real asset when available -->
-  <div class="output-image-right">
-    <img src="../assets/cochlear/content/content-1.png" alt="CoPilot content and personalisation">
+  <div class="output-phones" aria-hidden="true">
+    <!-- Col 1: content-5, content-1, content-2 -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:36s">
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/content/content-5.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/cochlear/content/content-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/content/content-2.png" alt=""></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/content/content-5.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/cochlear/content/content-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/content/content-2.png" alt=""></div>
+      </div>
+    </div>
+    <!-- Col 2: content-3, content-4, content-discover -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:45s">
+        <div class="phone-tile"><img src="../assets/cochlear/content/content-3.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/content/content-4.png" alt=""></div>
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/content/content-discover.mp4" type="video/mp4"></video></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><img src="../assets/cochlear/content/content-3.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/content/content-4.png" alt=""></div>
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/content/content-discover.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+    <!-- Col 3: content-tags, content-tips -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:24s">
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/content/content-tags.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/content/content-tips.mp4" type="video/mp4"></video></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/content/content-tags.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/content/content-tips.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 19 OF 30 — OUTPUT-B: First Time Use experience
+     SLIDE 19 OF 30 — OUTPUT-A: First Time Use experience
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="18">
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="18">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">COCHLEAR COPILOT</span>
@@ -797,18 +893,53 @@
     </div>
   </div>
 
-  <div class="output-image-right">
-    <video autoplay muted loop playsinline>
-      <source src="../assets/cochlear/ftu/2-appstore-preview-carousel.mp4" type="video/mp4">
-    </video>
+  <div class="output-phones" aria-hidden="true">
+    <!-- Col 1: app-overview, appstore-1, appstore-2, appstore-3 -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:48s">
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/1-appstore-app-overview.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-3.png" alt=""></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/1-appstore-app-overview.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-3.png" alt=""></div>
+      </div>
+    </div>
+    <!-- Col 2: appstore-preview-carousel, appstore-4, appstore-5 -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:45s">
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/ftu/2-appstore-preview-carousel.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-4.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-5.png" alt=""></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/ftu/2-appstore-preview-carousel.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-4.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-5.png" alt=""></div>
+      </div>
+    </div>
+    <!-- Col 3: 3-ftu, 6-ftu, appstore-6 -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:36s">
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/3-ftu.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/6-ftu.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-6.png" alt=""></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/3-ftu.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/6-ftu.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/ftu/ftu-appstore-6.png" alt=""></div>
+      </div>
+    </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 20 OF 30 — OUTPUT-B: Five Skill Builders
+     SLIDE 20 OF 30 — OUTPUT-A: Five Skill Builders
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output slide--output-b" data-type="output-b" data-index="19">
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="19">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">COCHLEAR COPILOT</span>
@@ -821,10 +952,31 @@
     </div>
   </div>
 
-  <div class="output-image-right">
-    <video autoplay muted loop playsinline>
-      <source src="../assets/cochlear/cochlear-1.mp4" type="video/mp4">
-    </video>
+  <div class="output-phones" aria-hidden="true">
+    <!-- Col 1: cochlear-2 -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:12s">
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/skillbuilders/cochlear-2.mp4" type="video/mp4"></video></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/skillbuilders/cochlear-2.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+    <!-- Col 2: cochlear-3 -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:15s">
+        <div class="phone-tile"><img src="../assets/cochlear/skillbuilders/cochlear-3.jpg" alt=""></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><img src="../assets/cochlear/skillbuilders/cochlear-3.jpg" alt=""></div>
+      </div>
+    </div>
+    <!-- Col 3: cochlear-4 -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:12s">
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/skillbuilders/cochlear-4.mp4" type="video/mp4"></video></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><video autoplay muted loop playsinline><source src="../assets/cochlear/skillbuilders/cochlear-4.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
   </div>
 </section>
 

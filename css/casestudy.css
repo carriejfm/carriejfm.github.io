@@ -1096,8 +1096,20 @@
   .cs-back,
   .cs-hero__meta,
   .cs-hero__title,
-  .cs-hero__image {
+  .cs-hero__image,
+  .cs-hero__caption {
     grid-column: 1;
+  }
+
+  /* Natural-ratio heroes are wide/shallow — pin to a reasonable height on mobile */
+  .cs-hero__image--natural {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+  }
+  .cs-hero__image--natural img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
 
   .cs-row {
