@@ -54,7 +54,7 @@ var CC_COPY = {
   opportunity_0:  "Cochlear is a global leader in hearing implant technology. After a recipient receives an implant, their brain needs to relearn how to interpret sound, a rehabilitation journey that is traditionally supported by in-clinic sessions with a hearing therapist. Cochlear partnered with ustwo to build CoPilot, a rehab companion app.",
   opportunity_0a: "Cochlear is a global leader in hearing implant technology. After a recipient receives an implant, their brain needs to relearn how to interpret sound, a rehabilitation journey that is traditionally supported by in-clinic sessions with a hearing therapist. Cochlear partnered with ustwo to build ",
   opportunity_0b: ", a rehab companion app.",
-  opportunity_1: "I was brought in as an embedded lead in a moment when trust had broken down between clinical research, product and design. An beta app was live with a small set of recipients, but UX research was hamstrung and clinical requirements were blocking rather than informing. Team culture had suffered and the previous design lead was leaving.",
+  opportunity_1: "I was brought in as an embedded lead in a moment when trust had broken down between clinical research, product and design. A beta app was live with a small set of recipients, but UX research was hamstrung and clinical requirements were blocking rather than informing. Team culture had suffered and the previous design lead was leaving.",
   opportunity_2: "The work to be done wasn't just design. We needed to win back trust and forge a shared way of working across disciplines.",
 
   /* ── Goal ───────────────────────────────────────────────────────── */
@@ -78,7 +78,7 @@ var CC_COPY = {
 
   /* ── Approach: Measure-Learn ─────────────────────────────────────── */
   measure_0: "I led 100+ measured experiments through the CoPilot Measure-Learn Tracker, a single source of truth covering hypotheses and outcomes across nine research initiatives.",
-  measure_1: "The tracker initially raised eyebrows with the clinical team who lived and breathed scientific rigor. When I got to the bottom of the friction I found two things: a misunderstanding about whether the product team was expected to prove clinical efficacy (we were not), and a language problem. The words we were casually using – research, hypothesis, majority – carried specific meaning in a clinical context that made our lightweight qualitative work sound like it was overclaiming.",
+  measure_1: "The tracker initially raised eyebrows with the clinical team who lived and breathed scientific rigor. At the bottom of the friction was a language problem. The words we were casually using – research, hypothesis, majority – carried specific meaning in a clinical context that made our lightweight qualitative work sound like it was overclaiming.",
   measure_2: "So we calibrated. “Research” became “testing.” “The majority said” became 'three out of five recipients told us.' I over-communicated the value of small qualitative experiments as signal-gathering, and called out potential biases wherever I could.",
   measure_3: "Small shifts, but they changed everything. Our clinical partner stopped hearing us as people who didn't respect their field, and leadership gained confidence to keep investing in qualitative UX work as its own valuable process, separate from their evidence-based clinical research.",
   measure_figure_caption: "The CoPilot Measure-Learn Tracker — 100+ experiments across nine research initiatives",
@@ -168,7 +168,7 @@ var CC_COPY = {
   impact_product_4: "Personalization foundation laid.",
 
   impact_business_0: "Cochlear left with infrastructure, tooling, and a measure-learn discipline they could keep running.",
-  impact_business_1: "Sustained 18-month embedded engagement.*",
+  impact_business_1: "Sustained 18-month embedded engagement.",
   impact_business_2: "When ustwo Sydney closed, Cochlear explored bringing me on directly.",
 
   impact_scale_0: "Co-creators template — reusable for any Cochlear product.",
@@ -181,7 +181,7 @@ var CC_COPY = {
   quote_vijay:       "“Carrie is an incredible facilitator and collaborator which transcends design into every other discipline.” — Head of engineering, ustwo",
   quote_paz:         "“It was like I had another brain outside my brain.” — UX design director, ustwo",
   quote_jonathan:    "”I like them (Need Enablers) More than one (per session). I think interaction is flavourful. I would want to see multiple each time you open.” — Cochlear recipient co-creator",
-  quote_articles:    "”I liked the articles under different categories... It's truly a one stop shop for all regardless of whether one is a new or long-time recipient.” — Cochlear recipient co-creator",
+  quote_articles:    "“I liked the articles under different categories... It's truly a one stop shop for all regardless of whether one is a new or long-time recipient.” — Cochlear recipient co-creator",
 
   /* ── Quotes — split (scroll) ─────────────────────────────────────── */
   quote_stakeholder_text: "“Carrie plays a key leadership role for the squad, helping us achieve to our timelines and product goals, championing the customer experience, encouraging a collaborative approach to ways of working, striving towards continuous improvements and maintaining transparency in all communications with myself and the team.”",
@@ -196,7 +196,7 @@ var CC_COPY = {
   quote_jonathan_text: "”I like them (Need Enablers) More than one (per session). I think interaction is flavourful. I would want to see multiple each time you open.”",
   quote_jonathan_attr: "— Cochlear recipient co-creator",
 
-  quote_articles_text: "”I liked the articles under different categories... It's truly a one stop shop for all regardless of whether one is a new or long-time recipient.”",
+  quote_articles_text: "“I liked the articles under different categories... It's truly a one stop shop for all regardless of whether one is a new or long-time recipient.”",
   quote_articles_attr: "— Cochlear recipient co-creator",
 
   /* ── Reflection ── */

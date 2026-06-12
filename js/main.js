@@ -529,20 +529,30 @@ const CASE_STUDIES = [
   });
   document.body.appendChild(toast);
 
+  var NAV_H = 64; /* matches --nav-h in style.css */
   var hideTimer;
   function showToast(x, y) {
     clearTimeout(hideTimer);
-    /* position near the click, offset so it doesn't sit under the cursor */
-    var pad = 12;
     toast.style.opacity = '0';
-    toast.style.transform = 'none';
-    toast.style.top  = (y + pad) + 'px';
-    toast.style.left = (x + pad) + 'px';
+    toast.style.transition = 'none';
+    var isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      /* anchor just below the nav bar, left-aligned with the logo */
+      toast.style.top  = (NAV_H + 8) + 'px';
+      toast.style.left = '16px';
+    } else {
+      /* position near the click, offset so it doesn't sit under the cursor */
+      var pad = 12;
+      toast.style.top  = (y + pad) + 'px';
+      toast.style.left = (x + pad) + 'px';
+    }
     /* clamp to viewport after layout */
     requestAnimationFrame(function () {
-      var rect = toast.getBoundingClientRect();
-      if (rect.right  > window.innerWidth  - 8) toast.style.left = (x - rect.width  - pad) + 'px';
-      if (rect.bottom > window.innerHeight - 8) toast.style.top  = (y - rect.height - pad) + 'px';
+      if (!isMobile) {
+        var rect = toast.getBoundingClientRect();
+        if (rect.right  > window.innerWidth  - 8) toast.style.left = (x - rect.width  - 12) + 'px';
+        if (rect.bottom > window.innerHeight - 8) toast.style.top  = (y - rect.height - 12) + 'px';
+      }
       toast.style.transition = 'opacity 200ms ease';
       toast.style.opacity = '1';
     });

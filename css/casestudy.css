@@ -577,6 +577,11 @@
   }
 }
 
+/* Let the browser handle vertical scroll natively; JS only sees horizontal drags */
+.va-carousel {
+  touch-action: pan-y;
+}
+
 /* Prevent native image/video drag from fighting pointer-drag on carousels */
 .va-carousel img,
 .va-carousel video {

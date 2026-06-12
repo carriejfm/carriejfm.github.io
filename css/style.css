@@ -1530,6 +1530,7 @@ a.footer__email:hover {
   height: 100%;
   overflow: hidden;
   background: var(--bg);
+  touch-action: pan-y;
 }
 
 .va-carousel__track {
