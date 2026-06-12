@@ -141,7 +141,7 @@ var CC_COPY = {
   outcome_team_1: "Built reusable infrastructure — Design+Learn Cadence, Measure-Learn Tracker, Co-creators program, Skill Builder architecture.",
   outcome_team_2: "Coached 2 designers through transitions, tooling migration, and growth.",
 
-  outcome_product_0: "7 total Skill Builders shipped.",
+  outcome_product_0: "6 total Skill Builders shipped.",
   outcome_product_1: "Skill Builder wayfinding ease rating 3.3 to 4.0 across two rounds of testing.",
   outcome_product_2: "Tutorial pattern moved user confidence from 3.6 to 4.0.",
   outcome_product_3: "First Time Use redesigned end-to-end, App Store screens through to first content engagement.",
@@ -161,7 +161,7 @@ var CC_COPY = {
   impact_team_1: "Reusable infrastructure built — Cadence, Tracker, Co-creators, Skill Builder architecture.",
   impact_team_2: "2 designers coached through transitions and growth.",
 
-  impact_product_0: "7 Skill Builders shipped.",
+  impact_product_0: "6 Skill Builders shipped.",
   impact_product_1: "Wayfinding ease rating: 3.3 → 4.0.",
   impact_product_2: "Tutorial confidence: 3.6 → 4.0.",
   impact_product_3: "FTU redesigned end-to-end.",
