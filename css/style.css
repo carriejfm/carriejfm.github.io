@@ -1546,7 +1546,6 @@ a.footer__email:hover {
   -webkit-user-select: none;
 }
 
-/* ── Desktop advance arrow — commented out, revisit later ──
 .va-carousel__arrow {
   display: none;
   position: absolute;
@@ -1562,7 +1561,7 @@ a.footer__email:hover {
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1;
   color: #111;
   opacity: 0;
@@ -1581,7 +1580,6 @@ a.footer__email:hover {
     background: rgba(255, 255, 255, 0.35);
   }
 }
-── end desktop arrow ── */
 
 .va-carousel.is-active .va-carousel__track {
   animation-play-state: running;

@@ -609,6 +609,10 @@
 .va-carousel__item--video-crop.va-carousel__item--mask-top video {
   object-position: center top;
 }
+/* Image tile that anchors to the top (for status-bar masks) */
+.va-carousel__item--mask-top img {
+  object-position: center top;
+}
 .va-carousel__item .va-record-mask {
   position: absolute;
   top: 0;
@@ -1101,15 +1105,15 @@
     grid-column: 1;
   }
 
-  /* Natural-ratio heroes are wide/shallow — pin to a reasonable height on mobile */
+  /* Natural-ratio heroes — let the image display at its own proportions on mobile */
   .cs-hero__image--natural {
-    aspect-ratio: 3 / 2;
-    overflow: hidden;
+    aspect-ratio: auto;
+    overflow: visible;
+    height: auto;
   }
   .cs-hero__image--natural img {
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    height: auto;
+    object-fit: initial;
   }
 
   .cs-row {

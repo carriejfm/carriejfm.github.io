@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>if(!sessionStorage.getItem('cc_auth')&&!sessionStorage.getItem('portfolio_auth'))window.location.replace('cochlear-auth.html');</script>
-  <script src="/js/analytics.js?v=20260611"></script>
+  <script src="/js/analytics.js?v=20260612gfedcb"></script>
   <title>Cochlear CoPilot hearing rehab — case study by Carrie Francis-Miller</title>
   <meta name="description" content="Case study: Cochlear CoPilot at ustwo (2020–2021). Embedded cross-functional design lead — built a hearing rehab product, a UX research culture, and an agency partnership that outlasted the engagement.">
   <meta name="author" content="Carrie Francis-Miller">
@@ -62,8 +62,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260611">
-  <link rel="stylesheet" href="../css/casestudy.css?v=20260611">
+  <link rel="stylesheet" href="../css/style.css?v=20260612gfedcb">
+  <link rel="stylesheet" href="../css/casestudy.css?v=20260612gfedcb">
 
   <style>
     .deck-switcher {
@@ -100,7 +100,7 @@
     <ul class="nav__links">
       <li><a href="../index.html">Home</a></li>
       <li><a href="../about.html">About</a></li>
-      <li><a href="mailto:carriefrancismiller@gmail.com">Contact</a></li>
+      <li><a href="#" data-copy-email>Contact</a></li>
     </ul>
     <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
       <span></span>
@@ -260,6 +260,12 @@
         </div>
       </div>
 
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-cc-copy="quote_articles_text"></p>
+          <footer data-cc-copy="quote_articles_attr"></footer>
+        </div>
+      </blockquote>
 
       <!-- ── Row 3c: Approach (Measure-Learn + Content strategy) ── -->
       <div class="cs-row">
@@ -296,6 +302,13 @@
           </div>
         </div>
       </div>
+
+      <blockquote class="cs-quote">
+        <div class="cs-quote__inner">
+          <p data-cc-copy="quote_jonathan_text"></p>
+          <footer data-cc-copy="quote_jonathan_attr"></footer>
+        </div>
+      </blockquote>
 
       <blockquote class="cs-quote">
         <div class="cs-quote__inner">
@@ -350,75 +363,96 @@
               <!-- 8 tiles × 13.5 s = 108 s. Duplicated for seamless loop. -->
               <div class="va-carousel reveal" data-carousel>
                 <div class="va-carousel__track va-carousel__track--manual" style="animation-duration: 108s;">
-                  <div class="va-carousel__item --video-crop">
+                  <!-- 01 no mask -->
+                  <div class="va-carousel__item va-carousel__item--video-crop">
                     <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/content/content-5.mp4" type="video/mp4">
+                      <source src="../assets/cochlear/content/01-content-5.mp4" type="video/mp4">
                     </video>
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/content/content-1.png" alt="CoPilot content screen" loading="lazy">
+                  <!-- 02 mask #32405B -->
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #384968"></div>
+                    <img src="../assets/cochlear/content/02-content-1.png" alt="CoPilot content screen" loading="lazy">
                   </div>
-                  <div class="va-carousel__item --video-crop">
+                  <!-- 03 mask #3A496A -->
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #3A496A"></div>
                     <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/content/content-discover.mp4" type="video/mp4">
+                      <source src="../assets/cochlear/content/03-content-tips.mp4" type="video/mp4">
                     </video>
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/content/content-2.png" alt="CoPilot content screen" loading="lazy">
-                  </div>
-                  <div class="va-carousel__item --video-crop">
+                  <!-- 04 mask #FFFFFF -->
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
                     <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/content/content-tags.mp4" type="video/mp4">
+                      <source src="../assets/cochlear/content/04-content-discover.mp4" type="video/mp4">
                     </video>
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/content/content-3.png" alt="CoPilot content screen" loading="lazy">
+                  <!-- 05 mask #FFFFFF -->
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
+                    <img src="../assets/cochlear/content/05-content-4.png" alt="CoPilot content screen" loading="lazy">
                   </div>
-                  <div class="va-carousel__item --video-crop">
+                  <!-- 06 mask #FFFFFF -->
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
                     <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/content/content-tips.mp4" type="video/mp4">
+                      <source src="../assets/cochlear/content/06-content-tags-2.mp4" type="video/mp4">
                     </video>
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/content/content-4.png" alt="CoPilot content screen" loading="lazy">
+                  <!-- 07 mask #FFFFFF -->
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
+                    <img src="../assets/cochlear/content/07-content-2.png" alt="CoPilot content screen" loading="lazy">
+                  </div>
+                  <!-- 08 mask #FFFFFF -->
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
+                    <img src="../assets/cochlear/content/08-content-3.png" alt="CoPilot content screen" loading="lazy">
                   </div>
                   <!-- duplicate for seamless loop -->
-                  <div class="va-carousel__item --video-crop">
+                  <div class="va-carousel__item va-carousel__item--video-crop">
                     <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/content/content-5.mp4" type="video/mp4">
+                      <source src="../assets/cochlear/content/01-content-5.mp4" type="video/mp4">
                     </video>
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/content/content-1.png" alt="CoPilot content screen" loading="lazy">
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #384968"></div>
+                    <img src="../assets/cochlear/content/02-content-1.png" alt="CoPilot content screen" loading="lazy">
                   </div>
-                  <div class="va-carousel__item --video-crop">
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #3A496A"></div>
                     <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/content/content-discover.mp4" type="video/mp4">
+                      <source src="../assets/cochlear/content/03-content-tips.mp4" type="video/mp4">
                     </video>
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/content/content-2.png" alt="CoPilot content screen" loading="lazy">
-                  </div>
-                  <div class="va-carousel__item --video-crop">
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
                     <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/content/content-tags.mp4" type="video/mp4">
+                      <source src="../assets/cochlear/content/04-content-discover.mp4" type="video/mp4">
                     </video>
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/content/content-3.png" alt="CoPilot content screen" loading="lazy">
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
+                    <img src="../assets/cochlear/content/05-content-4.png" alt="CoPilot content screen" loading="lazy">
                   </div>
-                  <div class="va-carousel__item --video-crop">
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
                     <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/content/content-tips.mp4" type="video/mp4">
+                      <source src="../assets/cochlear/content/06-content-tags-2.mp4" type="video/mp4">
                     </video>
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/content/content-4.png" alt="CoPilot content screen" loading="lazy">
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
+                    <img src="../assets/cochlear/content/07-content-2.png" alt="CoPilot content screen" loading="lazy">
+                  </div>
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
+                    <img src="../assets/cochlear/content/08-content-3.png" alt="CoPilot content screen" loading="lazy">
                   </div>
                 </div>
               </div>
               <p data-cc-copy="output_content_0"></p>
-              <p data-cc-copy="output_content_1"></p>
               <p class="cs-output-credit" data-cc-copy="output_content_credit"></p>
             </div>
 
@@ -429,75 +463,86 @@
               <!-- 10 tiles × 13.5 s = 135 s. Duplicated for seamless loop. -->
               <div class="va-carousel reveal" data-carousel>
                 <div class="va-carousel__track va-carousel__track--manual" style="animation-duration: 135s;">
-                  <div class="va-carousel__item">
+                  <!-- 01 mask #FAECCC -->
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FAECCC"></div>
                     <img src="../assets/cochlear/ftu/1-appstore-app-overview.png" alt="CoPilot — app store overview" loading="lazy">
                   </div>
-                  <div class="va-carousel__item va-carousel__item--video-crop">
+                  <!-- 02 mask #FAFAFA -->
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FAFAFA"></div>
                     <video autoplay muted loop playsinline preload="none">
                       <source src="../assets/cochlear/ftu/2-appstore-preview-carousel.mp4" type="video/mp4">
                     </video>
                   </div>
+                  <!-- 03–08 no mask -->
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/3-ftu.png" alt="CoPilot First Time Use screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/3-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/6-ftu.png" alt="CoPilot First Time Use screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/4-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-1.png" alt="CoPilot app store screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/5-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-2.png" alt="CoPilot app store screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/6-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-3.png" alt="CoPilot app store screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/7-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-4.png" alt="CoPilot app store screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/8-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-5.png" alt="CoPilot app store screen" loading="lazy">
+                  <!-- 09–10 mask #FFFFFF -->
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
+                    <img src="../assets/cochlear/ftu/9-ftu.png" alt="CoPilot First Time Use screen" loading="lazy">
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-6.png" alt="CoPilot app store screen" loading="lazy">
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
+                    <img src="../assets/cochlear/ftu/10-ftu.png" alt="CoPilot First Time Use screen" loading="lazy">
                   </div>
                   <!-- duplicate for seamless loop -->
-                  <div class="va-carousel__item">
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FAECCC"></div>
                     <img src="../assets/cochlear/ftu/1-appstore-app-overview.png" alt="CoPilot — app store overview" loading="lazy">
                   </div>
-                  <div class="va-carousel__item va-carousel__item--video-crop">
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FAFAFA"></div>
                     <video autoplay muted loop playsinline preload="none">
                       <source src="../assets/cochlear/ftu/2-appstore-preview-carousel.mp4" type="video/mp4">
                     </video>
                   </div>
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/3-ftu.png" alt="CoPilot First Time Use screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/3-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/6-ftu.png" alt="CoPilot First Time Use screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/4-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-1.png" alt="CoPilot app store screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/5-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-2.png" alt="CoPilot app store screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/6-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-3.png" alt="CoPilot app store screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/7-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
                   <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-4.png" alt="CoPilot app store screen" loading="lazy">
+                    <img src="../assets/cochlear/ftu/8-ftu-appstore.png" alt="CoPilot app store screen" loading="lazy">
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-5.png" alt="CoPilot app store screen" loading="lazy">
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
+                    <img src="../assets/cochlear/ftu/9-ftu.png" alt="CoPilot First Time Use screen" loading="lazy">
                   </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/ftu/ftu-appstore-6.png" alt="CoPilot app store screen" loading="lazy">
+                  <div class="va-carousel__item va-carousel__item--mask-top">
+                    <div class="va-record-mask" style="background: #FFFFFF"></div>
+                    <img src="../assets/cochlear/ftu/10-ftu.png" alt="CoPilot First Time Use screen" loading="lazy">
                   </div>
                 </div>
               </div>
               <p data-cc-copy="output_ftu_0"></p>
-              <p data-cc-copy="output_ftu_1"></p>
               <p class="cs-output-credit" data-cc-copy="output_ftu_credit"></p>
             </div>
 
@@ -506,39 +551,26 @@
             <div class="cs-output-item">
               <h3 class="cs-output-item__heading" data-cc-copy="section_output_skillbuilders"></h3>
 
-              <!-- OPTION A: SCROLLING CAROUSEL
-                   4 items × 13.5 s/tile = 54 s. Duplicated for seamless loop.
-              -->
-              <!-- 3 tiles × 13.5 s = 40.5 s. Duplicated for seamless loop. -->
+              <!-- 8 tiles × 13.5 s = 108 s. Duplicated for seamless loop. -->
               <div class="va-carousel reveal" data-carousel>
-                <div class="va-carousel__track va-carousel__track--manual" style="animation-duration: 40.5s;">
-                  <div class="va-carousel__item va-carousel__item--video-crop">
-                    <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/skillbuilders/cochlear-2.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/skillbuilders/cochlear-3.jpg" alt="CoPilot Skill Builder screen" loading="lazy">
-                  </div>
-                  <div class="va-carousel__item va-carousel__item--video-crop">
-                    <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/skillbuilders/cochlear-4.mp4" type="video/mp4">
-                    </video>
-                  </div>
+                <div class="va-carousel__track va-carousel__track--manual" style="animation-duration: 108s;">
+                  <div class="va-carousel__item va-carousel__item--mask-top"><div class="va-record-mask" style="background: #FFFFFF"></div><img src="../assets/cochlear/skillbuilders/00-audio-hierarchy.png" alt="CoPilot Skill Builder screen" loading="lazy"></div>
+                  <div class="va-carousel__item"><img src="../assets/cochlear/skillbuilders/01-cochlear-3.jpg" alt="CoPilot Skill Builder screen" loading="lazy"></div>
+                  <div class="va-carousel__item va-carousel__item--video-crop"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/02-cochlear-2.mp4" type="video/mp4"></video></div>
+                  <div class="va-carousel__item va-carousel__item--mask-top"><div class="va-record-mask" style="background: #384968"></div><img src="../assets/cochlear/skillbuilders/03-telephone.png" alt="CoPilot Skill Builder screen" loading="lazy"></div>
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top"><div class="va-record-mask" style="background: #6F3E47"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/04-telephone-confidence.mp4" type="video/mp4"></video></div>
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top"><div class="va-record-mask" style="background: #3A496A"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/05-differentiate.mp4" type="video/mp4"></video></div>
+                  <div class="va-carousel__item va-carousel__item--video-crop"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/06-cochlear-4.mp4" type="video/mp4"></video></div>
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top"><div class="va-record-mask" style="background: #1D2123"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/07-identification-session-complete.mp4" type="video/mp4"></video></div>
                   <!-- duplicate for seamless loop -->
-                  <div class="va-carousel__item va-carousel__item--video-crop">
-                    <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/skillbuilders/cochlear-2.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <div class="va-carousel__item">
-                    <img src="../assets/cochlear/skillbuilders/cochlear-3.jpg" alt="CoPilot Skill Builder screen" loading="lazy">
-                  </div>
-                  <div class="va-carousel__item va-carousel__item--video-crop">
-                    <video autoplay muted loop playsinline preload="none">
-                      <source src="../assets/cochlear/skillbuilders/cochlear-4.mp4" type="video/mp4">
-                    </video>
-                  </div>
+                  <div class="va-carousel__item va-carousel__item--mask-top"><div class="va-record-mask" style="background: #FFFFFF"></div><img src="../assets/cochlear/skillbuilders/00-audio-hierarchy.png" alt="CoPilot Skill Builder screen" loading="lazy"></div>
+                  <div class="va-carousel__item"><img src="../assets/cochlear/skillbuilders/01-cochlear-3.jpg" alt="CoPilot Skill Builder screen" loading="lazy"></div>
+                  <div class="va-carousel__item va-carousel__item--video-crop"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/02-cochlear-2.mp4" type="video/mp4"></video></div>
+                  <div class="va-carousel__item va-carousel__item--mask-top"><div class="va-record-mask" style="background: #384968"></div><img src="../assets/cochlear/skillbuilders/03-telephone.png" alt="CoPilot Skill Builder screen" loading="lazy"></div>
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top"><div class="va-record-mask" style="background: #6F3E47"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/04-telephone-confidence.mp4" type="video/mp4"></video></div>
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top"><div class="va-record-mask" style="background: #3A496A"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/05-differentiate.mp4" type="video/mp4"></video></div>
+                  <div class="va-carousel__item va-carousel__item--video-crop"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/06-cochlear-4.mp4" type="video/mp4"></video></div>
+                  <div class="va-carousel__item va-carousel__item--video-crop va-carousel__item--mask-top"><div class="va-record-mask" style="background: #1D2123"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/07-identification-session-complete.mp4" type="video/mp4"></video></div>
                 </div>
               </div>
 
@@ -641,8 +673,6 @@
         <div class="cs-row__right cs-reflection">
           <p data-cc-copy="reflection_0"></p>
           <p data-cc-copy="reflection_1"></p>
-          <p data-cc-copy="reflection_2"></p>
-          <p data-cc-copy="reflection_3"></p>
 
         </div>
 
@@ -669,7 +699,7 @@
       <nav class="footer__nav" aria-label="Footer navigation">
         <a href="../index.html">Home</a>
         <a href="../about.html">About</a>
-        <a href="mailto:carriefrancismiller@gmail.com">Contact</a>
+        <a href="#" data-copy-email>Contact</a>
       </nav>
       <span class="footer__credit">Sydney, Australia</span>
     </div>
@@ -686,8 +716,8 @@
   </div>
 
 
-  <script src="../js/main.js?v=20260611"></script>
-  <script src="cochlear-copy.js?v=20260611"></script>
+  <script src="../js/main.js?v=20260612gfedcb"></script>
+  <script src="cochlear-copy.js?v=20260612gfedcb"></script>
 
   <!-- ─── CAROUSEL INTERSECTION OBSERVER ─── -->
   <script>

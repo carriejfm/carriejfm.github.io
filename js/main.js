@@ -335,26 +335,35 @@ const CASE_STUDIES = [
     var track = carousel.querySelector('.va-carousel__track');
     if (!track) return;
 
-    var active   = false;
-    var locked   = false;
-    var startX   = 0;
-    var startY   = 0;
-    var startTx  = 0;
+    /* Inject desktop hover arrow */
+    var arrow = document.createElement('button');
+    arrow.className = 'va-carousel__arrow';
+    arrow.setAttribute('aria-label', 'Advance carousel');
+    arrow.innerHTML = '›';
+    carousel.appendChild(arrow);
+
+    var active    = false;
+    var locked    = false;
+    var startX    = 0;
+    var startY    = 0;
+    var startTx   = 0;
     var currentTx = 0;
-    var lastX    = 0;
-    var lastTime = 0;
-    var velocity = 0;
-    var rafId    = null;
+    var lastX     = 0;
+    var lastTime  = 0;
+    var velocity  = 0;
+    var rafId     = null;
 
     function halfWidth() {
       return track.scrollWidth / 2;
     }
 
-    function wrapTx(tx) {
+    /* Wrap tx into [-half, 0] without mid-range jumps.
+       Only used when the value is guaranteed within one half-width of the boundary. */
+    function softWrap(tx) {
       var half = halfWidth();
       if (half === 0) return tx;
-      tx = tx % -half;
-      if (tx > 0) tx -= half;
+      if (tx > 0)     tx -= half;
+      if (tx < -half) tx += half;
       return tx;
     }
 
@@ -363,12 +372,18 @@ const CASE_STUDIES = [
     }
 
     function resumeFrom(tx) {
-      var half     = halfWidth();
+      var half = halfWidth();
       if (half === 0) return;
+      /* Normalise — tx should be in [-half, 0] after softWrap calls */
+      if (tx > 0)     tx -= half;
+      if (tx < -half) tx += half;
       var duration = parseFloat(track.style.animationDuration ||
                      getComputedStyle(track).animationDuration) || 80;
       var progress = Math.abs(tx) / half;
-      track.style.animationDelay     = (-progress * duration) + 's';
+      track.style.animationDelay = (-progress * duration) + 's';
+      /* Force reflow so the new delay is committed before we clear the
+         inline transform — prevents a one-frame jump as the animation resumes */
+      void track.offsetWidth;
       track.style.transform          = '';
       track.style.animationPlayState = '';
     }
@@ -377,6 +392,42 @@ const CASE_STUDIES = [
       if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
     }
 
+    /* ── Arrow click: advance by three tiles with JS easing ── */
+    arrow.addEventListener('click', function () {
+      cancelRaf();
+      var tileW = parseFloat(getComputedStyle(carousel).getPropertyValue('--va-tile-w')) || 269;
+      var tileG = parseFloat(getComputedStyle(carousel).getPropertyValue('--va-tile-gap')) || 16;
+      var dist  = (tileW + tileG) * 3;
+
+      var startTx   = getTx();
+      var startTime = null;
+      var dur       = 750; /* ms */
+
+      /* Freeze CSS animation so JS takes over cleanly */
+      track.style.animationPlayState = 'paused';
+      track.style.transform = 'translateX(' + startTx + 'px)';
+
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        var t     = Math.min((ts - startTime) / dur, 1);
+        var eased = easeInOutCubic(t);
+        /* Allow tx to go beyond -half — the duplicate tiles fill that space */
+        track.style.transform = 'translateX(' + (startTx - dist * eased) + 'px)';
+        if (t < 1) {
+          rafId = requestAnimationFrame(step);
+        } else {
+          resumeFrom(startTx - dist);
+        }
+      }
+
+      rafId = requestAnimationFrame(step);
+    });
+
+    /* ── Pointer drag ── */
     carousel.addEventListener('pointerdown', function (e) {
       if (e.button !== 0) return;
       cancelRaf();
@@ -389,8 +440,9 @@ const CASE_STUDIES = [
       lastX     = e.clientX;
       lastTime  = Date.now();
       velocity  = 0;
+      track.style.transition         = '';
       track.style.animationPlayState = 'paused';
-      track.style.transform = 'translateX(' + startTx + 'px)';
+      track.style.transform          = 'translateX(' + startTx + 'px)';
     });
 
     carousel.addEventListener('pointermove', function (e) {
@@ -399,9 +451,7 @@ const CASE_STUDIES = [
       var dy = e.clientY - startY;
 
       if (!locked) {
-        /* Wait for enough movement to determine intent */
         if (Math.abs(dx) < 4 && Math.abs(dy) < 4) return;
-        /* Vertical intent — abandon drag so page can scroll */
         if (Math.abs(dy) > Math.abs(dx)) {
           active = false;
           resumeFrom(startTx);
@@ -411,13 +461,16 @@ const CASE_STUDIES = [
         try { carousel.setPointerCapture(e.pointerId); } catch (_) {}
       }
 
-      var now = Date.now();
-      var dt  = now - lastTime;
-      if (dt > 0) velocity = (e.clientX - lastX) / dt;
+      var now  = Date.now();
+      var dt   = now - lastTime;
+      var fdx  = e.clientX - lastX;   /* per-frame delta — avoids modulo jumps */
+      if (dt > 0) velocity = fdx / dt;
       lastX    = e.clientX;
       lastTime = now;
 
-      currentTx = wrapTx(startTx + dx);
+      /* Accumulate incrementally so the wrap (when it happens) only ever crosses
+         the seamless duplicate boundary, never a mid-strip jump */
+      currentTx = softWrap(currentTx + fdx);
       track.style.transform = 'translateX(' + currentTx + 'px)';
     });
 
@@ -431,7 +484,7 @@ const CASE_STUDIES = [
 
       function decelerate() {
         vel *= 0.90;
-        tx   = wrapTx(tx + vel);
+        tx   = softWrap(tx + vel);
         track.style.transform = 'translateX(' + tx + 'px)';
         if (Math.abs(vel) > 0.3) {
           rafId = requestAnimationFrame(decelerate);
@@ -449,5 +502,62 @@ const CASE_STUDIES = [
 
     carousel.addEventListener('pointerup',     endDrag);
     carousel.addEventListener('pointercancel', endDrag);
+  });
+})();
+
+/* ─── EMAIL COPY-TO-CLIPBOARD ─── */
+(function () {
+  var EMAIL = 'carriefrancismiller@gmail.com';
+
+  var toast = document.createElement('div');
+  toast.innerHTML =
+    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0">' +
+      '<rect x="9" y="9" width="13" height="13" rx="2"/>' +
+      '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>' +
+    '</svg>' +
+    '<span>Email copied</span>';
+  Object.assign(toast.style, {
+    position: 'fixed', top: '0', left: '0',
+    display: 'flex', alignItems: 'center', gap: '0.5rem',
+    background: 'rgba(243,243,241,0.80)', color: '#1A1A17',
+    fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.8125rem', fontWeight: '300',
+    letterSpacing: '0.04em', padding: '0.625rem 1rem',
+    pointerEvents: 'none', zIndex: '9999',
+    opacity: '0', transition: 'opacity 200ms ease',
+    whiteSpace: 'nowrap',
+    boxShadow: '0 4px 16px rgba(0,0,0,0.12)'
+  });
+  document.body.appendChild(toast);
+
+  var hideTimer;
+  function showToast(x, y) {
+    clearTimeout(hideTimer);
+    /* position near the click, offset so it doesn't sit under the cursor */
+    var pad = 12;
+    toast.style.opacity = '0';
+    toast.style.transform = 'none';
+    toast.style.top  = (y + pad) + 'px';
+    toast.style.left = (x + pad) + 'px';
+    /* clamp to viewport after layout */
+    requestAnimationFrame(function () {
+      var rect = toast.getBoundingClientRect();
+      if (rect.right  > window.innerWidth  - 8) toast.style.left = (x - rect.width  - pad) + 'px';
+      if (rect.bottom > window.innerHeight - 8) toast.style.top  = (y - rect.height - pad) + 'px';
+      toast.style.transition = 'opacity 200ms ease';
+      toast.style.opacity = '1';
+    });
+    hideTimer = setTimeout(function () {
+      toast.style.transition = 'opacity 600ms ease';
+      toast.style.opacity = '0';
+    }, 1500);
+  }
+
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[data-copy-email]');
+    if (!link) return;
+    e.preventDefault();
+    navigator.clipboard.writeText(EMAIL).then(function () {
+      showToast(e.clientX, e.clientY);
+    });
   });
 })();
