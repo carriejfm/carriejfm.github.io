@@ -1,7 +1,7 @@
 /* ─────────────────────────────────────────────────────────────────
-   COCHLEAR COPILOT — COPY SOURCE OF TRUTH
-   Both the deck (cochlear-deck.html) and scroll (cochlear-copilot.html)
-   pull copy from this file via data-cc-copy="key" attributes.
+   COCHLEAR COPILOT — COPY SOURCE OF TRUTH (secondary deck)
+   cochlear-deck-2.html pulls copy from this file via data-cc-copy="key" attributes.
+   cochlear-deck.html and cochlear-copilot.html use cochlear-copy.js.
 
    To update copy in both layouts at once:
      1. Change the value here.
@@ -31,7 +31,7 @@ var CC_COPY = {
   role_title:     "Embedded design lead",
 
   /* ── Deck-specific meta ──────────────────────────────────────────── */
-  deck_title:   "Building hearing rehab with Cochlear CoPilot",
+  deck_title:   "Cochlear CoPilot",
   deck_company: "Cochlear · ustwo · 2020–2021",
 
   /* ── Role rows ───────────────────────────────────────────────────── */
@@ -74,7 +74,9 @@ var CC_COPY = {
   cocreators_0: "Co-creation is what happens when interpersonal work and design work solve problems together. It became my core strategy — not just with recipients, but with our clinical counterparts.",
   cocreators_1: "With recipients, I launched and ran the CoPilot Co-creators program — 17 co-creators recruited through Cochlear's clinician network, organized into staggered cohorts for quarterly 1:1 sessions. Recipients were eager to please and we faced real technical hurdles in testing audio-rich prototypes via video calls. Once someone had been through a session, the technical friction eased and the feedback got more honest. The outcome was ongoing infrastructure, not a one-off study.",
   cocreators_2: "With our clinical research SME, co-creation looked different. The handoff model kept producing the wrong output. I brought them into Mural and we designed flows together in real time. As they explained the frameworks behind each rehabilitation exercise, we could ask “would this pattern work?” and get an answer on the spot. Co-creation turned requirements from a source of friction into a shared design language.",
-  cocreators_figure_caption: "Clinical requirements mapped together in real time – messy, but effective.",
+  cocreators_program_caption:  "I launched and ran the CoPilot Co-creators program with recipients.",
+  cocreators_figure_caption:   "Clinical requirements mapped together in real time – messy, but effective.",
+  measure_calibration_caption: "The words we were casually using carried specific meaning in a clinical context, so we calibrated.",
 
   /* ── Approach: Measure-Learn ─────────────────────────────────────── */
   measure_0: "I led 100+ measured experiments through the CoPilot Measure-Learn Tracker, a single source of truth covering hypotheses and outcomes across nine research initiatives.",
@@ -84,13 +86,20 @@ var CC_COPY = {
   measure_figure_caption: "The CoPilot Measure-Learn Tracker — 100+ experiments across nine research initiatives",
 
   /* ── Approach: Content strategy ──────────────────────────────────── */
-  content_figure_caption: "Need Enablers — in-app signal patterns that let recipients shape their own content experience.",
+  content_ia_caption:              "Information architecture and content tagging strategy was based on the Functional Listening Index",
+  content_figure_caption:          "Need Enablers — in-app signal patterns that let recipients shape their own content experience.",
+  content_personalisation_caption: "'So you need content personalization' — a thought piece sequencing the path from 'no personalization' to ML-ready",
+  content_nav_caption:             "To make the content navigable, we ran multiple rounds of testing on wayfinding and Skill Builder tutorial design",
   content_0: "CoPilot is fundamentally a content experience. Recipients move between passive consumption — articles, stories, firmware updates — and active auditory practice through Skill Builders. But people were barely scratching the surface of content.",
-  content_1: "I led two tracks of work to fix that: making the system smarter, and making the app more navigable.",
+  content_1: "Beta usage showed people were barely scratching the surface of content. I led two tracks of work to fix that: making the system smarter, and making the app more navigable.",
   content_2: "To make the system smarter, I drove the IA and content tagging strategy as the foundation for personalization, running a co-creation session with the clinical SME to land an approach that worked for both the recipient mental model and the clinical taxonomy. I led a design sprint around Need Enablers — small in-app prompts letting recipients signal what was relevant to them. And I co-wrote “So you need content personalization” with the head of engineering — a thought piece sequencing the path from “no personalization” to “ML-ready” as concrete decisions.",
-  content_3: "To make the content navigable, we ran multiple rounds of testing on navigation and Skill Builder tutorial design. We learned users expected both passive and active navigation, so we designed the final interface to support both modes. We also learned that speed and discoverability were in tension with understanding of Skill Builder comprehension. We held that tension deliberately rather than optimizing for one metric, and iterated until we found a middle ground worth shipping.",
+  content_3: "To make the content navigable, we ran two rounds of testing on navigation and Skill Builder tutorial design. We learned users expected both passive and active navigation, so we designed the final interface to support both modes. We also learned that speed and discoverability were in tension with understanding of Skill Builder comprehension. We held that tension deliberately rather than optimizing for one metric, and iterated until we found a middle ground worth shipping.",
 
   /* ── Approach: Recycle & Reuse ───────────────────────────────────── */
+  reuse_fig_a_caption: "Clinical co-creation sessions",
+  reuse_fig_b_caption: "Skill Builder language taxonomy",
+  reuse_fig_c_caption: "\"Assume everything is the same\" strategy allowed for surgical deltas",
+
   reuse_0: "We had one Skill Builder shipped but five remained. A delivery deadline was looming and engineering estimations showed we weren't going to make it. We needed to reuse as much design and code as possible, without compromising clinical integrity.",
   reuse_1: "Armed with requirements from our clinical co-creation sessions, I ran a two-day Recycle and Reuse workshop with the cross-functional team.",
   reuse_2: "We spent the first twenty minutes just naming things. From the names of the Skill Builders to their underlying taxonomy. From screens to components and micro-motion patterns. Same principle as everywhere else in this engagement — defining and differentiating through language — but focused and fast. Once we had a shared vocabulary, the workshop could move.",
@@ -199,7 +208,30 @@ var CC_COPY = {
   quote_articles_text: "“I liked the articles under different categories... It's truly a one stop shop for all regardless of whether one is a new or long-time recipient.”",
   quote_articles_attr: "— Cochlear recipient co-creator",
 
+  /* ── Deck-2 hero caption ────────────────────────────────────────── */
+  hero_caption_2: "Hearing rehab with Cochlear CoPilot: The one where I built shared language, shared evidence and shared capability.",
+
+  /* ── Deck-2 section labels (left panel titles for static output slides) ── */
+  section_cp:        "Content & Personalization",
+  section_sb:        "Skill Builders",
+  section_ftu_label: "First Time Use",
+
+  /* ── Deck-2 static output intro copy ────────────────────────────── */
+  intro_cp_0: "CoPilot is fundamentally a content experience. Recipients move between passive consumption — articles, stories, firmware updates — and active auditory practice.",
+  intro_cp_1: "The content and personalization workstream aimed to shift from a flat content list to a system that could serve content two ways — passively and on demand.",
+  intro_cp_2: "This included Need Enablers (in-app signal gathering), Discover (passive, editorial-style content surfacing), and Browse (structured IA for active search), plus patterns for different content types and tags to encourage exploration.",
+
+  intro_sb_0: "Skill Builders are interactive practice sessions built on clinical rehab foundations, letting recipients practice key hearing skills at home.",
+  intro_sb_1: "They live alongside relevant content in the Discover tab and are directly navigable in Browse.",
+  intro_sb_2: "Each includes just enough introduction to give recipients the \"why\" before diving in.",
+
+  intro_ftu_0: "The First Time Use experience was redesigned end-to-end — App Store screens through to first content engagement.",
+  intro_ftu_1: "We tested a pre-auth demo swipe-through of the app's value before sign-in but found it added friction rather than reducing it, and removed it in favour of getting users into real content faster.",
+  intro_ftu_2: "The App Store value props were tested and refined in co-creation with Cochlear recipients to ensure messaging resonated.",
+
   /* ── Reflection ── */
+  reflection_figure_caption: "Naming and differentiating through language builds bridges.",
+
   reflection_0: "If I could go back, I'd have listened a little closer, a little longer, to the fear behind the resistance to UX research before trying to fix it. Early on I assumed our clinical partner wanted our research practice to expand into proving clinical efficacy, and even built a thought piece around it. It wasn't needed, and wasn't asked for. The impulse to solve someone's problem with a tool they didn't ask for is its own kind of not listening — and knowing when expertise needs to stay in its lane, and when it needs to come into the room, is a skill in itself.",
   reflection_1: "Looking back, most of what went wrong, and most of what eventually went right, came down to seeing things differently. There's a theory that ancient cultures couldn't perceive blue as a distinct color because they had no word for it. They weren't blind to it, they just couldn't differentiate it from what they already knew. The work with our clinical partners was the same: we were all pointing at the same things and calling them different names, or using the same names for completely different things. Until we defined a shared vocabulary, we couldn't see what the other person was seeing. In the end, clarity in language was what built the bridge.",
 

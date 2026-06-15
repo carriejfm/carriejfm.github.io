@@ -12,7 +12,7 @@
 
   <style>
     /* ─────────────────────────────────────────
-       COCHLEAR COPILOT DECK — embedded styles
+       COCHLEAR COPILOT DECK 2 — embedded styles
        All tokens mirror css/style.css :root
     ───────────────────────────────────────── */
 
@@ -151,7 +151,29 @@
       font-weight: 300; color: #F3F3F1; letter-spacing: 0.04em;
     }
 
-    /* ─── [02] INDEX ─── */
+    /* ─── [02] HERO IMAGE ─── */
+    .slide--hero .hero-inner {
+      position: absolute;
+      inset: var(--slide-pad-v) var(--slide-pad-h);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .slide--hero .hero-figure {
+      display: flex; flex-direction: column;
+      max-width: 100%; min-height: 0;
+    }
+    .slide--hero .hero-img {
+      display: block; width: auto; height: auto;
+      max-width: 100%;
+      max-height: calc(100vh - var(--slide-pad-v) * 2 - 3rem);
+    }
+    .slide--hero .hero-caption {
+      margin-top: 1rem;
+      font-family: var(--font-mono); font-size: var(--size-xs);
+      font-weight: 300; color: var(--text-faint); line-height: 1.6;
+    }
+
+    /* ─── [03] INDEX ─── */
     .slide--index .index-list {
       position: absolute; left: 58%; top: 50%;
       display: flex; flex-direction: column; gap: 0.25rem;
@@ -166,7 +188,7 @@
       font-weight: 300; color: var(--text-faint);
     }
 
-    /* ─── [03] SECTION-TITLE ─── */
+    /* ─── [04] SECTION-TITLE ─── */
     .slide--section-title .section-title__word {
       position: absolute;
       left: calc(58% + 3.75rem); top: 50%;
@@ -174,7 +196,7 @@
       font-weight: 300; color: #F3F3F1;
     }
 
-    /* ─── [04] CONTENT ─── */
+    /* ─── [05] CONTENT ─── */
     .slide--content .content-heading {
       font-family: var(--font-display); font-size: var(--size-lg);
       font-weight: 300; color: var(--text-faint);
@@ -189,7 +211,7 @@
     }
     .slide--content .content-body p + p { margin-top: 1em; }
 
-    /* ─── [05] GOAL ─── */
+    /* ─── [06] GOAL ─── */
     .goal-label { color: var(--text-faint); }
     .slide--goal .goal-statement {
       position: absolute; top: 50%; left: 50%; width: 70%;
@@ -198,7 +220,7 @@
       font-weight: 300; color: #F3F3F1; line-height: 1.15;
     }
 
-    /* ─── [06] ROLE ─── */
+    /* ─── [07] ROLE ─── */
     .slide--role .role-block {
       position: absolute; top: 50%; left: 50%; width: 42%;
       transform: translate(-50%, -50%);
@@ -215,7 +237,7 @@
     }
     .role-row strong { color: var(--text-muted); font-weight: 300; }
 
-    /* ─── [07] HYPOTHESIS ─── */
+    /* ─── [08] HYPOTHESIS ─── */
     .hyp-label { color: var(--text-faint); }
     .slide--hypothesis .hyp-statement {
       position: absolute; top: 50%; left: 50%; width: 70%;
@@ -224,7 +246,7 @@
       font-weight: 300; color: #F3F3F1; line-height: 1.15;
     }
 
-    /* ─── [08] QUOTE ─── */
+    /* ─── [09] QUOTE ─── */
     .slide--quote .quote-text {
       position: absolute; top: 48%; left: 50%;
       transform: translate(-50%, -50%);
@@ -236,7 +258,7 @@
     .slide--quote .quote-attr { color: var(--text-faint); }
     .slide--dark .quote-attr { color: rgba(243,243,241,0.50); }
 
-    /* ─── [09] STATS ─── */
+    /* ─── [10] STATS ─── */
     .slide--stats .stats-row {
       position: absolute; top: 50%;
       left: clamp(4rem, 8vw, 7rem); right: clamp(4rem, 8vw, 7rem);
@@ -254,7 +276,7 @@
       font-weight: 300; color: var(--text-faint); margin-top: 1rem; display: block;
     }
 
-    /* ─── [10A] OUTPUT — left panel (shared) ─── */
+    /* ─── [11A] OUTPUT — left panel (shared) ─── */
     .slide--output .output-left {
       position: absolute; top: 0; left: 0; width: 27%; height: 100%;
       padding: var(--slide-pad-v) var(--slide-pad-h);
@@ -280,42 +302,92 @@
       color: rgba(243,243,241,0.35) !important;
       margin-top: 1.25rem !important; letter-spacing: 0.04em;
     }
-    .output-left__confidential { display: none; }
 
-    /* ─── AI CARD ─── */
-    .output-ai-card {
-      position: absolute; bottom: var(--slide-pad-v);
-      left: var(--slide-pad-h); right: var(--slide-pad-h);
-      background: #EAE7E0; border-radius: 0.375rem; padding: 0.875rem 1rem;
+    /* ─── [11B] OUTPUT-A — scrolling phone grid ─── */
+    .output-phones {
+      position: absolute;
+      top: 0; left: 27%; right: 0; bottom: 0;
+      display: flex; gap: 12px; overflow: visible; padding: 0 12px;
     }
-    .slide--dark .output-ai-card { background: rgba(255,255,255,0.10); }
-    .output-ai-card__label {
-      display: block; font-family: var(--font-mono); font-size: 0.5625rem;
-      font-weight: 500; color: rgba(243,243,241,0.55); letter-spacing: 0.08em;
-      text-transform: uppercase; margin-bottom: 0.4rem;
+    .phone-col { flex: 1; display: flex; flex-direction: column; }
+    .phone-col__track { display: flex; flex-direction: column; gap: 10px; }
+    .output-phones .phone-col:nth-child(1) .phone-col__track {
+      margin-top: -260px;
+      animation: phoneScroll 36s linear infinite;
     }
-    .output-ai-card p {
-      font-family: var(--font-mono); font-size: 0.625rem;
-      font-weight: 300; color: rgba(243,243,241,0.80); line-height: 1.65;
+    .output-phones .phone-col:nth-child(2) .phone-col__track {
+      margin-top: 180px;
+      animation: phoneScroll 45s linear infinite;
+    }
+    .output-phones .phone-col:nth-child(3) .phone-col__track {
+      margin-top: -120px;
+      animation: phoneScroll 24s linear infinite;
+    }
+    @keyframes phoneScroll {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+    .phone-tile {
+      flex-shrink: 0; width: 100%; aspect-ratio: 375 / 812;
+      border-radius: 2.5rem; border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04); overflow: hidden; position: relative;
+    }
+    .phone-tile__record-mask {
+      position: absolute; top: 0; left: 0; width: 100%;
+      height: calc(6% + 2px); background: #fff; z-index: 2; pointer-events: none;
+    }
+    .phone-tile img,
+    .phone-tile video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ─── [11C] OUTPUT-STATIC — 3 static phones side by side ─── */
+    .output-phones-static {
+      position: absolute;
+      top: 0; left: 27%; right: 0; bottom: 0;
+      display: flex; align-items: flex-start;
+      gap: 1.25rem; padding: var(--slide-pad-v) var(--slide-pad-h);
+    }
+    .static-phone {
+      flex: 1; display: flex; flex-direction: column; align-items: flex-start;
+    }
+    .static-phone .phone-tile {
+      width: 100%; aspect-ratio: 375 / 812;
+      max-height: calc(100vh - var(--slide-pad-v) * 2 - 2.5rem);
+      max-width: calc((100vh - var(--slide-pad-v) * 2 - 2.5rem) * 375 / 812);
+    }
+    .static-phone__caption {
+      margin-top: 0.625rem;
+      font-family: var(--font-mono); font-size: var(--size-xs);
+      font-weight: 300; color: rgba(243,243,241,0.45); line-height: 1.5;
     }
 
-    /* ─── [10B] OUTPUT-B — image/video right ─── */
-    .slide--output-b .output-image-right {
-      position: absolute; top: 0; left: 27%; right: 0; bottom: 0;
-      padding: clamp(2rem, 4vw, 4rem); overflow: hidden;
+    /* ─── IMAGE PLACEHOLDER ─── */
+    .img-placeholder {
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(255,255,255,0.12);
       display: flex; align-items: center; justify-content: center;
     }
-    .slide--output-b .output-image-right img,
-    .slide--output-b .output-image-right video {
-      max-width: 100%; max-height: 100%;
-      width: auto; height: auto;
-      object-fit: contain; display: block;
+    .img-placeholder span {
+      font-family: var(--font-mono); font-size: var(--size-xs);
+      color: rgba(255,255,255,0.25); text-align: center; padding: 1rem;
     }
 
-    /* ─── [13] IMPACT ─── */
-    .slide--impact .impact-grid {
-      position: absolute; inset: 0; display: flex;
+    /* ─── FIGURE SLIDE ─── */
+    .slide--figure .figure-inner {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(72%, 900px);
+      display: flex; flex-direction: column; align-items: flex-start;
     }
+    .slide--figure .figure-img { width: 100%; height: auto; display: block; }
+    .slide--figure .figure-caption {
+      margin-top: 1.25rem;
+      font-family: var(--font-mono); font-size: var(--size-xs);
+      color: var(--text-faint); text-align: left; line-height: 1.6; width: 100%;
+    }
+
+    /* ─── [12] IMPACT ─── */
+    .slide--impact .impact-grid { position: absolute; inset: 0; display: flex; }
     .impact-col {
       flex: 1; position: relative; display: flex; flex-direction: column;
       justify-content: flex-start;
@@ -336,40 +408,11 @@
     }
     .impact-col__list li::before { content: '•'; position: absolute; left: 0; color: var(--text-faint); }
 
-    /* ─── [14] QA ─── */
+    /* ─── [13] QA ─── */
     .slide--qa .qa-text {
       position: absolute; top: 60%; left: var(--slide-pad-h);
       font-family: var(--font-display); font-size: clamp(5rem, 10vw, 9rem);
       font-weight: 300; color: #F3F3F1; line-height: 1.0;
-    }
-
-    /* ─── FIGURE SLIDE ─── */
-    .slide--figure .figure-inner {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: min(72%, 900px);
-      display: flex; flex-direction: column; align-items: flex-start;
-    }
-    .slide--figure .figure-img {
-      width: 100%; height: auto; display: block;
-    }
-    .slide--figure .figure-caption {
-      margin-top: 1.25rem;
-      font-family: var(--font-mono); font-size: var(--size-xs);
-      color: var(--text-faint); text-align: left; line-height: 1.6; width: 100%;
-    }
-
-    /* ─── IMAGE PLACEHOLDER ─── */
-    .img-placeholder {
-      width: 100%; height: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px dashed rgba(255,255,255,0.12);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .img-placeholder span {
-      font-family: var(--font-mono); font-size: var(--size-xs);
-      color: rgba(255,255,255,0.25); text-align: center; padding: 1rem;
     }
 
     /* ─── BUILD-IN ─── */
@@ -378,9 +421,7 @@
     .slide--impact .impact-col:nth-child(n+2),
     .slide--output .output-left__body p:nth-of-type(n+2):not([data-immediate]),
     .slide--output:not([data-continue]) .output-phones,
-    .slide--output-b:not([data-continue]) .output-image-right,
-    .slide--output-c:not([data-continue]) .output-phone-hero,
-    .slide--output-c .output-ai-card:not([data-immediate]) {
+    .slide--output-static:not([data-continue]) .output-phones-static {
       opacity: 0; transition: opacity 400ms ease;
     }
     .slide--content .content-body p:nth-of-type(n+2).is-visible,
@@ -388,74 +429,8 @@
     .slide--impact .impact-col:nth-child(n+2).is-visible,
     .slide--output .output-left__body p:nth-of-type(n+2):not([data-immediate]).is-visible,
     .slide--output:not([data-continue]) .output-phones.is-visible,
-    .slide--output-b:not([data-continue]) .output-image-right.is-visible,
-    .slide--output-c:not([data-continue]) .output-phone-hero.is-visible,
-    .slide--output-c .output-ai-card:not([data-immediate]).is-visible {
+    .slide--output-static:not([data-continue]) .output-phones-static.is-visible {
       opacity: 1;
-    }
-
-    /* ─── PHONE GRID (output-a) ─── */
-    .output-phones {
-      position: absolute;
-      top: 0;
-      left: 27%;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      gap: 12px;
-      overflow: visible;
-      padding: 0 12px;
-    }
-
-    .phone-col { flex: 1; display: flex; flex-direction: column; }
-
-    .phone-col__track { display: flex; flex-direction: column; gap: 10px; }
-
-    .output-phones .phone-col:nth-child(1) .phone-col__track {
-      margin-top: -260px;
-      animation: phoneScroll 36s linear infinite;
-    }
-    .output-phones .phone-col:nth-child(2) .phone-col__track {
-      margin-top: 180px;
-      animation: phoneScroll 45s linear infinite;
-    }
-    .output-phones .phone-col:nth-child(3) .phone-col__track {
-      margin-top: -120px;
-      animation: phoneScroll 24s linear infinite;
-    }
-
-    @keyframes phoneScroll {
-      from { transform: translateY(0); }
-      to   { transform: translateY(-50%); }
-    }
-
-    .phone-tile {
-      flex-shrink: 0;
-      width: 100%;
-      aspect-ratio: 375 / 812;
-      border-radius: 2.5rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .phone-tile__record-mask {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: calc(6% + 2px);
-      background: #fff;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .phone-tile img,
-    .phone-tile video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
     }
 
     /* ─── M SWITCHER ─── */
@@ -487,7 +462,6 @@
       .slide--stats .stats-row { flex-direction: column; align-items: flex-start; top: 50%; left: var(--slide-pad-h); right: var(--slide-pad-h); gap: 2rem; }
       .slide--output { overflow-y: auto; }
       .slide--output .output-left { position: relative; width: 100%; height: auto; padding: var(--slide-pad-v) var(--slide-pad-h) 1.5rem; }
-      .slide--output-b .output-image-right { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: 100%; height: 50vw; min-height: 220px; }
       .slide--impact { overflow-y: auto; }
       .slide--impact .impact-grid { position: relative; flex-direction: column; }
       .impact-col { padding: 2rem var(--slide-pad-h) 1.5rem; }
@@ -500,12 +474,12 @@
 <body>
 
 <!-- ══════════════════════════════════════
-     SLIDE 1 OF 29 — TITLE
+     SLIDE 1 OF 33 — TITLE
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--title is-active" data-type="title" data-index="0">
   <a href="../index.html" class="back-link">← Back to selected work</a>
 
-  <h1 class="title-text" data-cc-copy="deck_title">Building hearing rehab with Cochlear CoPilot</h1>
+  <h1 class="title-text" data-cc-copy="deck_title">Cochlear CoPilot</h1>
 
   <div class="title-meta">
     <span class="title-meta__company" data-cc-copy="deck_company">Cochlear · ustwo · 2020–2021</span>
@@ -515,12 +489,24 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 2 OF 29 — INDEX
+     SLIDE 2 OF 33 — HERO IMAGE
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--index" data-type="index" data-index="1">
+<section class="slide slide--light slide--hero" data-type="hero" data-index="1">
+  <div class="hero-inner">
+    <figure class="hero-figure">
+      <img class="hero-img" src="../assets/cochlear/cochlear-casestudy-hero-2.jpg" alt="Cochlear CoPilot">
+      <p class="hero-caption" data-cc-copy="hero_caption_2"></p>
+    </figure>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 3 OF 33 — INDEX
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--index" data-type="index" data-index="2">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
   </div>
 
   <nav class="index-list" aria-label="Deck sections">
@@ -530,14 +516,18 @@
     </div>
     <div class="index-item">
       <span class="index-item__num">02</span>
-      <span class="index-item__name">Approach</span>
+      <span class="index-item__name">Content + Personalization</span>
     </div>
     <div class="index-item">
       <span class="index-item__num">03</span>
-      <span class="index-item__name">Outputs</span>
+      <span class="index-item__name">First Time Use</span>
     </div>
     <div class="index-item">
       <span class="index-item__num">04</span>
+      <span class="index-item__name">Skill Builders</span>
+    </div>
+    <div class="index-item">
+      <span class="index-item__num">05</span>
       <span class="index-item__name">Outcomes</span>
     </div>
   </nav>
@@ -545,20 +535,19 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 3 OF 29 — SECTION TITLE: Context
+     SLIDE 4 OF 33 — SECTION TITLE: Context
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="2">
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="3">
   <p class="section-title__word">Context</p>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 4 OF 29 — CONTENT: Opportunity
+     SLIDE 5 OF 33 — CONTENT: Opportunity
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--content" data-type="content" data-index="3">
+<section class="slide slide--light slide--content" data-type="content" data-index="4">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
   </div>
 
   <div class="content-body">
@@ -571,12 +560,11 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 5 OF 29 — GOAL
+     SLIDE 6 OF 33 — GOAL
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--goal" data-type="goal" data-index="4">
+<section class="slide slide--dark slide--goal" data-type="goal" data-index="5">
   <div class="slide-header slide-header--dark">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
   </div>
 
   <p class="goal-statement"><span class="goal-label">Goal: </span><span data-cc-copy="goal"></span></p>
@@ -584,12 +572,23 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 6 OF 29 — ROLE
+     SLIDE 7 OF 33 — HYPOTHESIS
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--role" data-type="role" data-index="5">
+<section class="slide slide--dark slide--hypothesis" data-type="hypothesis" data-index="6">
+  <div class="slide-header slide-header--dark">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <p class="hyp-statement"><span class="hyp-label">Hypothesis: </span><span data-cc-copy="hypothesis"></span></p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 8 OF 33 — ROLE
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--role" data-type="role" data-index="7">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
   </div>
 
   <div class="role-block">
@@ -604,68 +603,12 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 7 OF 29 — SECTION TITLE: Approach
+     SLIDE 9 OF 33 — QUOTE: Cochlear stakeholder
+     (moved from original slide 11)
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="6">
-  <p class="section-title__word">Approach</p>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     SLIDE 8 OF 29 — HYPOTHESIS
-     ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--hypothesis" data-type="hypothesis" data-index="7">
-  <div class="slide-header slide-header--dark">
-    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
-  </div>
-
-  <p class="hyp-statement"><span class="hyp-label">Hypothesis: </span><span data-cc-copy="hypothesis"></span></p>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     SLIDE 9 OF 29 — CONTENT: Embedded leadership
-     ══════════════════════════════════════ -->
-<section class="slide slide--light slide--content" data-type="content" data-index="8">
+<section class="slide slide--light slide--quote" data-type="quote" data-index="8">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
-  </div>
-
-  <div class="content-body">
-    <h2 class="content-heading" data-cc-copy="section_embedded">Embedded leadership</h2>
-    <p data-cc-copy="embedded_0"></p>
-    <p data-cc-copy="embedded_1"></p>
-    <p data-cc-copy="embedded_2"></p>
-    <p data-cc-copy="embedded_3"></p>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     SLIDE 10 OF 29 — FIGURE: Design + Learn cadence
-     ══════════════════════════════════════ -->
-<section class="slide slide--light slide--figure" data-type="figure" data-index="9">
-  <div class="slide-header">
-    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
-  </div>
-
-  <div class="figure-inner">
-    <img class="figure-img" src="../assets/cochlear/design-cadence-categories.png" alt="Design + Learn cadence — six categories of design work">
-    <p class="figure-caption" data-cc-copy="design_cadence_caption"></p>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     SLIDE 11 OF 29 — QUOTE: Cochlear stakeholder
-     ══════════════════════════════════════ -->
-<section class="slide slide--light slide--quote" data-type="quote" data-index="10">
-  <div class="slide-header">
-    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
   </div>
 
   <p class="quote-text"><span data-cc-copy="quote_stakeholder_text"></span> <span class="quote-attr" data-cc-copy="quote_stakeholder_attr"></span></p>
@@ -673,102 +616,83 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 12 OF 29 — CONTENT: Co-creators program
+     SLIDE 10 OF 33 — SECTION TITLE: Content + Personalization
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--content" data-type="content" data-index="10">
-  <div class="slide-header">
-    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="9">
+  <p class="section-title__word">Content + Personalization</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 11 OF 33 — OUTPUT-STATIC: Content + Personalization intro
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output slide--output-static" data-type="output-static" data-index="10">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">COCHLEAR COPILOT</span>
+    </div>
+    <p class="output-left__title" data-cc-copy="section_cp"></p>
+    <div class="output-left__body">
+      <p data-cc-copy="intro_cp_0"></p>
+      <p data-cc-copy="intro_cp_1"></p>
+      <p data-cc-copy="intro_cp_2"></p>
+    </div>
   </div>
 
-  <div class="content-body">
-    <h2 class="content-heading" data-cc-copy="section_cocreators">The Co-creators program</h2>
-    <p data-cc-copy="cocreators_0"></p>
-    <p data-cc-copy="cocreators_1"></p>
-    <p data-cc-copy="cocreators_2"></p>
+  <div class="output-phones-static" aria-hidden="true">
+    <div class="static-phone">
+      <div class="phone-tile"><div class="phone-tile__record-mask" style="background:#FFFFFF"></div><img src="../assets/cochlear/content/05-content-4.png" alt=""></div>
+      <p class="static-phone__caption">NEED ENABLERS</p>
+    </div>
+    <div class="static-phone">
+      <div class="phone-tile"><div class="phone-tile__record-mask" style="background:#FFFFFF"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/04-content-discover-1.mp4" type="video/mp4"></video></div>
+      <p class="static-phone__caption">DISCOVER</p>
+    </div>
+    <div class="static-phone">
+      <div class="phone-tile"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/01-content-5.mp4" type="video/mp4"></video></div>
+      <p class="static-phone__caption">BROWSE</p>
+    </div>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 12 OF 29 — FIGURE: Co-creators requirements
+     SLIDE 12 OF 33 — CONTENT: Content strategy
+     (moved from original slide 16)
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--figure" data-type="figure" data-index="11">
+<section class="slide slide--light slide--content" data-type="content" data-index="11">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
-  </div>
-
-  <div class="figure-inner">
-    <img class="figure-img" src="../assets/cochlear/co-creation-sme.jpg" alt="Clinical requirements mapped in Mural">
-    <p class="figure-caption" data-cc-copy="cocreators_figure_caption"></p>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     SLIDE 13 OF 29 — CONTENT: Measure-Learn
-     ══════════════════════════════════════ -->
-<section class="slide slide--light slide--content" data-type="content" data-index="12">
-  <div class="slide-header">
-    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
-  </div>
-
-  <div class="content-body">
-    <h2 class="content-heading" data-cc-copy="section_measure">A measure-learn discipline</h2>
-    <p data-cc-copy="measure_0"></p>
-    <p data-cc-copy="measure_1"></p>
-    <p data-cc-copy="measure_2"></p>
-    <p data-cc-copy="measure_3"></p>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     SLIDE 14 OF 29 — FIGURE: Measure-Learn Tracker
-     ══════════════════════════════════════ -->
-<section class="slide slide--light slide--figure" data-type="figure" data-index="13">
-  <div class="slide-header">
-    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
-  </div>
-
-  <div class="figure-inner">
-    <video class="figure-img" autoplay muted loop playsinline preload="none">
-      <source src="../assets/cochlear/copilot-measure-learn-video.mp4" type="video/mp4">
-    </video>
-    <p class="figure-caption" data-cc-copy="measure_figure_caption"></p>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     SLIDE 16 OF 29 — CONTENT: Content strategy
-     ══════════════════════════════════════ -->
-<section class="slide slide--light slide--content" data-type="content" data-index="12">
-  <div class="slide-header">
-    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
   </div>
 
   <div class="content-body">
     <h2 class="content-heading" data-cc-copy="section_content">Content strategy, tagging, and a personalization foundation</h2>
-    <p data-cc-copy="content_0"></p>
     <p data-cc-copy="content_1"></p>
-    <p data-cc-copy="content_2"></p>
-    <p data-cc-copy="content_3"></p>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 17 OF 29 — FIGURE: Need Enabler patterns
+     FIGURE: Information architecture and content tagging strategy
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--figure" data-type="figure" data-index="16">
+<section class="slide slide--light slide--figure" data-type="figure" data-index="12">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/content/content-content-tagging.jpg" alt="Information architecture and content tagging strategy">
+    <p class="figure-caption" data-cc-copy="content_ia_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FIGURE: Need Enabler patterns
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--figure" data-type="figure" data-index="13">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
 
   <div class="figure-inner">
@@ -779,53 +703,51 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 18 OF 29 — QUOTE: Vijay (Head of engineering, ustwo)
+     FIGURE: Personalization thought piece
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--figure" data-type="figure" data-index="14">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/content/content-thoughtpiece.jpg" alt="Personalization thought piece">
+    <p class="figure-caption" data-cc-copy="content_personalisation_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FIGURE: Testing content navigation
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--figure" data-type="figure" data-index="15">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/content/content-testing-nav.jpg" alt="Testing content navigation">
+    <p class="figure-caption" data-cc-copy="content_nav_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     QUOTE: Vijay (Head of engineering, ustwo)
      ══════════════════════════════════════ -->
 <section class="slide slide--light slide--quote" data-type="quote" data-index="13">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
   <p class="quote-text"><span data-cc-copy="quote_vijay_text"></span> <span class="quote-attr" data-cc-copy="quote_vijay_attr"></span></p>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 19 OF 29 — CONTENT: Recycle & Reuse
+     SLIDE 15 OF 33 — OUTPUT-A: Content & Personalization phone grid
+     (moved from original slide 22)
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--content" data-type="content" data-index="13">
-  <div class="slide-header">
-    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
-  </div>
-
-  <div class="content-body">
-    <h2 class="content-heading" data-cc-copy="section_reuse">Recycle & Reuse → five Skill Builders</h2>
-    <p data-cc-copy="reuse_0"></p>
-    <p data-cc-copy="reuse_1"></p>
-    <p data-cc-copy="reuse_2"></p>
-    <p data-cc-copy="reuse_3"></p>
-    <p data-cc-copy="reuse_4"></p>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     SLIDE 19 OF 29 — QUOTE: Product designer (Reuse & Recycle)
-     ══════════════════════════════════════ -->
-<section class="slide slide--light slide--quote" data-type="quote" data-index="14">
-  <p class="quote-text"><span data-cc-copy="quote_reuse_text"></span> <span class="quote-attr" data-cc-copy="quote_reuse_attr"></span></p>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     SLIDE 17 OF 30 — SECTION TITLE: Outputs
-     ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="16">
-  <p class="section-title__word">Outputs</p>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     SLIDE 18 OF 30 — OUTPUT-A: Content and personalisation
-     ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output" data-type="output-a" data-index="17">
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="14">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">COCHLEAR COPILOT</span>
@@ -877,9 +799,142 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 19 OF 30 — OUTPUT-A: First Time Use experience
+     SECTION TITLE: First Time Use
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output" data-type="output-a" data-index="18">
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="15">
+  <p class="section-title__word">First Time Use</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     OUTPUT-STATIC: First Time Use intro
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output slide--output-static" data-type="output-static" data-index="16">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">COCHLEAR COPILOT</span>
+    </div>
+    <p class="output-left__title" data-cc-copy="section_ftu_label"></p>
+    <div class="output-left__body">
+      <p data-cc-copy="intro_ftu_0"></p>
+      <p data-cc-copy="intro_ftu_1"></p>
+      <p data-cc-copy="intro_ftu_2"></p>
+    </div>
+  </div>
+
+  <div class="output-phones-static" aria-hidden="true">
+    <div class="static-phone">
+      <div class="phone-tile"><div class="phone-tile__record-mask" style="background:#FAECCC"></div><img src="../assets/cochlear/ftu/1-appstore-app-overview.png" alt=""></div>
+      <p class="static-phone__caption">APP STORE ENTRY</p>
+    </div>
+    <div class="static-phone">
+      <div class="phone-tile"><div class="phone-tile__record-mask" style="background:#FAFAFA"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/ftu/2-appstore-preview-carousel.mp4" type="video/mp4"></video></div>
+      <p class="static-phone__caption">APP STORE PREVIEW</p>
+    </div>
+    <div class="static-phone">
+      <div class="phone-tile"><img src="../assets/cochlear/ftu/8-ftu-appstore.png" alt=""></div>
+      <p class="static-phone__caption">CO-CREATED MESSAGING</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CONTENT: Co-creators program
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="17">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-cc-copy="section_cocreators">Co-creation as a strategy</h2>
+    <p data-cc-copy="cocreators_0"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FIGURE: Co-creators program
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--figure" data-type="figure" data-index="18">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/co-creation-recipient.jpg" alt="Co-creators program">
+    <p class="figure-caption" data-cc-copy="cocreators_program_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FIGURE: Clinical research co-creation
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--figure" data-type="figure" data-index="19">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/co-creation-sme.jpg" alt="Clinical research co-creation">
+    <p class="figure-caption" data-cc-copy="cocreators_figure_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CONTENT: Measure-Learn
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="20">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-cc-copy="section_measure">A measure-learn discipline</h2>
+    <p data-cc-copy="measure_0"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FIGURE: Measure-Learn Tracker
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--figure" data-type="figure" data-index="21">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <video class="figure-img" autoplay muted loop playsinline preload="none">
+      <source src="../assets/cochlear/copilot-measure-learn-video.mp4" type="video/mp4">
+    </video>
+    <p class="figure-caption" data-cc-copy="measure_figure_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FIGURE: Language calibration
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--figure" data-type="figure" data-index="22">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/research-calibration.jpg" alt="Research calibration">
+    <p class="figure-caption" data-cc-copy="measure_calibration_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     OUTPUT-A: First Time Use phone grid
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="21">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">COCHLEAR COPILOT</span>
@@ -935,9 +990,105 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 20 OF 30 — OUTPUT-A: Five Skill Builders
+     SECTION TITLE: Skill Builders
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--output" data-type="output-a" data-index="19">
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="22">
+  <p class="section-title__word">Skill Builders</p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     OUTPUT-STATIC: Skill Builders intro
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output slide--output-static" data-type="output-static" data-index="23">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">COCHLEAR COPILOT</span>
+    </div>
+    <p class="output-left__title" data-cc-copy="section_sb"></p>
+    <div class="output-left__body">
+      <p data-cc-copy="intro_sb_0"></p>
+      <p data-cc-copy="intro_sb_1"></p>
+      <p data-cc-copy="intro_sb_2"></p>
+    </div>
+  </div>
+
+  <div class="output-phones-static" aria-hidden="true">
+    <div class="static-phone">
+      <div class="phone-tile"><div class="phone-tile__record-mask" style="background:#FFFFFF"></div><img src="../assets/cochlear/skillbuilders/00-audio-hierarchy.png" alt=""></div>
+      <p class="static-phone__caption">SKILL BUILDERS IN IA</p>
+    </div>
+    <div class="static-phone">
+      <div class="phone-tile"><img src="../assets/cochlear/skillbuilders/01-cochlear-3.jpg" alt=""></div>
+      <p class="static-phone__caption">SKILL BUILDER INTRO</p>
+    </div>
+    <div class="static-phone">
+      <div class="phone-tile"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/02-cochlear-2.mp4" type="video/mp4"></video></div>
+      <p class="static-phone__caption">SKILL BUILDER</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CONTENT: Recycle & Reuse
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--content" data-type="content" data-index="24">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-cc-copy="section_reuse">Recycle &amp; Reuse → five Skill Builders</h2>
+    <p data-cc-copy="reuse_0"></p>
+  </div>
+</section>
+
+
+
+<!-- ══════════════════════════════════════
+     FIGURE: Skill Builder language taxonomy
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--figure" data-type="figure">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/reuse-recycle-taxonomy.jpg" alt="Skill Builder language taxonomy">
+    <p class="figure-caption" data-cc-copy="reuse_fig_b_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FIGURE: Assume everything is the same
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--figure" data-type="figure">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/reuse-recycle-whats-different.jpg" alt="What's different — surgical deltas">
+    <p class="figure-caption" data-cc-copy="reuse_fig_c_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     QUOTE: Product designer (Reuse & Recycle)
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--quote" data-type="quote" data-index="25">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+  <p class="quote-text"><span data-cc-copy="quote_reuse_text"></span> <span class="quote-attr" data-cc-copy="quote_reuse_attr"></span></p>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     OUTPUT-A: Skill Builders phone grid
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="26">
   <div class="output-left">
     <div class="output-left__header">
       <span class="output-left__header-project">COCHLEAR COPILOT</span>
@@ -990,20 +1141,19 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 21 OF 30 — SECTION TITLE: Outcomes
+     SLIDE 28 OF 33 — SECTION TITLE: Outcomes
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="20">
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="27">
   <p class="section-title__word">Outcomes</p>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 22 OF 30 — STATS
+     SLIDE 29 OF 33 — STATS
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--stats" data-type="stats" data-index="21">
+<section class="slide slide--light slide--stats" data-type="stats" data-index="28">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
   </div>
 
   <div class="stats-row">
@@ -1024,15 +1174,25 @@
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 23 OF 30 — IMPACT
+     SLIDE 30 OF 33 — IMPACT
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--impact" data-type="impact" data-index="22">
+<section class="slide slide--light slide--impact" data-type="impact" data-index="29">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
   </div>
 
   <div class="impact-grid">
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-cc-copy="outcome_product">Product</h3>
+      <ul class="impact-col__list">
+        <li data-cc-copy="impact_product_0"></li>
+        <li data-cc-copy="impact_product_1"></li>
+        <li data-cc-copy="impact_product_2"></li>
+        <li data-cc-copy="impact_product_3"></li>
+        <li data-cc-copy="impact_product_4"></li>
+      </ul>
+    </div>
 
     <div class="impact-col">
       <h3 class="impact-col__name" data-cc-copy="outcome_scale">Scale</h3>
@@ -1062,50 +1222,47 @@
       </ul>
     </div>
 
-    <div class="impact-col">
-      <h3 class="impact-col__name" data-cc-copy="outcome_product">Product</h3>
-      <ul class="impact-col__list">
-        <li data-cc-copy="impact_product_0"></li>
-        <li data-cc-copy="impact_product_1"></li>
-        <li data-cc-copy="impact_product_2"></li>
-        <li data-cc-copy="impact_product_3"></li>
-        <li data-cc-copy="impact_product_4"></li>
-      </ul>
-    </div>
-
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════
-     SLIDE 24 OF 30 — QUOTE: Paz
-     ══════════════════════════════════════ -->
-<section class="slide slide--light slide--quote" data-type="quote" data-index="23">
-  <p class="quote-text"><span data-cc-copy="quote_paz_text"></span> <span class="quote-attr" data-cc-copy="quote_paz_attr"></span></p>
-</section>
-
 
 <!-- ══════════════════════════════════════
-     SLIDE 25 OF 30 — CONTENT: Reflection
+     SLIDE 32 OF 33 — CONTENT: Reflection
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--content" data-type="content" data-index="24">
+<section class="slide slide--light slide--content" data-type="content" data-index="31">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
-    <span class="slide-header__client"  data-header-client>COCHLEAR via USTWO</span>
   </div>
 
   <div class="content-body">
     <h2 class="content-heading" data-cc-copy="section_reflection">Reflection</h2>
     <p data-cc-copy="reflection_0"></p>
-    <p data-cc-copy="reflection_1"></p>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 26 OF 30 — Q+A
+     FIGURE: Naming and differentiating through language
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--qa" data-type="qa" data-index="26">
+<section class="slide slide--light slide--figure" data-type="figure">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <div style="width:100%;aspect-ratio:16/9;background:var(--border-light);border:1px dashed var(--border);display:flex;align-items:center;justify-content:center;">
+      <span style="font-family:var(--font-mono);font-size:var(--size-xs);color:var(--text-faint)">asset placeholder</span>
+    </div>
+    <p class="figure-caption" data-cc-copy="reflection_figure_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 33 OF 33 — Q+A
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--qa" data-type="qa" data-index="32">
   <a href="../index.html" class="back-link">← Back to selected work</a>
   <p class="qa-text">Q+A</p>
 </section>
@@ -1115,21 +1272,21 @@
 <div class="deck-confidential" aria-hidden="true">PRIVILEGED &amp; CONFIDENTIAL</div>
 <div class="deck-counter-group">
   <a id="deck-next-link" href="afterpay-deck.html" class="deck-next-link">Next: Afterpay Design →</a>
-  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 30</div>
+  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 33</div>
 </div>
 <div class="deck-hint" aria-hidden="true">← → to navigate</div>
 
 <!-- ─── M SWITCHER ─── -->
 <div class="deck-switcher" id="deckSwitcher" aria-hidden="true" role="dialog" aria-label="View switcher">
   <div class="deck-switcher__inner">
-    <a href="cochlear-deck.html" class="deck-switcher__option deck-switcher__option--active">Deck</a>
+    <a href="cochlear-deck-2.html" class="deck-switcher__option deck-switcher__option--active">Deck</a>
     <a href="cochlear-copilot.html" class="deck-switcher__option">Scroll</a>
   </div>
   <p class="deck-switcher__hint">m or esc to close</p>
 </div>
 
 <!-- ─── COPY SOURCE ─── -->
-<script src="cochlear-copy.js?v=20260612gfedcb"></script>
+<script src="cochlear-copy-2.js?v=20260615"></script>
 
 <script>
   (function () {
@@ -1165,10 +1322,10 @@
     })();
 
     /* ── Keyboard hint ── */
-    if (!sessionStorage.getItem('cc-deck-hint')) {
+    if (!sessionStorage.getItem('cc-deck-2-hint')) {
       setTimeout(function () {
         hint.classList.add('fade-out');
-        sessionStorage.setItem('cc-deck-hint', '1');
+        sessionStorage.setItem('cc-deck-2-hint', '1');
       }, 3000);
     } else {
       hint.classList.add('fade-out');
@@ -1188,10 +1345,10 @@
         var cols = Array.from(slide.querySelectorAll('.impact-col'));
         return cols.slice(1);
       }
-      if (type === 'output-a' || type === 'output-b' || type === 'output-c') {
+      if (type === 'output-a' || type === 'output-b' || type === 'output-c' || type === 'output-static') {
         var isContinue = slide.hasAttribute('data-continue');
         var assetPanel = !isContinue
-          ? slide.querySelector('.output-phones, .output-image-right, .output-phone-hero')
+          ? slide.querySelector('.output-phones, .output-image-right, .output-phone-hero, .output-phones-static')
           : null;
         var bodyParas = Array.from(slide.querySelectorAll('.output-left__body p'))
           .slice(1)
@@ -1300,11 +1457,11 @@
     var switcher = document.getElementById('deckSwitcher');
 
     function slideToScrollAnchor(idx) {
-      if (idx >= 28) return '#s-reflection';
-      if (idx >= 24) return '#s-outcomes';
-      if (idx >= 20) return '#s-outputs';
-      if (idx >= 6)  return '#s-approach';
-      if (idx >= 3)  return '#s-opportunity';
+      if (idx >= 31) return '#s-reflection';
+      if (idx >= 27) return '#s-outcomes';
+      if (idx >= 23) return '#s-approach';
+      if (idx >= 9)  return '#s-outputs';
+      if (idx >= 4)  return '#s-opportunity';
       return '';
     }
 
