@@ -279,9 +279,11 @@
               <p data-cc-copy="measure_2"></p>
               <p data-cc-copy="measure_3"></p>
               <figure class="cs-approach-figure">
-                <video autoplay muted loop playsinline id="measureLearnVideo">
-                  <source src="../assets/cochlear/copilot-measure-learn-video.mp4" type="video/mp4">
-                </video>
+                <div style="overflow:hidden;width:100%;">
+                  <video autoplay muted loop playsinline id="measureLearnVideo" style="width:calc(100% + 9px);margin-left:-3px;margin-right:-6px;">
+                    <source src="../assets/cochlear/copilot-measure-learn-video.mp4" type="video/mp4">
+                  </video>
+                </div>
                 <figcaption data-cc-copy="measure_figure_caption"></figcaption>
               </figure>
             </div>
@@ -708,7 +710,7 @@
   <!-- ─── DECK SWITCHER ─── -->
   <div class="deck-switcher" id="deckSwitcher" aria-hidden="true" role="dialog" aria-label="View switcher">
     <div class="deck-switcher__inner">
-      <a href="cochlear-deck.html" class="deck-switcher__option">Deck</a>
+      <a href="cochlear-deck-2.html" class="deck-switcher__option">Deck</a>
       <a href="cochlear-copilot.html" class="deck-switcher__option deck-switcher__option--active">Scroll</a>
     </div>
     <p class="deck-switcher__hint">m or esc to close</p>
