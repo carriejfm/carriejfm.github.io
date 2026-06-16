@@ -12,15 +12,15 @@
 
    ── DISPLAY RULES ────────────────────────────────────────────────
    Both layouts:
-     case_title, project_string, role_title
+     case_title, project_string, role_title, hero_caption
      section_opportunity, opportunity_0–2
      goal
      section_hypothesis, hypothesis
-     section_rebuild, approach_rebuild_0–2
+     section_rebuild, approach_rebuild_0, figure_rebuild_caption
      quote_product_partner, quote_product_partner_text, quote_product_partner_attr
-     section_problem, approach_problem_0–1
+     section_problem, approach_problem_0, figure_problem_caption
      quote_design_manager, quote_design_manager_text, quote_design_manager_attr
-     section_xfn, approach_xfn_0–1
+     section_xfn, approach_xfn_0, figure_xfn_caption
      quote_eng_partner, quote_eng_partner_text, quote_eng_partner_attr
      section_regulated, regulated_0–3
      section_designsystem, designsystem_0–2
@@ -31,11 +31,14 @@
      quote_cmo, quote_cmo_text, quote_cmo_attr
 
    Deck only:
+     deck_title
      (Index slide — always the same four sections, no copy key needed)
      (Section-title slides for Context, Approach, Outputs, Outcomes — hardcoded single words)
 
    Scroll only:
-     ai_approach  (removed from scroll — kept in copy in case it returns)
+     approach_rebuild_1–2  (speaker notes: rebuild figure slide)
+     approach_problem_1    (speaker notes: problem figure slide)
+     ai_approach           (removed from scroll — kept in copy in case it returns)
 
    Quote key conventions:
      quote_*            = full combined string "text — attribution" → deck <p>
@@ -46,10 +49,11 @@
 var AP_COPY = {
 
   /* ── Meta — title, project string, role ────────────────────────── */
-  case_title:     "The rebuild of Afterpay Design",
+  case_title:     "Afterpay Design",
   project_string: "Block · Afterpay // 2024–2025",
   role_title:     "Head of design",
-  hero_caption:   "Rebuild of the Afterpay design discipline through a multi-region regulatory uplift, US rebrand, and design system overhaul",
+  deck_title:     "Afterpay Design",
+  hero_caption:   "Rebuilding Afterpay design: The one where a reactive design team became a trusted partner",
 
   /* ── Section headings (editable per case study) ─────────────────── */
   section_opportunity: "Opportunity",
@@ -88,6 +92,11 @@ var AP_COPY = {
   /* ── Approach: Cross-functional alignment ───────────────────────── */
   approach_xfn_0: "I established consistent alignment across product, engineering, legal, and compliance through a shared roadmap with design capacity visibility, regular 1:1s with product partners and actively embedding research and JTBDs into roadmap and PRDs.",
   approach_xfn_1: "When last-minute requests came up or scope thrashed (as they do), we had the footing to handle it — allowing us to reprioritize, make better tradeoffs or push back if needed. Embedded within the regional leadership team, I influenced strategy and presented to C-suite.",
+
+  /* ── Approach figure captions ────────────────────────────────────── */
+  figure_rebuild_caption: "Exercises like ‘it all went wrong → we avoided it by’ gave designers room to air concerns and get proactive",
+  figure_problem_caption: "The design team started owning opportunities, not just executing on solutions",
+  figure_xfn_caption:    "Two-way streets of communication with cross-functional partners smoothed roadmap hiccups",
 
   /* ── AI in practice (kept in copy; currently removed from scroll approach) ── */
   ai_approach: "If I were to embark on this journey now I would use AI to take and synth weekly notes into actions and support tracking. I would build out the regulation playbook structure, onboarding docs and the design system regional rollout tooling using AI. I would have flexed AI to smash out the manual content audit and publish a living content 'bot that brand and marketing partners could input into and co-own.",
@@ -181,25 +190,31 @@ var AP_COPY = {
    The deck resolves notes-id → text and posts to the shared speaker-notes.html,
    so that window needs no per-deck copy.
 
-   Today's scrollOnly keys are format artifacts, not hidden content:
-   - quote_*_attr — the deck shows each quote combined (quote_*); the scroll
-     splits text/attr. The quote content is present in both views.
-   - hero_caption — scroll hero only.
-   - section_hypothesis — a heading label; the deck has its own hypothesis slide.
+   Today's scrollOnly keys:
+   - quote_*_attr — format artifact: deck shows combined quote_*; scroll splits text/attr.
+   - section_hypothesis — heading label; the deck has its own hypothesis slide.
+   - approach_rebuild_1–2 — hidden from deck content slide; surfaced in rebuild figure speaker notes.
+   - approach_problem_1  — hidden from deck content slide; surfaced in problem figure speaker notes.
+   - approach_xfn_1      — hidden from deck content slide; surfaced in xfn figure speaker notes.
 ─────────────────────────────────────────────────────────────────── */
 var AP_VISIBILITY = {
   scrollOnly: [
-    'hero_caption',
     'section_hypothesis',
+    'approach_rebuild_1', 'approach_rebuild_2',
+    'approach_problem_1',
+    'approach_xfn_1',
     'quote_cmo_attr', 'quote_design_manager_attr', 'quote_eng_partner_attr',
     'quote_product_partner_attr', 'quote_xfn_partner_attr'
   ],
-  deckOnly: []
+  deckOnly: ['deck_title']
 };
 
-/* deck slide data-notes-id → copy keys to surface as speaker notes.
-   Empty for now — nothing is hidden from the Afterpay deck yet. */
-var AP_NOTES = {};
+/* deck slide data-notes-id → copy keys to surface as speaker notes */
+var AP_NOTES = {
+  rebuild: ['approach_rebuild_1', 'approach_rebuild_2'],
+  problem: ['approach_problem_1'],
+  xfn:     ['approach_xfn_1']
+};
 
 /* Expose for the shared Speaker Notes window (opened via window.open). */
 if (typeof window !== 'undefined') {
