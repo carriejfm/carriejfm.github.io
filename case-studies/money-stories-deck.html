@@ -1511,7 +1511,7 @@
 <!-- ══════════════════════════════════════
      SLIDE 29 OF 33 — section-title: Outcomes
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="28">
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="28" data-notes-id="outcomes">
   <p class="section-title__word">Outcomes</p>
 </section>
 
@@ -1519,7 +1519,7 @@
 <!-- ══════════════════════════════════════
      SLIDE 30 OF 33 — stats
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--stats" data-type="stats" data-index="29">
+<section class="slide slide--light slide--stats" data-type="stats" data-index="29" data-notes-id="outcomes">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1545,7 +1545,7 @@
 <!-- ══════════════════════════════════════
      SLIDE 31 OF 33 — impact
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--impact" data-type="impact" data-index="30">
+<section class="slide slide--light slide--impact" data-type="impact" data-index="30" data-notes-id="outcomes">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1599,7 +1599,7 @@
 <!-- ══════════════════════════════════════
      SLIDE 32 OF 33 — quote: viewer
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--quote" data-type="quote" data-index="31">
+<section class="slide slide--light slide--quote" data-type="quote" data-index="31" data-notes-id="quotes">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1655,7 +1655,7 @@
 </div>
 
 <!-- ─── COPY SOURCE ─── -->
-<script src="money-stories-copy.js?v=20260612gfedcb"></script>
+<script src="money-stories-copy.js?v=20260616"></script>
 
 <script>
   /* ─── DECK ENGINE — matches afterpay-deck.html ─── */
@@ -1812,6 +1812,7 @@
       }
 
       syncSlideVideos();
+      postNotes();
     }
 
     /* Play only the active slide's video(s); pause + reset the rest */
@@ -1864,8 +1865,51 @@
 
     switcher.addEventListener('click', function (e) { if (e.target === switcher) closeSwitcher(); });
 
+    /* ── N key: Speaker Notes window ──
+       Lives only in the deck — the scroll page (money-stories-design.html) never
+       loads this, so recruiters viewing the scroll case study see no presenter
+       chrome. Shared window: speaker-notes.html. Notes data lives in MS_NOTES
+       (money-stories-copy.js). See that file's header for how to add notes. */
+    var notesChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('speaker-notes') : null;
+    var notesWin = null;
+
+    function resolveNotes(notesId) {
+      var keys = (window.MS_NOTES && window.MS_NOTES[notesId]) || [];
+      return keys.map(function (k) {
+        return (window.MS_COPY && window.MS_COPY[k]) || '';
+      }).filter(Boolean);
+    }
+
+    function postNotes() {
+      if (!notesChannel) return;
+      var id = slides[current].dataset.notesId || '';
+      notesChannel.postMessage({
+        notesId: id,
+        notes:   resolveNotes(id),
+        slide:   current + 1,
+        total:   total,
+        deck:    document.title
+      });
+    }
+
+    function toggleNotesWindow() {
+      if (notesWin && !notesWin.closed) { notesWin.focus(); return; }
+      notesWin = window.open(
+        'speaker-notes.html', 'msSpeakerNotes',
+        'width=520,height=600,resizable=yes,scrollbars=yes'
+      );
+      setTimeout(postNotes, 500);
+    }
+
+    if (notesChannel) {
+      notesChannel.addEventListener('message', function (e) {
+        if (e.data && e.data.request) postNotes();
+      });
+    }
+
     document.addEventListener('keydown', function (e) {
       if (e.key === 'm' || e.key === 'M') { switcher.classList.contains('is-open') ? closeSwitcher() : openSwitcher(); return; }
+      if (e.key === 'n' || e.key === 'N') { toggleNotesWindow(); return; }
       if (e.key === 'Escape') { closeSwitcher(); return; }
       if (switcher.classList.contains('is-open')) return;
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); handleForward(); }
@@ -1902,6 +1946,7 @@
     if (initType === 'title') { body.classList.add('is-title-slide'); }
 
     syncSlideVideos();
+    postNotes();
 
   })();
 </script>

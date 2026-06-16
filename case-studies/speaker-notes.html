@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Speaker Notes</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:        #1a1a1a;
+      --text:      #F3F3F1;
+      --muted:     rgba(243, 243, 241, 0.55);
+      --faint:     rgba(243, 243, 241, 0.30);
+      --rule:      rgba(243, 243, 241, 0.12);
+      --size-sm:   0.8125rem;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-weight: 300;
+      font-size: var(--size-sm);
+      line-height: 1.55;
+    }
+
+    .sn-header {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      padding: 0.9rem 1.1rem 0.7rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .sn-title {
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: var(--size-sm);
+    }
+    .sn-counter { color: var(--faint); white-space: nowrap; }
+
+    .sn-body { padding: 1.1rem 1.1rem 2.5rem; }
+
+    .sn-note {
+      margin: 0 0 1.05rem;
+      padding-left: 0.85rem;
+      border-left: 2px solid var(--rule);
+      color: var(--text);
+    }
+    .sn-note:last-child { margin-bottom: 0; }
+
+    .sn-empty {
+      color: var(--muted);
+      font-style: normal;
+      padding-top: 0.4rem;
+    }
+    .sn-hint {
+      margin-top: 1.6rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--rule);
+      color: var(--faint);
+      font-size: 0.6875rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="sn-header">
+    <span class="sn-title">Speaker Notes</span>
+    <span class="sn-counter" id="snCounter">—</span>
+  </div>
+
+  <div class="sn-body" id="snBody">
+    <p class="sn-empty">Waiting for the deck…</p>
+  </div>
+
+  <script>
+    (function () {
+      var bodyEl    = document.getElementById('snBody');
+      var counterEl = document.getElementById('snCounter');
+
+      function render(data) {
+        // Counter
+        if (data.slide && data.total) {
+          counterEl.textContent = data.slide + ' / ' + data.total;
+        }
+
+        // Notes
+        var notes = (data.notes || []).filter(function (n) { return n && n.trim(); });
+        bodyEl.innerHTML = '';
+
+        if (!notes.length) {
+          var empty = document.createElement('p');
+          empty.className = 'sn-empty';
+          empty.textContent = 'No notes for this slide.';
+          bodyEl.appendChild(empty);
+        } else {
+          notes.forEach(function (text) {
+            var p = document.createElement('p');
+            p.className = 'sn-note';
+            p.textContent = text;
+            bodyEl.appendChild(p);
+          });
+        }
+
+        var hint = document.createElement('p');
+        hint.className = 'sn-hint';
+        hint.textContent = 'Updates as you navigate the deck. Press N in the deck to close. Drag and resize this window freely.';
+        bodyEl.appendChild(hint);
+      }
+
+      if (!('BroadcastChannel' in window)) {
+        bodyEl.innerHTML = '<p class="sn-empty">This browser does not support live speaker notes (BroadcastChannel).</p>';
+        return;
+      }
+
+      var channel = new BroadcastChannel('speaker-notes');
+      channel.onmessage = function (e) {
+        if (e.data && Array.isArray(e.data.notes)) render(e.data);
+      };
+
+      // Ask the deck for the current slide's notes as soon as we load.
+      channel.postMessage({ request: true });
+      window.addEventListener('focus', function () { channel.postMessage({ request: true }); });
+    })();
+  </script>
+</body>
+</html>

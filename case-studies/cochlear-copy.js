@@ -1,7 +1,8 @@
 /* ─────────────────────────────────────────────────────────────────
-   COCHLEAR COPILOT — COPY SOURCE OF TRUTH
-   Both the deck (cochlear-deck.html) and scroll (cochlear-copilot.html)
-   pull copy from this file via data-cc-copy="key" attributes.
+   COCHLEAR COPILOT — COPY SOURCE OF TRUTH (canonical, single file)
+   Both the scroll (cochlear-copilot.html) and the deck (cochlear-deck-2.html)
+   pull copy from this one file via data-cc-copy="key" attributes.
+   (cochlear-copy-2.js has been merged in and deleted — do not recreate it.)
 
    To update copy in both layouts at once:
      1. Change the value here.
@@ -19,6 +20,24 @@
    quote_*_text       = quote text only → scroll blockquote <p>
    quote_*_attr       = attribution only → scroll blockquote <footer>
 
+   VIEW-VARIANT KEYS:
+   Where the same slot needs different copy per view, the deck uses a *_deck /
+   *_2 variant key while the base key stays the scroll (canonical) value:
+     deck_title   (scroll/long)  vs  deck_title_2 (deck hero, short)
+     content_1    (scroll)       vs  content_1_deck (deck — carries the
+                                     "Beta usage…" lead-in that scroll's
+                                     content_0 supplies separately)
+
+   VISIBILITY + SPEAKER NOTES (see CC_VISIBILITY and CC_NOTES below):
+   - CC_VISIBILITY tags keys as scrollOnly / deckOnly. Anything not listed is
+     shown in both views. The scroll page renders everything; the deck only
+     has data-cc-copy hooks for what it shows, so no runtime filtering is
+     needed — the map is documentation + the data source for Speaker Notes.
+   - CC_NOTES maps each deck slide's data-notes-id to the scrollOnly keys whose
+     copy the deck drops for that section. The shared speaker-notes.html window
+     reads these so the presenter still has the cut copy to hand. To add a slide
+     to the notes, give its <section> a data-notes-id and list keys here.
+
    REFLECTION NOTE:
    reflection_0/1 — Carrie's final voice. Two paragraphs.
 ─────────────────────────────────────────────────────────────────── */
@@ -32,7 +51,9 @@ var CC_COPY = {
 
   /* ── Deck-specific meta ──────────────────────────────────────────── */
   deck_title:   "Building hearing rehab with Cochlear CoPilot",
+  deck_title_2: "Cochlear CoPilot",
   deck_company: "Cochlear · ustwo · 2020–2021",
+  hero_caption_2: "Hearing rehab with Cochlear CoPilot: The one where I built shared language, shared evidence and shared capability.",
 
   /* ── Role rows ───────────────────────────────────────────────────── */
   role_responsible: "Owned the Cochlear relationship and led the cross-functional team in research, collaboration and delivery. Defined UX strategies and designed core flows.",
@@ -74,7 +95,9 @@ var CC_COPY = {
   cocreators_0: "Co-creation is what happens when interpersonal work and design work solve problems together. It became my core strategy — not just with recipients, but with our clinical counterparts.",
   cocreators_1: "With recipients, I launched and ran the CoPilot Co-creators program — 17 co-creators recruited through Cochlear's clinician network, organized into staggered cohorts for quarterly 1:1 sessions. Recipients were eager to please and we faced real technical hurdles in testing audio-rich prototypes via video calls. Once someone had been through a session, the technical friction eased and the feedback got more honest. The outcome was ongoing infrastructure, not a one-off study.",
   cocreators_2: "With our clinical research SME, co-creation looked different. The handoff model kept producing the wrong output. I brought them into Mural and we designed flows together in real time. As they explained the frameworks behind each rehabilitation exercise, we could ask “would this pattern work?” and get an answer on the spot. Co-creation turned requirements from a source of friction into a shared design language.",
+  cocreators_program_caption:  "I launched and ran the CoPilot Co-creators program with recipients.",
   cocreators_figure_caption: "Clinical requirements mapped together in real time – messy, but effective.",
+  measure_calibration_caption: "The words we were casually using carried specific meaning in a clinical context, so we calibrated.",
 
   /* ── Approach: Measure-Learn ─────────────────────────────────────── */
   measure_0: "I led 100+ measured experiments through the CoPilot Measure-Learn Tracker, a single source of truth covering hypotheses and outcomes across nine research initiatives.",
@@ -84,13 +107,21 @@ var CC_COPY = {
   measure_figure_caption: "The CoPilot Measure-Learn Tracker — 100+ experiments across nine research initiatives",
 
   /* ── Approach: Content strategy ──────────────────────────────────── */
+  content_ia_caption:              "Information architecture and content tagging strategy was based on the Functional Listening Index",
   content_figure_caption: "Need Enablers — in-app signal patterns that let recipients shape their own content experience.",
+  content_personalisation_caption: "'So you need content personalization' — a thought piece sequencing the path from 'no personalization' to ML-ready",
+  content_nav_caption:             "To make the content navigable, we ran multiple rounds of testing on wayfinding and Skill Builder tutorial design",
   content_0: "CoPilot is fundamentally a content experience. Recipients move between passive consumption — articles, stories, firmware updates — and active auditory practice through Skill Builders. But people were barely scratching the surface of content.",
   content_1: "I led two tracks of work to fix that: making the system smarter, and making the app more navigable.",
+  /* content_1_deck — deck hides content_0, so its content_1 carries the lead-in sentence. */
+  content_1_deck: "Beta usage showed people were barely scratching the surface of content. I led two tracks of work to fix that: making the system smarter, and making the app more navigable.",
   content_2: "To make the system smarter, I drove the IA and content tagging strategy as the foundation for personalization, running a co-creation session with the clinical SME to land an approach that worked for both the recipient mental model and the clinical taxonomy. I led a design sprint around Need Enablers — small in-app prompts letting recipients signal what was relevant to them. And I co-wrote “So you need content personalization” with the head of engineering — a thought piece sequencing the path from “no personalization” to “ML-ready” as concrete decisions.",
   content_3: "To make the content navigable, we ran multiple rounds of testing on navigation and Skill Builder tutorial design. We learned users expected both passive and active navigation, so we designed the final interface to support both modes. We also learned that speed and discoverability were in tension with understanding of Skill Builder comprehension. We held that tension deliberately rather than optimizing for one metric, and iterated until we found a middle ground worth shipping.",
 
   /* ── Approach: Recycle & Reuse ───────────────────────────────────── */
+  reuse_fig_a_caption: "Clinical co-creation sessions",
+  reuse_fig_b_caption: "Skill Builder language taxonomy",
+  reuse_fig_c_caption: "\"Assume everything is the same\" strategy allowed for surgical deltas",
   reuse_0: "We had one Skill Builder shipped but five remained. A delivery deadline was looming and engineering estimations showed we weren't going to make it. We needed to reuse as much design and code as possible, without compromising clinical integrity.",
   reuse_1: "Armed with requirements from our clinical co-creation sessions, I ran a two-day Recycle and Reuse workshop with the cross-functional team.",
   reuse_2: "We spent the first twenty minutes just naming things. From the names of the Skill Builders to their underlying taxonomy. From screens to components and micro-motion patterns. Same principle as everywhere else in this engagement — defining and differentiating through language — but focused and fast. Once we had a shared vocabulary, the workshop could move.",
@@ -199,11 +230,100 @@ var CC_COPY = {
   quote_articles_text: "“I liked the articles under different categories... It's truly a one stop shop for all regardless of whether one is a new or long-time recipient.”",
   quote_articles_attr: "— Cochlear recipient co-creator",
 
+  /* ── Deck-2 section labels (left panel titles for static output slides) ── */
+  section_cp:        "Content & Personalization",
+  section_sb:        "Skill Builders",
+  section_ftu_label: "First Time Use",
+
+  /* ── Deck-2 static output intro copy ────────────────────────────── */
+  intro_cp_0: "CoPilot is fundamentally a content experience. Recipients move between passive consumption — articles, stories, firmware updates — and active auditory practice.",
+  intro_cp_1: "The content and personalization workstream aimed to shift from a flat content list to a system that could serve content two ways — passively and on demand.",
+  intro_cp_2: "This included Need Enablers (in-app signal gathering), Discover (passive, editorial-style content surfacing), and Browse (structured IA for active search), plus patterns for different content types and tags to encourage exploration.",
+
+  intro_sb_0: "Skill Builders are interactive practice sessions built on clinical rehab foundations, letting recipients practice key hearing skills at home.",
+  intro_sb_1: "They live alongside relevant content in the Discover tab and are directly navigable in Browse.",
+  intro_sb_2: "Each includes just enough introduction to give recipients the \"why\" before diving in.",
+
+  intro_ftu_0: "The First Time Use experience was redesigned end-to-end — App Store screens through to first content engagement.",
+  intro_ftu_1: "We tested a pre-auth demo swipe-through of the app's value before sign-in but found it added friction rather than reducing it, and removed it in favour of getting users into real content faster.",
+  intro_ftu_2: "The App Store value props were tested and refined in co-creation with Cochlear recipients to ensure messaging resonated.",
+
   /* ── Reflection ── */
+  reflection_figure_caption: "Naming and differentiating through language builds bridges.",
   reflection_0: "If I could go back, I'd have listened a little closer, a little longer, to the fear behind the resistance to UX research before trying to fix it. Early on I assumed our clinical partner wanted our research practice to expand into proving clinical efficacy, and even built a thought piece around it. It wasn't needed, and wasn't asked for. The impulse to solve someone's problem with a tool they didn't ask for is its own kind of not listening — and knowing when expertise needs to stay in its lane, and when it needs to come into the room, is a skill in itself.",
   reflection_1: "Looking back, most of what went wrong, and most of what eventually went right, came down to seeing things differently. There's a theory that ancient cultures couldn't perceive blue as a distinct color because they had no word for it. They weren't blind to it, they just couldn't differentiate it from what they already knew. The work with our clinical partners was the same: we were all pointing at the same things and calling them different names, or using the same names for completely different things. Until we defined a shared vocabulary, we couldn't see what the other person was seeing. In the end, clarity in language was what built the bridge.",
 
 };
+
+/* ─────────────────────────────────────────────────────────────────
+   VISIBILITY MAP
+   Which copy keys belong to which view. Anything NOT listed here is
+   shown in both views ("both"). The scroll page renders everything and
+   ignores this map; the deck only carries data-cc-copy hooks for what it
+   shows. This is documentation + the source of truth Speaker Notes reads.
+   When you hide a block from the deck, move its key into scrollOnly.
+─────────────────────────────────────────────────────────────────── */
+var CC_VISIBILITY = {
+  scrollOnly: [
+    'project_string',
+    'opportunity_0a', 'opportunity_0b',
+    'section_embedded', 'embedded_0', 'embedded_1', 'embedded_2', 'design_cadence_caption',
+    'cocreators_1', 'cocreators_2',
+    'measure_1', 'measure_2', 'measure_3',
+    'content_0', 'content_2', 'content_3',
+    'section_hypothesis',
+    'reuse_1', 'reuse_2', 'reuse_3', 'reuse_4',
+    'quote_paz_text', 'quote_paz_attr',
+    'quote_jonathan_text', 'quote_jonathan_attr',
+    'quote_articles_text', 'quote_articles_attr',
+    'outcome_team_0', 'outcome_team_1', 'outcome_team_2',
+    'outcome_product_0', 'outcome_product_1', 'outcome_product_2', 'outcome_product_3', 'outcome_product_4',
+    'outcome_business_0', 'outcome_business_1', 'outcome_business_2',
+    'outcome_scale_0', 'outcome_scale_1', 'outcome_scale_2', 'outcome_scale_3',
+    'reflection_1'
+  ],
+  deckOnly: [
+    'deck_title', 'deck_title_2', 'deck_company', 'hero_caption_2',
+    'content_1_deck',
+    'opportunity_0',
+    'cocreators_program_caption', 'measure_calibration_caption',
+    'content_ia_caption', 'content_personalisation_caption', 'content_nav_caption',
+    'reuse_fig_a_caption', 'reuse_fig_b_caption', 'reuse_fig_c_caption',
+    'section_cp', 'section_sb', 'section_ftu_label',
+    'intro_cp_0', 'intro_cp_1', 'intro_cp_2',
+    'intro_sb_0', 'intro_sb_1', 'intro_sb_2',
+    'intro_ftu_0', 'intro_ftu_1', 'intro_ftu_2',
+    'reflection_figure_caption',
+    'impact_team_0', 'impact_team_1', 'impact_team_2',
+    'impact_product_0', 'impact_product_1', 'impact_product_2', 'impact_product_3', 'impact_product_4',
+    'impact_business_0', 'impact_business_1', 'impact_business_2',
+    'impact_scale_0', 'impact_scale_1', 'impact_scale_2', 'impact_scale_3'
+  ]
+};
+
+/* ─────────────────────────────────────────────────────────────────
+   SPEAKER NOTES MAP
+   deck slide data-notes-id → ordered list of copy keys to show in the
+   Speaker Notes window for that slide. These are scrollOnly keys the deck
+   drops, so the presenter keeps the fuller scroll copy to hand while
+   presenting the trimmed slide. Slides with no data-notes-id (or an id not
+   listed here) show "No notes for this slide."
+─────────────────────────────────────────────────────────────────── */
+var CC_NOTES = {
+  'role-embedded': ['section_embedded', 'embedded_0', 'embedded_1', 'embedded_2', 'design_cadence_caption'],
+  'content':       ['content_0', 'content_2', 'content_3'],
+  'cocreators':    ['cocreators_1', 'cocreators_2'],
+  'measure':       ['measure_1', 'measure_2', 'measure_3'],
+  'reuse':         ['reuse_1', 'reuse_2', 'reuse_3', 'reuse_4'],
+  'reflection':    ['reflection_1']
+};
+
+/* Expose for the Speaker Notes window (opened via window.open from the deck). */
+if (typeof window !== 'undefined') {
+  window.CC_COPY = CC_COPY;
+  window.CC_NOTES = CC_NOTES;
+  window.CC_VISIBILITY = CC_VISIBILITY;
+}
 
 /* ── Injector ── runs synchronously before any layout initialises ── */
 (function () {

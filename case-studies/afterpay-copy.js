@@ -166,6 +166,48 @@ var AP_COPY = {
 
 };
 
+/* ─────────────────────────────────────────────────────────────────
+   COPY VISIBILITY + SPEAKER NOTES
+   Same system as Cochlear (see cochlear-copy.js). The deck currently shows
+   everything the scroll does, so AP_NOTES is empty and no deck slide carries
+   a data-notes-id yet — pressing N in the deck opens the Speaker Notes window
+   but every slide reads "No notes for this slide" until copy is hidden.
+
+   TO HIDE A BLOCK FROM THE DECK AND GIVE IT A SPEAKER-NOTES HOME:
+     1. Remove its data-ap-copy hook from afterpay-deck.html (or never add it).
+     2. Add the key to AP_VISIBILITY.scrollOnly below.
+     3. Add the key to an AP_NOTES group keyed by a slide's data-notes-id.
+     4. Add data-notes-id="<group>" to the deck <section>(s) it belongs to.
+   The deck resolves notes-id → text and posts to the shared speaker-notes.html,
+   so that window needs no per-deck copy.
+
+   Today's scrollOnly keys are format artifacts, not hidden content:
+   - quote_*_attr — the deck shows each quote combined (quote_*); the scroll
+     splits text/attr. The quote content is present in both views.
+   - hero_caption — scroll hero only.
+   - section_hypothesis — a heading label; the deck has its own hypothesis slide.
+─────────────────────────────────────────────────────────────────── */
+var AP_VISIBILITY = {
+  scrollOnly: [
+    'hero_caption',
+    'section_hypothesis',
+    'quote_cmo_attr', 'quote_design_manager_attr', 'quote_eng_partner_attr',
+    'quote_product_partner_attr', 'quote_xfn_partner_attr'
+  ],
+  deckOnly: []
+};
+
+/* deck slide data-notes-id → copy keys to surface as speaker notes.
+   Empty for now — nothing is hidden from the Afterpay deck yet. */
+var AP_NOTES = {};
+
+/* Expose for the shared Speaker Notes window (opened via window.open). */
+if (typeof window !== 'undefined') {
+  window.AP_COPY = AP_COPY;
+  window.AP_NOTES = AP_NOTES;
+  window.AP_VISIBILITY = AP_VISIBILITY;
+}
+
 /* ── Injector — runs synchronously so copy is ready before any layout initialises ── */
 (function () {
   function inject() {

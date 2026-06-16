@@ -1865,7 +1865,7 @@
 </div>
 
 <!-- ─── COPY SOURCE ─── -->
-<script src="afterpay-copy.js?v=20260612gfedcb"></script>
+<script src="afterpay-copy.js?v=20260616"></script>
 
 <script>
   /* ─── DECK ENGINE — vanilla JS, no dependencies ─── */
@@ -2047,6 +2047,8 @@
       } else {
         body.classList.remove('is-qa-slide');
       }
+
+      postNotes();
     }
 
     /* ── Navigation handlers ── */
@@ -2086,9 +2088,55 @@
     function closeSwitcher() { switcher.classList.remove('is-open'); switcher.setAttribute('aria-hidden', 'true');  }
     switcher.addEventListener('click', function (e) { if (e.target === switcher) closeSwitcher(); });
 
+    /* ── N key: Speaker Notes window ──
+       Lives only in the deck. The scroll page (afterpay-design.html) never loads
+       this, so a recruiter viewing the scroll case study sees no presenter chrome.
+       Shared window: speaker-notes.html. Notes data lives in AP_NOTES (copy.js).
+       NOTE: AP_NOTES is currently empty — the deck shows everything the scroll
+       does. When you hide a block from the deck, add its key to AP_VISIBILITY
+       .scrollOnly, add an AP_NOTES entry, and give the relevant slide(s) a
+       data-notes-id. See afterpay-copy.js header for the full recipe. */
+    var notesChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('speaker-notes') : null;
+    var notesWin = null;
+
+    function resolveNotes(notesId) {
+      var keys = (window.AP_NOTES && window.AP_NOTES[notesId]) || [];
+      return keys.map(function (k) {
+        return (window.AP_COPY && window.AP_COPY[k]) || '';
+      }).filter(Boolean);
+    }
+
+    function postNotes() {
+      if (!notesChannel) return;
+      var id = slides[current].dataset.notesId || '';
+      notesChannel.postMessage({
+        notesId: id,
+        notes:   resolveNotes(id),
+        slide:   current + 1,
+        total:   total,
+        deck:    document.title
+      });
+    }
+
+    function toggleNotesWindow() {
+      if (notesWin && !notesWin.closed) { notesWin.focus(); return; }
+      notesWin = window.open(
+        'speaker-notes.html', 'apSpeakerNotes',
+        'width=520,height=600,resizable=yes,scrollbars=yes'
+      );
+      setTimeout(postNotes, 500);
+    }
+
+    if (notesChannel) {
+      notesChannel.addEventListener('message', function (e) {
+        if (e.data && e.data.request) postNotes();
+      });
+    }
+
     /* ── Keyboard ── */
     document.addEventListener('keydown', function (e) {
       if (e.key === 'm' || e.key === 'M') { switcher.classList.contains('is-open') ? closeSwitcher() : openSwitcher(); return; }
+      if (e.key === 'n' || e.key === 'N') { toggleNotesWindow(); return; }
       if (e.key === 'Escape') { closeSwitcher(); return; }
       if (switcher.classList.contains('is-open')) return; /* swallow nav keys while menu is open */
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); handleForward(); }
@@ -2132,6 +2180,8 @@
     if (initType === 'title') {
       body.classList.add('is-title-slide');
     }
+
+    postNotes();
 
   })();
 </script>

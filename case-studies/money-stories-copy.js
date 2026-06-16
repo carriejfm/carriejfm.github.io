@@ -195,6 +195,58 @@ var MS_COPY = {
 
 };
 
+/* ─────────────────────────────────────────────────────────────────
+   COPY VISIBILITY + SPEAKER NOTES
+   Same system as Cochlear (see cochlear-copy.js). MS_VISIBILITY tags keys as
+   scrollOnly / deckOnly (unlisted = both); the scroll page renders everything
+   and ignores it. MS_NOTES maps a deck slide's data-notes-id → the copy keys
+   to surface in the shared Speaker Notes window (speaker-notes.html), opened
+   with N from the deck. The deck resolves notes-id → text before sending, so
+   the window needs no per-deck copy.
+
+   FIRST PASS — prune like Cochlear: the scrollOnly outcome_* bullets (the deck
+   shows the punchier impact_* instead) are mapped to the Outcomes section
+   slides, and the hidden product-partner quote (quote_pp) to the standalone
+   quote slide. Adjust which slides carry which notes by editing the
+   data-notes-id attributes in money-stories-deck.html.
+
+   TO HIDE MORE COPY FROM THE DECK LATER: move its key into scrollOnly, add it
+   to an MS_NOTES group, and give the relevant deck slide(s) a data-notes-id.
+─────────────────────────────────────────────────────────────────── */
+var MS_VISIBILITY = {
+  scrollOnly: [
+    'case_title', 'hero_caption', 'project_string', 'section_hypothesis',
+    'outcome_team_0', 'outcome_team_1', 'outcome_team_2',
+    'outcome_product_0', 'outcome_product_1', 'outcome_product_2', 'outcome_product_3',
+    'outcome_business_0', 'outcome_business_1', 'outcome_business_2', 'outcome_business_3',
+    'outcome_scale_0', 'outcome_scale_1', 'outcome_scale_2', 'outcome_scale_3',
+    'quote_pp_text', 'quote_pp_attr'
+  ],
+  deckOnly: [
+    'deck_title', 'deck_company',
+    'impact_team_0', 'impact_team_1', 'impact_team_2',
+    'impact_product_0', 'impact_product_1', 'impact_product_2', 'impact_product_3',
+    'impact_business_0', 'impact_business_1', 'impact_business_2', 'impact_business_3',
+    'impact_scale_0', 'impact_scale_1', 'impact_scale_2', 'impact_scale_3'
+  ]
+};
+
+/* deck slide data-notes-id → copy keys to surface as speaker notes. FIRST PASS. */
+var MS_NOTES = {
+  'outcomes': ['outcome_team_0', 'outcome_team_1', 'outcome_team_2',
+               'outcome_product_0', 'outcome_product_1', 'outcome_product_2', 'outcome_product_3',
+               'outcome_business_0', 'outcome_business_1', 'outcome_business_2', 'outcome_business_3',
+               'outcome_scale_0', 'outcome_scale_1', 'outcome_scale_2', 'outcome_scale_3'],
+  'quotes':   ['quote_pp_text', 'quote_pp_attr']
+};
+
+/* Expose for the shared Speaker Notes window (opened via window.open). */
+if (typeof window !== 'undefined') {
+  window.MS_COPY = MS_COPY;
+  window.MS_NOTES = MS_NOTES;
+  window.MS_VISIBILITY = MS_VISIBILITY;
+}
+
 /* ── Injector ── */
 (function () {
   function inject() {
