@@ -104,13 +104,13 @@ var CC_COPY = {
   measure_1: "The tracker initially raised eyebrows with the clinical team who lived and breathed scientific rigor. At the bottom of the friction was a language problem. The words we were casually using – research, hypothesis, majority – carried specific meaning in a clinical context that made our lightweight qualitative work sound like it was overclaiming.",
   measure_2: "So we calibrated. “Research” became “testing.” “The majority said” became 'three out of five recipients told us.' I over-communicated the value of small qualitative experiments as signal-gathering, and called out potential biases wherever I could.",
   measure_3: "Small shifts, but they changed everything. Our clinical partner stopped hearing us as people who didn't respect their field, and leadership gained confidence to keep investing in qualitative UX work as its own valuable process, separate from their evidence-based clinical research.",
-  measure_figure_caption: "The CoPilot Measure-Learn Tracker — 100+ experiments across nine research initiatives",
+  measure_figure_caption: "The CoPilot Measure-Learn Tracker — 100+ experiments across nine research initiatives.",
 
   /* ── Approach: Content strategy ──────────────────────────────────── */
-  content_ia_caption:              "Information architecture and content tagging strategy was based on the Functional Listening Index",
+  content_ia_caption:              "Information architecture and content tagging strategy was based on the Functional Listening Index.",
   content_figure_caption: "Need Enablers — in-app signal patterns that let recipients shape their own content experience.",
-  content_personalisation_caption: "'So you need content personalization' — a thought piece sequencing the path from 'no personalization' to ML-ready",
-  content_nav_caption:             "To make the content navigable, we ran multiple rounds of testing on wayfinding and Skill Builder tutorial design",
+  content_personalisation_caption: "'So you need content personalization' — a thought piece sequencing the path from 'no personalization' to ML-ready.",
+  content_nav_caption:             "To make the content navigable, we ran multiple rounds of testing on wayfinding and Skill Builder tutorial design.",
   content_0: "CoPilot is fundamentally a content experience. Recipients move between passive consumption — articles, stories, firmware updates — and active auditory practice through Skill Builders. But people were barely scratching the surface of content.",
   content_1: "I led two tracks of work to fix that: making the system smarter, and making the app more navigable.",
   /* content_1_deck — deck hides content_0, so its content_1 carries the lead-in sentence. */
@@ -119,9 +119,9 @@ var CC_COPY = {
   content_3: "To make the content navigable, we ran multiple rounds of testing on navigation and Skill Builder tutorial design. We learned users expected both passive and active navigation, so we designed the final interface to support both modes. We also learned that speed and discoverability were in tension with understanding of Skill Builder comprehension. We held that tension deliberately rather than optimizing for one metric, and iterated until we found a middle ground worth shipping.",
 
   /* ── Approach: Recycle & Reuse ───────────────────────────────────── */
-  reuse_fig_a_caption: "Clinical co-creation sessions",
-  reuse_fig_b_caption: "Skill Builder language taxonomy",
-  reuse_fig_c_caption: "\"Assume everything is the same\" strategy allowed for surgical deltas",
+  reuse_fig_a_caption: "Clinical co-creation sessions.",
+  reuse_fig_b_caption: "Skill Builder language taxonomy.",
+  reuse_fig_c_caption: "\"Assume everything is the same\" strategy allowed for surgical deltas.",
   reuse_0: "We had one Skill Builder shipped but five remained. A delivery deadline was looming and engineering estimations showed we weren't going to make it. We needed to reuse as much design and code as possible, without compromising clinical integrity.",
   reuse_1: "Armed with requirements from our clinical co-creation sessions, I ran a two-day Recycle and Reuse workshop with the cross-functional team.",
   reuse_2: "We spent the first twenty minutes just naming things. From the names of the Skill Builders to their underlying taxonomy. From screens to components and micro-motion patterns. Same principle as everywhere else in this engagement — defining and differentiating through language — but focused and fast. Once we had a shared vocabulary, the workshop could move.",
@@ -314,7 +314,8 @@ var CC_NOTES = {
   'content':       ['content_0', 'content_2', 'content_3'],
   'cocreators':    ['cocreators_1', 'cocreators_2'],
   'measure':       ['measure_1', 'measure_2', 'measure_3'],
-  'reuse':         ['reuse_1', 'reuse_2', 'reuse_3', 'reuse_4'],
+  'reuse-intro':   ['reuse_1'],
+  'reuse':         ['reuse_2', 'reuse_3', 'reuse_4'],
   'reflection':    ['reflection_1']
 };
 

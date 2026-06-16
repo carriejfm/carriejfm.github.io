@@ -53,7 +53,7 @@ var AP_COPY = {
   project_string: "Block · Afterpay // 2024–2025",
   role_title:     "Head of design",
   deck_title:     "Afterpay Design",
-  hero_caption:   "Rebuilding Afterpay design: The one where a reactive design team became a trusted partner",
+  hero_caption:   "Rebuilding Afterpay design: The one where a reactive design team became a trusted partner.",
 
   /* ── Section headings (editable per case study) ─────────────────── */
   section_opportunity: "Opportunity",
@@ -94,9 +94,9 @@ var AP_COPY = {
   approach_xfn_1: "When last-minute requests came up or scope thrashed (as they do), we had the footing to handle it — allowing us to reprioritize, make better tradeoffs or push back if needed. Embedded within the regional leadership team, I influenced strategy and presented to C-suite.",
 
   /* ── Approach figure captions ────────────────────────────────────── */
-  figure_rebuild_caption: "Exercises like ‘it all went wrong → we avoided it by’ gave designers room to air concerns and get proactive",
-  figure_problem_caption: "The design team started owning opportunities, not just executing on solutions",
-  figure_xfn_caption:    "Two-way streets of communication with cross-functional partners smoothed roadmap hiccups",
+  figure_rebuild_caption: "Exercises like ‘it all went wrong → we avoided it by’ gave designers room to air concerns and get proactive.",
+  figure_problem_caption: "The design team started owning opportunities, not just executing on solutions.",
+  figure_xfn_caption:    "Two-way streets of communication with cross-functional partners smoothed roadmap hiccups.",
 
   /* ── AI in practice (kept in copy; currently removed from scroll approach) ── */
   ai_approach: "If I were to embark on this journey now I would use AI to take and synth weekly notes into actions and support tracking. I would build out the regulation playbook structure, onboarding docs and the design system regional rollout tooling using AI. I would have flexed AI to smash out the manual content audit and publish a living content 'bot that brand and marketing partners could input into and co-own.",

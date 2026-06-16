@@ -288,6 +288,11 @@
     }
     .output-left__header-project { color: rgba(243,243,241,0.35); }
     .output-left__header-client  { display: none; }
+    .output-left__header-section { color: rgba(243,243,241,0.60); }
+    .output-left__header-section::before {
+      content: '/ ';
+      color: rgba(243,243,241,0.25);
+    }
     .output-left__title {
       margin-top: 2rem; font-family: var(--font-mono); font-size: var(--size-sm);
       font-weight: 500; color: #F3F3F1; line-height: 1.5;
@@ -343,11 +348,11 @@
     .output-phones-static {
       position: absolute;
       top: 0; left: 27%; right: 0; bottom: 0;
-      display: flex; align-items: flex-start;
+      display: flex; align-items: center;
       gap: 1.25rem; padding: var(--slide-pad-v) var(--slide-pad-h);
     }
     .static-phone {
-      flex: 1; display: flex; flex-direction: column; align-items: flex-start;
+      flex: 1; display: flex; flex-direction: column; align-items: center;
     }
     .static-phone .phone-tile {
       width: 100%; aspect-ratio: 375 / 812;
@@ -355,7 +360,7 @@
       max-width: calc((100vh - var(--slide-pad-v) * 2 - 2.5rem) * 375 / 812);
     }
     .static-phone__caption {
-      margin-top: 0.625rem;
+      margin-top: 0.625rem; text-align: center;
       font-family: var(--font-mono); font-size: var(--size-xs);
       font-weight: 300; color: rgba(243,243,241,0.45); line-height: 1.5;
     }
@@ -454,6 +459,18 @@
       margin-top: 3rem; font-family: var(--font-mono); font-size: var(--size-xs);
       font-weight: 300; color: rgba(243,243,241,0.50); letter-spacing: 0.08em;
     }
+
+    /* Fixed navigation inside the 'v' menu overlay */
+    .deck-index-nav {
+      position: absolute;
+      font-family: var(--font-mono); font-size: var(--size-xs); font-weight: 300;
+      color: rgba(243,243,241,0.45); letter-spacing: 0.04em;
+      text-decoration: none; transition: color 150ms ease;
+    }
+    .deck-index-nav:hover { color: #F3F3F1; }
+    .deck-index-nav--back { top: var(--slide-pad-v); left: var(--slide-pad-h); }
+    .deck-index-nav--prev { bottom: 1.5rem; left: var(--slide-pad-h); }
+    .deck-index-nav--next { bottom: 1.5rem; right: var(--slide-pad-h); }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
@@ -1035,7 +1052,7 @@
 <!-- ══════════════════════════════════════
      CONTENT: Recycle & Reuse
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--content" data-type="content" data-index="24">
+<section class="slide slide--light slide--content" data-type="content" data-index="24" data-notes-id="reuse-intro">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -1285,8 +1302,18 @@
   <p class="deck-switcher__hint">m or esc to close</p>
 </div>
 
+<!-- ─── V SECTION INDEX MENU — mirrors the index list; jumps to sections.
+     Options are injected by JS from the deck's section-title slides. ─── -->
+<div class="deck-switcher" id="deckIndexMenu" aria-hidden="true" role="dialog" aria-label="Section index">
+  <a href="../index.html" class="deck-index-nav deck-index-nav--back">← Back to selected work</a>
+  <div class="deck-switcher__inner"></div>
+  <p class="deck-switcher__hint">v or esc to close</p>
+  <a href="money-stories-deck.html" class="deck-index-nav deck-index-nav--prev">← Money Stories</a>
+  <a href="afterpay-deck.html" class="deck-index-nav deck-index-nav--next">Afterpay Design →</a>
+</div>
+
 <!-- ─── COPY SOURCE ─── -->
-<script src="cochlear-copy.js?v=20260616"></script>
+<script src="cochlear-copy.js?v=20260616f"></script>
 
 <script>
   (function () {
@@ -1312,12 +1339,23 @@
         var word = slide.querySelector('.section-title__word');
         if (word) { section = word.textContent.trim().toUpperCase(); return; }
         if (!section) return;
+        /* Standard slide eyebrow (content / figure / quote / stats / impact) */
         var header = slide.querySelector('.slide-header');
-        if (!header || header.querySelector('.slide-header__section')) return;
-        var span = document.createElement('span');
-        span.className = 'slide-header__section';
-        span.textContent = section;
-        header.appendChild(span);
+        if (header && !header.querySelector('.slide-header__section')) {
+          var span = document.createElement('span');
+          span.className = 'slide-header__section';
+          span.textContent = section;
+          header.appendChild(span);
+        }
+        /* Output-slide eyebrow lives in .output-left__header — give it the
+           section too so the project / section eyebrow shows on output slides. */
+        var outHeader = slide.querySelector('.output-left__header');
+        if (outHeader && !outHeader.querySelector('.output-left__header-section')) {
+          var ospan = document.createElement('span');
+          ospan.className = 'output-left__header-section';
+          ospan.textContent = section;
+          outHeader.appendChild(ospan);
+        }
       });
     })();
 
@@ -1378,8 +1416,21 @@
     }
 
     function resetBuildItems(slide) {
-      getBuildItems(slide).forEach(function (item) {
-        eachBuildEl(item, function (el) { el.classList.remove('is-visible'); });
+      var items = getBuildItems(slide);
+      /* Suppress the opacity transition while clearing is-visible, then force a
+         reflow so opacity:0 is committed instantly. Without this, removing
+         is-visible animates the asset from opacity 1 → 0 over 400ms at the same
+         time the slide is fading in — producing a flash-then-disappear flicker
+         when navigating forward onto a previously-built output slide. */
+      items.forEach(function (item) {
+        eachBuildEl(item, function (el) {
+          el.style.transition = 'none';
+          el.classList.remove('is-visible');
+        });
+      });
+      void slide.offsetWidth;
+      items.forEach(function (item) {
+        eachBuildEl(item, function (el) { el.style.transition = ''; });
       });
     }
 
@@ -1470,6 +1521,7 @@
     function openSwitcher() {
       var scrollLink = switcher.querySelector('a[href*="cochlear-copilot"]');
       if (scrollLink) scrollLink.href = 'cochlear-copilot.html' + slideToScrollAnchor(current);
+      closeIndexMenu();
       switcher.classList.add('is-open');
       switcher.setAttribute('aria-hidden', 'false');
     }
@@ -1478,6 +1530,47 @@
       switcher.setAttribute('aria-hidden', 'true');
     }
     switcher.addEventListener('click', function (e) { if (e.target === switcher) closeSwitcher(); });
+
+    /* ── 'v' key section index menu ──
+       Mirrors the index list. Built from the deck's section-title slides so it
+       stays in sync (and naturally differs per deck). Each option jumps to its
+       section-title slide. */
+    var indexMenu = document.getElementById('deckIndexMenu');
+    (function buildIndexMenu() {
+      var inner = indexMenu.querySelector('.deck-switcher__inner');
+      var n = -1;
+      slides.forEach(function (slide, i) {
+        /* Menu points in DOM order: Title (00) → section-title slides → Q+A.
+           Numbered from 00. */
+        var label = null;
+        if (slide.dataset.type === 'title') {
+          label = 'Title';
+        } else if (slide.dataset.type === 'qa') {
+          label = 'Q+A';
+        } else {
+          var word = slide.querySelector('.section-title__word');
+          if (word) label = word.textContent.trim();
+        }
+        if (!label) return;
+        n++;
+        var num = (n < 10 ? '0' : '') + n;
+        var a = document.createElement('a');
+        a.href = '#';
+        a.className = 'deck-switcher__option';
+        a.dataset.slide = i;
+        a.textContent = num + '   ' + label;
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = parseInt(a.dataset.slide, 10);
+          closeIndexMenu();
+          goTo(target, target < current ? 'back' : 'forward');
+        });
+        inner.appendChild(a);
+      });
+    })();
+    function openIndexMenu()  { closeSwitcher(); indexMenu.classList.add('is-open'); indexMenu.setAttribute('aria-hidden', 'false'); }
+    function closeIndexMenu() { indexMenu.classList.remove('is-open'); indexMenu.setAttribute('aria-hidden', 'true'); }
+    indexMenu.addEventListener('click', function (e) { if (e.target === indexMenu) closeIndexMenu(); });
 
     /* ── N key: Speaker Notes window ──
        This whole module lives only in the deck. The scroll page never loads it,
@@ -1527,15 +1620,17 @@
     /* ── Keyboard ── */
     document.addEventListener('keydown', function (e) {
       if (e.key === 'm' || e.key === 'M') { switcher.classList.contains('is-open') ? closeSwitcher() : openSwitcher(); return; }
+      if (e.key === 'v' || e.key === 'V') { indexMenu.classList.contains('is-open') ? closeIndexMenu() : openIndexMenu(); return; }
       if (e.key === 'n' || e.key === 'N') { toggleNotesWindow(); return; }
-      if (e.key === 'Escape') { closeSwitcher(); return; }
-      if (switcher.classList.contains('is-open')) return;
+      if (e.key === 'Escape') { closeSwitcher(); closeIndexMenu(); return; }
+      if (switcher.classList.contains('is-open') || indexMenu.classList.contains('is-open')) return;
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); handleForward(); }
       if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); handleBack(); }
     });
 
     /* ── Click / tap ── */
     document.addEventListener('click', function (e) {
+      if (e.target.closest('.deck-switcher')) return; /* ignore clicks on either menu overlay (close, don't advance) */
       if (e.target.closest('a')) return;
       handleForward();
     });

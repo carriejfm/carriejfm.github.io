@@ -1008,6 +1008,20 @@ h1, h2, h3, h4 {
   max-height: 56px;
 }
 
+/* Refinery29 + Pedestrian — newer additions, punched up ~30% vs the default
+   wall logos. The wider Refinery29 also needs the max-width lifted (it would
+   otherwise stay clamped by the default 80% and never reach the taller height). */
+.logo-img--feature {
+  max-height: 40px;
+  max-width: 100%;
+}
+
+/* Refinery29 is width-bound (wide mark) — trim its max-width to take it ~10%
+   back down from the full-width feature size. */
+.logo-img--feature-narrow {
+  max-width: 90%;
+}
+
 /* Fallback: hide img and show text if img fails to load */
 .logo-img--fallback {
   display: block;

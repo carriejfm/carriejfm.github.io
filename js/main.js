@@ -531,25 +531,29 @@ const CASE_STUDIES = [
 
   var NAV_H = 64; /* matches --nav-h in style.css */
   var hideTimer;
-  function showToast(x, y) {
+  function showToast(x, y, fromFooter) {
     clearTimeout(hideTimer);
     toast.style.opacity = '0';
     toast.style.transition = 'none';
     var isMobile = window.innerWidth <= 768;
-    if (isMobile) {
+    if (isMobile && !fromFooter) {
       /* anchor just below the nav bar, left-aligned with the logo */
       toast.style.top  = (NAV_H + 8) + 'px';
       toast.style.left = '16px';
-    } else {
+    } else if (!isMobile) {
       /* position near the click, offset so it doesn't sit under the cursor */
       var pad = 12;
       toast.style.top  = (y + pad) + 'px';
       toast.style.left = (x + pad) + 'px';
     }
-    /* clamp to viewport after layout */
+    /* clamp / final-position after layout (so we can measure the toast height) */
     requestAnimationFrame(function () {
-      if (!isMobile) {
-        var rect = toast.getBoundingClientRect();
+      var rect = toast.getBoundingClientRect();
+      if (isMobile && fromFooter) {
+        /* footer tap on mobile: sit near the footer, just up and to the left of the tap */
+        toast.style.top  = Math.max(NAV_H + 8, y - rect.height - 12) + 'px';
+        toast.style.left = '16px';
+      } else if (!isMobile) {
         if (rect.right  > window.innerWidth  - 8) toast.style.left = (x - rect.width  - 12) + 'px';
         if (rect.bottom > window.innerHeight - 8) toast.style.top  = (y - rect.height - 12) + 'px';
       }
@@ -566,8 +570,9 @@ const CASE_STUDIES = [
     var link = e.target.closest('a[data-copy-email]');
     if (!link) return;
     e.preventDefault();
+    var fromFooter = !!link.closest('.footer, footer');
     navigator.clipboard.writeText(EMAIL).then(function () {
-      showToast(e.clientX, e.clientY);
+      showToast(e.clientX, e.clientY, fromFooter);
     });
   });
 })();

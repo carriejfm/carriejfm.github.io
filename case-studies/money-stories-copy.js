@@ -23,13 +23,13 @@
 var MS_COPY = {
 
   /* ── Meta ───────────────────────────────────────────────────────── */
-  case_title:     "Money Stories: swipeable money management",
+  case_title:     "Money Stories",
   project_string: "Money by Afterpay · Block // 2021–2022",
   role_title:     "Design Principal and Lead",
-  hero_caption:   "Money Stories – swipeable, actionable money management inside a low-barrier neo-banking app",
+  hero_caption:   "Money Stories: The one where money management became content.",
 
   /* ── Deck-specific meta (deck only) ─────────────────────────────── */
-  deck_title:   "Money Stories: swipeable money management",
+  deck_title:   "Money Stories",
   deck_company: "Money by Afterpay · Block · 2021–2022",
 
   /* ── Role rows (scroll + deck) ───────────────────────────────────── */
@@ -67,7 +67,7 @@ var MS_COPY = {
   flywheel_caption: "The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly.",
 
   /* ── Format taxonomy figures (two stacked / two deck slides) ──────── */
-  taxonomy_1_caption: "A story reel entry point and interaction design aligned with known content consumption mental models",
+  taxonomy_1_caption: "A story reel entry point and interaction design aligned with known content consumption mental models.",
   taxonomy_2_caption: "We leveraged known habitual Reels patterns so users didn't need to learn new interaction patterns.",
 
   /* ── Live data stories figure ────────────────────────────────────── */
@@ -77,8 +77,8 @@ var MS_COPY = {
   partner_figure_caption: "I worked with my marketing partner to harness media partnerships that would make Money Stories about more than just self-reflection.",
 
   /* ── Facilitating figures ────────────────────────────────────────── */
-  facilitating_figure_1_caption: "Mapping scenarios and data rules with engineering",
-  facilitating_figure_2_caption: "The system and tooling behind money stories",
+  facilitating_figure_1_caption: "Mapping scenarios and data rules with engineering.",
+  facilitating_figure_2_caption: "The system and tooling behind money stories.",
 
   /* ── User research and validation ────────────────────────────────── */
   section_research: "User research and validation",
@@ -96,6 +96,9 @@ var MS_COPY = {
   partnerships_0: "We partnered with Refinery29 to translate their long-form editorial hit, Money Diaries, into weekly short-form Money Stories dropping each Thursday.",
   partnerships_1: "Makes Cents was our most successful program; an editorial franchise co-created with Pedestrian that polled our respective communities on Instagram on Tuesday and dropped the visualised results in the app the following Tuesday, with a link out to a long-form data-backed editorial article on Pedestrian. This story format held a 55% engagement rate.",
   partnerships_2: "With Calm, we were co-designing Money Mindfulness for our Weekly Outros and a new Money Fit track. In parallel, a talent and founder series (starting with a Lil Nas X concept around \"Every money story starts somewhere\") was in flight when org changes shifted priorities.",
+
+  /* deck-only lead-in for the "A franchise" slide (deck) */
+  partnerships_intro: "I worked with my marketing partner to harness media partnerships that would make Money Stories about more than just self-reflection.",
 
   facilitating_0: "Money insight storytelling — while visually simple to users — needed complex mapping to ensure ins, outs, savings and transfers were attributed in a meaningful way. I facilitated co-creation workshops with director-level stakeholders to align on potential money management systems, then took our top ideas back to research to sense-check with users.",
   facilitating_1: "I mapped multiple use cases and hypothetical spend data scenarios, then pulled in my engineering counterparts to collaboratively stress-test them, teasing out edge cases and ensuring every story template could survive the messiness of real user data.",
@@ -215,7 +218,13 @@ var MS_COPY = {
 ─────────────────────────────────────────────────────────────────── */
 var MS_VISIBILITY = {
   scrollOnly: [
-    'case_title', 'hero_caption', 'project_string', 'section_hypothesis',
+    'case_title', 'project_string', 'section_hypothesis',
+    // Long-form approach copy the deck trims to its first paragraph(s);
+    // surfaced as speaker notes on the following figure slide.
+    'format_2', 'format_3', 'format_4',
+    'partnerships_0', 'partnerships_1', 'partnerships_2',
+    'facilitating_1', 'facilitating_2',
+    'reflection_1',
     'outcome_team_0', 'outcome_team_1', 'outcome_team_2',
     'outcome_product_0', 'outcome_product_1', 'outcome_product_2', 'outcome_product_3',
     'outcome_business_0', 'outcome_business_1', 'outcome_business_2', 'outcome_business_3',
@@ -223,7 +232,7 @@ var MS_VISIBILITY = {
     'quote_pp_text', 'quote_pp_attr'
   ],
   deckOnly: [
-    'deck_title', 'deck_company',
+    'deck_title', 'deck_company', 'partnerships_intro',
     'impact_team_0', 'impact_team_1', 'impact_team_2',
     'impact_product_0', 'impact_product_1', 'impact_product_2', 'impact_product_3',
     'impact_business_0', 'impact_business_1', 'impact_business_2', 'impact_business_3',
@@ -233,6 +242,10 @@ var MS_VISIBILITY = {
 
 /* deck slide data-notes-id → copy keys to surface as speaker notes. FIRST PASS. */
 var MS_NOTES = {
+  'live-data':     ['format_2', 'format_3', 'format_4'],
+  'partnerships':  ['partnerships_0', 'partnerships_1', 'partnerships_2'],
+  'facilitating':  ['facilitating_1', 'facilitating_2'],
+  'reflection':    ['reflection_1'],
   'outcomes': ['outcome_team_0', 'outcome_team_1', 'outcome_team_2',
                'outcome_product_0', 'outcome_product_1', 'outcome_product_2', 'outcome_product_3',
                'outcome_business_0', 'outcome_business_1', 'outcome_business_2', 'outcome_business_3',
