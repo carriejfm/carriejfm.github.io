@@ -33,7 +33,7 @@ var MS_COPY = {
   deck_company: "Money by Afterpay · Block · 2021–2022",
 
   /* ── Role rows (scroll + deck) ───────────────────────────────────── */
-  role_responsible: "Originated the concept and led design across Money Stories, Insights and adjacent content workstreams",
+  role_responsible: "Originated the concept and led design across Money Stories and adjacent workstreams",
   role_accountable: "Established content systems and partner publishing workflows; drove design team ways of working, culture and craft",
   role_consulted:   "Broader Money by Afterpay positioning strategy, product and engineering decisions",
 
@@ -221,9 +221,12 @@ var MS_VISIBILITY = {
     'case_title', 'project_string', 'section_hypothesis',
     // Long-form approach copy the deck trims to its first paragraph(s);
     // surfaced as speaker notes on the following figure slide.
+    'opportunity_1',
+    'accessible_1',
+    'research_1', 'research_2',
     'format_2', 'format_3', 'format_4',
     'partnerships_0', 'partnerships_1', 'partnerships_2',
-    'facilitating_1', 'facilitating_2',
+    'facilitating_1', 'facilitating_2', 'ai_now',
     'reflection_1',
     'outcome_team_0', 'outcome_team_1', 'outcome_team_2',
     'outcome_product_0', 'outcome_product_1', 'outcome_product_2', 'outcome_product_3',
@@ -242,9 +245,12 @@ var MS_VISIBILITY = {
 
 /* deck slide data-notes-id → copy keys to surface as speaker notes. FIRST PASS. */
 var MS_NOTES = {
+  'opportunity':   ['opportunity_1'],
+  'accessible':    ['accessible_1'],
+  'research':      ['research_1', 'research_2'],
   'live-data':     ['format_2', 'format_3', 'format_4'],
-  'partnerships':  ['partnerships_0', 'partnerships_1', 'partnerships_2'],
-  'facilitating':  ['facilitating_1', 'facilitating_2'],
+  'partnerships':  ['partnerships_0', 'partnerships_1', 'partnerships_2', 'facilitating_2'],
+  'facilitating':  ['facilitating_1', 'ai_now'],
   'reflection':    ['reflection_1'],
   'outcomes': ['outcome_team_0', 'outcome_team_1', 'outcome_team_2',
                'outcome_product_0', 'outcome_product_1', 'outcome_product_2', 'outcome_product_3',

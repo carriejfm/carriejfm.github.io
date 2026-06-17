@@ -54,6 +54,7 @@ var CC_COPY = {
   deck_title_2: "Cochlear CoPilot",
   deck_company: "Cochlear · ustwo · 2020–2021",
   hero_caption_2: "Hearing rehab with Cochlear CoPilot: The one where I built shared language, shared evidence and shared capability.",
+  hero_note: "This wasn't really a story about a hearing rehab app. It was a story about building shared language inside a clinically-led organisation.",
 
   /* ── Role rows ───────────────────────────────────────────────────── */
   role_responsible: "Owned the Cochlear relationship and led the cross-functional team in research, collaboration and delivery. Defined UX strategies and designed core flows.",
@@ -271,6 +272,7 @@ var CC_COPY = {
   intro_ftu_0: "The First Time Use experience was redesigned end-to-end — App Store screens through to first content engagement.",
   intro_ftu_1: "We tested a pre-auth demo swipe-through of the app's value before sign-in but found it added friction rather than reducing it, and removed it in favour of getting users into real content faster.",
   intro_ftu_2: "The App Store value props were tested and refined in co-creation with Cochlear recipients to ensure messaging resonated.",
+  intro_ftu_note: "By the time we were designing this FTU experience, our co-creation and research practice was a well oiled machine; I'm going to use this context to talk a moment about how our research practice matured and how language was at the crux of it.",
 
   /* ── Reflection ── */
   reflection_figure_caption: "Naming and differentiating through language builds bridges.",
@@ -346,12 +348,13 @@ var CC_VISIBILITY = {
    listed here) show "No notes for this slide."
 ─────────────────────────────────────────────────────────────────── */
 var CC_NOTES = {
+  'hero':          ['hero_note'],
   'role-embedded': ['section_embedded', 'embedded_0', 'embedded_1', 'embedded_2', 'design_cadence_caption'],
   'content':       ['content_0', 'content_2', 'content_3'],
   'cocreators':    ['cocreators_1', 'cocreators_2'],
   'measure':       ['measure_1', 'measure_2', 'measure_3'],
   'cp-intro':      ['intro_cp_1', 'intro_cp_2'],
-  'ftu-intro':     ['intro_ftu_1', 'intro_ftu_2'],
+  'ftu-intro':     ['intro_ftu_note', 'intro_ftu_1', 'intro_ftu_2'],
   'sb-intro':      ['intro_sb_1', 'intro_sb_2'],
   'reuse':         ['reuse_1', 'reuse_2', 'reuse_3', 'reuse_4'],
   'stats':         ['stats_notes_0', 'stats_notes_1', 'stats_notes_2'],
