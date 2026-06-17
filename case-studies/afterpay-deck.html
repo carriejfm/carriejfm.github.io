@@ -1980,15 +1980,6 @@
 </div>
 <div class="deck-hint" aria-hidden="true">← → to navigate</div>
 
-<!-- ─── M SWITCHER MENU ─── -->
-<div class="deck-switcher" id="deckSwitcher" aria-hidden="true" role="dialog" aria-label="View switcher">
-  <div class="deck-switcher__inner">
-    <a href="afterpay-deck.html" class="deck-switcher__option deck-switcher__option--active">Deck</a>
-    <a href="afterpay-design.html" class="deck-switcher__option">Scroll</a>
-  </div>
-  <p class="deck-switcher__hint">m or esc to close</p>
-</div>
-
 <!-- ══════════════════════════════════════
      'V' SECTION INDEX MENU — mirrors the index list; jumps to sections.
      Options are injected by JS from the deck's section-title slides.
@@ -2002,7 +1993,7 @@
 </div>
 
 <!-- ─── COPY SOURCE ─── -->
-<script src="afterpay-copy.js?v=20260616f"></script>
+<script src="afterpay-copy.js?v=20260617"></script>
 
 <script>
   /* ─── DECK ENGINE — vanilla JS, no dependencies ─── */
@@ -2226,8 +2217,8 @@
       goTo(current - 1, 'back');
     }
 
-    /* ── 'm' key view switcher ── */
-    var switcher = document.getElementById('deckSwitcher');
+    /* ── 's' key → scroll view (maps the current slide to its scroll section) ── */
+    var SCROLL_URL = 'afterpay-design.html';
 
     /* Map current slide index → scroll page anchor */
     function slideToScrollAnchor(idx) {
@@ -2238,17 +2229,6 @@
       if (idx >= 4)  return '#s-opportunity';
       return '';
     }
-
-    function openSwitcher() {
-      /* Update scroll link href so landing position matches current section */
-      var scrollLink = switcher.querySelector('a[href*="afterpay-design"]');
-      if (scrollLink) scrollLink.href = 'afterpay-design.html' + slideToScrollAnchor(current);
-      closeIndexMenu();
-      switcher.classList.add('is-open');
-      switcher.setAttribute('aria-hidden', 'false');
-    }
-    function closeSwitcher() { switcher.classList.remove('is-open'); switcher.setAttribute('aria-hidden', 'true');  }
-    switcher.addEventListener('click', function (e) { if (e.target === switcher) closeSwitcher(); });
 
     /* ── 'v' key section index menu ──
        Mirrors the index list. Built from the deck's section-title slides so it
@@ -2287,7 +2267,7 @@
         inner.appendChild(a);
       });
     })();
-    function openIndexMenu()  { closeSwitcher(); indexMenu.classList.add('is-open'); indexMenu.setAttribute('aria-hidden', 'false'); }
+    function openIndexMenu()  { indexMenu.classList.add('is-open'); indexMenu.setAttribute('aria-hidden', 'false'); }
     function closeIndexMenu() { indexMenu.classList.remove('is-open'); indexMenu.setAttribute('aria-hidden', 'true'); }
     indexMenu.addEventListener('click', function (e) { if (e.target === indexMenu) closeIndexMenu(); });
 
@@ -2338,11 +2318,15 @@
 
     /* ── Keyboard ── */
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'm' || e.key === 'M') { switcher.classList.contains('is-open') ? closeSwitcher() : openSwitcher(); return; }
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      /* 's' → jump straight to the scroll view at the matching section */
+      if (e.key === 's' || e.key === 'S') { window.location.href = SCROLL_URL + slideToScrollAnchor(current); return; }
+      /* 'd' → deck view; already here, so no-op */
+      if (e.key === 'd' || e.key === 'D') { return; }
       if (e.key === 'v' || e.key === 'V') { indexMenu.classList.contains('is-open') ? closeIndexMenu() : openIndexMenu(); return; }
       if (e.key === 'n' || e.key === 'N') { toggleNotesWindow(); return; }
-      if (e.key === 'Escape') { closeSwitcher(); closeIndexMenu(); return; }
-      if (switcher.classList.contains('is-open') || indexMenu.classList.contains('is-open')) return; /* swallow nav keys while a menu is open */
+      if (e.key === 'Escape') { closeIndexMenu(); return; }
+      if (indexMenu.classList.contains('is-open')) return; /* swallow nav keys while the menu is open */
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); handleForward(); }
       if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); handleBack(); }
     });

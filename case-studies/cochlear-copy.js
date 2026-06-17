@@ -120,7 +120,7 @@ var CC_COPY = {
 
   /* ── Approach: Recycle & Reuse ───────────────────────────────────── */
   reuse_fig_a_caption: "Clinical co-creation sessions.",
-  reuse_fig_b_caption: "Skill Builder language taxonomy.",
+  reuse_fig_b_caption: "Skill builder language alignment.",
   reuse_fig_c_caption: "\"Assume everything is the same\" strategy allowed for surgical deltas.",
   reuse_0: "We had one Skill Builder shipped but five remained. A delivery deadline was looming and engineering estimations showed we weren't going to make it. We needed to reuse as much design and code as possible, without compromising clinical integrity.",
   reuse_1: "Armed with requirements from our clinical co-creation sessions, I ran a two-day Recycle and Reuse workshop with the cross-functional team.",
@@ -153,15 +153,33 @@ var CC_COPY = {
   output_skillbuilders_1: "The Recycle and Reuse workshop meant future Skill Builders inherit a consistent set of interaction patterns and components, ready to ship quickly without rebuilding from scratch.",
   output_skillbuilders_credit: "IC · design strategy and flows · 1 UI designer on visual execution",
 
-  /* ── Stats ───────────────────────────────────────────────────────── */
-  stat_1_value: "18 mo",
-  stat_1_label: "Embedded Leadership",
-  stat_2_value: "17+",
-  stat_2_label: "Recipient Co-creators",
-  stat_3_value: "100+",
-  stat_3_label: "Measured Experiments",
+  /* ── Stats — APPROACH callout (scroll only) ──────────────────────────
+     The metric stack at the top of the Approach section. These are the
+     engagement-scale figures and stay as the original 18 mo / 17+ / 100+.
+     Separate from the Outcomes `stat_*` keys below so the two callouts can
+     differ. The deck has no Approach stat block. ────────────────────────── */
+  approach_stat_1_value: "18 mo",
+  approach_stat_1_label: "Embedded Leadership",
+  approach_stat_2_value: "17+",
+  approach_stat_2_label: "Recipient Co-creators",
+  approach_stat_3_value: "100+",
+  approach_stat_3_label: "Measured Experiments",
 
-  /* ── Outcome category labels ─────────────────────────────────────── */
+  /* ── Stats — OUTCOMES callout (scroll + deck Stats slide) ─────────────
+     Recipient-survey engagement metrics published 2 years post-launch.
+     Shared by the scroll Outcomes block and the deck Stats slide.
+     index.html's Cochlear-tile stats are HARDCODED and updated separately. ── */
+  stat_1_value: "93%",
+  stat_1_label: "Found CoPilot helpful",
+  stat_2_value: "70%",
+  stat_2_label: "Used it weekly",
+  stat_3_value: "30%",
+  stat_3_label: "Used it daily",
+
+  /* ── Outcome category labels ──────────────────────────────────────────
+     Shared by scroll (.cs-outcome-label) and deck (.impact-col__name).
+     Four categories: Product · Team · Business · Scale. The recipient-survey
+     engagement findings live as Product bullets (not a separate group). ──── */
   outcome_team:     "Team",
   outcome_product:  "Product",
   outcome_business: "Business",
@@ -172,40 +190,42 @@ var CC_COPY = {
   outcome_team_1: "Built reusable infrastructure — Design+Learn Cadence, Measure-Learn Tracker, Co-creators program, Skill Builder architecture.",
   outcome_team_2: "Coached 2 designers through transitions, tooling migration, and growth.",
 
-  outcome_product_0: "6 total Skill Builders shipped.",
-  outcome_product_1: "Skill Builder wayfinding ease rating 3.3 to 4.0 across two rounds of testing.",
-  outcome_product_2: "Tutorial pattern moved user confidence from 3.6 to 4.0.",
-  outcome_product_3: "First Time Use redesigned end-to-end, App Store screens through to first content engagement.",
-  outcome_product_4: "Personalization foundation laid: content tagging strategy, Need Enablers, signals framework.",
+  outcome_product_0: "Two years post-launch, CoPilot was recipients' most-used hearing rehab resource (Cochlear recipient survey).",
+  outcome_product_1: "93% found it helpful; 70% used it weekly; 30% daily.",
+  outcome_product_2: "Skill Builder wayfinding ease rating moved 3.3 to 4.0 across two rounds of testing.",
+  outcome_product_3: "Tutorial pattern moved user confidence 3.6 to 4.0.",
+  outcome_product_4: "6 total Skill Builders shipped.",
 
-  outcome_business_0: "Cochlear ended with research infrastructure, design tooling, and a measure-learn discipline they could keep running.",
-  outcome_business_1: "Sustained 18-month embedded engagement.",
-  outcome_business_2: "When ustwo Sydney closed, Cochlear explored bringing me on directly — a measure of the partnership's success.",
+  outcome_business_0: "Sustained 18-month embedded engagement; 17+ recipient co-creators; 100+ measured experiments.",
+  outcome_business_1: "Cochlear ended with research infrastructure, design tooling, and a measure-learn discipline they could keep running.",
+  outcome_business_2: "When ustwo Sydney closed, Cochlear explored bringing me on directly.",
 
   outcome_scale_0: "Co-creators program template reusable for any future Cochlear product.",
   outcome_scale_1: "Measure-Learn Tracker portable to any team holding qualitative and quantitative research together.",
   outcome_scale_2: "Design+Learn Cadence is the framework I'd still use today.",
   outcome_scale_3: "Component architecture and library inheritable for any future Skill Builder.",
+  outcome_scale_4: "Personalization foundation laid: content tagging strategy, Need Enablers, signals framework.",
 
   /* ── Impact bullets (deck — shorter/punchier) ────────────────────── */
   impact_team_0: "Agency relationship shifted to genuine product partnership.",
   impact_team_1: "Reusable infrastructure built — Cadence, Tracker, Co-creators, Skill Builder architecture.",
   impact_team_2: "2 designers coached through transitions and growth.",
 
-  impact_product_0: "6 Skill Builders shipped.",
-  impact_product_1: "Wayfinding ease rating: 3.3 → 4.0.",
-  impact_product_2: "Tutorial confidence: 3.6 → 4.0.",
-  impact_product_3: "FTU redesigned end-to-end.",
-  impact_product_4: "Personalization foundation laid.",
+  impact_product_0: "Two years post-launch — recipients' most-used hearing rehab resource.",
+  impact_product_1: "93% helpful · 70% weekly · 30% daily.",
+  impact_product_2: "Wayfinding ease rating: 3.3 → 4.0.",
+  impact_product_3: "Tutorial confidence: 3.6 → 4.0.",
+  impact_product_4: "6 Skill Builders shipped.",
 
-  impact_business_0: "Cochlear left with infrastructure, tooling, and a measure-learn discipline they could keep running.",
-  impact_business_1: "Sustained 18-month embedded engagement.",
+  impact_business_0: "18-month embedded engagement · 17+ co-creators · 100+ experiments.",
+  impact_business_1: "Cochlear left with infrastructure, tooling, and a measure-learn discipline they could keep running.",
   impact_business_2: "When ustwo Sydney closed, Cochlear explored bringing me on directly.",
 
   impact_scale_0: "Co-creators template — reusable for any Cochlear product.",
   impact_scale_1: "Measure-Learn Tracker — portable to any team.",
   impact_scale_2: "Design+Learn Cadence — still the framework I'd use today.",
   impact_scale_3: "Component architecture — inheritable for any future Skill Builder.",
+  impact_scale_4: "Personalization foundation laid.",
 
   /* ── Quotes — combined (deck) ────────────────────────────────────── */
   quote_stakeholder: "“Carrie plays a key leadership role for the squad, helping us achieve to our timelines and product goals, championing the customer experience, encouraging a collaborative approach to ways of working, striving towards continuous improvements and maintaining transparency in all communications with myself and the team.” — CoPilot Product owner",
@@ -213,6 +233,7 @@ var CC_COPY = {
   quote_paz:         "“It was like I had another brain outside my brain.” — UX design director, ustwo",
   quote_jonathan:    "”I like them (Need Enablers) More than one (per session). I think interaction is flavourful. I would want to see multiple each time you open.” — Cochlear recipient co-creator",
   quote_articles:    "“I liked the articles under different categories... It's truly a one stop shop for all regardless of whether one is a new or long-time recipient.” — Cochlear recipient co-creator",
+  quote_survey:      "“I did at least one every day for ~4 months. It totally helped my best hearing outcome in a positive way.” — Cochlear recipient",
 
   /* ── Quotes — split (scroll) ─────────────────────────────────────── */
   quote_stakeholder_text: "“Carrie plays a key leadership role for the squad, helping us achieve to our timelines and product goals, championing the customer experience, encouraging a collaborative approach to ways of working, striving towards continuous improvements and maintaining transparency in all communications with myself and the team.”",
@@ -229,6 +250,9 @@ var CC_COPY = {
 
   quote_articles_text: "“I liked the articles under different categories... It's truly a one stop shop for all regardless of whether one is a new or long-time recipient.”",
   quote_articles_attr: "— Cochlear recipient co-creator",
+
+  quote_survey_text: "“I did at least one every day for ~4 months. It totally helped my best hearing outcome in a positive way.”",
+  quote_survey_attr: "— Cochlear recipient",
 
   /* ── Deck-2 section labels (left panel titles for static output slides) ── */
   section_cp:        "Content & Personalization",
@@ -251,7 +275,16 @@ var CC_COPY = {
   /* ── Reflection ── */
   reflection_figure_caption: "Naming and differentiating through language builds bridges.",
   reflection_0: "If I could go back, I'd have listened a little closer, a little longer, to the fear behind the resistance to UX research before trying to fix it. Early on I assumed our clinical partner wanted our research practice to expand into proving clinical efficacy, and even built a thought piece around it. It wasn't needed, and wasn't asked for. The impulse to solve someone's problem with a tool they didn't ask for is its own kind of not listening — and knowing when expertise needs to stay in its lane, and when it needs to come into the room, is a skill in itself.",
-  reflection_1: "Looking back, most of what went wrong, and most of what eventually went right, came down to seeing things differently. There's a theory that ancient cultures couldn't perceive blue as a distinct color because they had no word for it. They weren't blind to it, they just couldn't differentiate it from what they already knew. The work with our clinical partners was the same: we were all pointing at the same things and calling them different names, or using the same names for completely different things. Until we defined a shared vocabulary, we couldn't see what the other person was seeing. In the end, clarity in language was what built the bridge.",
+  reflection_1: "Looking back, most of what went wrong, and most of what eventually went right, came down to seeing things differently. The ancient Greeks had no word for blue. Homer wrote of a “wine-dark sea” and a bronze sky, and some scholars think that without a word to name it, blue was hard to distinguish as its own color at all. They weren't blind to it, they just couldn't separate it from what they already knew. The work with our clinical partners was the same: we were all pointing at the same things and calling them different names, or using the same names for completely different things. Until we built a shared vocabulary, we couldn't see what the other person was seeing. In the end, clarity in language was what built the bridge.",
+
+  /* reflection_sources — deck speaker-notes only (no data-cc-copy anywhere); a
+     second notes paragraph behind reflection_1's blue/Homer reference. */
+  reflection_sources: "William Gladstone's 1858 study of Homer, later built on by linguists Lazarus Geiger and the Berlin & Kay (1969) color-term research showing blue emerges last across languages. Radiolab also did a well-known episode on it ('Why Isn't the Sky Blue?').",
+
+  /* ── Speaker-notes-only copy (deck N key; never rendered via data-cc-copy) ── */
+  stats_notes_0: "These come from a 2023 Cochlear recipient survey, two years after launch — 945 recipients asked about their favorite rehab resources. CoPilot was the most-used digital tool: 93% found it helpful, 70% weekly, 30% daily.",
+  stats_notes_1: "What matters most is why — recipients loved that they could practice independently, easily, and actually enjoyed it. That was the design intent.",
+  stats_notes_2: "This survey ran after my time, so I'm not claiming I fully own it — but the foundations we built held up and became something recipients rely on, which I'm proud of.",
 
 };
 
@@ -276,10 +309,13 @@ var CC_VISIBILITY = {
     'quote_paz_text', 'quote_paz_attr',
     'quote_jonathan_text', 'quote_jonathan_attr',
     'quote_articles_text', 'quote_articles_attr',
+    'approach_stat_1_value', 'approach_stat_1_label',
+    'approach_stat_2_value', 'approach_stat_2_label',
+    'approach_stat_3_value', 'approach_stat_3_label',
     'outcome_team_0', 'outcome_team_1', 'outcome_team_2',
     'outcome_product_0', 'outcome_product_1', 'outcome_product_2', 'outcome_product_3', 'outcome_product_4',
     'outcome_business_0', 'outcome_business_1', 'outcome_business_2',
-    'outcome_scale_0', 'outcome_scale_1', 'outcome_scale_2', 'outcome_scale_3',
+    'outcome_scale_0', 'outcome_scale_1', 'outcome_scale_2', 'outcome_scale_3', 'outcome_scale_4',
     'reflection_1'
   ],
   deckOnly: [
@@ -297,7 +333,7 @@ var CC_VISIBILITY = {
     'impact_team_0', 'impact_team_1', 'impact_team_2',
     'impact_product_0', 'impact_product_1', 'impact_product_2', 'impact_product_3', 'impact_product_4',
     'impact_business_0', 'impact_business_1', 'impact_business_2',
-    'impact_scale_0', 'impact_scale_1', 'impact_scale_2', 'impact_scale_3'
+    'impact_scale_0', 'impact_scale_1', 'impact_scale_2', 'impact_scale_3', 'impact_scale_4'
   ]
 };
 
@@ -316,7 +352,8 @@ var CC_NOTES = {
   'measure':       ['measure_1', 'measure_2', 'measure_3'],
   'reuse-intro':   ['reuse_1'],
   'reuse':         ['reuse_2', 'reuse_3', 'reuse_4'],
-  'reflection':    ['reflection_1']
+  'stats':         ['stats_notes_0', 'stats_notes_1', 'stats_notes_2'],
+  'reflection':    ['reflection_1', 'reflection_sources']
 };
 
 /* Expose for the Speaker Notes window (opened via window.open from the deck). */

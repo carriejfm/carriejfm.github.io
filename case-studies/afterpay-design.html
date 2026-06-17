@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>if(!sessionStorage.getItem('ap_auth')&&!sessionStorage.getItem('portfolio_auth'))window.location.replace('afterpay-auth.html');</script>
-  <script src="/js/analytics.js?v=20260616f"></script>
+  <script src="/js/analytics.js?v=20260617"></script>
   <title>The rebuild of Afterpay Design — Carrie Francis-Miller</title>
   <meta name="description" content="Case study: the rebuild of Afterpay Design as a strategic function (Block, 2024–2025) — 2 to 7 designers, regulated fintech delivery across three markets, +36% YoY growth, 1.5–6× referral lift on Shop.">
   <meta name="author" content="Carrie Francis-Miller">
@@ -40,8 +40,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260616f">
-  <link rel="stylesheet" href="../css/casestudy.css?v=20260616f">
+  <link rel="stylesheet" href="../css/style.css?v=20260617">
+  <link rel="stylesheet" href="../css/casestudy.css?v=20260617">
 
   <!-- Structured data: CreativeWork -->
   <script type="application/ld+json">
@@ -579,17 +579,8 @@
     </div>
   </footer>
 
-  <!-- ─── M SWITCHER MENU ─── -->
-  <div class="deck-switcher" id="deckSwitcher" aria-hidden="true" role="dialog" aria-label="View switcher">
-    <div class="deck-switcher__inner">
-      <a href="afterpay-deck.html" class="deck-switcher__option">Deck</a>
-      <a href="afterpay-design.html" class="deck-switcher__option deck-switcher__option--active">Scroll</a>
-    </div>
-    <p class="deck-switcher__hint">m or esc to close</p>
-  </div>
-
-  <script src="../js/main.js?v=20260616f"></script>
-  <script src="afterpay-copy.js?v=20260616f"></script>
+  <script src="../js/main.js?v=20260617"></script>
+  <script src="afterpay-copy.js?v=20260617"></script>
   <script>
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -610,10 +601,10 @@
       carousels.forEach(function (c) { io.observe(c); });
     })();
   </script>
+  <!-- ─── VIEW HOTKEYS ─── d = deck · s = scroll (already here) ─── -->
   <script>
     (function () {
-      var switcher = document.getElementById('deckSwitcher');
-      var deckLink = switcher.querySelector('a[href*="afterpay-deck"]');
+      var DECK_URL = 'afterpay-deck.html';
 
       /* Map visible scroll section → deck slide index */
       var sectionSlideMap = {
@@ -636,24 +627,16 @@
         return 0;
       }
 
-      function openSwitcher() {
-        /* Update deck link so it lands at the matching slide */
-        if (deckLink) {
-          var slide = getCurrentDeckSlide();
-          deckLink.href = 'afterpay-deck.html' + (slide > 0 ? '?slide=' + slide : '');
-        }
-        switcher.classList.add('is-open');
-        switcher.setAttribute('aria-hidden', 'false');
-      }
-      function closeSwitcher() {
-        switcher.classList.remove('is-open');
-        switcher.setAttribute('aria-hidden', 'true');
-      }
-
-      switcher.addEventListener('click', function (e) { if (e.target === switcher) closeSwitcher(); });
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'm' || e.key === 'M') { switcher.classList.contains('is-open') ? closeSwitcher() : openSwitcher(); }
-        if (e.key === 'Escape') closeSwitcher();
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        var t = e.target;
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+        /* 'd' → jump straight to the deck at the matching slide */
+        if (e.key === 'd' || e.key === 'D') {
+          var slide = getCurrentDeckSlide();
+          window.location.href = DECK_URL + (slide > 0 ? '?slide=' + slide : '');
+        }
+        /* 's' → scroll view; already here, so no-op */
       });
     })();
   </script>
