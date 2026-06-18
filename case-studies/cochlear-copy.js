@@ -312,7 +312,7 @@ var CC_COPY = {
 var CC_VISIBILITY = {
   scrollOnly: [
     'project_string',
-    'opportunity_0a', 'opportunity_0b',
+    'opportunity_0a', 'opportunity_0b', 'opportunity_2',
     'section_embedded', 'embedded_0', 'embedded_1', 'embedded_2',
     'output_skillbuilders_1',
     'cocreators_1', 'cocreators_2',
@@ -362,6 +362,7 @@ var CC_VISIBILITY = {
 ─────────────────────────────────────────────────────────────────── */
 var CC_NOTES = {
   'hero':                    ['hero_note'],
+  'opportunity':             ['opportunity_2'],                /* slide 5 — 3rd paragraph moved to notes */
   'cadence':                 ['cadence_note'],                 /* item 5b — new Design+Learn cadence slide */
   /* content figure slides split per-slide (items 6–9) */
   'content-ia':              ['content_2a'],                   /* slide 13 — IA/tagging sentence */
@@ -369,7 +370,7 @@ var CC_NOTES = {
   'content-personalization': ['content_2c'],                   /* slide 15 — personalization thought-piece sentence */
   'content-nav':             ['content_3'],                    /* slide 16 — navigation paragraph */
   'cp-intro':                ['intro_cp_1', 'intro_cp_2'],
-  'ftu-intro':               ['intro_ftu_note', 'intro_ftu_1', 'intro_ftu_2'],
+  'ftu-intro':               ['intro_ftu_1', 'intro_ftu_2', 'intro_ftu_note'], /* slide 21 — lead-in moved to last */
   'cocreators-22':           ['cocreators_1'],                 /* item 11 — slide 22 first para only */
   'cocreators-23':           ['cocreators_2'],                 /* item 12 — slide 23 second para only */
   'measure-25':              ['measure_1'],                    /* item 13 — slide 25 first para only */

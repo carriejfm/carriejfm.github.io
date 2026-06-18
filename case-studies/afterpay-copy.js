@@ -176,6 +176,12 @@ var AP_COPY = {
   /* item 23 — speaker note for the deck Impact slide (slide 30) */
   impact_outcome_note: "The biggest outcome wasn't any individual feature—it was creating a system where design could consistently influence decisions, manage complexity across regions, and help the business move faster through a period of significant change.",
 
+  /* hero slide (page 2) speaker note */
+  hero_note: "This is a story about rebuilding a design discipline under pressure, transforming a reactive delivery team into a trusted strategic partner during one of Afterpay's most complex periods of change.",
+
+  /* Reflection slide (page 33) — proud note added to speaker notes */
+  reflection_proud: "What I'm most proud of isn't any individual feature we shipped. It's that by the time I stepped out of the role, design had become a trusted partner in shaping decisions rather than simply executing them. For me, that's the real measure of design leadership: leaving behind stronger capability, stronger relationships, and better outcomes than when you arrived.",
+
 };
 
 /* ─────────────────────────────────────────────────────────────────
@@ -207,17 +213,20 @@ var AP_VISIBILITY = {
     'approach_problem_1',
     'approach_xfn_1',
     'quote_cmo_attr', 'quote_design_manager_attr', 'quote_eng_partner_attr',
-    'quote_product_partner_attr', 'quote_xfn_partner_attr'
+    'quote_product_partner_attr', 'quote_xfn_partner_attr',
+    'reflection_1', 'reflection_3'
   ],
   deckOnly: ['deck_title']
 };
 
 /* deck slide data-notes-id → copy keys to surface as speaker notes */
 var AP_NOTES = {
-  rebuild: ['approach_rebuild_1', 'approach_rebuild_2'],
-  problem: ['approach_problem_1'],
-  xfn:     ['approach_xfn_1'],
-  outcome: ['impact_outcome_note']
+  hero:       ['hero_note'],
+  rebuild:    ['approach_rebuild_1', 'approach_rebuild_2'],
+  problem:    ['approach_problem_1'],
+  xfn:        ['approach_xfn_1'],
+  outcome:    ['impact_outcome_note'],
+  reflection: ['reflection_1', 'reflection_3', 'reflection_proud']
 };
 
 /* Expose for the shared Speaker Notes window (opened via window.open). */

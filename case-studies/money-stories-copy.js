@@ -192,6 +192,7 @@ var MS_COPY = {
   reflection_burdock_caption: "Borrowing solutions from the world around us isn't cheating – it's problem solving.",
   reflection_burdock_note_0: "It's not like I, or the product community at large, are the first ones to think of lateral thinking as a path to solution – The field of biomimetics has long been solving problems by stealing solutions from the natural world.",
   reflection_burdock_note_1: "Example: In 1941, Swiss electrical engineer George de Mestral went hunting in the Alps and afterwards noticed his clothes, and his dog's fur, were covered in burdock burrs. This mechanism of clinging to passing creatures is the burdock's way of spreading seeds across greater distances. Mestral put one of the burrs under a microscope and discovered the simple hooks which allowed it to cling to loops in his socks and in his dog's hair — and then he invented velcro.",
+  reflection_burdock_note_2: "What this project reinforced for me is that innovation rarely comes from staring harder at competitors. It comes from understanding human behavior deeply enough to recognize useful patterns somewhere else and then translating them into a completely different context. Money Stories worked because we weren't designing a banking experience—we were designing around the behaviors people already had.",
 
   /* ── Quotes — combined (deck) ────────────────────────────────────── */
   quote_research: '"It\'s visually pleasing to go through stories like that. It\'s not as time consuming as a spreadsheet. I think it would be helpful for me personally because of the data they can gather for me — having it at your fingertips is useful." — Research participant',
@@ -278,7 +279,7 @@ var MS_NOTES = {
   'outcomes-impact': ['impact_proud'],
   'quotes':   ['quote_pp_text', 'quote_pp_attr'],
   /* item 4 — new Reflection asset slide */
-  'reflection-asset': ['reflection_burdock_note_0', 'reflection_burdock_note_1']
+  'reflection-asset': ['reflection_burdock_note_0', 'reflection_burdock_note_1', 'reflection_burdock_note_2']
 };
 
 /* Expose for the shared Speaker Notes window (opened via window.open). */
