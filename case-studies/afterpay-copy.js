@@ -173,6 +173,9 @@ var AP_COPY = {
   quote_cmo_text:              "“She has a strong, positive influence at the leadership level — bringing both strategic thinking and empathy to complex initiatives.”",
   quote_cmo_attr:              "— Afterpay CMO",
 
+  /* item 23 — speaker note for the deck Impact slide (slide 30) */
+  impact_outcome_note: "The biggest outcome wasn't any individual feature—it was creating a system where design could consistently influence decisions, manage complexity across regions, and help the business move faster through a period of significant change.",
+
 };
 
 /* ─────────────────────────────────────────────────────────────────
@@ -213,7 +216,8 @@ var AP_VISIBILITY = {
 var AP_NOTES = {
   rebuild: ['approach_rebuild_1', 'approach_rebuild_2'],
   problem: ['approach_problem_1'],
-  xfn:     ['approach_xfn_1']
+  xfn:     ['approach_xfn_1'],
+  outcome: ['impact_outcome_note']
 };
 
 /* Expose for the shared Speaker Notes window (opened via window.open). */

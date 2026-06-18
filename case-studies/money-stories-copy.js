@@ -177,6 +177,22 @@ var MS_COPY = {
   reflection_2: "Lateral thinking is easy to talk about and not always as easy to nail. I built out a 'parallel worlds' workshop when working agency side that helped clients get outside of their own segment and competitor silos and into adjacent human behavior. I still think it's one of the most interesting exercises a team can go through. Market landscape research is important; behavioral landscape? Maybe even more.",
   reflection_3: "If I could go back, I would have pushed earlier to use the Stories format as an onboarding vehicle. When I joined, onboarding sat in a separate workstream and I didn't immediately put my hand up — I was focused on getting Money Stories working first. But once we had evidence the format resonated, the logical next question was: where else does this apply? I did eventually bring Stories into that thinking, but earlier conviction would have compressed the timeline. It's a reminder that the best design systems earn the right to expand, and you should be ready to make that case the moment the evidence is there.",
 
+  /* ── Speaker-notes-only + deck-variant copy (change batch) ───────── */
+  /* hero slide (slide 2) speaker note */
+  hero_note: "Money Stories is the case study where I turned money management into content – but more importantly, it's a story of using lateral thinking to harness behavioural design in one world and solve problems in another.",
+
+  /* item 2 — proud note surfaced on the deck Impact slide (slide 31) only */
+  impact_proud: "What I'm most proud of here is that we created an entirely new product pattern for banking—turning financial data into content people actually wanted to engage with. The result wasn't just a successful feature; it became a scalable platform for partnerships, behavior change, and ongoing customer engagement that reached hundreds of thousands of users.",
+
+  /* item 3 — deck-only Reflection slide copy (replaces the scroll's reflection_0/2/3 on the deck) */
+  reflection_deck_0: "Lateral thinking is easy to talk about and not always as easy to nail. Money Stories is a great example of how to take solutions in adjacent worlds to solve a completely new problem.",
+  reflection_deck_1: "I built out a 'parallel worlds' workshop when working agency side that helped clients get outside of their own segment and competitor silos and into adjacent human behavior. I still think it's one of the most interesting exercises a team can go through. Market landscape research is important; behavioral landscape? Maybe even more.",
+
+  /* item 4 — new Reflection asset slide (deck): caption shown on slide, note in N window */
+  reflection_burdock_caption: "Borrowing solutions from the world around us isn't cheating – it's problem solving.",
+  reflection_burdock_note_0: "It's not like I, or the product community at large, are the first ones to think of lateral thinking as a path to solution – The field of biomimetics has long been solving problems by stealing solutions from the natural world.",
+  reflection_burdock_note_1: "Example: In 1941, Swiss electrical engineer George de Mestral went hunting in the Alps and afterwards noticed his clothes, and his dog's fur, were covered in burdock burrs. This mechanism of clinging to passing creatures is the burdock's way of spreading seeds across greater distances. Mestral put one of the burrs under a microscope and discovered the simple hooks which allowed it to cling to loops in his socks and in his dog's hair — and then he invented velcro.",
+
   /* ── Quotes — combined (deck) ────────────────────────────────────── */
   quote_research: '"It\'s visually pleasing to go through stories like that. It\'s not as time consuming as a spreadsheet. I think it would be helpful for me personally because of the data they can gather for me — having it at your fingertips is useful." — Research participant',
   quote_cpo:      '"Carrie is great at forming through ambiguity, breaking things apart and guiding cross-functional teams through messiness to outcome. Money Stories was an example of that — pushing forward with an idea, getting buy-in from senior stakeholders and then delivering on a really cool experience all the way from insights to content." — Chief product officer',
@@ -236,6 +252,7 @@ var MS_VISIBILITY = {
   ],
   deckOnly: [
     'deck_title', 'deck_company', 'partnerships_intro',
+    'reflection_deck_0', 'reflection_deck_1', 'reflection_burdock_caption',
     'impact_team_0', 'impact_team_1', 'impact_team_2',
     'impact_product_0', 'impact_product_1', 'impact_product_2', 'impact_product_3',
     'impact_business_0', 'impact_business_1', 'impact_business_2', 'impact_business_3',
@@ -245,18 +262,23 @@ var MS_VISIBILITY = {
 
 /* deck slide data-notes-id → copy keys to surface as speaker notes. FIRST PASS. */
 var MS_NOTES = {
+  'hero':          ['hero_note'],
   'opportunity':   ['opportunity_1'],
   'accessible':    ['accessible_1'],
   'research':      ['research_1', 'research_2'],
   'live-data':     ['format_2', 'format_3', 'format_4'],
   'partnerships':  ['partnerships_0', 'partnerships_1', 'partnerships_2', 'facilitating_2'],
   'facilitating':  ['facilitating_1', 'ai_now'],
-  'reflection':    ['reflection_1'],
+  /* slides 29 & 30 (Outcomes title + Stats) keep the full outcome-bullet notes */
   'outcomes': ['outcome_team_0', 'outcome_team_1', 'outcome_team_2',
                'outcome_product_0', 'outcome_product_1', 'outcome_product_2', 'outcome_product_3',
                'outcome_business_0', 'outcome_business_1', 'outcome_business_2', 'outcome_business_3',
                'outcome_scale_0', 'outcome_scale_1', 'outcome_scale_2', 'outcome_scale_3'],
-  'quotes':   ['quote_pp_text', 'quote_pp_attr']
+  /* slide 31 (Impact) — only the proud note (outcome bullets dropped 18 Jun) */
+  'outcomes-impact': ['impact_proud'],
+  'quotes':   ['quote_pp_text', 'quote_pp_attr'],
+  /* item 4 — new Reflection asset slide */
+  'reflection-asset': ['reflection_burdock_note_0', 'reflection_burdock_note_1']
 };
 
 /* Expose for the shared Speaker Notes window (opened via window.open). */

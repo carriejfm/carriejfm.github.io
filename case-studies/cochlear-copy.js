@@ -91,6 +91,8 @@ var CC_COPY = {
   embedded_2: "I created the Design + Learn cadence — a framework for differentiating and planning design work across six categories, each with risk and effort profiles. It gave the team a shared vocabulary for design work and made questions like 'do we need to test it?' answerable without me in the room.",
 
   design_cadence_caption: "Six categories of design work — a shared language foundation for design planning.",
+  /* item 5b — speaker note for the new Design + Learn cadence asset slide (deck) */
+  cadence_note: "I won't go into detail of all the operations in the work I did to reset tooling and ways of working, but one key piece I built out that I'll mention here, was a Design and Learn cadence – a framework for differentiating and planning design work across six different categories, each with different risk and effort profiles. It gave the team a shared language for design work and made questions like 'do we need to test this?' answerable without me in the room. This theme–of building shared vocabulary to unblock and democratize capabilities–is the one this entire piece of work is built on.",
 
   /* ── Approach: Co-creators ────────────────────────────────────────── */
   cocreators_0: "Co-creation is what happens when interpersonal work and design work solve problems together. It became my core strategy — not just with recipients, but with our clinical counterparts.",
@@ -117,6 +119,10 @@ var CC_COPY = {
   /* content_1_deck — deck hides content_0, so its content_1 carries the lead-in sentence. */
   content_1_deck: "Beta usage showed people were barely scratching the surface of content. I led two tracks of work to fix that: making the system smarter, and making the app more navigable.",
   content_2: "To make the system smarter, I drove the IA and content tagging strategy as the foundation for personalization, running a co-creation session with the clinical SME to land an approach that worked for both the recipient mental model and the clinical taxonomy. I led a design sprint around Need Enablers — small in-app prompts letting recipients signal what was relevant to them. And I co-wrote “So you need content personalization” with the head of engineering — a thought piece sequencing the path from “no personalization” to “ML-ready” as concrete decisions.",
+  /* content_2 split into single sentences for per-slide speaker notes (deck slides 13/14/15) */
+  content_2a: "To make the system smarter, I drove the IA and content tagging strategy as the foundation for personalization, running a co-creation session with the clinical SME to land an approach that worked for both the recipient mental model and the clinical taxonomy.",
+  content_2b: "I led a design sprint around Need Enablers — small in-app prompts letting recipients signal what was relevant to them.",
+  content_2c: "And I co-wrote “So you need content personalization” with the head of engineering — a thought piece sequencing the path from “no personalization” to “ML-ready” as concrete decisions.",
   content_3: "To make the content navigable, we ran multiple rounds of testing on navigation and Skill Builder tutorial design. We learned users expected both passive and active navigation, so we designed the final interface to support both modes. We also learned that speed and discoverability were in tension with understanding of Skill Builder comprehension. We held that tension deliberately rather than optimizing for one metric, and iterated until we found a middle ground worth shipping.",
 
   /* ── Approach: Recycle & Reuse ───────────────────────────────────── */
@@ -148,6 +154,8 @@ var CC_COPY = {
   output_content_credit: "IC · design strategy, IA, and flows · 1 UI designer on visual execution",
 
   output_ftu_0: "The First Time Use experience was redesigned end-to-end — App Store screens through to first content engagement. We tested a pre-auth demo swipe-through of the app's value before sign-in, but found it added friction rather than reducing it, and removed it in favor of getting users into real content faster. The App Store value props were tested and refined in co-creation with Cochlear recipients to ensure the messaging resonated.",
+  /* item 15 — deck FTU output trimmed to the first sentence (scroll keeps output_ftu_0 full) */
+  output_ftu_0_deck: "The First Time Use experience was redesigned end-to-end — App Store screens through to first content engagement.",
   output_ftu_credit: "IC · design strategy and flows · 1 UI designer on visual execution",
 
   output_skillbuilders_0: "Six total Skill Builders shipped, covering the core rehab foundations: word and sentence identification, differentiating similar sounds, single and two-turn conversation comprehension, and telephone confidence.",
@@ -286,7 +294,10 @@ var CC_COPY = {
   /* ── Speaker-notes-only copy (deck N key; never rendered via data-cc-copy) ── */
   stats_notes_0: "These come from a 2023 Cochlear recipient survey, two years after launch — 945 recipients asked about their favorite rehab resources. CoPilot was the most-used digital tool: 93% found it helpful, 70% weekly, 30% daily.",
   stats_notes_1: "What matters most is why — recipients loved that they could practice independently, easily, and actually enjoyed it. That was the design intent.",
-  stats_notes_2: "This survey ran after my time, so I'm not claiming I fully own it — but the foundations we built held up and became something recipients rely on, which I'm proud of.",
+  stats_notes_2: "The survey happened after my involvement ended, but it demonstrates that the foundations the team built continued creating value years after launch.",
+
+  /* item 21 — speaker note for the deck Impact slide (slide 38) */
+  impact_outcome_note: "The lasting outcome wasn't just the app. It was creating a shared language between clinical, product, and design teams that allowed better decisions to be made, better research to happen, and ultimately a product that recipients continued using years after launch. Cochlear left with both a successful product and the capability to keep evolving it.",
 
 };
 
@@ -302,7 +313,8 @@ var CC_VISIBILITY = {
   scrollOnly: [
     'project_string',
     'opportunity_0a', 'opportunity_0b',
-    'section_embedded', 'embedded_0', 'embedded_1', 'embedded_2', 'design_cadence_caption',
+    'section_embedded', 'embedded_0', 'embedded_1', 'embedded_2',
+    'output_skillbuilders_1',
     'cocreators_1', 'cocreators_2',
     'measure_1', 'measure_2', 'measure_3',
     'content_0', 'content_2', 'content_3',
@@ -331,6 +343,7 @@ var CC_VISIBILITY = {
     'intro_cp_0',
     'intro_sb_0',
     'intro_ftu_0',
+    'output_ftu_0_deck',
     'reflection_figure_caption',
     'impact_team_0', 'impact_team_1', 'impact_team_2',
     'impact_product_0', 'impact_product_1', 'impact_product_2', 'impact_product_3', 'impact_product_4',
@@ -348,17 +361,28 @@ var CC_VISIBILITY = {
    listed here) show "No notes for this slide."
 ─────────────────────────────────────────────────────────────────── */
 var CC_NOTES = {
-  'hero':          ['hero_note'],
-  'role-embedded': ['section_embedded', 'embedded_0', 'embedded_1', 'embedded_2', 'design_cadence_caption'],
-  'content':       ['content_0', 'content_2', 'content_3'],
-  'cocreators':    ['cocreators_1', 'cocreators_2'],
-  'measure':       ['measure_1', 'measure_2', 'measure_3'],
-  'cp-intro':      ['intro_cp_1', 'intro_cp_2'],
-  'ftu-intro':     ['intro_ftu_note', 'intro_ftu_1', 'intro_ftu_2'],
-  'sb-intro':      ['intro_sb_1', 'intro_sb_2'],
-  'reuse':         ['reuse_1', 'reuse_2', 'reuse_3', 'reuse_4'],
-  'stats':         ['stats_notes_0', 'stats_notes_1', 'stats_notes_2'],
-  'reflection':    ['reflection_1', 'reflection_sources']
+  'hero':                    ['hero_note'],
+  'cadence':                 ['cadence_note'],                 /* item 5b — new Design+Learn cadence slide */
+  /* content figure slides split per-slide (items 6–9) */
+  'content-ia':              ['content_2a'],                   /* slide 13 — IA/tagging sentence */
+  'content-needs':           ['content_2b'],                   /* slide 14 — Need Enablers sentence */
+  'content-personalization': ['content_2c'],                   /* slide 15 — personalization thought-piece sentence */
+  'content-nav':             ['content_3'],                    /* slide 16 — navigation paragraph */
+  'cp-intro':                ['intro_cp_1', 'intro_cp_2'],
+  'ftu-intro':               ['intro_ftu_note', 'intro_ftu_1', 'intro_ftu_2'],
+  'cocreators-22':           ['cocreators_1'],                 /* item 11 — slide 22 first para only */
+  'cocreators-23':           ['cocreators_2'],                 /* item 12 — slide 23 second para only */
+  'measure-25':              ['measure_1'],                    /* item 13 — slide 25 first para only */
+  'measure-26':              ['measure_2', 'measure_3'],       /* item 14 — slide 26 paras 2 & 3 */
+  'sb-intro':                ['intro_sb_1', 'intro_sb_2'],
+  'sb-output':               ['output_skillbuilders_1'],       /* item 19 — slide 34 reuse paragraph moved to notes */
+  /* reuse slides split per-slide (items 16–18; paragraph 1 = reuse_0 on slide 30) */
+  'reuse-30':                ['reuse_1'],                       /* slide 31 — "Armed with requirements…" */
+  'reuse-31':                ['reuse_2'],                       /* slide 32 — "We spent the first…" (moved here 18 Jun) */
+  'reuse-32':                ['reuse_3'],                       /* slide 33 — "The reframe…" only */
+  'stats':                   ['stats_notes_0', 'stats_notes_1', 'stats_notes_2'],
+  'impact-outcome':          ['impact_outcome_note'],          /* item 21 — slide 38 */
+  'reflection':              ['reflection_1', 'reflection_sources']
 };
 
 /* Expose for the Speaker Notes window (opened via window.open from the deck). */

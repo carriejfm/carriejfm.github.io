@@ -784,12 +784,15 @@
     }
     .slide--hero .hero-figure {
       display: flex; flex-direction: column;
-      max-width: 100%; min-height: 0;
+      /* Cap the figure (not the image) so it shrink-wraps the wide 4-phone
+         composite; hero-inner centres the figure, and the left-aligned caption
+         then sits at the image's left edge (matching the other decks). */
+      max-width: 82%; min-height: 0;
     }
     .slide--hero .hero-img {
       display: block; width: auto; height: auto;
       max-width: 100%;
-      max-height: calc(100vh - var(--slide-pad-v) * 2 - 3rem);
+      max-height: calc(100vh - var(--slide-pad-v) * 2 - 6rem);
     }
     .slide--hero .hero-caption {
       margin-top: 1rem;
@@ -983,7 +986,7 @@
 <!-- ══════════════════════════════════════
      SLIDE 2 OF 34 — hero image
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--hero" data-type="hero" data-index="1">
+<section class="slide slide--light slide--hero" data-type="hero" data-index="1" data-notes-id="hero">
   <div class="hero-inner">
     <figure class="hero-figure">
       <img class="hero-img" src="../assets/money stories/money-stories-hero.jpg" alt="Money Stories swipeable story cards on the Money by Afterpay home screen">
@@ -1589,7 +1592,7 @@
 <!-- ══════════════════════════════════════
      SLIDE 31 OF 34 — impact
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--impact" data-type="impact" data-index="30" data-notes-id="outcomes">
+<section class="slide slide--light slide--impact" data-type="impact" data-index="30" data-notes-id="outcomes-impact">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1656,7 +1659,7 @@
 <!-- ══════════════════════════════════════
      SLIDE 33 OF 34 — content: Reflection
      ══════════════════════════════════════ -->
-<section class="slide slide--light slide--content" data-type="content" data-index="32" data-notes-id="reflection">
+<section class="slide slide--light slide--content" data-type="content" data-index="32">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1664,17 +1667,32 @@
 
   <div class="content-body">
     <h2 class="content-heading" data-ms-copy="section_reflection">Reflection</h2>
-    <p data-ms-copy="reflection_0">I came into the Money by Afterpay team with fresh eyes and trusted my instincts. I recall a lead getting cold feet just before the first Money Stories founder presentation and I pushed back; we had the qualitative backing and I had confidence it was right. I told them I didn't want to drop it from the deck.</p>
-    <p data-ms-copy="reflection_2">Lateral thinking is easy to talk about and not always as easy to nail. I built out a 'parallel worlds' workshop when working agency side that helped clients get outside of their own segment and competitor silos and into adjacent human behavior. I still think it's one of the most interesting exercises a team can go through. Market landscape research is important; behavioral landscape? Maybe even more.</p>
-    <p data-ms-copy="reflection_3"></p>
+    <p data-ms-copy="reflection_deck_0"></p>
+    <p data-ms-copy="reflection_deck_1"></p>
   </div>
 </section>
 
 
 <!-- ══════════════════════════════════════
-     SLIDE 34 OF 34 — qa
+     SLIDE 34 OF 35 — figure: reflection asset (lateral thinking / biomimetics)
      ══════════════════════════════════════ -->
-<section class="slide slide--dark slide--qa" data-type="qa" data-index="33">
+<section class="slide slide--light slide--figure" data-type="figure" data-index="33" data-notes-id="reflection-asset">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="figure-inner">
+    <img src="../assets/money stories/money-stories-reflection-burdock-spurs.png" alt="Burdock burrs and their hooks — the natural mechanism that inspired velcro" class="figure-img">
+    <p class="figure-caption" data-ms-copy="reflection_burdock_caption"></p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 35 OF 35 — qa
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--qa" data-type="qa" data-index="34">
   <a href="../index.html" class="back-link">← Back to selected work</a>
   <p class="qa-text">Q+A</p>
 </section>
@@ -1684,7 +1702,7 @@
 <div class="deck-confidential" aria-hidden="true">PRIVILEGED &amp; CONFIDENTIAL</div>
 <div class="deck-counter-group">
   <a id="deck-next-link" href="../index.html" class="deck-next-link">Back to selected work →</a>
-  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 34</div>
+  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 35</div>
 </div>
 <div class="deck-hint" aria-hidden="true">← → to navigate</div>
 
@@ -1701,7 +1719,7 @@
 </div>
 
 <!-- ─── COPY SOURCE ─── -->
-<script src="money-stories-copy.js?v=20260617b"></script>
+<script src="money-stories-copy.js?v=20260618b"></script>
 
 <script>
   /* ─── DECK ENGINE — matches afterpay-deck.html ─── */
