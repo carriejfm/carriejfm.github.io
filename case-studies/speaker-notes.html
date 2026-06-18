@@ -52,6 +52,21 @@
     }
     .sn-counter { color: var(--faint); white-space: nowrap; }
 
+    /* Persistent presenting timer — centred in the header.
+       Absolutely positioned so it sits dead-centre regardless of the
+       title / counter widths on either side. */
+    .sn-timer {
+      position: absolute;
+      left: 50%;
+      top: 0.9rem;                 /* matches header padding-top → baseline-aligns with title */
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: var(--size-sm);
+      letter-spacing: 0.04em;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
     .sn-body { padding: 1.1rem 1.1rem 2.5rem; }
 
     .sn-note {
@@ -80,6 +95,7 @@
 <body>
   <div class="sn-header">
     <span class="sn-title">Speaker Notes</span>
+    <span class="sn-timer" id="snTimer">0:00</span>
     <span class="sn-counter" id="snCounter">—</span>
   </div>
 
@@ -91,35 +107,69 @@
     (function () {
       var bodyEl    = document.getElementById('snBody');
       var counterEl = document.getElementById('snCounter');
+      var timerEl   = document.getElementById('snTimer');
+
+      /* ── Presenting timer ──
+         Starts the moment this window opens and runs until it's closed.
+         Driven off a wall-clock delta (not an accumulating counter) so it
+         stays accurate even if the interval is throttled while backgrounded. */
+      var startTime = Date.now();
+      function formatElapsed(ms) {
+        var total = Math.floor(ms / 1000);
+        var h = Math.floor(total / 3600);
+        var m = Math.floor((total % 3600) / 60);
+        var s = total % 60;
+        var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+        return h > 0
+          ? h + ':' + pad(m) + ':' + pad(s)
+          : m + ':' + pad(s);
+      }
+      function tickTimer() { timerEl.textContent = formatElapsed(Date.now() - startTime); }
+      tickTimer();
+      setInterval(tickTimer, 1000);
+
+      /* ── Notes rendering ──
+         The window caches the last payload it received and re-renders it on
+         focus. This is the fix for the "click the window → it goes blank" bug:
+         clicking steals focus and asks the (now-backgrounded) deck for a fresh
+         copy, but a throttled/frozen background tab may not reply in time. By
+         re-rendering the cached payload immediately, the window never blanks —
+         and the deck's reply, if/when it lands, simply refreshes it. */
+      var lastData = null;
 
       function render(data) {
-        // Counter
-        if (data.slide && data.total) {
-          counterEl.textContent = data.slide + ' / ' + data.total;
-        }
+        lastData = data;
 
-        // Notes
-        var notes = (data.notes || []).filter(function (n) { return n && n.trim(); });
-        bodyEl.innerHTML = '';
+        // Build the new body off-screen so a half-built state can never show.
+        var frag = document.createDocumentFragment();
+        var notes = (data.notes || []).filter(function (n) { return n && String(n).trim(); });
 
         if (!notes.length) {
           var empty = document.createElement('p');
           empty.className = 'sn-empty';
           empty.textContent = 'No notes for this slide.';
-          bodyEl.appendChild(empty);
+          frag.appendChild(empty);
         } else {
           notes.forEach(function (text) {
             var p = document.createElement('p');
             p.className = 'sn-note';
             p.textContent = text;
-            bodyEl.appendChild(p);
+            frag.appendChild(p);
           });
         }
 
         var hint = document.createElement('p');
         hint.className = 'sn-hint';
         hint.textContent = 'Updates as you navigate the deck. Press N in the deck to close. Drag and resize this window freely.';
-        bodyEl.appendChild(hint);
+        frag.appendChild(hint);
+
+        // Atomic swap.
+        bodyEl.replaceChildren(frag);
+
+        // Counter
+        if (data.slide && data.total) {
+          counterEl.textContent = data.slide + ' / ' + data.total;
+        }
       }
 
       if (!('BroadcastChannel' in window)) {
@@ -134,7 +184,13 @@
 
       // Ask the deck for the current slide's notes as soon as we load.
       channel.postMessage({ request: true });
-      window.addEventListener('focus', function () { channel.postMessage({ request: true }); });
+
+      // On focus, restore the cached notes instantly (so a click never blanks
+      // the window), then ask the deck for a fresh copy in case it changed.
+      window.addEventListener('focus', function () {
+        if (lastData) render(lastData);
+        channel.postMessage({ request: true });
+      });
     })();
   </script>
 </body>
