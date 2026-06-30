@@ -1,0 +1,2536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <script>if(!sessionStorage.getItem('airwallex_auth'))window.location.replace('airwallex-auth.html');</script>
+  <title>Carrie Francis-Miller — Portfolio review</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────
+       MONEY STORIES DECK — embedded styles
+       All tokens mirror css/style.css :root
+       Matches afterpay-deck.html architecture
+    ───────────────────────────────────────── */
+
+    /* ─── TOKENS ─── */
+    :root {
+      --bg:           #F3F3F1;
+      --text:         #1A1A17;
+      --text-muted:   #2E2E2A;
+      --text-faint:   #7A7A72;
+      --border:       #DDD9D0;
+      --border-light: #EAE7E0;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+
+      --size-xs:   0.6875rem;
+      --size-sm:   0.8125rem;
+      --size-base: 1rem;
+      --size-md:   1.125rem;
+      --size-lg:   1.5rem;
+      --size-xl:   2rem;
+      --size-2xl:  3rem;
+
+      --slide-pad-h: clamp(1.5rem, 4vw, 3rem);
+      --slide-pad-v: clamp(1.25rem, 3vw, 2rem);
+      --transition:  200ms ease;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-mono);
+      font-weight: 300;
+      background: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+
+    /* ─────────────────────────────────────────
+       SLIDE FOUNDATION
+    ───────────────────────────────────────── */
+
+    .slide {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 400ms ease;
+    }
+
+    .slide.is-active { opacity: 1; pointer-events: auto; }
+
+    body.no-transition .slide { transition: none; }
+
+    .slide--light { background: var(--bg);   color: var(--text); }
+    .slide--dark  { background: var(--text); color: var(--bg);   }
+
+    /* ─────────────────────────────────────────
+       PERSISTENT HEADER
+       "MONEY STORIES  / SECTION"
+    ───────────────────────────────────────── */
+
+    .slide-header {
+      position: absolute;
+      top: var(--slide-pad-v);
+      left: var(--slide-pad-h);
+      display: flex;
+      align-items: baseline;
+      gap: 0.5ch;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .slide-header__client  { display: none; }
+    .slide-header__project { color: var(--text-faint); order: 1; }
+    .slide-header__section { color: var(--text-muted); order: 2; }
+
+    .slide-header__section::before { content: '/ '; color: var(--text-faint); }
+
+    .slide-header--dark .slide-header__project { color: rgba(243,243,241,0.30); }
+    .slide-header--dark .slide-header__section { color: rgba(243,243,241,0.60); }
+    .slide-header--dark .slide-header__section::before { color: rgba(243,243,241,0.25); }
+
+    /* ─────────────────────────────────────────
+       BACK LINK
+    ───────────────────────────────────────── */
+
+    .back-link {
+      position: absolute;
+      top: var(--slide-pad-v);
+      left: var(--slide-pad-h);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #F3F3F1;
+      letter-spacing: 0.04em;
+      transition: color var(--transition);
+    }
+
+    .back-link:hover { color: rgba(243,243,241,0.7); }
+
+    /* ─────────────────────────────────────────
+       FIXED UI: CONFIDENTIAL / COUNTER / HINT
+    ───────────────────────────────────────── */
+
+    .deck-confidential {
+      position: fixed;
+      top: var(--slide-pad-v);
+      right: 2rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    body.is-dark-slide  .deck-confidential { color: rgba(243,243,241,0.35); }
+    body.is-meta-slide  .deck-confidential { display: none; }
+
+    .deck-counter-group {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 2rem;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    body.is-title-slide .deck-counter-group { display: none; }
+
+    .deck-counter {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+    }
+
+    body.is-dark-slide .deck-counter { color: rgba(243,243,241,0.35); }
+
+    .deck-next-link {
+      display: none;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #F3F3F1;
+      letter-spacing: 0.04em;
+      pointer-events: auto;
+      transition: color var(--transition);
+    }
+    body.is-qa-slide .deck-next-link { display: block; }
+    body.is-qa-slide .deck-counter { display: none; }
+    .deck-next-link:hover { color: rgba(243,243,241,0.7); }
+
+    .deck-hint {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      z-index: 1000;
+      pointer-events: none;
+      white-space: nowrap;
+      transition: opacity 600ms ease;
+    }
+
+    body.is-dark-slide .deck-hint { color: rgba(243,243,241,0.35); }
+    .deck-hint.fade-out { opacity: 0; }
+
+    /* ─────────────────────────────────────────
+       PER-SLIDE CONFIDENTIAL WATERMARK
+    ───────────────────────────────────────── */
+
+    .confidential {
+      position: absolute;
+      bottom: var(--slide-pad-v);
+      right: var(--slide-pad-h);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─────────────────────────────────────────
+       [01] TITLE
+    ───────────────────────────────────────── */
+
+    .slide--title .title-text {
+      position: absolute;
+      left: var(--slide-pad-h);
+      top: 50%;
+      transform: translateY(-20%);
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.0;
+    }
+
+    .slide--title .title-meta {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+    }
+
+    .slide--title .title-meta__company {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #7A7A72;
+      letter-spacing: 0.04em;
+    }
+
+    .slide--title .title-meta__role {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: #F3F3F1;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─────────────────────────────────────────
+       [02] INDEX
+    ───────────────────────────────────────── */
+
+    .slide--index .index-list {
+      position: absolute;
+      left: 58%;
+      top: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .index-item { display: flex; align-items: baseline; gap: 1.5rem; }
+
+    .index-item__num {
+      font-family: var(--font-mono);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+      min-width: 2.5ch;
+    }
+
+    .index-item__name {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+    }
+
+    /* ─────────────────────────────────────────
+       [03] SECTION-TITLE
+       Static word — same position/size as index list name column
+    ───────────────────────────────────────── */
+
+    .slide--section-title .section-title__word {
+      position: absolute;
+      left: calc(58% + 3.75rem);
+      top: 50%;
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: #F3F3F1;
+    }
+
+    /* ─────────────────────────────────────────
+       [04] CONTENT
+    ───────────────────────────────────────── */
+
+    .slide--content .content-heading {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .slide--content .content-body {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 42%;
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.7;
+    }
+
+    .slide--content .content-body p + p { margin-top: 1em; }
+
+    /* ─────────────────────────────────────────
+       [05] GOAL
+    ───────────────────────────────────────── */
+
+    .goal-label { color: var(--text-faint); }
+
+    .slide--goal .goal-statement {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 70%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4.5vw, 4rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.15;
+    }
+
+    /* ─────────────────────────────────────────
+       [06] ROLE
+    ───────────────────────────────────────── */
+
+    .slide--role .role-block {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 42%;
+      transform: translate(-50%, -50%);
+    }
+
+    .role-block__title {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text-faint);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .role-block__rows {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .role-row {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.5;
+    }
+
+    .role-row strong { color: var(--text-muted); font-weight: 300; }
+
+    /* ─────────────────────────────────────────
+       [07] HYPOTHESIS
+    ───────────────────────────────────────── */
+
+    .hyp-label { color: var(--text-faint); }
+
+    .slide--hypothesis .hyp-statement {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 70%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4.5vw, 4rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.15;
+    }
+
+    /* ─────────────────────────────────────────
+       [08] QUOTE
+    ───────────────────────────────────────── */
+
+    .slide--quote .quote-text {
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(55ch, 55%);
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    .slide--quote .quote-attr {
+      color: var(--text-faint);
+    }
+
+    /* ─────────────────────────────────────────
+       [09] STATS
+    ───────────────────────────────────────── */
+
+    .slide--stats .stats-row {
+      position: absolute;
+      top: 50%;
+      left: clamp(4rem, 8vw, 7rem);
+      right: clamp(4rem, 8vw, 7rem);
+      transform: translateY(-50%);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+    }
+
+    .stat-item { display: flex; flex-direction: column; }
+
+    .stat-item__number {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 7rem);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1;
+      display: block;
+      white-space: nowrap;
+    }
+
+    .stat-item__label {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      margin-top: 1rem;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       [10A] OUTPUT-A — phone grid
+    ───────────────────────────────────────── */
+
+    .slide--output .output-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 27%;
+      height: 100%;
+      padding: var(--slide-pad-v) var(--slide-pad-h);
+    }
+
+    .output-left__header {
+      display: flex;
+      gap: 0.75ch;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .output-left__header-project { color: rgba(243,243,241,0.35); }
+    .output-left__header-client  { display: none; }
+    .output-left__header-section { color: rgba(243,243,241,0.60); }
+    .output-left__header-section::before {
+      content: '/ ';
+      color: rgba(243,243,241,0.25);
+    }
+
+    .output-left__title {
+      margin-top: 2rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 500;
+      color: #F3F3F1;
+      line-height: 1.5;
+    }
+
+    .output-left__body {
+      margin-top: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 400;
+      color: #F3F3F1;
+      line-height: 1.7;
+    }
+
+    .output-left__body p + p { margin-top: 0.875em; }
+
+    .output-left__confidential { display: none; }
+
+    .output-left__credit {
+      font-size: var(--size-xs) !important;
+      color: rgba(243,243,241,0.35) !important;
+      margin-top: 1.25rem !important;
+      letter-spacing: 0.04em;
+    }
+
+    /* Phone grid */
+    .output-phones {
+      position: absolute;
+      top: 0;
+      left: 27%;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      gap: 12px;
+      overflow: visible;
+      padding: 0 12px;
+    }
+
+    .phone-col { flex: 1; display: flex; flex-direction: column; }
+
+    .phone-col__track { display: flex; flex-direction: column; gap: 10px; }
+
+    .output-phones .phone-col:nth-child(1) .phone-col__track {
+      margin-top: -260px;
+      animation: phoneScroll 47s linear infinite;
+    }
+    .output-phones .phone-col:nth-child(2) .phone-col__track {
+      margin-top: 180px;
+      animation: phoneScroll 60s linear infinite;
+    }
+    .output-phones .phone-col:nth-child(3) .phone-col__track {
+      margin-top: -120px;
+      animation: phoneScroll 47s linear infinite;
+    }
+
+    @keyframes phoneScroll {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+
+    .phone-tile {
+      flex-shrink: 0;
+      width: 100%;
+      aspect-ratio: 375 / 812;
+      border-radius: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* White opaque mask over the status bar to hide iOS screen-record badge */
+    .phone-tile__record-mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(6% + 2px);
+      background: #fff;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .phone-tile img,
+    .phone-tile video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       [10B] OUTPUT-B — image right
+    ───────────────────────────────────────── */
+
+    .slide--output-b .output-image-right {
+      position: absolute;
+      top: 0;
+      left: 27%;
+      right: 0;
+      bottom: 0;
+      padding: clamp(2rem, 4vw, 4rem);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide--output-b .output-image-right img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────
+       [10C] OUTPUT-C — hero phone
+    ───────────────────────────────────────── */
+
+    .slide--output-c .output-left { width: 27%; }
+
+    .slide--output-c .output-phone-hero {
+      position: absolute;
+      top: 0;
+      left: 27%;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      padding-top: clamp(5rem, 15vh, 10rem);
+    }
+
+    .slide--output-c .phone-wrap {
+      position: relative;
+      height: 120%;
+      flex-shrink: 0;
+      border-radius: calc(12vh * 375 / 812) calc(12vh * 375 / 812) 0 0;
+      overflow: hidden;
+    }
+
+    .slide--output-c .phone-wrap video,
+    .slide--output-c .phone-wrap img,
+    .slide--output-c .phone-wrap .img-placeholder {
+      height: calc(100% + 50px);
+      width: auto;
+      display: block;
+      margin-top: -50px;
+    }
+
+    .slide--output-c .phone-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 7%;
+      background: #fff;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* ─────────────────────────────────────────
+       [13] IMPACT
+    ───────────────────────────────────────── */
+
+    .slide--impact .impact-grid {
+      position: absolute;
+      inset: 0;
+      display: flex;
+    }
+
+    .impact-col {
+      flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 38vh clamp(1.5rem, 3vw, 2.5rem) clamp(4rem, 7vh, 5.5rem);
+    }
+
+    .impact-col:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent 0%, var(--border) 38%, var(--border) 62%, transparent 100%);
+    }
+
+    .impact-col__name {
+      font-family: var(--font-display);
+      font-size: var(--size-lg);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .impact-col__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .impact-col__list li {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.6;
+      padding-left: 1em;
+      position: relative;
+    }
+
+    .impact-col__list li::before { content: '•'; position: absolute; left: 0; color: var(--text-faint); }
+
+    /* ─────────────────────────────────────────
+       [14] QA
+    ───────────────────────────────────────── */
+
+    .slide--qa .qa-text {
+      position: absolute;
+      top: 60%;
+      left: var(--slide-pad-h);
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 300;
+      color: #F3F3F1;
+      line-height: 1.0;
+    }
+
+    /* ─────────────────────────────────────────
+       [NEW] SLIDE TYPE: figure
+       Light. Centered image with caption below.
+    ───────────────────────────────────────── */
+
+    .slide--figure .figure-inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(72%, 900px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .slide--figure .figure-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .slide--figure .figure-caption {
+      margin-top: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: var(--text-faint);
+      text-align: left;
+      line-height: 1.6;
+      width: 100%;
+    }
+
+    /* ─────────────────────────────────────────
+       HERO SLIDE — full hero image with caption
+       (matches afterpay-deck.html / cochlear-deck-2.html)
+    ───────────────────────────────────────── */
+    .slide--hero .hero-inner {
+      position: absolute;
+      inset: var(--slide-pad-v) var(--slide-pad-h);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .slide--hero .hero-figure {
+      display: flex; flex-direction: column;
+      /* Cap the figure (not the image) so it shrink-wraps the wide 4-phone
+         composite; hero-inner centres the figure, and the left-aligned caption
+         then sits at the image's left edge (matching the other decks). */
+      max-width: 82%; min-height: 0;
+    }
+    .slide--hero .hero-img {
+      display: block; width: auto; height: auto;
+      max-width: 100%;
+      max-height: calc(100vh - var(--slide-pad-v) * 2 - 6rem);
+    }
+    .slide--hero .hero-caption {
+      margin-top: 1rem;
+      font-family: var(--font-mono); font-size: var(--size-xs);
+      font-weight: 300; color: var(--text-faint); line-height: 1.6;
+    }
+
+    /* ─────────────────────────────────────────
+       IMAGE PLACEHOLDER
+    ───────────────────────────────────────── */
+
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-placeholder span {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* ─────────────────────────────────────────
+       AI CALLOUT — content slide
+    ───────────────────────────────────────── */
+
+    .output-ai-card {
+      position: relative;
+      margin-top: 2rem;
+      background: #EAE7E0;
+      border-radius: 0.375rem;
+      padding: 0.875rem 1rem;
+    }
+
+    .output-ai-card__label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.5625rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .output-ai-card p {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 300;
+      color: var(--text-faint);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       BUILD-IN ITEMS
+    ───────────────────────────────────────── */
+
+    .slide--content .content-body p:nth-of-type(n+2),
+    .slide--role .role-row,
+    .slide--impact .impact-col:nth-child(n+2),
+    .slide--output .output-left__body p:nth-of-type(n+2):not([data-immediate]),
+    .slide--output:not([data-continue]) .output-phones,
+    .slide--output-b:not([data-continue]) .output-image-right,
+    .slide--output-c:not([data-continue]) .output-phone-hero {
+      opacity: 0;
+      transition: opacity 400ms ease;
+    }
+
+    .slide--content .content-body p:nth-of-type(n+2).is-visible,
+    .slide--role .role-row.is-visible,
+    .slide--impact .impact-col:nth-child(n+2).is-visible,
+    .slide--output .output-left__body p:nth-of-type(n+2):not([data-immediate]).is-visible,
+    .slide--output:not([data-continue]) .output-phones.is-visible,
+    .slide--output-b:not([data-continue]) .output-image-right.is-visible,
+    .slide--output-c:not([data-continue]) .output-phone-hero.is-visible {
+      opacity: 1;
+    }
+
+    /* ─────────────────────────────────────────
+       M SWITCHER MENU
+    ───────────────────────────────────────── */
+
+    .deck-switcher {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(26, 26, 23, 0.97);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 250ms ease;
+    }
+
+    .deck-switcher.is-open { opacity: 1; pointer-events: auto; }
+
+    .deck-switcher__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+
+    .deck-switcher__option {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      font-weight: 300;
+      color: rgba(243, 243, 241, 0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-align: left;
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+
+    /* Chapter (title-slide) entries — slightly heavier */
+    .deck-switcher__option--title { font-weight: 500; color: rgba(243, 243, 241, 0.60); }
+
+    /* Hairline between groups (Opener / Money Stories / Cochlear) */
+    .deck-switcher__sep {
+      align-self: stretch;
+      height: 1px;
+      background: rgba(243, 243, 241, 0.14);
+    }
+
+    .deck-switcher__option:hover   { color: #F3F3F1; }
+    .deck-switcher__option--active { color: rgba(243, 243, 241, 0.90); }
+
+    .deck-switcher__hint {
+      margin-top: 3rem;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: rgba(243, 243, 241, 0.50);
+      letter-spacing: 0.08em;
+    }
+
+    /* Fixed navigation inside the 'v' menu overlay */
+    .deck-index-nav {
+      position: absolute;
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: 300;
+      color: rgba(243, 243, 241, 0.45);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+    .deck-index-nav:hover    { color: #F3F3F1; }
+    .deck-index-nav--back    { top: var(--slide-pad-v); left: var(--slide-pad-h); }
+    .deck-index-nav--prev    { bottom: 1.5rem; left: var(--slide-pad-h); }
+    .deck-index-nav--next    { bottom: 1.5rem; right: var(--slide-pad-h); }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+
+    @media (max-width: 768px) {
+      .deck-confidential { top: calc(var(--slide-pad-v) + 1.6em); left: var(--slide-pad-h); right: auto; }
+      .slide--content .content-body { width: 88%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+      .slide--stats .stats-row { flex-direction: column; align-items: flex-start; top: 50%; left: var(--slide-pad-h); right: var(--slide-pad-h); gap: 2rem; }
+      .slide--output { overflow-y: auto; }
+      .slide--output .output-left { position: relative; width: 100%; height: auto; padding: var(--slide-pad-v) var(--slide-pad-h) 1.5rem; }
+      .slide--output .output-phones,
+      .slide--output-b .output-image-right,
+      .slide--output-c .output-phone-hero { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: 100%; height: 50vw; min-height: 220px; }
+      .slide--output-c .phone-wrap { height: 100%; }
+      .slide--output-c .phone-wrap img,
+      .slide--output-c .phone-wrap video { height: 100%; width: auto; }
+      .slide--impact { overflow-y: auto; }
+      .slide--impact .impact-grid { position: relative; flex-direction: column; }
+      .impact-col { padding: 2rem var(--slide-pad-h) 1.5rem; }
+      .impact-col:not(:last-child)::after { display: none; }
+      .impact-col:not(:first-child) { border-top: 1px solid var(--border); }
+    }
+
+  
+    /* ─── ADDED FOR COMBINED DECK: Cochlear output-static + dark quote ─── */
+    .output-phones-static {
+      position: absolute; top: 0; left: 27%; right: 0; bottom: 0;
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: var(--slide-pad-v) var(--slide-pad-h);
+    }
+    .static-phone { flex: 1; display: flex; flex-direction: column; align-items: center; }
+    .static-phone .phone-tile {
+      width: 100%; aspect-ratio: 375 / 812;
+      max-height: calc(100vh - var(--slide-pad-v) * 2 - 2.5rem);
+      max-width: calc((100vh - var(--slide-pad-v) * 2 - 2.5rem) * 375 / 812);
+    }
+    .static-phone__caption {
+      margin-top: 0.625rem; text-align: center;
+      font-family: var(--font-mono); font-size: var(--size-xs);
+      font-weight: 300; color: rgba(243,243,241,0.45); line-height: 1.5;
+    }
+    .slide--output-static:not([data-continue]) .output-phones-static {
+      opacity: 0; transition: opacity 400ms ease;
+    }
+    .slide--output-static:not([data-continue]) .output-phones-static.is-visible { opacity: 1; }
+    .slide--dark .slide--quote .quote-text { color: #F3F3F1; }
+    .slide--dark .quote-attr { color: rgba(243,243,241,0.50); }
+    /* ─── Double-diamond positioning slide: tag chips (match home page) ─── */
+    .deck-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-top: 3.25rem; list-style: none; padding: 0; width: 100%;
+    }
+    .deck-tag {
+      font-family: var(--font-mono); font-size: var(--size-xs); font-weight: 300;
+      color: var(--text-faint); letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 3px 8px; border: 1px solid var(--border); white-space: nowrap;
+    }
+    .slide--diamond .figure-inner { width: min(86%, 1100px); }
+    /* Reversibly parked slides — excluded from navigation by the engine too */
+    .slide--hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     INTRO — Hi, I'm Carrie  (speaker notes: about + leader)
+     ══════════════════════════════════════ -->
+<section class="slide slide--dark slide--title is-active" data-type="title" data-notes-id="about" data-notes-src="intro">
+  <h1 class="title-text">Hi, I&#39;m Carrie</h1>
+  <div class="title-meta">
+    <span class="title-meta__company">Carrie Francis-Miller</span>
+    <span class="title-meta__role">Product &amp; experience design</span>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--title" data-type="title" data-index="0">
+
+  <h1 class="title-text" data-ms-copy="deck_title">Money Stories</h1>
+
+  <div class="title-meta">
+    <span class="title-meta__company" data-ms-copy="deck_company">Money by Afterpay · Block · 2021–2022</span>
+    <span class="title-meta__role" data-ms-copy="role_title">Design Principal &amp; Lead</span>
+  </div>
+</section>
+
+<section class="slide slide--light slide--hero" data-type="hero" data-index="1" data-notes-id="hero" data-notes-src="ms">
+  <div class="hero-inner">
+    <figure class="hero-figure">
+      <img class="hero-img" src="../assets/money stories/money-stories-hero.jpg" alt="Money Stories swipeable story cards on the Money by Afterpay home screen">
+      <p class="hero-caption" data-ms-copy="hero_caption"></p>
+    </figure>
+  </div>
+</section>
+
+<section class="slide slide--light slide--index" data-type="index" data-index="2">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <nav class="index-list" aria-label="Deck sections">
+    <div class="index-item">
+      <span class="index-item__num">01</span>
+      <span class="index-item__name">Context</span>
+    </div>
+    <div class="index-item">
+      <span class="index-item__num">02</span>
+      <span class="index-item__name">Approach</span>
+    </div>
+    <div class="index-item">
+      <span class="index-item__num">03</span>
+      <span class="index-item__name">Outputs</span>
+    </div>
+    <div class="index-item">
+      <span class="index-item__num">04</span>
+      <span class="index-item__name">Outcomes</span>
+    </div>
+  </nav>
+</section>
+
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="3">
+  <p class="section-title__word">Context</p>
+</section>
+
+<!-- Double diamond — where Money Stories sits, with type-of-work tags -->
+<section class="slide slide--light slide--figure slide--diamond" data-type="diamond">
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/money stories/money-stories-doublediamond.png" alt="Money Stories mapped to the double diamond — Discover, Define &amp; Build, Refine">
+    <ul class="deck-tags" aria-label="Type of work">
+      <li class="deck-tag">Discovery</li>
+      <li class="deck-tag">Behavioral insight</li>
+      <li class="deck-tag">Interaction design</li>
+      <li class="deck-tag">Systems thinking</li>
+    </ul>
+  </div>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="4" data-notes-id="opportunity" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_opportunity">Opportunity</h2>
+    <p data-ms-copy="opportunity_0">In 2021 Afterpay had embarked on a new proposition: Money by Afterpay — a money-positive neobank-style product for the Afterpay consumer base.</p>
+    <p data-ms-copy="opportunity_2">I was brought in as design principal to help Millennials and Gen Z 'feel' their money. Banking UX had no native format for the behavior young money-anxious users were already fluent in. I put two and two together and Money Stories was born.</p>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--goal" data-type="goal" data-index="5">
+  <div class="slide-header slide-header--dark">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <p class="goal-statement"><span class="goal-label">Goal: </span><span data-ms-copy="goal">make money feel as flick-through and actionable as Reels — turning raw spending data into small, personalized moments of insight and low-barrier-to-entry action.</span></p>
+</section>
+
+<section class="slide slide--light slide--role" data-type="role" data-index="6">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="role-block">
+    <p class="role-block__title">Role: <span data-ms-copy="role_title">Design Principal &amp; Lead</span></p>
+    <div class="role-block__rows">
+      <p class="role-row"><strong>Responsible</strong> — <span data-ms-copy="role_responsible">Creator, designer and design lead on Money Stories and subsequent workstreams</span></p>
+      <p class="role-row"><strong>Accountable</strong> — <span data-ms-copy="role_accountable">Design partner to media and content; driving standards for design team ways of working, culture and craft</span></p>
+      <p class="role-row"><strong>Consulted</strong> — <span data-ms-copy="role_consulted">Broader Money by Afterpay positioning strategy, engineering and product decisions</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="7">
+  <p class="section-title__word">Approach</p>
+</section>
+
+<section class="slide slide--dark slide--hypothesis" data-type="hypothesis" data-index="8">
+  <div class="slide-header slide-header--dark">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <p class="hyp-statement"><span class="hyp-label">Hypothesis: </span><span data-ms-copy="hypothesis">A low-effort digital content pattern the audience was already fluent in would lower the barrier to engaging with money, helping people change their feelings and behavior inside a high-stress subject.</span></p>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="9">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_accessible">Making finances accessible</h2>
+    <p data-ms-copy="accessible_0">My hunch was that the content consumption habits used in low-stress environments could translate to and ease the friction within the higher-stress money environment. Like Nike Training Club made fitness feel bite-sized and manageable, Money Stories would make money feel simple and accessible.</p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="10" data-notes-id="accessible" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="figure-inner">
+    <img src="../assets/money stories/flywheel.png" alt="Money Stories flywheel — Data to Content to Action" class="figure-img">
+    <p class="figure-caption" data-ms-copy="flywheel_caption">The core concept was articulated as a flywheel: Data → Content → Action, repeating daily and weekly.</p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="11" data-notes-id="research" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_research">User research and validation</h2>
+    <p data-ms-copy="research_0">Our initial qualitative field research had given us reason to believe a content-first approach to data was the direction to take.</p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--quote" data-type="quote" data-index="12" data-notes-id="research" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <p class="quote-text"><span data-ms-copy="quote_research_text">"It's visually pleasing to go through stories like that. It's not as time consuming as a spreadsheet. Having it at your fingertips is useful."</span> <span class="quote-attr" data-ms-copy="quote_research_attr">— Research participant</span></p>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="13">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_format">Designing the format</h2>
+    <p data-ms-copy="format_0">I designed a reel of avatars at eye level on the home surface, just below the hero balance. Three data-based story types on three distinct cadences: Daily Spend, Afterpay Spend, and Weekly Insights — each ending in a one-tap action.</p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="14">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="figure-inner">
+    <img src="../assets/money stories/page-taxonomy.png" alt="Money Stories page taxonomy — story reel entry point on the home surface" class="figure-img">
+    <p class="figure-caption" data-ms-copy="taxonomy_1_caption">A story reel entry point and interaction design aligned with known content consumption mental models</p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="15">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="figure-inner">
+    <img src="../assets/money stories/story-taxonomy.png" alt="Money Stories story taxonomy — types of stories and their data sources" class="figure-img">
+    <p class="figure-caption" data-ms-copy="taxonomy_2_caption">We leveraged known habitual Reels patterns so users didn't need to learn new interaction patterns.</p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="16">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_live_data">Live data stories</h2>
+    <p data-ms-copy="format_1">There were three user data-based stories that populated on an async cadence.</p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="17" data-notes-id="live-data" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="figure-inner">
+    <img src="../assets/money stories/live-data-stories.png" alt="Live data stories — three story types" class="figure-img">
+    <p class="figure-caption" data-ms-copy="live_data_figure_caption">Three user data-based stories populated on an async cadence.</p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="18">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_partnerships">A franchise, not a feature</h2>
+    <p data-ms-copy="partnerships_intro">I worked with my marketing partner to harness media partnerships that would make Money Stories about more than just self-reflection.</p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="19" data-notes-id="partnerships" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="figure-inner">
+    <img src="../assets/money stories/partner-stories.png" alt="Money Stories editorial partnerships" class="figure-img">
+    <p class="figure-caption" data-ms-copy="partner_figure_caption">I worked with my marketing partner to harness media partnerships that would make Money Stories about more than just self-reflection.</p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--quote" data-type="quote" data-index="20" data-notes-id="facilitating-moved" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <p class="quote-text"><span data-ms-copy="quote_cpo_text">"Carrie is great at forming through ambiguity, breaking things apart and guiding cross-functional teams through messiness to outcome. Money Stories was an example of that — pushing forward with an idea, getting buy-in from senior stakeholders and then delivering on a really cool experience all the way from insights to content."</span> <span class="quote-attr" data-ms-copy="quote_cpo_attr">— Chief product officer</span></p>
+</section>
+
+<!-- HIDDEN for now (slide_24) — remove "slide--hidden" to bring it back; its copy lives in slide 23 notes via LOCAL_NOTES -->
+<section class="slide slide--hidden slide--light slide--content" data-type="content" data-index="21">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_facilitating">Facilitating, mapping, and stress-testing the system</h2>
+    <p data-ms-copy="facilitating_0">Money insight storytelling — while visually simple to users — needed complex mapping to ensure ins, outs, savings and transfers were attributed in a meaningful way. I facilitated co-creation workshops with director-level stakeholders to align on potential money management systems, then took our top ideas back to research to sense-check with users.</p>
+  </div>
+</section>
+
+<!-- HIDDEN for now (slide_25) — remove "slide--hidden" to bring it back; its notes (facilitating_1, ai_now) live in slide 23 notes via LOCAL_NOTES -->
+<section class="slide slide--hidden slide--light slide--figure" data-type="figure" data-index="22" data-notes-id="facilitating" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="figure-inner">
+    <video muted loop playsinline style="width:100%; height:auto; display:block;" preload="none">
+      <source src="../assets/money stories/scenarios-and-data-rules3.mp4" type="video/mp4">
+    </video>
+    <p class="figure-caption" data-ms-copy="facilitating_figure_1_caption">Mapping scenarios and data rules with engineering</p>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="23">
+  <p class="section-title__word">Outputs</p>
+</section>
+
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="24">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">MONEY STORIES</span>
+      <span class="output-left__header-client">BLOCK</span>
+    </div>
+    <p class="output-left__title" data-ms-copy="section_output_stories">User data Money Stories →</p>
+    <div class="output-left__body">
+      <p data-ms-copy="output_stories_0">Three story types on three distinct cadences — Daily Spend, Afterpay Spend, and Weekly Insights — each generated from the user's own data and ending in a one-tap action. Playful messaging and deep links to take action were punctuated throughout. Each weekly drop ended with an Outro — a deliberately mindful bookend that helped users pause and ground in positivity.</p>
+      <p class="output-left__credit" data-ms-copy="output_stories_credit">IC · story type design, content system, CMS tooling</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 60s">
+        <div class="phone-tile"><img src="../assets/money stories/user-data-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-4.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-7.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-10.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-afterpay-1.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/user-data-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-4.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-7.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-10.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-afterpay-1.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 75s">
+        <div class="phone-tile"><img src="../assets/money stories/user-data-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-5.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-8.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-11.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-afterpay-2.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/user-data-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-5.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-8.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-11.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-afterpay-2.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 48s">
+        <div class="phone-tile"><img src="../assets/money stories/user-data-3.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-6.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-9.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-daily.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/user-data-3.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-6.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-9.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/user-data-daily.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="25">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">MONEY STORIES</span>
+      <span class="output-left__header-client">BLOCK</span>
+    </div>
+    <p class="output-left__title" data-ms-copy="section_output_r29">Money Diaries with Refinery29 →</p>
+    <div class="output-left__body">
+      <p data-ms-copy="output_r29_0">Long-form editorial, re-cut for a swipe. Refinery29's Money Diaries franchise translated into a weekly short-form story dropping each Thursday.</p>
+      <p class="output-left__credit" data-ms-copy="output_r29_credit">IC · editorial partnership, story format design</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 36s">
+        <div class="phone-tile"><video muted loop playsinline style="margin-left:-2px;width:calc(100% + 2px);" preload="none"><source src="../assets/money stories/money-diaries-video-1.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-4.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline style="margin-left:-2px;width:calc(100% + 2px);" preload="none"><source src="../assets/money stories/money-diaries-video-1.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-4.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 30s">
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-5.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-2.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-5.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 24s">
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/money-diaries-video-2.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-3.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/money-diaries-video-2.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/money-diaries-3.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="26">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">MONEY STORIES</span>
+      <span class="output-left__header-client">BLOCK</span>
+    </div>
+    <p class="output-left__title" data-ms-copy="section_output_makes_cents">Makes Cents with Pedestrian TV →</p>
+    <div class="output-left__body">
+      <p data-ms-copy="output_makes_cents_0">A closed loop between community, app, and publisher. Instagram poll on Tuesday → in-app results story the following Tuesday → link out to a long-form data-backed editorial on Pedestrian.com. Held a 55% engagement rate.</p>
+      <p class="output-left__credit" data-ms-copy="output_makes_cents_credit">IC · partnership creative direction, in-app story design</p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 48s">
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/makecents-video-1.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-1.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/makecents.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-6.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/makecents-video-1.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-1.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/makecents.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-6.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 45s">
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/makecents-video-2.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-2.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/makecents-video-4.mp4" type="video/mp4"></video></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/makecents-video-2.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-2.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/makecents-video-4.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 36s">
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/makecents-video-3.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-4.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-5.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/makecents-video-3.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-4.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/makecents-5.png" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="27">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">MONEY STORIES</span>
+      <span class="output-left__header-client">BLOCK</span>
+    </div>
+    <p class="output-left__title" data-ms-copy="section_output_savers_insights">Savers and insights →</p>
+    <div class="output-left__body">
+      <p data-ms-copy="output_savers_insights_0"></p>
+      <p class="output-left__credit" data-ms-copy="output_savers_insights_credit"></p>
+    </div>
+    <p class="output-left__confidential">PRIVILEGED &amp; CONFIDENTIAL</p>
+  </div>
+
+  <div class="output-phones" aria-hidden="true">
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 24s">
+        <div class="phone-tile"><img src="../assets/money stories/savers-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/savers-2.png" alt=""></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/savers-1.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/money stories/savers-2.png" alt=""></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 30s">
+        <div class="phone-tile"><video muted loop playsinline style="margin:-1px;width:calc(100% + 2px);height:calc(100% + 2px);" preload="none"><source src="../assets/money stories/savers-video-2.mp4" type="video/mp4"></video><span class="phone-tile__record-mask"></span></div>
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/savers-video-3.mp4" type="video/mp4"></video></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><video muted loop playsinline style="margin:-1px;width:calc(100% + 2px);height:calc(100% + 2px);" preload="none"><source src="../assets/money stories/savers-video-2.mp4" type="video/mp4"></video><span class="phone-tile__record-mask"></span></div>
+        <div class="phone-tile"><video muted loop playsinline preload="none"><source src="../assets/money stories/savers-video-3.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration: 24s">
+        <div class="phone-tile"><img src="../assets/money stories/insights-1.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline style="margin-top:-1px;height:calc(100% + 1px);" preload="none"><source src="../assets/money stories/insights-video-1.mp4" type="video/mp4"></video></div>
+        <!-- duplicate for seamless loop -->
+        <div class="phone-tile"><img src="../assets/money stories/insights-1.png" alt=""></div>
+        <div class="phone-tile"><video muted loop playsinline style="margin-top:-1px;height:calc(100% + 1px);" preload="none"><source src="../assets/money stories/insights-video-1.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="28" data-notes-id="outcomes" data-notes-src="ms">
+  <p class="section-title__word">Outcomes</p>
+</section>
+
+<section class="slide slide--light slide--stats" data-type="stats" data-index="29" data-notes-id="outcomes" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <span class="stat-item__number" data-ms-copy="stat_1_value">55%</span>
+      <span class="stat-item__label" data-ms-copy="stat_1_label">engagement rate · Makes Cents</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-item__number" data-ms-copy="stat_2_value">400K</span>
+      <span class="stat-item__label" data-ms-copy="stat_2_label">total story views</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-item__number" data-ms-copy="stat_3_value">27%</span>
+      <span class="stat-item__label" data-ms-copy="stat_3_label">of actives viewing stories</span>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide--light slide--impact" data-type="impact" data-index="30" data-notes-id="outcomes-impact" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="impact-grid">
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-ms-copy="outcome_product">Product</h3>
+      <ul class="impact-col__list">
+        <li data-ms-copy="impact_product_0">Shipped new content-led surface inside Money by Afterpay</li>
+        <li data-ms-copy="impact_product_1">Designed story template system — Daily, Afterpay Spend, Weekly Insights, Outros</li>
+        <li data-ms-copy="impact_product_2">Connected Stories into Categories (wants/needs) and Savers</li>
+        <li data-ms-copy="impact_product_3">Partner authoring model for R29, Pedestrian, and Calm</li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-ms-copy="outcome_scale">Scale</h3>
+      <ul class="impact-col__list">
+        <li data-ms-copy="impact_scale_0">400K total story views, 64K unique viewers</li>
+        <li data-ms-copy="impact_scale_1">489 total hours watched</li>
+        <li data-ms-copy="impact_scale_2">27% of active users viewing</li>
+        <li data-ms-copy="impact_scale_3">55% engagement rate on Makes Cents</li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-ms-copy="outcome_business">Business</h3>
+      <ul class="impact-col__list">
+        <li data-ms-copy="impact_business_0">Measurable engagement at a scale the AU org hadn't seen on content surfaces</li>
+        <li data-ms-copy="impact_business_1">Repeatable partnership playbook — editorial → in-app, with publishing rhythm</li>
+        <li data-ms-copy="impact_business_2">Press-worthy creative moments supporting Money Positive brand narrative</li>
+        <li data-ms-copy="impact_business_3">Mumbrella Publish Awards shortlist · Best Publisher-led Advertising Campaign · 2022</li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-ms-copy="outcome_team">Team</h3>
+      <ul class="impact-col__list">
+        <li data-ms-copy="impact_team_0">Led multi-stream design across Money Stories, Savers, Categories, Fit</li>
+        <li data-ms-copy="impact_team_1">Built tooling and ways of working that influenced the wider design team</li>
+        <li data-ms-copy="impact_team_2">Modelled lead by participating — hands-on in Figma while scaling craft</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="slide slide--light slide--quote" data-type="quote" data-index="31" data-notes-id="quotes" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <p class="quote-text"><span data-ms-copy="quote_viewer_text">"It's like Spotify's yearly review, but for your money."</span> <span class="quote-attr" data-ms-copy="quote_viewer_attr">— Money Stories viewer</span></p>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="32">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-ms-copy="section_reflection">Reflection</h2>
+    <p data-ms-copy="reflection_deck_0"></p>
+    <p data-ms-copy="reflection_deck_1"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="33" data-notes-id="reflection-asset" data-notes-src="ms">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>MONEY STORIES</span>
+    <span class="slide-header__client"  data-header-client>BLOCK</span>
+  </div>
+
+  <div class="figure-inner">
+    <img src="../assets/money stories/money-stories-reflection-burdock-spurs.png" alt="Burdock burrs and their hooks — the natural mechanism that inspired velcro" class="figure-img">
+    <p class="figure-caption" data-ms-copy="reflection_burdock_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--title" data-type="title" data-index="0">
+
+  <h1 class="title-text" data-cc-copy="deck_title_2">Cochlear CoPilot</h1>
+
+  <div class="title-meta">
+    <span class="title-meta__company" data-cc-copy="deck_company">Cochlear · ustwo · 2020–2021</span>
+    <span class="title-meta__role" data-cc-copy="role_title">Embedded design lead</span>
+  </div>
+</section>
+
+<section class="slide slide--light slide--hero" data-type="hero" data-index="1" data-notes-id="hero" data-notes-src="cc">
+  <div class="hero-inner">
+    <figure class="hero-figure">
+      <img class="hero-img" src="../assets/cochlear/cochlear-casestudy-hero-2.jpg" alt="Cochlear CoPilot">
+      <p class="hero-caption" data-cc-copy="hero_caption_2"></p>
+    </figure>
+  </div>
+</section>
+
+<section class="slide slide--light slide--index" data-type="index" data-index="2">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <nav class="index-list" aria-label="Deck sections">
+    <div class="index-item"><span class="index-item__num">01</span><span class="index-item__name">Context</span></div>
+    <div class="index-item"><span class="index-item__num">02</span><span class="index-item__name">CoCreation + Capability building</span></div>
+    <div class="index-item"><span class="index-item__num">03</span><span class="index-item__name">Content + Personalization</span></div>
+    <div class="index-item"><span class="index-item__num">04</span><span class="index-item__name">Skill Builders</span></div>
+    <div class="index-item"><span class="index-item__num">05</span><span class="index-item__name">Outcomes</span></div>
+  </nav>
+</section>
+
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="3">
+  <p class="section-title__word">Context</p>
+</section>
+
+<!-- Double diamond — where Cochlear CoPilot sits, with type-of-work tags -->
+<section class="slide slide--light slide--figure slide--diamond" data-type="diamond">
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/copilot-doublediamond.png" alt="Cochlear CoPilot mapped to the double diamond — Discover, Define &amp; Build, Refine">
+    <ul class="deck-tags" aria-label="Type of work">
+      <li class="deck-tag">Discovery</li>
+      <li class="deck-tag">Information architecture</li>
+      <li class="deck-tag">Research rigor</li>
+      <li class="deck-tag">Cross-functional facilitation</li>
+    </ul>
+  </div>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="4" data-notes-id="opportunity" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-cc-copy="section_opportunity">Opportunity</h2>
+    <p data-cc-copy="opportunity_0"></p>
+    <p data-cc-copy="opportunity_1"></p>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--goal" data-type="goal" data-index="5">
+  <div class="slide-header slide-header--dark">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <p class="goal-statement"><span class="goal-label">Goal: </span><span data-cc-copy="goal"></span></p>
+</section>
+
+<section class="slide slide--dark slide--hypothesis" data-type="hypothesis" data-index="6">
+  <div class="slide-header slide-header--dark">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <p class="hyp-statement"><span class="hyp-label">Hypothesis: </span><span data-cc-copy="hypothesis"></span></p>
+</section>
+
+<section class="slide slide--light slide--role" data-type="role" data-index="7">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="role-block">
+    <p class="role-block__title">Role: <span data-cc-copy="role_title"></span></p>
+    <div class="role-block__rows">
+      <p class="role-row"><strong>Responsible</strong> — <span data-cc-copy="role_responsible"></span></p>
+      <p class="role-row"><strong>Accountable</strong> — <span data-cc-copy="role_accountable"></span></p>
+      <p class="role-row"><strong>Consulted</strong> — <span data-cc-copy="role_consulted"></span></p>
+    </div>
+  </div>
+</section>
+
+<!-- NEW sub-section: CoCreation + Capability building -->
+<section class="slide slide--dark slide--section-title" data-type="section-title">
+  <p class="section-title__word">CoCreation + Capability building</p>
+</section>
+
+<section class="slide slide--light slide--quote" data-type="quote" data-index="8">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <p class="quote-text"><span data-cc-copy="quote_stakeholder_text"></span> <span class="quote-attr" data-cc-copy="quote_stakeholder_attr"></span></p>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="7b" data-notes-id="cadence" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/design-cadence-categories.jpg" alt="Design + Learn cadence — six categories of design work">
+    <p class="figure-caption" data-cc-copy="design_cadence_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="17">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-cc-copy="section_cocreators">Co-creation as a strategy</h2>
+    <p data-cc-copy="cocreators_0"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="18" data-notes-id="cocreators-22" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/co-creation-recipient.jpg?v=20260617" alt="Co-creators program">
+    <p class="figure-caption" data-cc-copy="cocreators_program_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="19" data-notes-id="cocreators-23" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/co-creation-sme.jpg?v=20260617" alt="Clinical research co-creation">
+    <p class="figure-caption" data-cc-copy="cocreators_figure_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="20">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-cc-copy="section_measure">A measure-learn discipline</h2>
+    <p data-cc-copy="measure_0"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="21" data-notes-id="measure-25" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <div style="overflow:hidden;width:100%;">
+      <video class="figure-img" autoplay muted loop playsinline preload="none" style="width:calc(100% + 9px);margin-left:-3px;margin-right:-6px;">
+        <source src="../assets/cochlear/copilot-measure-learn-video.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="figure-caption" data-cc-copy="measure_figure_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="22" data-notes-id="measure-26" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/research-calibration.jpg?v=20260617" alt="Research calibration">
+    <p class="figure-caption" data-cc-copy="measure_calibration_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="9">
+  <p class="section-title__word">Content + Personalization</p>
+</section>
+
+<section class="slide slide--dark slide--output slide--output-static" data-type="output-static" data-index="10" data-notes-id="cp-intro" data-notes-src="cc">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">COCHLEAR COPILOT</span>
+    </div>
+    <p class="output-left__title" data-cc-copy="section_cp"></p>
+    <div class="output-left__body">
+      <p data-cc-copy="intro_cp_0"></p>
+    </div>
+  </div>
+
+  <div class="output-phones-static" aria-hidden="true">
+    <div class="static-phone">
+      <div class="phone-tile"><div class="phone-tile__record-mask" style="background:#FFFFFF"></div><img src="../assets/cochlear/content/05-content-4.png" alt=""></div>
+      <p class="static-phone__caption">NEED ENABLERS</p>
+    </div>
+    <div class="static-phone">
+      <div class="phone-tile"><div class="phone-tile__record-mask" style="background:#FFFFFF"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/04-content-discover-1.mp4" type="video/mp4"></video></div>
+      <p class="static-phone__caption">DISCOVER</p>
+    </div>
+    <div class="static-phone">
+      <div class="phone-tile"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/01-content-5.mp4" type="video/mp4"></video></div>
+      <p class="static-phone__caption">BROWSE</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="11">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-cc-copy="section_content">Content strategy, tagging, and a personalization foundation</h2>
+    <p data-cc-copy="content_1_deck"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="12" data-notes-id="content-ia" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/content/content-content-tagging.jpg?v=20260617" alt="Information architecture and content tagging strategy">
+    <p class="figure-caption" data-cc-copy="content_ia_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="13" data-notes-id="content-needs" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/cochlear-need-enabler-patterns.jpg?v=20260617" alt="Need Enabler patterns">
+    <p class="figure-caption" data-cc-copy="content_figure_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="14" data-notes-id="content-personalization" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/content/content-thoughtpiece.jpg?v=20260617" alt="Personalization thought piece">
+    <p class="figure-caption" data-cc-copy="content_personalisation_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-index="15" data-notes-id="content-nav" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/content/content-testing-nav.jpg?v=20260617" alt="Testing content navigation">
+    <p class="figure-caption" data-cc-copy="content_nav_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--quote" data-type="quote" data-index="13">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+  <p class="quote-text"><span data-cc-copy="quote_vijay_text"></span> <span class="quote-attr" data-cc-copy="quote_vijay_attr"></span></p>
+</section>
+
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="14">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">COCHLEAR COPILOT</span>
+    </div>
+    <p class="output-left__title" data-cc-copy="section_output_content"></p>
+    <div class="output-left__body">
+      <p data-cc-copy="output_content_0"></p>
+      <p class="output-left__credit" data-cc-copy="output_content_credit"></p>
+    </div>
+  </div>
+
+  <div class="output-phones" aria-hidden="true">
+    <!-- Col 1: 01-content-5, 02-content-1, 07-content-2 -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:36s">
+        <div class="phone-tile"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/01-content-5.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #384968"></div><img src="../assets/cochlear/content/02-content-1.png" alt=""></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><img src="../assets/cochlear/content/07-content-2.png" alt=""></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/01-content-5.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #384968"></div><img src="../assets/cochlear/content/02-content-1.png" alt=""></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><img src="../assets/cochlear/content/07-content-2.png" alt=""></div>
+      </div>
+    </div>
+    <!-- Col 2: 08-content-3, 05-content-4, 04-content-discover -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:45s">
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><img src="../assets/cochlear/content/08-content-3.png" alt=""></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><img src="../assets/cochlear/content/05-content-4.png" alt=""></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/04-content-discover.mp4" type="video/mp4"></video></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><img src="../assets/cochlear/content/08-content-3.png" alt=""></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><img src="../assets/cochlear/content/05-content-4.png" alt=""></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/04-content-discover.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+    <!-- Col 3: 06-content-tags-2, 03-content-tips -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:24s">
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/06-content-tags-2.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #3A496A"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/03-content-tips.mp4" type="video/mp4"></video></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/06-content-tags-2.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #3A496A"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/content/03-content-tips.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="22">
+  <p class="section-title__word">Skill Builders</p>
+</section>
+
+<section class="slide slide--dark slide--output slide--output-static" data-type="output-static" data-index="23" data-notes-id="sb-intro" data-notes-src="cc">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">COCHLEAR COPILOT</span>
+    </div>
+    <p class="output-left__title" data-cc-copy="section_sb"></p>
+    <div class="output-left__body">
+      <p data-cc-copy="intro_sb_0"></p>
+    </div>
+  </div>
+
+  <div class="output-phones-static" aria-hidden="true">
+    <div class="static-phone">
+      <div class="phone-tile"><div class="phone-tile__record-mask" style="background:#FFFFFF"></div><img src="../assets/cochlear/skillbuilders/00-audio-hierarchy.png" alt=""></div>
+      <p class="static-phone__caption">SKILL BUILDERS IN IA</p>
+    </div>
+    <div class="static-phone">
+      <div class="phone-tile"><img src="../assets/cochlear/skillbuilders/01-cochlear-3.jpg" alt=""></div>
+      <p class="static-phone__caption">SKILL BUILDER INTRO</p>
+    </div>
+    <div class="static-phone">
+      <div class="phone-tile"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/02-cochlear-2.mp4" type="video/mp4"></video></div>
+      <p class="static-phone__caption">SKILL BUILDER</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="24" data-notes-id="reuse-30" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-cc-copy="section_reuse">Recycle &amp; Reuse → five Skill Builders</h2>
+    <p data-cc-copy="reuse_0"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-notes-id="reuse-31" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/reuse-recycle-taxonomy.jpg?v=20260617" alt="Skill Builder language taxonomy">
+    <p class="figure-caption" data-cc-copy="reuse_fig_b_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-notes-id="reuse-32" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/reuse-recycle-whats-different.jpg?v=20260617" alt="What's different — surgical deltas">
+    <p class="figure-caption" data-cc-copy="reuse_fig_c_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--quote" data-type="quote" data-index="25">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+  <p class="quote-text"><span data-cc-copy="quote_reuse_text"></span> <span class="quote-attr" data-cc-copy="quote_reuse_attr"></span></p>
+</section>
+
+<section class="slide slide--dark slide--output" data-type="output-a" data-index="26" data-notes-id="sb-output" data-notes-src="cc">
+  <div class="output-left">
+    <div class="output-left__header">
+      <span class="output-left__header-project">COCHLEAR COPILOT</span>
+    </div>
+    <p class="output-left__title" data-cc-copy="section_output_skillbuilders"></p>
+    <div class="output-left__body">
+      <p data-cc-copy="output_skillbuilders_0"></p>
+      <p class="output-left__credit" data-cc-copy="output_skillbuilders_credit"></p>
+    </div>
+  </div>
+
+  <div class="output-phones" aria-hidden="true">
+    <!-- Col 1: 00, 01, 02 -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:36s">
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><img src="../assets/cochlear/skillbuilders/00-audio-hierarchy.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/skillbuilders/01-cochlear-3.jpg" alt=""></div>
+        <div class="phone-tile"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/02-cochlear-2.mp4" type="video/mp4"></video></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #FFFFFF"></div><img src="../assets/cochlear/skillbuilders/00-audio-hierarchy.png" alt=""></div>
+        <div class="phone-tile"><img src="../assets/cochlear/skillbuilders/01-cochlear-3.jpg" alt=""></div>
+        <div class="phone-tile"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/02-cochlear-2.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+    <!-- Col 2: 03, 04, 05 -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:45s">
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #384968"></div><img src="../assets/cochlear/skillbuilders/03-telephone.png" alt=""></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #6F3E47"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/04-telephone-confidence.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #3A496A"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/05-differentiate.mp4" type="video/mp4"></video></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #384968"></div><img src="../assets/cochlear/skillbuilders/03-telephone.png" alt=""></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #6F3E47"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/04-telephone-confidence.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #3A496A"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/05-differentiate.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+    <!-- Col 3: 06, 07 -->
+    <div class="phone-col">
+      <div class="phone-col__track" style="animation-duration:24s">
+        <div class="phone-tile"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/06-cochlear-4.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #1D2123"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/07-identification-session-complete.mp4" type="video/mp4"></video></div>
+        <!-- duplicate -->
+        <div class="phone-tile"><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/06-cochlear-4.mp4" type="video/mp4"></video></div>
+        <div class="phone-tile"><div class="phone-tile__record-mask" style="background: #1D2123"></div><video autoplay muted loop playsinline preload="none"><source src="../assets/cochlear/skillbuilders/07-identification-session-complete.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--section-title" data-type="section-title" data-index="27">
+  <p class="section-title__word">Outcomes</p>
+</section>
+
+<section class="slide slide--light slide--stats" data-type="stats" data-index="28" data-notes-id="stats" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <span class="stat-item__number" data-cc-copy="stat_1_value"></span>
+      <span class="stat-item__label"  data-cc-copy="stat_1_label"></span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-item__number" data-cc-copy="stat_2_value"></span>
+      <span class="stat-item__label"  data-cc-copy="stat_2_label"></span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-item__number" data-cc-copy="stat_3_value"></span>
+      <span class="stat-item__label"  data-cc-copy="stat_3_label"></span>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide--light slide--quote" data-type="quote" data-index="29">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <p class="quote-text"><span data-cc-copy="quote_survey_text"></span> <span class="quote-attr" data-cc-copy="quote_survey_attr"></span></p>
+</section>
+
+<section class="slide slide--light slide--impact" data-type="impact" data-index="30" data-notes-id="impact-outcome" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="impact-grid">
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-cc-copy="outcome_product">Product</h3>
+      <ul class="impact-col__list">
+        <li data-cc-copy="impact_product_0"></li>
+        <li data-cc-copy="impact_product_1"></li>
+        <li data-cc-copy="impact_product_2"></li>
+        <li data-cc-copy="impact_product_3"></li>
+        <li data-cc-copy="impact_product_4"></li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-cc-copy="outcome_scale">Scale</h3>
+      <ul class="impact-col__list">
+        <li data-cc-copy="impact_scale_0"></li>
+        <li data-cc-copy="impact_scale_1"></li>
+        <li data-cc-copy="impact_scale_2"></li>
+        <li data-cc-copy="impact_scale_3"></li>
+        <li data-cc-copy="impact_scale_4"></li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-cc-copy="outcome_business">Business</h3>
+      <ul class="impact-col__list">
+        <li data-cc-copy="impact_business_0"></li>
+        <li data-cc-copy="impact_business_1"></li>
+        <li data-cc-copy="impact_business_2"></li>
+      </ul>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name" data-cc-copy="outcome_team">Team</h3>
+      <ul class="impact-col__list">
+        <li data-cc-copy="impact_team_0"></li>
+        <li data-cc-copy="impact_team_1"></li>
+        <li data-cc-copy="impact_team_2"></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="slide slide--light slide--content" data-type="content" data-index="31">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="content-body">
+    <h2 class="content-heading" data-cc-copy="section_reflection">Reflection</h2>
+    <p data-cc-copy="reflection_0"></p>
+  </div>
+</section>
+
+<section class="slide slide--light slide--figure" data-type="figure" data-notes-id="reflection" data-notes-src="cc">
+  <div class="slide-header">
+    <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
+  </div>
+
+  <div class="figure-inner">
+    <img class="figure-img" src="../assets/cochlear/reflection.jpg" alt="Naming and differentiating through language">
+    <p class="figure-caption" data-cc-copy="reflection_figure_caption"></p>
+  </div>
+</section>
+
+<section class="slide slide--dark slide--qa" data-type="qa" data-index="32">
+  <p class="qa-text">Q+A</p>
+</section>
+
+<!-- ─── FIXED UI ─── -->
+<div class="deck-confidential" aria-hidden="true">PRIVILEGED &amp; CONFIDENTIAL</div>
+<div class="deck-counter-group">
+  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 75</div>
+</div>
+<div class="deck-hint" aria-hidden="true">← → to navigate</div>
+
+<!-- ─── V SECTION INDEX MENU — spans intro + both case studies. No external nav. ─── -->
+<div class="deck-switcher" id="deckIndexMenu" aria-hidden="true" role="dialog" aria-label="Section index">
+  <div class="deck-switcher__inner"></div>
+  <p class="deck-switcher__hint">v or esc to close</p>
+</div>
+
+<!-- ─── COPY SOURCES (both prefixes; collision-free) ─── -->
+<script src="money-stories-copy.js?v=20260618c"></script>
+<script src="cochlear-copy.js?v=20260618d"></script>
+
+<script>
+  (function () {
+
+    /* Intro speaker notes — standalone (not held in either copy file). */
+    var INTRO_NOTES = {
+      'about': [
+        "01 · ABOUT ME",
+        "I'm a product design leader, originally from Oregon, on the west coast in the States. Now Sydney-based with my partner, toddler, and fur baby.",
+        "Most recently I was at Block, leading design at Afterpay, where I scaled a team from two very burnt-out designers to seven happy, thriving ones — across workstreams navigating a US rebrand, a global design system overhaul, and complex multi-market regulatory work. I also led Afterpay AU's first long-term lending product as an IC design owner — keep it quiet, but it's launching soon with Apple as an integrated partner.",
+        "Five years at ustwo as a design principal working across embedded client teams. Embedded design leadership for 18 months at Cochlear on their CoPilot hearing rehab app, and a two-year on-site engagement with Google.",
+        "Founding designer in startup land in the US — Orange Chef, an IoT nutrition scale, Google Ventures backed. I owned the experience across hardware, app, and brand, grew the team from one to four, and stepped into the product manager role ahead of our acquisition.",
+        "02 · WHAT EXCITES ME ABOUT DESIGN",
+        "...is the process of making meaning. The tools change. The methods change. Technology changes. What doesn't change is the work of taking something that feels formless, breaking it down to first principles, finding patterns across seemingly unrelated ideas, and shaping a direction that people can move towards together. Sometimes that's a team aligning around a shared path. Sometimes it's helping customers navigate a complex problem. That's the part of design I'll never stop loving.",
+        "(and coincidentally, this is the same thing within me that makes me want to write books) — wink",
+        "03 · WHAT MAKES ME DIFFERENT (AS A LEADER)",
+        "My job as a leader is to know the problems well enough to clear that path, not to hold the reins.",
+        "I lead by creating clarity. I stay close enough to the work to make good calls, and I spend most of my energy making sure the people and functions around a problem are pointed the same way.",
+        "I'm not necessarily the loudest person in the room. I'm the one that makes the room work.",
+        "People want to be on my team because I make things clearer and less messy, and I bring kindness and a bit of humour into hard rooms. I use that deliberately to disarm intensity and pull ego out of the space. It's how I get the best work out of people — and it's the same instinct that lets me drive alignment across functions that don't naturally speak the same language.",
+        "Clarity · Safety · Diligence"
+      ]
+    };
+
+    /* State */
+    var slides  = Array.from(document.querySelectorAll('.slide:not(.slide--hidden)'));
+    var counter = document.querySelector('.deck-counter');
+    var hint    = document.querySelector('.deck-hint');
+    var body    = document.body;
+    var total   = slides.length;
+    var current = 0;
+
+    /* Eyebrow section labels — inject from section-title word into following slide-headers */
+    (function () {
+      var section = '';
+      slides.forEach(function (slide) {
+        var word = slide.querySelector('.section-title__word');
+        if (word) { section = word.textContent.trim().toUpperCase(); return; }
+        if (!section) return;
+        var header = slide.querySelector('.slide-header');
+        if (header && !header.querySelector('.slide-header__section')) {
+          var span = document.createElement('span');
+          span.className = 'slide-header__section';
+          span.textContent = section;
+          header.appendChild(span);
+        }
+        var outHeader = slide.querySelector('.output-left__header');
+        if (outHeader && !outHeader.querySelector('.output-left__header-section')) {
+          var ospan = document.createElement('span');
+          ospan.className = 'output-left__header-section';
+          ospan.textContent = section;
+          outHeader.appendChild(ospan);
+        }
+      });
+    })();
+
+    /* Keyboard hint — fade after 3s, once per session */
+    if (!sessionStorage.getItem('airwallex-deck-hint')) {
+      setTimeout(function () {
+        hint.classList.add('fade-out');
+        sessionStorage.setItem('airwallex-deck-hint', '1');
+      }, 3000);
+    } else {
+      hint.classList.add('fade-out');
+    }
+
+    /* Build-in helpers */
+    function getBuildItems(slide) {
+      var type = slide.dataset.type;
+      if (type === 'content') { return Array.from(slide.querySelectorAll('.content-body p')).slice(1); }
+      if (type === 'role') { return Array.from(slide.querySelectorAll('.role-row')); }
+      if (type === 'impact') { return Array.from(slide.querySelectorAll('.impact-col')).slice(1); }
+      if (type === 'output-a' || type === 'output-b' || type === 'output-c' || type === 'output-static') {
+        var isContinue = slide.hasAttribute('data-continue');
+        var assetPanel = !isContinue
+          ? slide.querySelector('.output-phones, .output-image-right, .output-phone-hero, .output-phones-static')
+          : null;
+        var bodyParas = Array.from(slide.querySelectorAll('.output-left__body p'))
+          .slice(1)
+          .filter(function (p) { return !p.hasAttribute('data-immediate'); });
+        var items;
+        if (type === 'output-c' && assetPanel && bodyParas.length > 0) {
+          items = [[bodyParas[0], assetPanel]].concat(bodyParas.slice(1));
+        } else {
+          items = assetPanel ? [assetPanel] : [];
+          items = items.concat(bodyParas);
+        }
+        var aiCard = slide.querySelector('.output-ai-card');
+        if (aiCard && !aiCard.hasAttribute('data-immediate')) items.push(aiCard);
+        return items;
+      }
+      return [];
+    }
+
+    function eachBuildEl(item, fn) { if (Array.isArray(item)) { item.forEach(fn); } else { fn(item); } }
+
+    function showAllBuildItems(slide) {
+      getBuildItems(slide).forEach(function (item) {
+        eachBuildEl(item, function (el) { el.classList.add('is-visible'); });
+      });
+    }
+
+    function resetBuildItems(slide) {
+      var items = getBuildItems(slide);
+      items.forEach(function (item) {
+        eachBuildEl(item, function (el) {
+          el.style.transition = 'none';
+          el.classList.remove('is-visible');
+        });
+      });
+      void slide.offsetWidth;
+      items.forEach(function (item) {
+        eachBuildEl(item, function (el) { el.style.transition = ''; });
+      });
+    }
+
+    function hasPendingBuild(slide) {
+      return getBuildItems(slide).some(function (item) {
+        var els = Array.isArray(item) ? item : [item];
+        return els.some(function (el) { return !el.classList.contains('is-visible'); });
+      });
+    }
+
+    function advanceBuild(slide) {
+      var next = getBuildItems(slide).find(function (item) {
+        var els = Array.isArray(item) ? item : [item];
+        return els.some(function (el) { return !el.classList.contains('is-visible'); });
+      });
+      if (next) { eachBuildEl(next, function (el) { el.classList.add('is-visible'); }); }
+    }
+
+    /* Go to slide */
+    function goTo(index, direction) {
+      if (index < 0)      index = 0;
+      if (index >= total) index = total - 1;
+      if (index === current) return;
+
+      slides[current].classList.remove('is-active');
+      current = index;
+
+      if (direction === 'back') { showAllBuildItems(slides[current]); }
+      else { resetBuildItems(slides[current]); }
+
+      slides[current].classList.add('is-active');
+      counter.textContent = (current + 1) + ' / ' + total;
+
+      if (slides[current].classList.contains('slide--dark')) { body.classList.add('is-dark-slide'); }
+      else { body.classList.remove('is-dark-slide'); }
+
+      var t = slides[current].dataset.type;
+      if (t === 'index' || t === 'section-title') { body.classList.add('is-meta-slide'); }
+      else { body.classList.remove('is-meta-slide'); }
+
+      if (t === 'title') { body.classList.add('is-title-slide'); }
+      else { body.classList.remove('is-title-slide'); }
+
+      if (t === 'qa') { body.classList.add('is-qa-slide'); }
+      else { body.classList.remove('is-qa-slide'); }
+
+      syncSlideVideos();
+      postNotes();
+    }
+
+    /* Play only the active slide's video(s); pause + reset the rest */
+    function syncSlideVideos() {
+      slides.forEach(function (slide, i) {
+        var vids = slide.querySelectorAll('video');
+        vids.forEach(function (v) {
+          if (i === current) {
+            v.currentTime = 0;
+            var p = v.play();
+            if (p && p.catch) { p.catch(function () {}); }
+          } else { v.pause(); }
+        });
+      });
+    }
+
+    function handleForward() {
+      if (hasPendingBuild(slides[current])) { advanceBuild(slides[current]); }
+      else { goTo(current + 1, 'forward'); }
+    }
+    function handleBack() { goTo(current - 1, 'back'); }
+
+    /* ── 'v' key section index menu — spans intro title, every section-title, Q+A ── */
+    var indexMenu = document.getElementById('deckIndexMenu');
+    (function buildIndexMenu() {
+      var inner = indexMenu.querySelector('.deck-switcher__inner');
+      var n = -1;
+      slides.forEach(function (slide, i) {
+        var label = null, isTitle = false;
+        if (slide.dataset.type === 'title') {
+          var tt = slide.querySelector('.title-text');
+          label = tt ? tt.textContent.trim() : 'Title';
+          isTitle = true;
+        } else if (slide.dataset.type === 'qa') {
+          label = 'Q+A';
+        } else {
+          var word = slide.querySelector('.section-title__word');
+          if (word) label = word.textContent.trim();
+        }
+        if (!label) return;
+        /* Hairline between groups — each chapter (title) starts a new group,
+           except the opener (first entry in the menu). */
+        if (isTitle && inner.children.length > 0) {
+          var sep = document.createElement('div');
+          sep.className = 'deck-switcher__sep';
+          inner.appendChild(sep);
+        }
+        n++;
+        var num = (n < 10 ? '0' : '') + n;
+        var a = document.createElement('a');
+        a.href = '#';
+        a.className = 'deck-switcher__option' + (isTitle ? ' deck-switcher__option--title' : '');
+        a.dataset.slide = i;
+        a.textContent = num + '   ' + label;
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = parseInt(a.dataset.slide, 10);
+          closeIndexMenu();
+          goTo(target, target < current ? 'back' : 'forward');
+        });
+        inner.appendChild(a);
+      });
+    })();
+    function openIndexMenu()  { indexMenu.classList.add('is-open'); indexMenu.setAttribute('aria-hidden', 'false'); }
+    function closeIndexMenu() { indexMenu.classList.remove('is-open'); indexMenu.setAttribute('aria-hidden', 'true'); }
+    indexMenu.addEventListener('click', function (e) { if (e.target === indexMenu) closeIndexMenu(); });
+
+    /* ── N key: Speaker Notes window (shared speaker-notes.html) ──
+       Combined resolver: each slide carries data-notes-src (ms | cc | intro)
+       so the right copy/notes maps are used. */
+    var notesChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('speaker-notes') : null;
+    var notesWin = null;
+
+    /* Deck-local note overrides — note groups assembled just for this combined
+       deck (keys resolve against the relevant copy map, so copy stays single-
+       source). Keyed "src:notesId". Used to absorb parked/hidden slides' copy
+       onto a still-visible slide without editing the shared copy.js files. */
+    var LOCAL_NOTES = {
+      /* slide 23 (CPO quote) carries the hidden Facilitating slides' copy:
+         facilitating_0 (parked slide 24), facilitating_1 + ai_now (parked slide 25). */
+      'ms:facilitating-moved': ['facilitating_0', 'facilitating_1', 'ai_now']
+    };
+
+    function resolveNotes(slide) {
+      var id  = slide.dataset.notesId  || '';
+      var src = slide.dataset.notesSrc || '';
+      if (!id) return [];
+      if (src === 'intro') { return (INTRO_NOTES[id] || []).slice(); }
+      var copyMap  = src === 'cc' ? window.CC_COPY  : (src === 'ms' ? window.MS_COPY  : null);
+      if (!copyMap) return [];
+      var notesMap = src === 'cc' ? window.CC_NOTES : (src === 'ms' ? window.MS_NOTES : null);
+      var keys = LOCAL_NOTES[src + ':' + id] || (notesMap && notesMap[id]) || [];
+      return keys.map(function (k) { return (copyMap[k] || ''); }).filter(Boolean);
+    }
+
+    function postNotes() {
+      if (!notesChannel) return;
+      var slide = slides[current];
+      notesChannel.postMessage({
+        notesId: slide.dataset.notesId || '',
+        notes:   resolveNotes(slide),
+        slide:   current + 1,
+        total:   total,
+        deck:    document.title
+      });
+    }
+
+    function toggleNotesWindow() {
+      if (notesWin && !notesWin.closed) { notesWin.focus(); return; }
+      notesWin = window.open(
+        'speaker-notes.html', 'airwallexSpeakerNotes',
+        'width=520,height=600,resizable=yes,scrollbars=yes'
+      );
+      setTimeout(postNotes, 500);
+    }
+
+    if (notesChannel) {
+      notesChannel.addEventListener('message', function (e) {
+        if (e.data && e.data.request) postNotes();
+      });
+    }
+
+    /* Keyboard */
+    document.addEventListener('keydown', function (e) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === 'v' || e.key === 'V') { indexMenu.classList.contains('is-open') ? closeIndexMenu() : openIndexMenu(); return; }
+      if (e.key === 'n' || e.key === 'N') { toggleNotesWindow(); return; }
+      if (e.key === 'Escape') { closeIndexMenu(); return; }
+      if (indexMenu.classList.contains('is-open')) return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); handleForward(); }
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); handleBack(); }
+    });
+
+    /* Click / tap */
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('.deck-switcher')) return;
+      if (e.target.closest('a')) return;
+      handleForward();
+    });
+
+    /* Init — ?slide=N deep link */
+    var startSlide = 0;
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var s = parseInt(params.get('slide'), 10);
+      if (!isNaN(s) && s > 0 && s < total) startSlide = s;
+    })();
+
+    if (startSlide > 0) {
+      body.classList.add('no-transition');
+      slides[0].classList.remove('is-active');
+      slides[startSlide].classList.add('is-active');
+      current = startSlide;
+      requestAnimationFrame(function () { body.classList.remove('no-transition'); });
+    }
+    counter.textContent = (current + 1) + ' / ' + total;
+
+    var initSlide = slides[startSlide];
+    resetBuildItems(initSlide);
+    if (initSlide.classList.contains('slide--dark')) { body.classList.add('is-dark-slide'); }
+    var initType = initSlide.dataset.type;
+    if (initType === 'index' || initType === 'section-title') { body.classList.add('is-meta-slide'); }
+    if (initType === 'title') { body.classList.add('is-title-slide'); }
+    if (initType === 'qa') { body.classList.add('is-qa-slide'); }
+
+    syncSlideVideos();
+    postNotes();
+
+  })();
+</script>
+
+</body>
+</html>
