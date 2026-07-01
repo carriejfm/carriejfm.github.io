@@ -1010,6 +1010,24 @@
       padding: 3px 8px; border: 1px solid var(--border); white-space: nowrap;
     }
     .slide--diamond .figure-inner { width: min(86%, 1100px); }
+    /* ─── Creds slide — impact 3-column style as a centered band, no separators ─── */
+    .slide--creds .impact-grid {
+      inset: auto;                                  /* drop the full-bleed inset:0 */
+      top: 50%; left: 50%; transform: translate(-50%, -50%);  /* centre the band */
+      width: min(86%, 1040px);
+    }
+    .slide--creds .impact-col {
+      padding: 0 clamp(1.25rem, 2.5vw, 2rem);       /* gutters; headers align at top */
+    }
+    .slide--creds .impact-col:not(:last-child)::after { display: none; }  /* drop hairlines */
+    .slide--creds .creds-col__body {
+      font-family: var(--font-mono); font-size: var(--size-sm); font-weight: 300;
+      color: var(--text-faint); line-height: 1.7;
+    }
+    .slide--creds .creds-col__body p + p { margin-top: 0.875em; }
+    /* ─── Making-meaning motif — small image centered on light slide ─── */
+    .slide--makingmeaning { display: flex; align-items: center; justify-content: center; }
+    .slide--makingmeaning .mm-img { width: min(42%, 460px); height: auto; display: block; }
     /* Reversibly parked slides — excluded from navigation by the engine too */
     .slide--hidden { display: none !important; }
   </style>
@@ -1017,14 +1035,53 @@
 <body>
 
 <!-- ══════════════════════════════════════
-     INTRO — Hi, I'm Carrie  (speaker notes: about + leader)
+     INTRO — Hi, I'm Carrie  (speaker notes: 01 · ABOUT ME)
      ══════════════════════════════════════ -->
 <section class="slide slide--dark slide--title is-active" data-type="title" data-notes-id="about" data-notes-src="intro">
   <h1 class="title-text">Hi, I&#39;m Carrie</h1>
   <div class="title-meta">
     <span class="title-meta__company">Carrie Francis-Miller</span>
-    <span class="title-meta__role">Product &amp; experience design</span>
+    <span class="title-meta__role">Principal designer • Design leadership</span>
   </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CREDS — three-column build-in (Principles / Designer / Leader)
+     (impact-column style, no hairline separators, centered) — no speaker notes
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--impact slide--creds" data-type="impact">
+  <div class="impact-grid">
+
+    <div class="impact-col">
+      <h3 class="impact-col__name">Principles</h3>
+      <div class="creds-col__body">
+        <p>Clarity, safety and diligence. Good work happens when people understand the problem, have the autonomy to solve it, and care enough to do it well. Those principles shape how I design, lead and make decisions.</p>
+      </div>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name">As a Designer</h3>
+      <div class="creds-col__body">
+        <p>I thrive in the complexity of health and wealth tech. I gravitate towards discovery, systems thinking and strategy, but I'm intentionally end-to-end. Whether shaping direction, untangling edge cases, or prototyping, I stay close enough to the work to make good decisions.</p>
+      </div>
+    </div>
+
+    <div class="impact-col">
+      <h3 class="impact-col__name">As a Leader</h3>
+      <div class="creds-col__body">
+        <p>I don't lead by holding the reins, I lead by clearing the path. I connect people across disciplines, using calm, humour and low ego to make difficult conversations productive. I don't need to be the loudest person in the room, I just care that the room leaves aligned.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MAKING MEANING — light image slide
+     speaker notes: WHAT EXCITES ME ABOUT DESIGN
+     ══════════════════════════════════════ -->
+<section class="slide slide--light slide--makingmeaning" data-type="figure" data-notes-id="creds" data-notes-src="intro">
+  <img class="mm-img" src="../assets/imagery/making-meaning.png" alt="Making meaning — a motif of connected nodes">
 </section>
 
 <section class="slide slide--dark slide--title" data-type="title" data-index="0">
@@ -1131,7 +1188,8 @@
   <p class="section-title__word">Approach</p>
 </section>
 
-<section class="slide slide--dark slide--hypothesis" data-type="hypothesis" data-index="8">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--dark slide--hypothesis" data-type="hypothesis" data-index="8">
   <div class="slide-header slide-header--dark">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1140,7 +1198,8 @@
   <p class="hyp-statement"><span class="hyp-label">Hypothesis: </span><span data-ms-copy="hypothesis">A low-effort digital content pattern the audience was already fluent in would lower the barrier to engaging with money, helping people change their feelings and behavior inside a high-stress subject.</span></p>
 </section>
 
-<section class="slide slide--light slide--content" data-type="content" data-index="9">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--content" data-type="content" data-index="9">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1152,7 +1211,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--figure" data-type="figure" data-index="10" data-notes-id="accessible" data-notes-src="ms">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--figure" data-type="figure" data-index="10" data-notes-id="accessible" data-notes-src="ms">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1164,7 +1224,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--content" data-type="content" data-index="11" data-notes-id="research" data-notes-src="ms">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--content" data-type="content" data-index="11" data-notes-id="research" data-notes-src="ms">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1614,7 +1675,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--figure" data-type="figure" data-index="33" data-notes-id="reflection-asset" data-notes-src="ms">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--figure" data-type="figure" data-index="33" data-notes-id="reflection-asset" data-notes-src="ms">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>MONEY STORIES</span>
     <span class="slide-header__client"  data-header-client>BLOCK</span>
@@ -1672,6 +1734,7 @@
       <li class="deck-tag">Information architecture</li>
       <li class="deck-tag">Research rigor</li>
       <li class="deck-tag">Cross-functional facilitation</li>
+      <li class="deck-tag">Stakeholder management</li>
     </ul>
   </div>
 </section>
@@ -1732,7 +1795,8 @@
   <p class="quote-text"><span data-cc-copy="quote_stakeholder_text"></span> <span class="quote-attr" data-cc-copy="quote_stakeholder_attr"></span></p>
 </section>
 
-<section class="slide slide--light slide--figure" data-type="figure" data-index="7b" data-notes-id="cadence" data-notes-src="cc">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--figure" data-type="figure" data-index="7b" data-notes-id="cadence" data-notes-src="cc">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -1743,7 +1807,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--content" data-type="content" data-index="17">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--content" data-type="content" data-index="17">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -1754,7 +1819,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--figure" data-type="figure" data-index="18" data-notes-id="cocreators-22" data-notes-src="cc">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--figure" data-type="figure" data-index="18" data-notes-id="cocreators-22" data-notes-src="cc">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -1765,7 +1831,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--figure" data-type="figure" data-index="19" data-notes-id="cocreators-23" data-notes-src="cc">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--figure" data-type="figure" data-index="19" data-notes-id="cocreators-23" data-notes-src="cc">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -1776,7 +1843,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--content" data-type="content" data-index="20">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--content" data-type="content" data-index="20">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -1787,7 +1855,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--figure" data-type="figure" data-index="21" data-notes-id="measure-25" data-notes-src="cc">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--figure" data-type="figure" data-index="21" data-notes-id="measure-25" data-notes-src="cc">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -1802,7 +1871,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--figure" data-type="figure" data-index="22" data-notes-id="measure-26" data-notes-src="cc">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--figure" data-type="figure" data-index="22" data-notes-id="measure-26" data-notes-src="cc">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -1987,7 +2057,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--content" data-type="content" data-index="24" data-notes-id="reuse-30" data-notes-src="cc">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--content" data-type="content" data-index="24" data-notes-id="reuse-30" data-notes-src="cc">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -1998,7 +2069,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--figure" data-type="figure" data-notes-id="reuse-31" data-notes-src="cc">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--figure" data-type="figure" data-notes-id="reuse-31" data-notes-src="cc">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -2008,7 +2080,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--figure" data-type="figure" data-notes-id="reuse-32" data-notes-src="cc">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--figure" data-type="figure" data-notes-id="reuse-32" data-notes-src="cc">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -2169,7 +2242,8 @@
   </div>
 </section>
 
-<section class="slide slide--light slide--figure" data-type="figure" data-notes-id="reflection" data-notes-src="cc">
+<!-- HIDDEN for now — remove "slide--hidden" to bring it back -->
+<section class="slide slide--hidden slide--light slide--figure" data-type="figure" data-notes-id="reflection" data-notes-src="cc">
   <div class="slide-header">
     <span class="slide-header__project" data-header-project>COCHLEAR COPILOT</span>
   </div>
@@ -2187,7 +2261,7 @@
 <!-- ─── FIXED UI ─── -->
 <div class="deck-confidential" aria-hidden="true">PRIVILEGED &amp; CONFIDENTIAL</div>
 <div class="deck-counter-group">
-  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 75</div>
+  <div class="deck-counter" aria-live="polite" aria-atomic="true">1 / 61</div>
 </div>
 <div class="deck-hint" aria-hidden="true">← → to navigate</div>
 
@@ -2208,19 +2282,15 @@
     var INTRO_NOTES = {
       'about': [
         "01 · ABOUT ME",
-        "I'm a product design leader, originally from Oregon, on the west coast in the States. Now Sydney-based with my partner, toddler, and fur baby.",
-        "Most recently I was at Block, leading design at Afterpay, where I scaled a team from two very burnt-out designers to seven happy, thriving ones — across workstreams navigating a US rebrand, a global design system overhaul, and complex multi-market regulatory work. I also led Afterpay AU's first long-term lending product as an IC design owner — keep it quiet, but it's launching soon with Apple as an integrated partner.",
-        "Five years at ustwo as a design principal working across embedded client teams. Embedded design leadership for 18 months at Cochlear on their CoPilot hearing rehab app, and a two-year on-site engagement with Google.",
-        "Founding designer in startup land in the US — Orange Chef, an IoT nutrition scale, Google Ventures backed. I owned the experience across hardware, app, and brand, grew the team from one to four, and stepped into the product manager role ahead of our acquisition.",
-        "02 · WHAT EXCITES ME ABOUT DESIGN",
+        "Product design leader, originally from Oregon. Sydney-based with my partner and toddler.",
+        "Most recently I was at Block, leading design for the Afterpay App. Scaled a team from 2 very burnt-out designers to 7 happy, thriving ones — across workstreams navigating a US rebrand, a global design system overhaul, and complex multi-market regulatory work. Just before I left in March I led Afterpay AU's first long-term lending product as an IC design owner — keep it quiet, but it's launching soon with Apple as an integrated merchant partner.",
+        "5 years at ustwo as a design principal working across embedded client teams. Embedded design leadership for 18 months at Cochlear on their CoPilot hearing rehab app, and a two-year on-site engagement with Google.",
+        "Founding designer in startup land in the US — Orange Chef, an IoT nutrition scale, Google Ventures backed. I owned the experience across hardware, app, and brand, grew the team from one to four, and stepped into the product manager role ahead of our acquisition."
+      ],
+      'creds': [
+        "WHAT EXCITES ME ABOUT DESIGN",
         "...is the process of making meaning. The tools change. The methods change. Technology changes. What doesn't change is the work of taking something that feels formless, breaking it down to first principles, finding patterns across seemingly unrelated ideas, and shaping a direction that people can move towards together. Sometimes that's a team aligning around a shared path. Sometimes it's helping customers navigate a complex problem. That's the part of design I'll never stop loving.",
-        "(and coincidentally, this is the same thing within me that makes me want to write books) — wink",
-        "03 · WHAT MAKES ME DIFFERENT (AS A LEADER)",
-        "My job as a leader is to know the problems well enough to clear that path, not to hold the reins.",
-        "I lead by creating clarity. I stay close enough to the work to make good calls, and I spend most of my energy making sure the people and functions around a problem are pointed the same way.",
-        "I'm not necessarily the loudest person in the room. I'm the one that makes the room work.",
-        "People want to be on my team because I make things clearer and less messy, and I bring kindness and a bit of humour into hard rooms. I use that deliberately to disarm intensity and pull ego out of the space. It's how I get the best work out of people — and it's the same instinct that lets me drive alignment across functions that don't naturally speak the same language.",
-        "Clarity · Safety · Diligence"
+        "(and coincidentally, this is the same thing within me that makes me want to write books) — wink"
       ]
     };
 
