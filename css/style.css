@@ -684,6 +684,11 @@ h1, h2, h3, h4 {
   pointer-events: none;
 }
 
+/* Carousel stays interactive (drag/arrow) even inside an inactive card link */
+.case-study__link-wrap--inactive .va-carousel {
+  pointer-events: auto;
+}
+
 .case-study__coming-soon {
   font-family: var(--font-mono);
   font-size: var(--size-sm);
