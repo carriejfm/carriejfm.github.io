@@ -6,7 +6,7 @@
   <!-- AUTH GUARD — add this if the case study is password-gated. Must be FIRST in <head>. -->
   <!-- Replace {slug}_auth with e.g. ap_auth or ms_auth, and {slug}-auth.html with the auth page. -->
   <!-- <script>if(!sessionStorage.getItem('{slug}_auth'))window.location.replace('{slug}-auth.html');</script> -->
-  <script src="/js/analytics.js?v=20260617"></script>
+  <script src="/js/analytics.js?v=20260715"></script>
 
   <!-- ─── REPLACE THESE PER CASE STUDY ─────────────────────────────────────── -->
   <!-- Title pattern: "{Project} at {Client} — case study by Carrie Francis-Miller" -->
@@ -16,19 +16,21 @@
   <meta name="theme-color" content="#ffffff">
 
   <!-- Canonical — use carriefrancismiller.com -->
-  <link rel="canonical" href="https://carriefrancismiller.com/case-studies/{slug}.html">
+  <link rel="canonical" href="https://www.carriefrancismiller.com/case-studies/{slug}.html">
 
   <!-- Favicon -->
-  <link rel="icon" href="../assets/favicon.ico">
+  <link rel="icon" href="../assets/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/png" href="../assets/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Carrie Francis-Miller">
   <meta property="og:locale" content="en_AU">
-  <meta property="og:url" content="https://carriefrancismiller.com/case-studies/{slug}.html">
+  <meta property="og:url" content="https://www.carriefrancismiller.com/case-studies/{slug}.html">
   <meta property="og:title" content="{Project} at {Client} — case study by Carrie Francis-Miller">
   <meta property="og:description" content="{one-line OG description}">
-  <meta property="og:image" content="https://carriefrancismiller.com/assets/imagery/og-image.jpg">
+  <meta property="og:image" content="https://www.carriefrancismiller.com/assets/imagery/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="article:author" content="Carrie Francis-Miller">
@@ -39,7 +41,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{Project} at {Client} — case study by Carrie Francis-Miller">
   <meta name="twitter:description" content="{one-line OG description}">
-  <meta name="twitter:image" content="https://carriefrancismiller.com/assets/imagery/og-image.jpg">
+  <meta name="twitter:image" content="https://www.carriefrancismiller.com/assets/imagery/og-image.jpg">
 
   <!-- Structured data: CreativeWork -->
   <script type="application/ld+json">
@@ -48,14 +50,14 @@
     "@type": "CreativeWork",
     "name": "{Project Name}",
     "headline": "{Headline used as h1 / case study title}",
-    "url": "https://carriefrancismiller.com/case-studies/{slug}.html",
-    "image": "https://carriefrancismiller.com/assets/imagery/og-image.jpg",
+    "url": "https://www.carriefrancismiller.com/case-studies/{slug}.html",
+    "image": "https://www.carriefrancismiller.com/assets/imagery/og-image.jpg",
     "datePublished": "{YYYY}",
     "inLanguage": "en-AU",
     "creator": {
       "@type": "Person",
       "name": "Carrie Francis-Miller",
-      "url": "https://carriefrancismiller.com/"
+      "url": "https://www.carriefrancismiller.com/"
     },
     "publisher": { "@type": "Organization", "name": "{Client / Studio}" },
     "about": ["{Theme 1}", "{Theme 2}"],
@@ -68,8 +70,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260617">
-  <link rel="stylesheet" href="../css/casestudy.css?v=20260617">
+  <link rel="stylesheet" href="../css/style.css?v=20260715">
+  <link rel="stylesheet" href="../css/casestudy.css?v=20260715">
 
   <!-- ─── DECK SWITCHER STYLES (remove if this case study has no deck) ──────── -->
   <style>
@@ -184,7 +186,7 @@
         <div class="cs-row__right">
           <!-- .cs-approach-block__heading is a standalone alias class.
                It does NOT inherit .cs-approach-block bottom border/padding. -->
-          <h3 class="cs-approach-block__heading" data-cs-copy="role_title">{Role title}</h3>
+          <h2 class="cs-approach-block__heading" data-cs-copy="role_title">{Role title}</h2>
           <div class="cs-role-list">
 
             <div class="cs-role-item">
@@ -231,13 +233,13 @@
               Label and copy are inline — no separate label heading above.
             -->
             <div class="cs-approach-block">
-              <h3 data-cs-copy="section_hypothesis">Hypothesis</h3>
+              <h2 data-cs-copy="section_hypothesis">Hypothesis</h2>
               <p data-cs-copy="hypothesis">{Hypothesis statement}</p>
             </div>
 
             <!-- Approach block — clone for each pillar (Rebuild, Problem-led, XFN, etc.) -->
             <div class="cs-approach-block">
-              <h3 data-cs-copy="section_{block_key}">{Approach block heading}</h3>
+              <h2 data-cs-copy="section_{block_key}">{Approach block heading}</h2>
               <p data-cs-copy="{block_key}_0">{Paragraph 1}</p>
               <p data-cs-copy="{block_key}_1">{Paragraph 2}</p>
             </div>
@@ -266,7 +268,7 @@
 
             <!-- Clone cs-approach-block elements as needed -->
             <div class="cs-approach-block">
-              <h3 data-cs-copy="section_{block_key}">{Approach block heading}</h3>
+              <h2 data-cs-copy="section_{block_key}">{Approach block heading}</h2>
               <p data-cs-copy="{block_key}_0">{Paragraph 1}</p>
               <p data-cs-copy="{block_key}_1">{Paragraph 2}</p>
             </div>
@@ -288,7 +290,7 @@
 
             <!-- Output item — clone for each output workstream -->
             <div class="cs-output-item">
-              <h3 class="cs-output-item__heading">{Output heading}</h3>
+              <h2 class="cs-output-item__heading">{Output heading}</h2>
 
               <!--
                 OPTION A: SCROLLING CAROUSEL
@@ -459,10 +461,10 @@
   </footer>
 
 
-  <script src="../js/main.js?v=20260617"></script>
+  <script src="../js/main.js?v=20260715"></script>
 
   <!-- Copy injection — rename per project (e.g. money-stories-copy.js) -->
-  <script src="{slug}-copy.js?v=20260617"></script>
+  <script src="{slug}-copy.js?v=20260715"></script>
 
   <!-- ─── CAROUSEL INTERSECTION OBSERVER ──────────────────────────────────── -->
   <!-- Activates .va-carousel[data-carousel] elements as they scroll into view  -->

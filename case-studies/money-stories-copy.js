@@ -78,7 +78,6 @@ var MS_COPY = {
 
   /* ── Facilitating figures ────────────────────────────────────────── */
   facilitating_figure_1_caption: "Mapping scenarios and data rules with engineering.",
-  facilitating_figure_2_caption: "The system and tooling behind money stories.",
 
   /* ── User research and validation ────────────────────────────────── */
   section_research: "User research and validation",
@@ -117,7 +116,6 @@ var MS_COPY = {
   output_savers_insights_0:   "The flywheel only closes if users act on what they see. Money Insights, Future Me savers and roundups, and Money Fit challenges were the three workstreams designed to do exactly that — turning a story into a next step.",
 
   /* ── AI in Practice ──────────────────────────────────────────────── */
-  ai_then: "We collaboratively mapped multiple data scenarios and edge cases with engineering so every story template could survive the messiness of real user data. The limit of that era was that this was manual and inefficient.",
   ai_now:  "AI is most useful when it removes the wait between an idea and seeing it under stress — and this is an ideal scenario to leverage it. Today I would use an AI scenario partner to generate realistic synthetic data across the long tail (high spenders, no-spenders, lumpy pay cycles, weird edge cases) and instantly render the visual story for each one. This would have saved weeks on Money Insight stories.",
 
   /* ── Output credit lines ─────────────────────────────────────────── */
@@ -195,10 +193,6 @@ var MS_COPY = {
   reflection_burdock_note_2: "What this project reinforced for me is that innovation rarely comes from staring harder at competitors. It comes from understanding human behavior deeply enough to recognize useful patterns somewhere else and then translating them into a completely different context. Money Stories worked because we weren't designing a banking experience—we were designing around the behaviors people already had.",
 
   /* ── Quotes — combined (deck) ────────────────────────────────────── */
-  quote_research: '"It\'s visually pleasing to go through stories like that. It\'s not as time consuming as a spreadsheet. I think it would be helpful for me personally because of the data they can gather for me — having it at your fingertips is useful." — Research participant',
-  quote_cpo:      '"Carrie is great at forming through ambiguity, breaking things apart and guiding cross-functional teams through messiness to outcome. Money Stories was an example of that — pushing forward with an idea, getting buy-in from senior stakeholders and then delivering on a really cool experience all the way from insights to content." — Chief product officer',
-  quote_pp:       '"Your work on Money Stories was incredible!" — Product partner',
-  quote_viewer:   '"It\'s like Spotify\'s yearly review, but for your money." — Money Stories viewer',
 
   /* ── Quotes — split (scroll) ─────────────────────────────────────── */
   quote_research_text: '"It\'s visually pleasing to go through stories like that. It\'s not as time consuming as a spreadsheet. I think it would be helpful for me personally because of the data they can gather for me — having it at your fingertips is useful."',

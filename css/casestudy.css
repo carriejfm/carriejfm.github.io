@@ -339,6 +339,7 @@
   padding-bottom: 0;
 }
 
+.cs-approach-block h2,
 .cs-approach-block h3 {
   font-family: var(--font-mono);
   font-weight: 300;
@@ -577,12 +578,8 @@
   }
 }
 
-/* Let the browser handle vertical scroll natively; JS only sees horizontal drags */
-.va-carousel {
-  touch-action: pan-y;
-}
-
-/* Prevent native image/video drag from fighting pointer-drag on carousels */
+/* Prevent native image/video drag from fighting pointer-drag on carousels
+   (base .va-carousel component incl. touch-action lives in style.css) */
 .va-carousel img,
 .va-carousel video {
   pointer-events: none;
@@ -1008,35 +1005,10 @@
   min-height: 0;
 }
 
-.va-carousel {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: var(--bg);
-}
+/* Base .va-carousel / __track / __item component lives in css/style.css
+   (always loaded first). Only the case-study deltas live here. */
 .va-carousel__track {
-  display: flex;
-  gap: var(--va-tile-gap);
-  padding: 0;
-  width: max-content;
-  height: 100%;
-  align-items: stretch;
-  animation: va-scroll 40s linear infinite;
-  animation-play-state: paused;
-  will-change: transform;
-}
-.va-carousel.is-active .va-carousel__track {
-  animation-play-state: running;
-}
-.va-carousel__item {
-  flex: 0 0 var(--va-tile-w);
-  width: var(--va-tile-w);
-  height: var(--va-tile-h);
-  background: #fff;
-  border-radius: 38px;
-  overflow: hidden;
-  position: relative;
+  animation-duration: 40s;   /* case-study default; home (style.css) runs 80s */
 }
 
 /* Static image tile: natural aspect ratio, no crop, no radius — must follow base rule */
@@ -1054,10 +1026,7 @@
   border-radius: 0;
 }
 
-@keyframes va-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
+/* (@keyframes va-scroll is defined in style.css) */
 
 /* ── Per-tile animations (paused until carousel is in view) ── */
 .va-carousel .va-tile-bars,
@@ -1072,7 +1041,6 @@
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .va-carousel__track { animation: none; }
   .va-tile-bars, .va-tile-pulse, .va-tile-shimmer { animation: none; }
   .va-motion::before, .va-motion::after { animation: none; }
 }
@@ -1089,8 +1057,7 @@
   .va-asset { grid-column: 1; }
   .va-asset { aspect-ratio: 4 / 3; }
   .va-asset--bleed-r { margin-right: calc(-1 * var(--side-pad)); }
-  .va-carousel__item { border-radius: 24px; }
-  .va-carousel__item--contain-img { border-radius: 0; }
+  .va-carousel__item--contain-img { border-radius: 0; }  /* base 24px radius from style.css */
 }
 
 

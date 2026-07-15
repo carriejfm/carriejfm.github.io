@@ -99,7 +99,6 @@ var AP_COPY = {
   figure_xfn_caption:    "Two-way streets of communication with cross-functional partners smoothed roadmap hiccups.",
 
   /* ── AI in practice (kept in copy; currently removed from scroll approach) ── */
-  ai_approach: "If I were to embark on this journey now I would use AI to take and synth weekly notes into actions and support tracking. I would build out the regulation playbook structure, onboarding docs and the design system regional rollout tooling using AI. I would have flexed AI to smash out the manual content audit and publish a living content 'bot that brand and marketing partners could input into and co-own.",
 
   /* ── A regulated Afterpay ──────────────────────────────────────── */
   regulated_0: "Aligning Afterpay to responsible BNPL lending obligations meant designing and redesigning key experiences with regional variation —",
@@ -155,11 +154,6 @@ var AP_COPY = {
   outcome_product_3: "Shaved substantial* time off onboarding and limit approval flow",
 
   /* ── Quotes — combined (deck <p>) ──────────────────────────────── */
-  quote_product_partner:  "“Carrie built an incredibly talented team and created the environment for them to lean in with ownership.” — Product partner",
-  quote_design_manager:   "“She pushed back and held the line when warranted… while building credibility and trust across teams.” — Design manager",
-  quote_eng_partner:      "“Her prioritization was crucial in helping the team focus on the most impactful work and ultimately meet our release timeline.” — Engineering partner",
-  quote_xfn_partner:      "“Carrie has been able to effectively communicate and align strategies across teams, adapting team structures and resources to meet evolving business needs.” — Cross-functional partner",
-  quote_cmo:              "“She has a strong, positive influence at the leadership level — bringing both strategic thinking and empathy to complex initiatives.” — Afterpay CMO",
 
   /* ── Quotes — split (scroll blockquote <p> / <footer>) ─────────── */
   quote_product_partner_text:  "“Carrie built an incredibly talented team and created the environment for them to lean in with ownership.”",

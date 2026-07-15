@@ -23,7 +23,6 @@
    VIEW-VARIANT KEYS:
    Where the same slot needs different copy per view, the deck uses a *_deck /
    *_2 variant key while the base key stays the scroll (canonical) value:
-     deck_title   (scroll/long)  vs  deck_title_2 (deck hero, short)
      content_1    (scroll)       vs  content_1_deck (deck — carries the
                                      "Beta usage…" lead-in that scroll's
                                      content_0 supplies separately)
@@ -45,12 +44,10 @@
 var CC_COPY = {
 
   /* ── Meta ───────────────────────────────────────────────────────── */
-  case_title:     "Building hearing rehab with Cochlear CoPilot",
   project_string: "Cochlear · ustwo // 2020–2021",
   role_title:     "Embedded design lead",
 
   /* ── Deck-specific meta ──────────────────────────────────────────── */
-  deck_title:   "Building hearing rehab with Cochlear CoPilot",
   deck_title_2: "Cochlear CoPilot",
   deck_company: "Cochlear · ustwo · 2020–2021",
   hero_caption_2: "Hearing rehab with Cochlear CoPilot: The one where I built shared language, shared evidence and shared capability.",
@@ -126,7 +123,6 @@ var CC_COPY = {
   content_3: "To make the content navigable, we ran multiple rounds of testing on navigation and Skill Builder tutorial design. We learned users expected both passive and active navigation, so we designed the final interface to support both modes. We also learned that speed and discoverability were in tension with understanding of Skill Builder comprehension. We held that tension deliberately rather than optimizing for one metric, and iterated until we found a middle ground worth shipping.",
 
   /* ── Approach: Recycle & Reuse ───────────────────────────────────── */
-  reuse_fig_a_caption: "Clinical co-creation sessions.",
   reuse_fig_b_caption: "Skill builder language alignment.",
   reuse_fig_c_caption: "\"Assume everything is the same\" strategy allowed for surgical deltas.",
   reuse_0: "We had one Skill Builder shipped but five remained. A delivery deadline was looming and engineering estimations showed we weren't going to make it. We needed to reuse as much design and code as possible, without compromising clinical integrity.",
@@ -136,10 +132,8 @@ var CC_COPY = {
   reuse_4: "Through this workshop I held the tension between clinical integrity, engineering constraints, and business realities. And five little Skill Builders shipped on time.",
 
   /* ── AI in practice ─────────────────────────────────────────────── */
-  ai_practice: "Most of this work was done in 2020–2021 with no AI in the toolchain. The Measure-Learn Tracker was hand-curated. Recipient interviews were synthesized by the team in Mural sessions. Thought pieces involved desk research and consulting peers in London. Today I'd use AI heavily but selectively. The reuse audit, clustering recipient feedback across hypotheses, drafting first-pass measure-learn entries, accelerating desk research — AI does that legwork. What I'd protect: the language alignment in the first thirty minutes of a workshop, the trust-building with clinical researchers and recipients, the judgment calls about which tension to hold and which to break. That work is human.",
 
   /* ── Quote: Recycle & Reuse ──────────────────────────────────────── */
-  quote_reuse:      "“Your Reuse and Recycle workshop at Cochlear was beyond amazing and was probably the only thing that got us over the line. You also helped me to make better design decisions in order to allow the developers to reuse as much work as possible to get us to launch.” — CoPilot + ustwo product designer",
   quote_reuse_text: "“Your Reuse and Recycle workshop at Cochlear was beyond amazing and was probably the only thing that got us over the line. You also helped me to make better design decisions in order to allow the developers to reuse as much work as possible to get us to launch.”",
   quote_reuse_attr: "— CoPilot + ustwo product designer",
 
@@ -237,12 +231,6 @@ var CC_COPY = {
   impact_scale_4: "Personalization foundation laid.",
 
   /* ── Quotes — combined (deck) ────────────────────────────────────── */
-  quote_stakeholder: "“Carrie plays a key leadership role for the squad, helping us achieve to our timelines and product goals, championing the customer experience, encouraging a collaborative approach to ways of working, striving towards continuous improvements and maintaining transparency in all communications with myself and the team.” — CoPilot Product owner",
-  quote_vijay:       "“Carrie is an incredible facilitator and collaborator which transcends design into every other discipline.” — Head of engineering, ustwo",
-  quote_paz:         "“It was like I had another brain outside my brain.” — UX design director, ustwo",
-  quote_jonathan:    "”I like them (Need Enablers) More than one (per session). I think interaction is flavourful. I would want to see multiple each time you open.” — Cochlear recipient co-creator",
-  quote_articles:    "“I liked the articles under different categories... It's truly a one stop shop for all regardless of whether one is a new or long-time recipient.” — Cochlear recipient co-creator",
-  quote_survey:      "“I did at least one every day for ~4 months. It totally helped my best hearing outcome in a positive way.” — Cochlear recipient",
 
   /* ── Quotes — split (scroll) ─────────────────────────────────────── */
   quote_stakeholder_text: "“Carrie plays a key leadership role for the squad, helping us achieve to our timelines and product goals, championing the customer experience, encouraging a collaborative approach to ways of working, striving towards continuous improvements and maintaining transparency in all communications with myself and the team.”",
@@ -251,8 +239,6 @@ var CC_COPY = {
   quote_vijay_text: "“Carrie is an incredible facilitator and collaborator which transcends design into every other discipline.”",
   quote_vijay_attr: "— Head of engineering, ustwo",
 
-  quote_paz_text: "”It was like I had another brain outside my brain.”",
-  quote_paz_attr: "— UX design director, ustwo",
 
   quote_jonathan_text: "”I like them (Need Enablers) More than one (per session). I think interaction is flavourful. I would want to see multiple each time you open.”",
   quote_jonathan_attr: "— Cochlear recipient co-creator",
@@ -320,7 +306,6 @@ var CC_VISIBILITY = {
     'content_0', 'content_2', 'content_3',
     'section_hypothesis',
     'reuse_1', 'reuse_2', 'reuse_3', 'reuse_4',
-    'quote_paz_text', 'quote_paz_attr',
     'quote_jonathan_text', 'quote_jonathan_attr',
     'quote_articles_text', 'quote_articles_attr',
     'approach_stat_1_value', 'approach_stat_1_label',
@@ -333,12 +318,12 @@ var CC_VISIBILITY = {
     'reflection_1'
   ],
   deckOnly: [
-    'deck_title', 'deck_title_2', 'deck_company', 'hero_caption_2',
+    'deck_title_2', 'deck_company', 'hero_caption_2',
     'content_1_deck',
     'opportunity_0',
     'cocreators_program_caption', 'measure_calibration_caption',
     'content_ia_caption', 'content_personalisation_caption', 'content_nav_caption',
-    'reuse_fig_a_caption', 'reuse_fig_b_caption', 'reuse_fig_c_caption',
+    'reuse_fig_b_caption', 'reuse_fig_c_caption',
     'section_cp', 'section_sb', 'section_ftu_label',
     'intro_cp_0',
     'intro_sb_0',
